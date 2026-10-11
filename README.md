@@ -13,6 +13,9 @@ calculations, and **geomeTRIC** for optimization. Current validation covers smal
 restricted closed-shell and small unrestricted gas-phase systems. APIs, supported methods, and installation
 requirements may change as development proceeds.
 
+See [scientific references, research papers, and websites](#scientific-references-research-papers-and-websites)
+for method attribution, benchmark sources, and software documentation.
+
 ## What works today
 
 | Capability | Current status |
@@ -148,17 +151,248 @@ initial/final XYZ and evaluation trajectories. Convergence does not establish a 
 
 See [methods](docs/METHODS.md), [validation](docs/VALIDATION.md),
 [GKS-EDA source gate](docs/GKS_EDA_SPEC.md), and the dated report under `reports/`.
-## Scientific references and project terms
+## Scientific references, research papers, and websites
 
-- [PySCF geometry optimization](https://pyscf.org/user/geomopt.html)
-- [GPU4PySCF](https://github.com/pyscf/gpu4pyscf)
-- [geomeTRIC constraint documentation](https://geometric.readthedocs.io/en/latest/constraints.html)
-- [Original GKS-EDA derivation, Su et al. (2014)](https://doi.org/10.1021/jp500405s)
-- [GKS-EDA review, Su, Tang, and Wu (2020)](https://doi.org/10.1002/wcms.1460)
-- [Official XEDA manual and reference examples](https://xmvb.xmu.edu.cn/docs/xeda/content.html)
+If EDA_GPU has benefited your research, please cite
+[this project](https://github.com/zyliu-OU/EDA_GPU) with the version or commit used,
+the GKS-EDA publications, and the software, functional, and basis-set papers relevant
+to your calculation. The bibliography below covers the current implementation,
+documented benchmarks, and supporting software. Each entry explains its role.
+
+### GKS-EDA theory and reference program
+
+1. **Su, P.; Li, H. (2009).** “Energy decomposition analysis of covalent bonds and
+   intermolecular interactions.” *Journal of Chemical Physics* **131**, 014102.
+   [DOI: 10.1063/1.3159673](https://doi.org/10.1063/1.3159673).
+   Supplies the orbital intermediate energy expressions used by the experimental implementation.
+   [University of Nebraska institutional record](https://digitalcommons.unl.edu/chemfacpub/22/).
+2. **Su, P.; Jiang, Z.; Chen, Z.; Wu, W. (2014).** “Energy Decomposition Scheme
+   Based on the Generalized Kohn–Sham Scheme.” *Journal of Physical Chemistry A*
+   **118**, 2531–2542. [DOI: 10.1021/jp500405s](https://doi.org/10.1021/jp500405s).
+   Original GKS-EDA method paper and the project's intended decomposition.
+3. **Su, P.; Tang, Z.; Wu, W. (2020).** “Generalized Kohn-Sham energy
+   decomposition analysis and its applications.” *WIREs Computational Molecular
+   Science* **10**, e1460. [DOI: 10.1002/wcms.1460](https://doi.org/10.1002/wcms.1460).
+   Review used to map KS orbital intermediates, component definitions, and generalized correlation.
+4. **Tang, Z.; Song, Y.; Zhang, S.; Wang, W.; Xu, Y.; Wu, D.; Wu, W.; Su, P.
+   (2021).** “XEDA, a fast and multipurpose energy decomposition analysis program.”
+   *Journal of Computational Chemistry* **42**, 2341–2351.
+   [DOI: 10.1002/jcc.26765](https://doi.org/10.1002/jcc.26765).
+   Reference-program publication; the current comparisons use published manual data.
+
+Official reference resources:
+
+- [XEDA documentation and tutorials](https://xmvb.xmu.edu.cn/docs/xeda/),
+  including the [web manual, examples, and citation guidance](https://xmvb.xmu.edu.cn/docs/xeda/content.html).
+- [XEDA II English manual](https://xmvb.xmu.edu.cn/docs/xeda/_downloads/415e0f39b016129f5cf2eb24dfe28b4f/XEDA_II_en.pdf):
+  source of the CO₂ dimer geometry and rounded components in
+  [the attributed reference fixture](references/xeda_ii_co2_b3lyp.json).
+- [GAMESS XEDA manual](https://xmvb.xmu.edu.cn/docs/xeda/_downloads/222e6e0bd8ccfe3ce8fe39d17fc3eef3/XEDA_gms.pdf):
+  reference interface and counterpoise keyword conventions.
+- [Xiamen University 2014 publication list](https://pcoss.xmu.edu.cn/2014-paperlist.pdf):
+  bibliographic provenance recorded during the source audit.
+
+Source-access history and equation provenance are in the
+[source audit](docs/EDA_SOURCE_AUDIT_2026-10-11.md) and
+[mathematical specification](docs/GKS_EDA_SPEC.md). The original 2014 full text
+has not been authenticated locally; the supplied review and the Su–Li formulas
+support the experimental construction. No local XEDA reference execution has
+been established. Citations and internal energy closure do not establish external
+component validation. Historical transcription and author-upload links are preserved
+in those audit documents with their access and reliability limitations.
+
+### Published molecular benchmark
+
+5. **Liu, Z.; Trindle, C. O.; Gu, Q.; Wu, W.; Su, P. (2017).** “Unravelling
+   hydrogen bonding interactions of tryptamine–water dimer from neutral to cation.”
+   *Physical Chemistry Chemical Physics* **19**, 25260–25269.
+   [DOI: 10.1039/C7CP03491A](https://doi.org/10.1039/C7CP03491A).
+   Source of the neutral/radical-cation M06-2X/aug-cc-pVDZ comparison and Table 3
+   component values in [the attributed benchmark fixture](references/tryptamine_water_2017.json).
+   [Publisher article and supporting-information navigation](https://pubs.rsc.org/en/content/articlelanding/2017/cp/c7cp03491a);
+   [four-page supporting information](https://www.rsc.org/suppdata/c7/cp/c7cp03491a/c7cp03491a2.pdf).
+   The supplied SI has no complete Cartesian geometries; comparisons using the
+   constructed seed remain exploratory.
+
+### Electronic structure, optimization, and numerical software
+
+6. **Sun, Q., et al. (2018).** “PySCF: the Python-based simulations of chemistry
+   framework.” *WIREs Computational Molecular Science* **8**, e1340.
+   [DOI: 10.1002/wcms.1340](https://doi.org/10.1002/wcms.1340).
+   CPU electronic-structure foundation.
+7. **Sun, Q., et al. (2020).** “Recent developments in the PySCF program package.”
+   *Journal of Chemical Physics* **153**, 024109.
+   [DOI: 10.1063/5.0006074](https://doi.org/10.1063/5.0006074).
+   PySCF methods and program development. Also see **Sun, Q., et al. (2026)**,
+   “The Python simulations of chemistry framework: 10 years of an open-source
+   quantum chemistry project,” *Journal of Chemical Physics* **165**, 102502,
+   listed on the [official citation page](https://pyscf.org/about.html#how-to-cite).
+8. **Sun, Q. (2015).** “Libcint: An efficient general integral library for Gaussian
+   basis functions.” *Journal of Computational Chemistry* **36**, 1664–1671.
+   [DOI: 10.1002/jcc.23981](https://doi.org/10.1002/jcc.23981).
+   Gaussian-integral library underlying PySCF.
+9. **Li, R.; Sun, Q.; Zhang, X.; Chan, G. K.-L. (2024).** “Introducing
+   GPU-acceleration into the Python-based Simulations of Chemistry Framework.”
+   [arXiv:2407.09700](https://arxiv.org/abs/2407.09700).
+   GPU4PySCF reference listed by its official repository.
+10. **Wu, X., et al. (2024).** “Enhancing GPU-acceleration in the Python-based
+    Simulations of Chemistry Framework.”
+    [arXiv:2404.09452](https://arxiv.org/abs/2404.09452).
+    Additional GPU4PySCF reference listed by its official repository.
+11. **Wang, L.-P.; Song, C. (2016).** “Geometry optimization made simple with
+    translation and rotation coordinates.” *Journal of Chemical Physics* **144**,
+    214108. [DOI: 10.1063/1.4952956](https://doi.org/10.1063/1.4952956).
+    geomeTRIC optimizer and TRIC coordinates;
+    [2022 erratum](https://doi.org/10.1063/5.0102029).
+12. **Lehtola, S.; Steigemann, C.; Oliveira, M. J. T.; Marques, M. A. L. (2018).**
+    “Recent developments in Libxc — A comprehensive library of functionals for
+    density functional theory.” *SoftwareX* **7**, 1–5.
+    [DOI: 10.1016/j.softx.2017.11.002](https://doi.org/10.1016/j.softx.2017.11.002).
+    Exchange-correlation functional library used through the calculation backends.
+13. **Harris, C. R., et al. (2020).** “Array programming with NumPy.” *Nature*
+    **585**, 357–362. [DOI: 10.1038/s41586-020-2649-2](https://doi.org/10.1038/s41586-020-2649-2).
+    CPU arrays, density algebra, and result processing.
+14. **Virtanen, P., et al. (2020).** “SciPy 1.0: fundamental algorithms for
+    scientific computing in Python.” *Nature Methods* **17**, 261–272.
+    [DOI: 10.1038/s41592-019-0686-2](https://doi.org/10.1038/s41592-019-0686-2).
+    Numerical infrastructure used by the scientific software stack.
+
+Official software websites and implementation documentation:
+
+- **PySCF:** [website](https://pyscf.org/), [source](https://github.com/pyscf/pyscf),
+  [geometry optimization](https://pyscf.org/user/geomopt.html),
+  [GPU interface](https://pyscf.org/user/gpu.html), and
+  [density fitting](https://pyscf.org/user/df.html).
+- **GPU4PySCF:** [source and citation guidance](https://github.com/pyscf/gpu4pyscf);
+  [v1.8.1 direct J/K implementation](https://github.com/pyscf/gpu4pyscf/blob/v1.8.1/gpu4pyscf/scf/hf.py)
+  inspected for the CPU/GPU hybrid execution description.
+- **geomeTRIC:** [documentation](https://geometric.readthedocs.io/en/latest/),
+  [constraints](https://geometric.readthedocs.io/en/latest/constraints.html), and
+  [source and citation guidance](https://github.com/leeping/geomeTRIC).
+- **Libxc / libcint:** [Libxc website and citations](https://libxc.gitlab.io/),
+  [functional definitions](https://libxc.gitlab.io/functionals/), and
+  [libcint source](https://github.com/sunqm/libcint).
+- **CuPy:** [website](https://cupy.dev/), [documentation](https://docs.cupy.dev/en/stable/),
+  and [source](https://github.com/cupy/cupy); GPU arrays and linear algebra.
+- **NVIDIA:** [CUDA documentation](https://docs.nvidia.com/cuda/),
+  [cuTENSOR documentation](https://docs.nvidia.com/cuda/cutensor/latest/), and
+  [NVIDIA System Management Interface](https://docs.nvidia.com/deploy/nvidia-smi/);
+  runtime, tensor contractions, and hardware monitoring.
+- **NumPy / SciPy:** [NumPy citation guidance](https://numpy.org/citing-numpy/)
+  and [SciPy citation guidance](https://scipy.org/citing-scipy/).
+- **RDKit (optional seed generation):** [website](https://www.rdkit.org/),
+  [overview and citation guidance](https://www.rdkit.org/docs/Overview.html), and
+  [source](https://github.com/rdkit/rdkit). Used to construct the labelled approximate
+  tryptamine seed; ordinary electronic-structure calculations do not require it.
+- **Supporting tools:** [h5py](https://www.h5py.org/),
+  [NetworkX](https://networkx.org/), [threadpoolctl](https://github.com/joblib/threadpoolctl),
+  and [pytest](https://docs.pytest.org/en/stable/); data handling, optimizer graph
+  infrastructure, thread limits, and tests. Exact installed versions are recorded
+  in the lock files and calculation results.
+
+### Density functionals and counterpoise convention
+
+15. **Boys, S. F.; Bernardi, F. (1970).** “The calculation of small molecular
+    interactions by the differences of separate total energies. Some procedures
+    with reduced errors.” *Molecular Physics* **19**, 553–566.
+    [DOI: 10.1080/00268977000101561](https://doi.org/10.1080/00268977000101561).
+    Ghost-basis counterpoise convention for fragment references and BSSE treatment.
+16. **Becke, A. D. (1993).** “Density-functional thermochemistry. III. The role of
+    exact exchange.” *Journal of Chemical Physics* **98**, 5648–5652.
+    [DOI: 10.1063/1.464913](https://doi.org/10.1063/1.464913).
+    Three-parameter hybrid construction relevant to B3LYP.
+17. **Stephens, P. J.; Devlin, F. J.; Chabalowski, C. F.; Frisch, M. J. (1994).**
+    “Ab Initio Calculation of Vibrational Absorption and Circular Dichroism Spectra
+    Using Density Functional Force Fields.” *Journal of Physical Chemistry* **98**,
+    11623–11627. [DOI: 10.1021/j100096a001](https://doi.org/10.1021/j100096a001).
+    B3LYP reference returned by the installed Libxc interface.
+18. **Becke, A. D. (1988).** “Density-functional exchange-energy approximation
+    with correct asymptotic behavior.” *Physical Review A* **38**, 3098–3100.
+    [DOI: 10.1103/PhysRevA.38.3098](https://doi.org/10.1103/PhysRevA.38.3098).
+    B88 exchange contribution to B3LYP/B3LYP5.
+19. **Lee, C.; Yang, W.; Parr, R. G. (1988).** “Development of the Colle-Salvetti
+    correlation-energy formula into a functional of the electron density.”
+    *Physical Review B* **37**, 785–789.
+    [DOI: 10.1103/PhysRevB.37.785](https://doi.org/10.1103/PhysRevB.37.785).
+    LYP correlation contribution to B3LYP/B3LYP5.
+20. **Vosko, S. H.; Wilk, L.; Nusair, M. (1980).** “Accurate spin-dependent
+    electron liquid correlation energies for local spin density calculations:
+    a critical analysis.” *Canadian Journal of Physics* **58**, 1200–1211.
+    [DOI: 10.1139/p80-159](https://doi.org/10.1139/p80-159).
+    Local correlation and the explicitly recorded B3LYP variant convention.
+21. **Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996).** “Generalized Gradient
+    Approximation Made Simple.” *Physical Review Letters* **77**, 3865–3868.
+    [DOI: 10.1103/PhysRevLett.77.3865](https://doi.org/10.1103/PhysRevLett.77.3865).
+    PBE exchange/correlation underlying PBE0 and independent PBE component checks.
+22. **Adamo, C.; Barone, V. (1999).** “Toward reliable density functional methods
+    without adjustable parameters: The PBE0 model.” *Journal of Chemical Physics*
+    **110**, 6158–6170. [DOI: 10.1063/1.478522](https://doi.org/10.1063/1.478522).
+    PBE0 global hybrid functional.
+23. **Ernzerhof, M.; Scuseria, G. E. (1999).** “Assessment of the
+    Perdew–Burke–Ernzerhof exchange-correlation functional.” *Journal of Chemical
+    Physics* **110**, 5029–5036.
+    [DOI: 10.1063/1.478401](https://doi.org/10.1063/1.478401).
+    Companion PBE0 reference returned by the installed Libxc interface.
+24. **Zhao, Y.; Truhlar, D. G. (2008).** “The M06 suite of density functionals
+    for main group thermochemistry, thermochemical kinetics, noncovalent
+    interactions, excited states, and transition elements: two new functionals
+    and systematic testing of four M06-class functionals and 12 other functionals.”
+    *Theoretical Chemistry Accounts* **120**, 215–241.
+    [DOI: 10.1007/s00214-007-0310-x](https://doi.org/10.1007/s00214-007-0310-x).
+    M06-2X functional used for the tryptamine–water benchmark.
+
+### Orbital and auxiliary basis sets
+
+25. **Weigend, F.; Ahlrichs, R. (2005).** “Balanced basis sets of split valence,
+    triple zeta valence and quadruple zeta valence quality for H to Rn: Design and
+    assessment of accuracy.” *Physical Chemistry Chemical Physics* **7**, 3297–3305.
+    [DOI: 10.1039/B508541A](https://doi.org/10.1039/B508541A).
+    def2-SVP basis used in the optimization-foundation validation.
+26. **Weigend, F. (2002).** “A fully direct RI-HF algorithm: Implementation,
+    optimised auxiliary basis sets, demonstration of accuracy and efficiency.”
+    *Physical Chemistry Chemical Physics* **4**, 4285–4291.
+    [DOI: 10.1039/B204199P](https://doi.org/10.1039/B204199P).
+    Correlation-consistent J/K-fitting auxiliary bases relevant to the
+    aug-cc-pVDZ-JKFIT density-fitted optimization path.
+27. **Dunning, T. H., Jr. (1989).** “Gaussian basis sets for use in correlated
+    molecular calculations. I. The atoms boron through neon and hydrogen.”
+    *Journal of Chemical Physics* **90**, 1007–1023.
+    [DOI: 10.1063/1.456153](https://doi.org/10.1063/1.456153).
+    Correlation-consistent cc-pVDZ foundation.
+28. **Kendall, R. A.; Dunning, T. H., Jr.; Harrison, R. J. (1992).** “Electron
+    affinities of the first-row atoms revisited. Systematic basis sets and wave
+    functions.” *Journal of Chemical Physics* **96**, 6796–6806.
+    [DOI: 10.1063/1.462569](https://doi.org/10.1063/1.462569).
+    Diffuse augmentation underlying aug-cc-pVDZ in the molecular benchmark.
+29. **Hehre, W. J.; Ditchfield, R.; Pople, J. A. (1972).** “Self—Consistent
+    Molecular Orbital Methods. XII. Further Extensions of Gaussian—Type Basis
+    Sets for Use in Molecular Orbital Studies of Organic Molecules.”
+    *Journal of Chemical Physics* **56**, 2257–2261.
+    [DOI: 10.1063/1.1677527](https://doi.org/10.1063/1.1677527).
+    6-31G basis underlying the XEDA CO₂ example.
+30. **Hariharan, P. C.; Pople, J. A. (1973).** “The influence of polarization
+    functions on molecular orbital hydrogenation energies.” *Theoretica Chimica
+    Acta* **28**, 213–222.
+    [DOI: 10.1007/BF00533485](https://doi.org/10.1007/BF00533485).
+    Polarization functions relevant to the example's 6-31G* basis.
+31. **Weigend, F. (2008).** “Hartree–Fock exchange fitting basis sets for H to Rn.”
+    *Journal of Computational Chemistry* **29**, 167–175.
+    [DOI: 10.1002/jcc.20702](https://doi.org/10.1002/jcc.20702).
+    Universal J/K-fitting auxiliary basis family used as def2-universal-jkfit
+    in the optimization-foundation calculations.
+
+Basis definitions and their source references can also be inspected through
+[PySCF basis documentation](https://pyscf.org/user/gto.html#basis-set) and the
+[Basis Set Exchange](https://www.basissetexchange.org/). Spherical/Cartesian
+representation, auxiliary basis, and installed functional definitions must be
+reported with each result because these choices affect comparison with published data.
+
+### Project terms
 
 This repository is public for development visibility. No project license has been
-assigned yet. Published literature is linked rather than redistributed as full-text papers.
+assigned yet. Published literature and manuals are linked; full-text papers are
+not redistributed in this repository. Software projects retain their own licenses
+and citation guidance.
 
 ## Experimental CPU EDA preparation
 
