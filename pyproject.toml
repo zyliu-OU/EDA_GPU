@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "EDA_GPU"
+version = "0.1.0"
+description = "Reproducible CPU/GPU molecular optimization; GKS-EDA research scaffold"
+requires-python = ">=3.11"
+dependencies = ["numpy", "pyscf>=2.8", "geometric>=1.1"]
+[project.optional-dependencies]
+test = ["pytest"]
+[project.scripts]
+eda-gpu = "eda_gpu.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: requires actual NVIDIA GPU execution", "scientific: quantum chemistry validation"]

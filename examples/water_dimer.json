@@ -1,0 +1,51 @@
+{
+  "identity": "water dimer",
+  "protonation": "two neutral H2O molecules",
+  "charge": 0,
+  "spin": 0,
+  "fragments": [
+    {
+      "name": "donor",
+      "atoms": [
+        0,
+        1,
+        2
+      ],
+      "charge": 0,
+      "spin": 0
+    },
+    {
+      "name": "acceptor",
+      "atoms": [
+        3,
+        4,
+        5
+      ],
+      "charge": 0,
+      "spin": 0
+    }
+  ],
+  "bonds": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      2,
+      1
+    ],
+    [
+      3,
+      4,
+      1
+    ],
+    [
+      3,
+      5,
+      1
+    ]
+  ],
+  "stereochemistry": "achiral"
+}
