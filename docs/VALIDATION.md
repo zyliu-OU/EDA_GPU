@@ -39,7 +39,10 @@ Twelve local pytest tests passed, including actual GPU execution (no skip on thi
 Upstream GPU4PySCF emits SciPy 1.18 deprecation warnings; they did not change validation status.
 
 CPU CI intentionally lacks GPU support; its marked hardware test must be reported as skipped.
-Actual remote CI status is tracked in the dated build report.
+Pinned remote CPU CI passed for code commit
+`f769e90af9ad7c0b20e6d33afb8af8aacfcf8af7`:
+https://github.com/zyliu-OU/EDA_GPU/actions/runs/38170042142.
+Remote tests and CPU scientific validation succeeded; its GPU test is skipped honestly.
 
 ## Repeated energy/gradient timing
 

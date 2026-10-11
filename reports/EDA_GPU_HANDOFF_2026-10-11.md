@@ -62,6 +62,11 @@ predictions are implemented. Chemical metadata is retained, not inferred from XY
 
 ## GitHub verification
 
-Private repository created and first stage pushed successfully. CPU GitHub Actions
-is running; final status will be recorded after the final validation-stage push.
+Private repository created; initial and validation stages pushed successfully.
+Validated code commit: f769e90af9ad7c0b20e6d33afb8af8aacfcf8af7.
+Pinned CPU GitHub Actions completed SUCCESS for that commit:
+https://github.com/zyliu-OU/EDA_GPU/actions/runs/38170042142.
+The job installed pinned CPU dependencies, ran tests and completed CPU scientific validation.
 Local hardware validation is independent of remote CI (which lacks a GPU).
+This final documentation-only delivery commit uses [skip ci] to avoid repeating unchanged
+scientific code tests. Remote/local main equality is checked after pushing it.
