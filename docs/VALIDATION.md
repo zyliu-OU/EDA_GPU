@@ -15,7 +15,9 @@ frozen indices, and an actual SCF nonconvergence failure. GPU unavailability mus
 an explicit failure with no backend substitution. GPU tests on unavailable hosts should
 be skipped explicitly; the hardware validation command itself never treats a skip as pass.
 
-No EDA components have been calculated or validated. No Hessian/minimum or HPLC
+Initial CPU electrostatic and generalized-correlation terms have been calculated and
+checked against independent algebra; matched-settings published component validation
+has not been established. No Hessian/minimum or HPLC
 validation is claimed. Small-system timings are recorded for reproducibility; they are
 not reliable throughput benchmarks or measured production speedup.
 
@@ -63,3 +65,22 @@ These tiny-system measurements include backend setup and transfers; no larger-sy
 speedup or GPU EDA benchmark is established. Optimizer iterations/timings can differ
 because small gradient differences affect the search path. geomeTRIC, molecule
 construction and output remain CPU operations.
+
+## CPU EDA preparation, 2026-10-11
+
+Eight additional tests cover explicit four-index integral contractions for frozen
+electrostatics and diagnostic exchange, fragment permutation invariance, independently
+integrated PBE0 exchange/correlation with its exact-exchange fraction, counterpoise
+reference cycles, density normalization, and unsupported-scope rejection. Dense ERIs
+are used only in tiny test systems; production uses direct J/K evaluation.
+
+Recorded B3LYP/def2-SVP water-dimer and B3LYP/6-31G* CO₂-dimer preparation
+results are in `reports/eda_preparation_2026-10-11/`. The CO₂ electrostatic
+difference from the XEDA II manual is about 6.28e-5 Eh and generalized-correlation
+difference about 7.46e-6 Eh, beyond its 1e-6-Eh printed resolution. Functional variant,
+quadrature, integral approximation, thresholds and BSSE policy are not fully matched.
+These comparisons do not pass the published component-validation gate. No complete
+EDA decomposition or GPU EDA validation is claimed.
+
+Full local suite after this stage: **20 passed**, including actual GPU execution
+(7.53 seconds). CPU CI additionally exercises the experimental CLI with PBE0/STO-3G.

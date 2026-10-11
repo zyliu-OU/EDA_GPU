@@ -1,0 +1,34 @@
+{
+  "source_url": "https://xmvb.xmu.edu.cn/docs/xeda/_downloads/415e0f39b016129f5cf2eb24dfe28b4f/XEDA_II_en.pdf",
+  "source_sha256": "269131a8383e117af77fd32a806d22ec0c8cd5a08213477c237ba59a76d89952",
+  "pdf_pages": {
+    "geometry": 24,
+    "components": 39
+  },
+  "printed_pages": {
+    "geometry": 23,
+    "components": 38
+  },
+  "system": "CO2 dimer",
+  "functional": "B3LYP",
+  "basis": "6-31G*",
+  "energy_unit": "hartree",
+  "reported_precision_hartree": 1e-06,
+  "components": {
+    "electrostatic": -0.002829,
+    "exchange": -0.004709,
+    "repulsion": 0.008185,
+    "polarization": -0.000989,
+    "generalized_correlation": 5.8e-05,
+    "total": -0.000285
+  },
+  "status": "published rounded values, not automatically a matched-settings validation fixture",
+  "unspecified_parameters": [
+    "B3LYP correlation variant",
+    "quadrature and pruning",
+    "SCF thresholds",
+    "reference program version",
+    "explicit BSSE keyword/default",
+    "integral algorithm not explicit in exercise; manual defaults to LR"
+  ]
+}

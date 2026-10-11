@@ -1,0 +1,25 @@
+{
+  "status": "exploratory; not matched-settings component validation",
+  "calculation": "co2_dimer_result.json",
+  "reference": "../../references/xeda_ii_co2_b3lyp.json",
+  "published_hartree": {
+    "electrostatic": -0.002829,
+    "generalized_correlation": 5.8e-05
+  },
+  "computed_hartree": {
+    "electrostatic": -0.0027662420392715603,
+    "generalized_correlation": 6.546483598413033e-05
+  },
+  "unknown_reference_settings": [
+    "B3LYP variant",
+    "quadrature",
+    "SCF thresholds",
+    "integral approximation",
+    "counterpoise policy"
+  ],
+  "full_eda_available": false,
+  "computed_minus_published_hartree": {
+    "electrostatic": 6.27579607284396e-05,
+    "generalized_correlation": 7.4648359841303314e-06
+  }
+}

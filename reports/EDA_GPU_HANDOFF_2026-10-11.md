@@ -78,3 +78,19 @@ README now documents the current prototype status, tested capabilities, numerica
 validation evidence, scientific blockers, roadmap, and references. Repository metadata
 identifies the project as under development. The original supplied handoff remains local.
 No license choice or new scientific validation claim was introduced by this release.
+
+## EDA preparation stage
+
+The supplied 22-page review was read completely, including visual inspection of the
+methodology equations. The official XEDA II manual supplies attributed CO₂ geometry
+and individual reference components. Full-text sources stay local. Implemented CPU
+`eda-prepare`: common-basis counterpoise complex/fragment SCFs, reference densities,
+frozen electrostatics, generalized correlation, and explicit absent dispersion. Full
+EDA is explicitly false; exchange/repulsion/polarization and closure remain null.
+Eight new algebra/scope tests pass. Partial published comparisons differ beyond rounding
+and are exploratory because reference settings are incompletely specified. Original
+antisymmetrization/normalization conventions still need authenticated-source verification.
+Next gates: secure the original derivation and matched XEDA output, implement and
+validate remaining CPU terms, then port validated operations to GPU.
+
+Final stage local verification: 20 tests passed, actual GPU test executed, no skips.

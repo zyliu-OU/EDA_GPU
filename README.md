@@ -25,16 +25,18 @@ requirements may change as development proceeds.
 | Machine-readable calculation results | Settings, units, convergence, versions, hardware, timing, and chemical metadata |
 | Optimized structures and trajectories | XYZ outputs and evaluated-geometry trajectories |
 | Scientific validation and CPU CI | CPU/GPU agreement, finite differences, constraints, and explicit failure handling |
+| CPU EDA preparation | Counterpoise fragment references, frozen electrostatics, generalized correlation; independent algebra checks passed, published component validation unresolved |
 | Original GKS-EDA decomposition | **Unavailable: derivation and component-reference gates remain unresolved** |
 
-The CLI provides `inspect`, `singlepoint`, `optimize`, and `validate` commands.
+The CLI provides `inspect`, `singlepoint`, `optimize`, `validate`, and experimental
+`eda-prepare` commands.
 This project implements an independently useful optimization foundation; it does not
 claim a GAMESS port or a validated EDA decomposition.
 
 ## Validation evidence
 
-On the development host (RTX 4080 SUPER, Ryzen 9 5950X, Ubuntu 26.04), **12 local
-tests and nine scientific checks passed**, including actual GPU execution. Water and
+On the development host (RTX 4080 SUPER, Ryzen 9 5950X, Ubuntu 26.04), **20 local
+tests and nine optimization-foundation scientific checks passed**, including actual GPU execution. Water and
 water-dimer CPU/GPU single-point energies differed by at most **9.21e-12 hartree**;
 maximum gradient differences were **7.35e-7 hartree/bohr**. Water finite-difference
 gradients agreed within **3.59e-6 hartree/bohr**, and frozen oxygen displacement was
@@ -65,7 +67,7 @@ See [validation details](docs/VALIDATION.md),
    foundation is established, with explicit chemical states, solvent/sampling assumptions,
    and experimental validation before interpreting HPLC retention trends.
 
-The EDA and HPLC stages are planned work. Total-energy closure alone will not count
+Full EDA and HPLC remain planned work. Initial CPU EDA preparation is implemented. Total-energy closure alone will not count
 as component validation, and ALMO-EDA or other decompositions will not be substituted
 for the original GKS-EDA definitions. The exact current blockers are documented in
 [the GKS-EDA source gate](docs/GKS_EDA_SPEC.md).
@@ -87,8 +89,9 @@ Python 3.12 `.env` layout. Exact host installation:
 source scripts/gpu-env.sh
 ```
 
-All nine local scientific validation checks and twelve tests passed. GPU acceleration
-was actually executed; GKS-EDA components remain blocked. See the recorded evidence.
+The optimization foundation passed nine scientific checks with actual GPU execution.
+Experimental CPU EDA preparation adds independent electrostatic and correlation checks;
+full GKS-EDA remains unavailable. See the recorded evidence.
 
 ```bash
 source scripts/gpu-env.sh # GPU wheel library paths
@@ -128,3 +131,24 @@ See [methods](docs/METHODS.md), [validation](docs/VALIDATION.md),
 
 This repository is public for development visibility. No project license has been
 assigned yet. Published literature is linked rather than redistributed as full-text papers.
+
+## Experimental CPU EDA preparation
+
+The supplied 2020 review was read completely. Its unambiguous definitions now support
+frozen electrostatics and generalized correlation, using direct integrals and ghost-basis
+counterpoise references at the complex geometry. Exactly two closed-shell, all-electron
+fragments and B3LYP/PBE0 are supported. No GPU EDA is available yet.
+
+```bash
+.env/bin/eda-gpu eda-prepare examples/water_dimer.xyz --metadata examples/water_dimer.json --backend cpu --output runs/eda_dimer
+.env/bin/eda-gpu eda-prepare examples/co2_dimer_xeda_ii.xyz --metadata examples/co2_dimer_xeda_ii.json --backend cpu --basis '6-31g*' --output runs/eda_co2
+```
+
+A successful preparation reports `full_eda_available: false`. Exchange, repulsion,
+polarization, and total closure remain null until their intermediate-state conventions
+and component references are established. Saved densities support further development.
+The official XEDA II CO₂ example differs from our partial calculation beyond printed
+rounding; its settings are not fully specified, so it is an exploratory comparison. See
+[comparison evidence](reports/eda_preparation_2026-10-11/co2_reference_comparison.json),
+[mathematical specification](docs/GKS_EDA_SPEC.md), and
+[source audit](docs/EDA_SOURCE_AUDIT_2026-10-11.md). Papers remain local.

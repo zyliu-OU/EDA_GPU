@@ -39,3 +39,15 @@ Official API sources checked 2026-10-11:
 - https://github.com/pyscf/gpu4pyscf
 - https://geometric.readthedocs.io/en/latest/constraints.html
 - Installed PySCF/geomeTRIC/GPU4PySCF source and package versions.
+
+## Experimental EDA preparation
+
+`eda-prepare` uses CPU direct integrals, B3LYP/PBE0, two restricted closed-shell
+all-electron fragments, and Boys–Bernardi ghost-basis counterpoise at the unchanged
+complex geometry. Every density uses the same AO basis with spin-summed occupancy 2.
+Frozen electrostatics follows review Eq. 2; generalized correlation follows Eq. 9,
+evaluated as KS energy minus the full HF-like functional on the same KS density.
+Explicit dispersion is zero for these settings. The diagnostic bare cross HF exchange
+is not assigned to the original EDA exchange component. Exchange, repulsion, polarization
+and closure are unavailable. This preparation is experimental and does not satisfy the
+full EDA reference gate. See GKS_EDA_SPEC.md for equations and normalization blockers.

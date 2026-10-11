@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "command": "eda-prepare",
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720456,
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.91.07, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "status": "success",
+  "metadata": {
+    "identity": "carbon dioxide dimer",
+    "protonation": "two neutral CO2 molecules",
+    "charge": 0,
+    "spin": 0,
+    "fragments": [
+      {
+        "name": "CO2_A",
+        "atoms": [
+          0,
+          1,
+          2
+        ],
+        "charge": 0,
+        "spin": 0
+      },
+      {
+        "name": "CO2_B",
+        "atoms": [
+          3,
+          4,
+          5
+        ],
+        "charge": 0,
+        "spin": 0
+      }
+    ],
+    "bonds": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        3,
+        5,
+        2
+      ]
+    ],
+    "stereochemistry": "linear monomers; no stereocenters",
+    "reference_source": {
+      "url": "https://xmvb.xmu.edu.cn/docs/xeda/_downloads/415e0f39b016129f5cf2eb24dfe28b4f/XEDA_II_en.pdf",
+      "geometry_pdf_page": 24,
+      "component_pdf_page": 39,
+      "section": "1.3.5 / 3.1.5",
+      "document_sha256": "269131a8383e117af77fd32a806d22ec0c8cd5a08213477c237ba59a76d89952"
+    }
+  },
+  "symbols": [
+    "C",
+    "O",
+    "O",
+    "C",
+    "O",
+    "O"
+  ],
+  "initial_coordinates_angstrom": [
+    [
+      1.0147167438,
+      0.7851763432,
+      -0.2899094357
+    ],
+    [
+      1.9274594108,
+      1.4852430742,
+      -0.1030181813
+    ],
+    [
+      0.0985398418,
+      0.0867161349,
+      -0.4812122653
+    ],
+    [
+      0.3771707399,
+      -2.0168042609,
+      1.8008474122
+    ],
+    [
+      1.3004827844,
+      -1.3249664483,
+      1.9816188836
+    ],
+    [
+      -0.5429272692,
+      -2.7100125473,
+      1.6246407061
+    ]
+  ],
+  "settings": {
+    "backend": "cpu",
+    "xc": "b3lyp",
+    "basis": "6-31g*",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "max_cycle": 100,
+    "threads": 4,
+    "density_fitting": false,
+    "dispersion": "none"
+  },
+  "backend_requested": "cpu",
+  "stage": "experimental_source_backed_preparation",
+  "full_eda_available": false,
+  "reference_component_validation": "not established; published-reference comparisons are exploratory",
+  "backend_used": "cpu",
+  "scf_converged": true,
+  "bsse_policy": "Boys-Bernardi counterpoise; complex basis on every fragment via ghost nuclei",
+  "fragment_reference_geometry": "complex coordinates; no separate fragment optimization or deformation term",
+  "reference_states": {
+    "complex": {
+      "one_electron_hartree": -884.6303621092752,
+      "coulomb_hartree": 366.33206113553496,
+      "exact_exchange_hartree": -43.1750914493356,
+      "nuclear_hartree": 186.2525425937445,
+      "hf_like_total_hartree": -375.2208498293313,
+      "energy_hartree": -377.1569388451501,
+      "scf_converged": true,
+      "electron_count": 44.000000000000114,
+      "occupied_orbitals": 22,
+      "restricted_idempotency_max_error": 2.1207710067250307e-13,
+      "generalized_correlation_hartree": -1.9360890158187658,
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    "fragments": [
+      {
+        "one_electron_hartree": -372.2101370401929,
+        "coulomb_hartree": 148.1239363163519,
+        "exact_exchange_hartree": -21.58543677324155,
+        "nuclear_hartree": 58.06137833389462,
+        "hf_like_total_hartree": -187.61025916318792,
+        "energy_hartree": -188.57833437602434,
+        "scf_converged": true,
+        "electron_count": 21.999999999999822,
+        "occupied_orbitals": 11,
+        "restricted_idempotency_max_error": 2.0932241400276053e-13,
+        "generalized_correlation_hartree": -0.9680752128364247,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "CO2_A",
+        "atoms": [
+          0,
+          1,
+          2
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          3,
+          4,
+          5
+        ],
+        "reference_geometry": "unrelaxed fragment coordinates inherited from complex"
+      },
+      {
+        "one_electron_hartree": -372.2091288973636,
+        "coulomb_hartree": 148.12338547556365,
+        "exact_exchange_hartree": -21.585405368976954,
+        "nuclear_hartree": 58.06089193620751,
+        "hf_like_total_hartree": -187.6102568545694,
+        "energy_hartree": -188.57833612238773,
+        "scf_converged": true,
+        "electron_count": 22.00000000000022,
+        "occupied_orbitals": 11,
+        "restricted_idempotency_max_error": 2.0843515715490701e-13,
+        "generalized_correlation_hartree": -0.9680792678183252,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "CO2_B",
+        "atoms": [
+          3,
+          4,
+          5
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          0,
+          1,
+          2
+        ],
+        "reference_geometry": "unrelaxed fragment coordinates inherited from complex"
+      }
+    ]
+  },
+  "counterpoise_interaction_energy_hartree": -0.00026834673803932674,
+  "partial_components_hartree": {
+    "electrostatic": -0.0027662420392715603,
+    "exchange": null,
+    "repulsion": null,
+    "polarization": null,
+    "generalized_correlation": 6.546483598413033e-05,
+    "explicit_dispersion": 0.0
+  },
+  "frozen_electrostatic_details": {
+    "electrostatic_hartree": -0.0027662420392715603,
+    "electron_electron_hartree": 70.07062751120966,
+    "electron_a_nuclear_b_hartree": -70.10145363208024,
+    "electron_b_nuclear_a_hartree": -70.10221244481109,
+    "nuclear_nuclear_hartree": 70.13027232364239,
+    "coulomb_reciprocity_error_hartree": 1.4210854715202004e-14,
+    "bare_cross_hf_exchange_hartree": -0.004695814201529791,
+    "bare_exchange_note": "Diagnostic between nonorthogonal fragment orbitals; not reported as the original GKS-EDA exchange component."
+  },
+  "total_closure_residual_hartree": null,
+  "component_sources": {
+    "electrostatic": "10.1002/wcms.1460 Eq.2; KS substitution in Section 2.2",
+    "generalized_correlation": "10.1002/wcms.1460 Eq.9; mixed-XC minus full exact exchange",
+    "explicit_dispersion": "10.1002/wcms.1460 Eq.11; absent for selected B3LYP/PBE0"
+  },
+  "blockers": [
+    "Verify original antisymmetrized/intermediate-state exchange and normalization conventions against the original PDF/source.",
+    "Implement repulsion and polarization only after those conventions are secured.",
+    "Obtain reference output with matched functional variant, quadrature, SCF thresholds, integral approximation, and BSSE policy."
+  ],
+  "seconds": 9.663849816000038
+}
