@@ -96,3 +96,41 @@ validate remaining CPU terms, then port validated operations to GPU.
 Final stage local verification: 20 tests passed, actual GPU test executed, no skips.
 
 CPU CI passed for EDA code commit `7e2917676cca1c7ef0d5fe22f17d9abb0378c97c`: https://github.com/zyliu-OU/EDA_GPU/actions/runs/38171856321. The clean installation, test suite, CPU scientific validation and EDA CLI smoke check all succeeded; GPU execution is not claimed on this CPU-only runner.
+
+## Complete experimental CPU/GPU GKS-EDA stage
+
+Implemented `eda` with all six gas-phase terms for two closed-shell all-electron
+fragments, direct integrals and counterpoise, on CPU and GPU. Su–Li 2009 explicit
+orbital energy expressions plus the supplied review resolve the AS/ASN construction
+for this experimental implementation; details and source caveats are documented.
+GPU SCF/J/K use GPU4PySCF, occupied-space algebra uses CuPy; no CPU fallback or
+all-GPU claim. The old CPU preparation API remains intact.
+
+26 tests pass, actual GPU exercised. Independent individual-integral, PBE0
+quadrature, QR and many-electron determinant checks pass. Repeated component-wise
+CPU/GPU agreement passes on water and CO₂ dimers; maximum difference 1.80e-9 Eh.
+Three-repetition timings after one warmup show GPU slower on these tiny cases:
+water 19.18 versus CPU 4.27 seconds, CO₂ 28.91 versus CPU 9.51 seconds. Full
+settings, component values, differences and memory snapshots are archived.
+
+Cartesian basis functions explain most of the earlier CO₂ discrepancy, but external
+component differences remain 1–5e-6 Eh despite grid convergence. XEDA settings
+are not fully matched. Results honestly state all_components_computed=true,
+scientifically_validated=false and full_eda_available=false (validated-release gate).
+Next: obtain explicitly specified XEDA component outputs and confirm original 2014
+source wording, validate several cases, then optimize/extend the GPU path. No solvent,
+open-shell, double-hybrid or HPLC claims. Papers remain local.
+
+## Unrestricted and tryptamine–water benchmark extension
+
+The latest local full suite passes 28 tests, including actual GPU execution, spin-resolved
+four-index energy/exchange, independent QR repulsion/polarization and a meta-GGA gradient
+finite difference. Molecular commands now select UKS for nonzero spin; complete EDA
+supports additive fragment spins and M06-2X. The older preparation API remains restricted.
+
+The supplied tryptamine paper and SI were read. SI has figures and charges but no Cartesian
+coordinates or PDF attachments. The neutral 27-atom constructed seed is explicitly labelled;
+CPU/GPU direct M06-2X/aug-cc-pVDZ optimizations are running from the same seed. The reusable
+comparison script archives both optimizers and evaluates common-geometry counterpoise EDA.
+No completed tryptamine result is claimed by this implementation commit. Original geometries
+are needed for matched paper replication; Table 3 is the attributed exploratory target.

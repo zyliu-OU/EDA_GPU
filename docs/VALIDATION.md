@@ -86,3 +86,48 @@ Full local suite after this stage: **20 passed**, including actual GPU execution
 (7.53 seconds). CPU CI additionally exercises the experimental CLI with PBE0/STO-3G.
 
 CPU CI passed for EDA code commit `7e2917676cca1c7ef0d5fe22f17d9abb0378c97c`: https://github.com/zyliu-OU/EDA_GPU/actions/runs/38171856321. The clean installation, test suite, CPU scientific validation and EDA CLI smoke check all succeeded; GPU execution is not claimed on this CPU-only runner.
+
+## Complete experimental GPU EDA, 2026-10-11
+
+The full local suite now passes **26 tests**, with actual GPU execution and no skips.
+Six new tests check every EDA term against independent four-index integrals and QR
+orthonormalization; a four-electron He₂ Slater expansion is evaluated using the full
+many-electron Hamiltonian to independently test the normalized determinant energy.
+Other checks cover invertible occupied-span transformations, fragment swapping,
+singular occupied spans, unavailable-GPU failure, experimental CLI flags and density
+archives. GPU tests first use fixed CPU orbitals/densities (tolerance 1e-8 Eh), then
+independent GPU SCFs (1e-7 Eh) to separate numerical backend and SCF differences.
+
+The complete repeated validation script uses B3LYP, direct integrals, grid 3 without
+pruning, SCF tolerance 1e-12 Eh and four CPU threads. Water dimer uses spherical
+def2-SVP; CO₂ dimer uses Cartesian 6-31G*. One complete warmup per backend/case
+is excluded; three fresh complete reference-SCF decompositions are measured. Every
+recorded GPU repetition is compared component by component to the CPU baseline,
+with a 1e-7-Eh threshold; closure must be within 1e-8 Eh. The stricter fixed-density
+checks are independent of this end-to-end threshold.
+
+| System | Largest CPU/GPU component difference (Eh) | CPU median (s) | GPU median (s) |
+| --- | ---: | ---: | ---: |
+| Water dimer | 1.059e-9 | 4.267 | 19.182 |
+| CO₂ dimer, Cartesian | 1.797e-9 | 9.510 | 28.913 |
+
+Evidence: `reports/gks_eda_gpu_2026-10-11/result.json` includes full settings,
+hardware, repetitions, component differences and memory snapshots. Snapshots are
+not peak GPU memory; RSS is process cumulative. The GPU is slower on these tiny
+direct-integral examples. No speedup or larger-system scaling is established.
+
+External validation is still **not established**. Cartesian CO₂ components differ
+from the rounded XEDA II values by approximately +1.10e-6 Eh (electrostatic),
++1.91e-6 (exchange), -5.40e-6 (repulsion), +4.14e-6 (polarization), and -2.43e-6
+(generalized correlation). Total differs by only +3.17e-7 Eh, illustrating why total
+agreement does not validate individual components. Increasing the grid to levels
+5 and 7 does not remove those differences. Named B3LYP and B3LYP5 variants and
+spherical/Cartesian bases were checked without changing any component equation.
+Full diagnostic differences are in `reports/gks_eda_gpu_2026-10-11/reference_audit.json`.
+The reference leaves basis representation, functional variant, quadrature, CP policy
+and integral approximation incompletely specified. A matched XEDA output remains
+required before marking the implementation scientifically validated.
+
+## Unrestricted M06-2X extension
+
+Two additional tests passed on the actual GPU host: water radical-cation dimer independently contracted four-index total energy and spin-resolved cross exchange, analytic meta-GGA gradient finite difference, CPU/GPU energies, gradients and all EDA components. Tolerances: energy 1e-7 Eh, gradient difference 1e-6 Eh/bohr, EDA 2e-7 Eh, finite-difference derivative 2e-4 Eh/bohr. These small-system tests are internal implementation checks; they do not establish agreement with the tryptamine paper.

@@ -1,0 +1,161 @@
+{
+  "components_hartree": {
+    "electrostatic": -0.015873717839681944,
+    "exchange": -0.02380125284998706,
+    "repulsion": 0.041239792453922064,
+    "polarization": -0.004902631443997052,
+    "generalized_correlation": -0.0025859250620783314,
+    "explicit_dispersion": 0.0
+  },
+  "counterpoise_interaction_energy_hartree": -0.005923734742211195,
+  "total_closure_residual_hartree": -3.8887296160972085e-13,
+  "intermediate_states": {
+    "fragment_hf_like_sum_hartree": -151.91691161249435,
+    "direct_product_energy_hartree": -151.9327853303344,
+    "antisymmetrized_formula": {
+      "one_electron_hartree": -283.5693735950763,
+      "coulomb_hartree": 112.44464011632452,
+      "exact_exchange_hartree": -17.919600938304615,
+      "nuclear_hartree": 37.08774783387196,
+      "hf_like_total_hartree": -151.95658658318442
+    },
+    "normalized_antisymmetrized_product": {
+      "one_electron_hartree": -283.65881088216906,
+      "coulomb_hartree": 112.58123783430618,
+      "exact_exchange_hartree": -17.92552157673959,
+      "nuclear_hartree": 37.08774783387196,
+      "hf_like_total_hartree": -151.9153467907305,
+      "electron_count": 20.0,
+      "restricted_idempotency_max_error": 9.769962616701378e-15,
+      "density_symmetry_max_error": 0.0,
+      "occupied_overlap_min_eigenvalue": 0.8656337996005713,
+      "occupied_overlap_condition_number": 1.310445827003187,
+      "occupied_overlap_threshold": 1e-08
+    },
+    "direct_product_electrostatic_consistency_error_hartree": 3.836930773104541e-13,
+    "exchange_consistency_error_hartree": 1.939073901446875e-14,
+    "coulomb_reciprocity_error_hartree": 1.0658141036401503e-14
+  },
+  "frozen_electrostatic_details": {
+    "electron_electron_hartree": 18.747557327054622,
+    "electron_a_nuclear_b_hartree": -18.50643151977048,
+    "electron_b_nuclear_a_hartree": -19.012529674297873,
+    "nuclear_nuclear_hartree": 18.75553014917405
+  },
+  "stage": "experimental_complete_closed_shell_gks_eda",
+  "all_components_computed": true,
+  "full_eda_available": false,
+  "scientifically_validated": false,
+  "reference_component_validation": "pending external matched-settings validation; complete experimental component calculation only",
+  "backend_used": "cpu",
+  "scf_converged": true,
+  "settings": {
+    "backend": "cpu",
+    "xc": "b3lyp",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-12,
+    "max_cycle": 100,
+    "threads": 4,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false
+  },
+  "bsse_policy": "Boys-Bernardi counterpoise; whole complex basis on every fragment",
+  "fragment_reference_geometry": "complex coordinates; no separate optimization or deformation term",
+  "reference_states": {
+    "complex": {
+      "one_electron_hartree": -283.6084179889788,
+      "coulomb_hartree": 112.5116953568171,
+      "exact_exchange_hartree": -17.91127462388478,
+      "nuclear_hartree": 37.08774783387196,
+      "hf_like_total_hartree": -151.9202494221745,
+      "electron_count": 20.00000000000002,
+      "restricted_idempotency_max_error": 3.1280533718813786e-14,
+      "density_symmetry_max_error": 0.0,
+      "energy_hartree": -152.72800563598565,
+      "scf_converged": true,
+      "occupied_orbitals": 10,
+      "generalized_correlation_hartree": -0.8077562138111603,
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    "fragments": [
+      {
+        "one_electron_hartree": -123.062475372449,
+        "coulomb_hartree": 46.8940380075811,
+        "exact_exchange_hartree": -8.955107338196727,
+        "nuclear_hartree": 9.166026557521228,
+        "hf_like_total_hartree": -75.95751814554339,
+        "electron_count": 10.000000000000004,
+        "restricted_idempotency_max_error": 2.7755575615628914e-14,
+        "density_symmetry_max_error": 0.0,
+        "energy_hartree": -76.3589037823458,
+        "scf_converged": true,
+        "occupied_orbitals": 5,
+        "generalized_correlation_hartree": -0.40138563680241646,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "donor",
+        "atoms": [
+          0,
+          1,
+          2
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "one_electron_hartree": -122.98793702855863,
+        "coulomb_hartree": 46.803044781688854,
+        "exact_exchange_hartree": -8.940692347257883,
+        "nuclear_hartree": 9.166191127176683,
+        "hf_like_total_hartree": -75.95939346695097,
+        "electron_count": 10.000000000000007,
+        "restricted_idempotency_max_error": 5.395683899678261e-14,
+        "density_symmetry_max_error": 0.0,
+        "energy_hartree": -76.36317811889764,
+        "scf_converged": true,
+        "occupied_orbitals": 5,
+        "generalized_correlation_hartree": -0.40378465194666546,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "acceptor",
+        "atoms": [
+          3,
+          4,
+          5
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "component_sources": {
+    "orbital_intermediates": "10.1063/1.3159673 Eqs.6-12, evaluated with KS orbitals per 10.1002/wcms.1460 Eqs.2-5 and Section 2.2",
+    "generalized_correlation": "10.1002/wcms.1460 Eq.9",
+    "explicit_dispersion": "10.1002/wcms.1460 Eq.11; absent for selected methods"
+  },
+  "execution": {
+    "scf": "cpu",
+    "direct_jk": "cpu",
+    "orbital_matrix_algebra": "cpu",
+    "one_electron_integrals": "backend implementation; common-basis verification on CPU",
+    "molecule_construction_and_output": "cpu",
+    "gpu_jk_note": null
+  },
+  "validation_blockers": [
+    "External XEDA component output with explicitly matched basis representation, functional variant, grid, integral settings and CP policy remains needed.",
+    "Authenticated original 2014 PDF and source-level confirmation of its step-number/exchange wording remain desirable."
+  ],
+  "calculation_seconds": 4.21400743599952,
+  "seconds": 4.215866607999487
+}

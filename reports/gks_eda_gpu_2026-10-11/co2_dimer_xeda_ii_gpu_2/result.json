@@ -1,0 +1,161 @@
+{
+  "components_hartree": {
+    "electrostatic": -0.002827903146197741,
+    "exchange": -0.0047070888178941525,
+    "repulsion": 0.008179601334632025,
+    "polarization": -0.0009848622987647104,
+    "generalized_correlation": 5.557028410407838e-05,
+    "explicit_dispersion": 0.0
+  },
+  "counterpoise_interaction_energy_hartree": -0.00028468264395087317,
+  "total_closure_residual_hartree": 1.6962733301317812e-13,
+  "intermediate_states": {
+    "fragment_hf_like_sum_hartree": -375.21843939989765,
+    "direct_product_energy_hartree": -375.2212673030441,
+    "antisymmetrized_formula": {
+      "one_electron_hartree": -884.6018271686596,
+      "coulomb_hartree": 366.25295466956163,
+      "exact_exchange_hartree": -43.12964448650807,
+      "nuclear_hartree": 186.2525425937445,
+      "hf_like_total_hartree": -375.22597439186154
+    },
+    "normalized_antisymmetrized_product": {
+      "one_electron_hartree": -884.6256875687745,
+      "coulomb_hartree": 366.2873927318192,
+      "exact_exchange_hartree": -43.132042547316054,
+      "nuclear_hartree": 186.2525425937445,
+      "hf_like_total_hartree": -375.2177947905269,
+      "electron_count": 44.000000000000014,
+      "restricted_idempotency_max_error": 3.774758283725532e-15,
+      "density_symmetry_max_error": 0.0,
+      "occupied_overlap_min_eigenvalue": 0.9401296541967197,
+      "occupied_overlap_condition_number": 1.127366146862873,
+      "occupied_overlap_threshold": 1e-08
+    },
+    "direct_product_electrostatic_consistency_error_hartree": 2.5579538487363607e-13,
+    "exchange_consistency_error_hartree": 4.538444273172182e-13,
+    "coulomb_reciprocity_error_hartree": 7.105427357601002e-14
+  },
+  "frozen_electrostatic_details": {
+    "electron_electron_hartree": 70.0697927987799,
+    "electron_a_nuclear_b_hartree": -70.10106575369322,
+    "electron_b_nuclear_a_hartree": -70.10182727187524,
+    "nuclear_nuclear_hartree": 70.13027232364236
+  },
+  "stage": "experimental_complete_closed_shell_gks_eda",
+  "all_components_computed": true,
+  "full_eda_available": false,
+  "scientifically_validated": false,
+  "reference_component_validation": "pending external matched-settings validation; complete experimental component calculation only",
+  "backend_used": "gpu",
+  "scf_converged": true,
+  "settings": {
+    "backend": "gpu",
+    "xc": "b3lyp",
+    "basis": "6-31g*",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-12,
+    "max_cycle": 100,
+    "threads": 4,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": true
+  },
+  "bsse_policy": "Boys-Bernardi counterpoise; whole complex basis on every fragment",
+  "fragment_reference_geometry": "complex coordinates; no separate optimization or deformation term",
+  "reference_states": {
+    "complex": {
+      "one_electron_hartree": -884.6094397300183,
+      "coulomb_hartree": 366.26733455227253,
+      "exact_exchange_hartree": -43.12921706882451,
+      "nuclear_hartree": 186.2525425937445,
+      "hf_like_total_hartree": -375.2187796528257,
+      "electron_count": 44.000000000000014,
+      "restricted_idempotency_max_error": 7.993605777301127e-15,
+      "density_symmetry_max_error": 0.0,
+      "energy_hartree": -377.1637124275002,
+      "scf_converged": true,
+      "occupied_orbitals": 22,
+      "generalized_correlation_hartree": -1.9449327746744984,
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    "fragments": [
+      {
+        "one_electron_hartree": -372.1999700009999,
+        "coulomb_hartree": 148.0918550323902,
+        "exact_exchange_hartree": -21.562484222171555,
+        "nuclear_hartree": 58.06137833389462,
+        "hf_like_total_hartree": -187.6092208568866,
+        "electron_count": 22.000000000000014,
+        "restricted_idempotency_max_error": 4.440892098500626e-15,
+        "density_symmetry_max_error": 0.0,
+        "energy_hartree": -188.58171310586624,
+        "scf_converged": true,
+        "occupied_orbitals": 11,
+        "generalized_correlation_hartree": -0.9724922489796484,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "CO2_A",
+        "atoms": [
+          0,
+          1,
+          2
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "one_electron_hartree": -372.19896414209126,
+        "coulomb_hartree": 148.0913068383918,
+        "exact_exchange_hartree": -21.56245317551907,
+        "nuclear_hartree": 58.06089193620751,
+        "hf_like_total_hartree": -187.60921854301102,
+        "electron_count": 22.000000000000014,
+        "restricted_idempotency_max_error": 1.5987211554602254e-14,
+        "density_symmetry_max_error": 0.0,
+        "energy_hartree": -188.58171463898998,
+        "scf_converged": true,
+        "occupied_orbitals": 11,
+        "generalized_correlation_hartree": -0.9724960959789541,
+        "libxc_definition": "((0, 0, 0), ((402, 1),))",
+        "name": "CO2_B",
+        "atoms": [
+          3,
+          4,
+          5
+        ],
+        "charge": 0,
+        "spin": 0,
+        "ghost_atoms": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "component_sources": {
+    "orbital_intermediates": "10.1063/1.3159673 Eqs.6-12, evaluated with KS orbitals per 10.1002/wcms.1460 Eqs.2-5 and Section 2.2",
+    "generalized_correlation": "10.1002/wcms.1460 Eq.9",
+    "explicit_dispersion": "10.1002/wcms.1460 Eq.11; absent for selected methods"
+  },
+  "execution": {
+    "scf": "gpu",
+    "direct_jk": "gpu",
+    "orbital_matrix_algebra": "gpu",
+    "one_electron_integrals": "backend implementation; common-basis verification on CPU",
+    "molecule_construction_and_output": "cpu",
+    "gpu_jk_note": "GPU4PySCF direct J/K uses CPU/GPU hybrid internals; no all-GPU claim"
+  },
+  "validation_blockers": [
+    "External XEDA component output with explicitly matched basis representation, functional variant, grid, integral settings and CP policy remains needed.",
+    "Authenticated original 2014 PDF and source-level confirmation of its step-number/exchange wording remain desirable."
+  ],
+  "calculation_seconds": 29.99034146899976,
+  "seconds": 30.000834610999846
+}

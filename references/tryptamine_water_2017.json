@@ -1,0 +1,60 @@
+{
+  "doi": "10.1039/C7CP03491A",
+  "title": "Unravelling hydrogen bonding interactions of tryptamine–water dimer from neutral to cation",
+  "source": "User-supplied accepted manuscript, Table 3 (printed page 21)",
+  "method": {
+    "xc": "m06-2x",
+    "cation_reference": "U-M06-2X",
+    "basis": "aug-cc-pvdz",
+    "bsse": "counterpoise"
+  },
+  "units": "kcal/mol",
+  "cases": {
+    "A_H2O": {
+      "charge": 0,
+      "spin": 0,
+      "electrostatic": -17.34,
+      "pauli": 19.69,
+      "polarization": -7.07,
+      "generalized_correlation": -5.54,
+      "total": -10.27
+    },
+    "A_cation_H2O": {
+      "charge": 1,
+      "spin": 1,
+      "electrostatic": -22.24,
+      "pauli": 23.48,
+      "polarization": -9.57,
+      "generalized_correlation": -5.22,
+      "total": -13.56
+    },
+    "H_cation_H2O": {
+      "charge": 1,
+      "spin": 1,
+      "electrostatic": -16.9,
+      "pauli": 13.09,
+      "polarization": -7.82,
+      "generalized_correlation": -1.88,
+      "total": -13.52
+    }
+  },
+  "published_geometry_distances_angstrom": {
+    "A_H2O": [
+      1.905,
+      2.39,
+      2.612
+    ],
+    "A_cation_H2O": [
+      1.95,
+      2.057,
+      2.5
+    ]
+  },
+  "limitations": [
+    "Full Cartesian coordinates absent from supplied manuscript and four-page SI; figures are not machine-readable coordinates.",
+    "Grid, pruning, SCF thresholds and spherical/Cartesian representation not specified.",
+    "Pauli combines exchange and repulsion; individual values not supplied.",
+    "Electronic interaction is not D0; no deformation or zero-point corrections included in this comparison."
+  ],
+  "scientifically_validated": false
+}

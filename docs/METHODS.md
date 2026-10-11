@@ -51,3 +51,29 @@ Explicit dispersion is zero for these settings. The diagnostic bare cross HF exc
 is not assigned to the original EDA exchange component. Exchange, repulsion, polarization
 and closure are unavailable. This preparation is experimental and does not satisfy the
 full EDA reference gate. See GKS_EDA_SPEC.md for equations and normalization blockers.
+
+## Complete experimental GKS-EDA
+
+The new `eda` command computes all six gas-phase components on CPU or GPU, with
+the same direct-integral/closed-shell/counterpoise policy. It adds the unnormalized
+exchange energy expression and normalized occupied-span determinant from Su–Li
+Eqs. 6–12, evaluated on KS orbitals following the supplied review. Repulsion is the
+normalized-minus-unnormalized HF-like energy difference; polarization is the
+relaxed-KS-orbital HF-like energy minus the normalized frozen determinant energy.
+Generalized correlation contains the remaining hybrid exchange/correlation difference.
+The smallest occupied-metric eigenvalue must exceed 1e-8; electron count, density
+idempotency/symmetry, electrostatic/exchange consistency and closure are checked.
+
+CPU uses PySCF; GPU uses GPU4PySCF direct RKS/J/K and CuPy for density contractions
+and occupied-space orthonormalization. GPU4PySCF direct J/K has CPU/GPU hybrid
+internals. CPU molecule/basis bookkeeping and output remain. No fallback labels CPU
+as GPU. `--cart` explicitly selects Cartesian basis functions, while the default is
+spherical. The named B3LYP5 variant is also available experimentally. No density fitting
+or explicit dispersion correction is added. All terms are computed, but external
+matched-settings component validation and a validated full-EDA release remain pending.
+The mathematical specification in GKS_EDA_SPEC.md supersedes earlier EDA blockers.
+
+The complete `eda` CLI defaults to SCF energy tolerance 1e-12 Eh, matching the
+recorded component benchmarks; other calculation commands retain 1e-10 Eh.
+
+The complete `eda` and molecular calculation commands additionally support UKS for nonzero spin and the global hybrid meta-GGA M06-2X. See GKS_EDA_SPEC.md for spin-resolved formulas and the additive-spin restriction. This extension is experimental.

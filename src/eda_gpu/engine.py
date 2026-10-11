@@ -22,6 +22,7 @@ class Settings:
     threads: int = 4
     density_fitting: bool = True
     dispersion: str = "none"
+    cart: bool = False
 
 
 def hardware():
@@ -47,26 +48,24 @@ def hardware():
 
 
 def make_mf(symbols, coords, metadata, settings):
-    if metadata["spin"] != 0:
-        raise ValueError("initial implementation supports restricted closed-shell spin=0 only")
     if settings.backend not in ("cpu", "gpu"):
         raise ValueError("backend must be cpu or gpu")
     if settings.threads < 1 or settings.max_cycle < 1 or (not np.isfinite(settings.conv_tol) or settings.conv_tol <= 0) or settings.grid_level < 0:
         raise ValueError("invalid numerical settings")
     lib.num_threads(settings.threads)
-    mol = gto.M(atom=list(zip(symbols, coords)), unit="Angstrom", charge=metadata["charge"], spin=metadata["spin"], basis=settings.basis, verbose=0)
+    mol = gto.M(atom=list(zip(symbols, coords)), unit="Angstrom", charge=metadata["charge"], spin=metadata["spin"], basis=settings.basis, cart=settings.cart, verbose=0)
     if settings.backend == "gpu":
         try:
             import cupy as cp
             if cp.cuda.runtime.getDeviceCount() < 1:
                 raise RuntimeError("no CUDA devices")
             cp.zeros(1).sum().get()
-            from gpu4pyscf.dft import rks
-            mf = rks.RKS(mol)
+            from gpu4pyscf.dft import rks, uks
+            mf = uks.UKS(mol) if metadata["spin"] else rks.RKS(mol)
         except Exception as e:
             raise RuntimeError(f"requested GPU backend unavailable: {e}; CPU fallback is disabled") from e
     else:
-        mf = dft.RKS(mol)
+        mf = dft.UKS(mol) if metadata["spin"] else dft.RKS(mol)
     mf.xc = settings.xc
     # Initial supported functional scope: global hybrids/GGA/LDA, no range separation or NLC.
     if dft.libxc.xc_type(settings.xc) == "HF":

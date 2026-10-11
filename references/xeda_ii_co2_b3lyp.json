@@ -29,6 +29,7 @@
     "SCF thresholds",
     "reference program version",
     "explicit BSSE keyword/default",
-    "integral algorithm not explicit in exercise; manual defaults to LR"
+    "integral algorithm not explicit in exercise; manual defaults to LR",
+    "Cartesian or spherical basis representation"
   ]
 }

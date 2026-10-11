@@ -12,3 +12,4 @@ jobs:
       - run: python -m pytest -q
       - run: eda-gpu validate --output runs/ci-validation
       - run: eda-gpu eda-prepare examples/water_dimer.xyz --metadata examples/water_dimer.json --backend cpu --xc pbe0 --basis sto-3g --grid-level 2 --output runs/ci-eda-preparation
+      - run: eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend cpu --xc pbe0 --basis sto-3g --grid-level 2 --output runs/ci-gks-eda

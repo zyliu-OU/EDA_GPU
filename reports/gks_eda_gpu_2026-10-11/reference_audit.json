@@ -1,0 +1,238 @@
+{
+  "status": "exploratory; external matched-settings validation not established",
+  "reference": {
+    "source_url": "https://xmvb.xmu.edu.cn/docs/xeda/_downloads/415e0f39b016129f5cf2eb24dfe28b4f/XEDA_II_en.pdf",
+    "source_sha256": "269131a8383e117af77fd32a806d22ec0c8cd5a08213477c237ba59a76d89952",
+    "pdf_pages": {
+      "geometry": 24,
+      "components": 39
+    },
+    "printed_pages": {
+      "geometry": 23,
+      "components": 38
+    },
+    "system": "CO2 dimer",
+    "functional": "B3LYP",
+    "basis": "6-31G*",
+    "energy_unit": "hartree",
+    "reported_precision_hartree": 1e-06,
+    "components": {
+      "electrostatic": -0.002829,
+      "exchange": -0.004709,
+      "repulsion": 0.008185,
+      "polarization": -0.000989,
+      "generalized_correlation": 5.8e-05,
+      "total": -0.000285
+    },
+    "status": "published rounded values, not automatically a matched-settings validation fixture",
+    "unspecified_parameters": [
+      "B3LYP correlation variant",
+      "quadrature and pruning",
+      "SCF thresholds",
+      "reference program version",
+      "explicit BSSE keyword/default",
+      "integral algorithm not explicit in exercise; manual defaults to LR",
+      "Cartesian or spherical basis representation"
+    ]
+  },
+  "cases": [
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": false
+      },
+      "components_hartree": {
+        "electrostatic": -0.002766241358699517,
+        "exchange": -0.004695812421453689,
+        "repulsion": 0.0081173433592312,
+        "polarization": -0.0009890544249628874,
+        "generalized_correlation": 6.541809946725152e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.0002683467446331633,
+      "computed_minus_published_hartree": {
+        "electrostatic": 6.275864130048277e-05,
+        "exchange": 1.318757854631026e-05,
+        "repulsion": -6.765664076880014e-05,
+        "polarization": -5.4424962887345343e-08,
+        "generalized_correlation": 7.418099467251522e-06,
+        "total": 1.6653255366836663e-05
+      },
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp5",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": false
+      },
+      "components_hartree": {
+        "electrostatic": -0.002776012602723199,
+        "exchange": -0.004719012764963239,
+        "repulsion": 0.008148057486209836,
+        "polarization": -0.00098800422460954,
+        "generalized_correlation": 9.2813103321987e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.00024215900288027115,
+      "computed_minus_published_hartree": {
+        "electrostatic": 5.2987397276800866e-05,
+        "exchange": -1.0012764963239669e-05,
+        "repulsion": -3.694251379016307e-05,
+        "polarization": 9.957753904601182e-07,
+        "generalized_correlation": 3.4813103321987e-05,
+        "total": 4.284099711972884e-05
+      },
+      "libxc_definition": "((0.2, 0.2, 0), ((1, 0.08), (106, 0.72), (np.int32(131), 0.81), (np.int32(7), 0.19)))"
+    },
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": true
+      },
+      "components_hartree": {
+        "electrostatic": -0.002827903480721261,
+        "exchange": -0.0047070884356093575,
+        "repulsion": 0.008179601010397164,
+        "polarization": -0.0009848455349583674,
+        "generalized_correlation": 5.555387673439327e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.0002846825642279782,
+      "computed_minus_published_hartree": {
+        "electrostatic": 1.0965192787388417e-06,
+        "exchange": 1.9115643906421342e-06,
+        "repulsion": -5.398989602835649e-06,
+        "polarization": 4.154465041632726e-06,
+        "generalized_correlation": -2.44612326560673e-06,
+        "total": 3.174357720217699e-07
+      },
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp5",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": true
+      },
+      "components_hartree": {
+        "electrostatic": -0.0028380221189081567,
+        "exchange": -0.004730315505305265,
+        "repulsion": 0.008210691418184979,
+        "polarization": -0.000983807570605677,
+        "generalized_correlation": 8.302820180006165e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.00025842557383271014,
+      "computed_minus_published_hartree": {
+        "electrostatic": -9.022118908156782e-06,
+        "exchange": -2.131550530526556e-05,
+        "repulsion": 2.569141818497926e-05,
+        "polarization": 5.19242939432305e-06,
+        "generalized_correlation": 2.502820180006165e-05,
+        "total": 2.6574426167289846e-05
+      },
+      "libxc_definition": "((0.2, 0.2, 0), ((1, 0.08), (106, 0.72), (np.int32(131), 0.81), (np.int32(7), 0.19)))"
+    },
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 5,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": true
+      },
+      "components_hartree": {
+        "electrostatic": -0.0028278967438666314,
+        "exchange": -0.004707137946557536,
+        "repulsion": 0.008179673951985933,
+        "polarization": -0.0009848815427631052,
+        "generalized_correlation": 5.5569564921142955e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.0002846727149403705,
+      "computed_minus_published_hartree": {
+        "electrostatic": 1.1032561333685492e-06,
+        "exchange": 1.86205344246404e-06,
+        "repulsion": -5.326048014066623e-06,
+        "polarization": 4.118457236894834e-06,
+        "generalized_correlation": -2.430435078857045e-06,
+        "total": 3.272850596294915e-07
+      },
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    },
+    {
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp",
+        "basis": "6-31g*",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 7,
+        "conv_tol": 1e-12,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": false,
+        "dispersion": "none",
+        "cart": true
+      },
+      "components_hartree": {
+        "electrostatic": -0.002827893615219068,
+        "exchange": -0.004707138380784364,
+        "repulsion": 0.008179672615369782,
+        "polarization": -0.0009848957089388932,
+        "generalized_correlation": 5.556769599479594e-05,
+        "explicit_dispersion": 0.0
+      },
+      "total_hartree": -0.00028468739364484463,
+      "computed_minus_published_hartree": {
+        "electrostatic": 1.1063847809317934e-06,
+        "exchange": 1.8616192156359346e-06,
+        "repulsion": -5.327384630217716e-06,
+        "polarization": 4.104291061106857e-06,
+        "generalized_correlation": -2.43230400520406e-06,
+        "total": 3.1260635515535564e-07
+      },
+      "libxc_definition": "((0, 0, 0), ((402, 1),))"
+    }
+  ]
+}
