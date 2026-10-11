@@ -1,6 +1,6 @@
 # EDA_GPU build handoff — 2026-10-11
 
-Repository: https://github.com/zyliu-OU/EDA_GPU (verified private, personal account).
+Repository: https://github.com/zyliu-OU/EDA_GPU (personal account; public visibility authorized by the owner after the initial private build).
 Workspace: /home/zyliu/Documents/EDA_GPU. Original supplied handoff is preserved
 locally and deliberately not included in published code (contains unrelated project
 context and attachment identifiers). No papers, credentials or employer data published.
@@ -70,3 +70,11 @@ The job installed pinned CPU dependencies, ran tests and completed CPU scientifi
 Local hardware validation is independent of remote CI (which lacks a GPU).
 This final documentation-only delivery commit uses [skip ci] to avoid repeating unchanged
 scientific code tests. Remote/local main equality is checked after pushing it.
+
+## Public development release
+
+The owner explicitly requested public visibility and a detailed development description.
+README now documents the current prototype status, tested capabilities, numerical
+validation evidence, scientific blockers, roadmap, and references. Repository metadata
+identifies the project as under development. The original supplied handoff remains local.
+No license choice or new scientific validation claim was introduced by this release.
