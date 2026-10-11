@@ -35,8 +35,33 @@ claim a GAMESS port or a validated EDA decomposition.
 
 ## Validation evidence
 
-On the development host (RTX 4080 SUPER, Ryzen 9 5950X, Ubuntu 26.04), **28 local
-tests and nine optimization-foundation scientific checks passed**, including actual GPU execution. Water and
+### Test computer and software environment
+
+The local tests and neutral tryptamine–water benchmark were run on the following
+computer. These are the recorded test specifications, not minimum requirements.
+
+| Item | Test environment |
+| --- | --- |
+| CPU | AMD Ryzen 9 5950X; 16 physical cores, 32 logical threads |
+| GPU | NVIDIA GeForce RTX 4080 SUPER; 16 GB VRAM (16,376 MiB reported) |
+| System memory | 30.25 GiB usable RAM reported by Linux |
+| Operating system | Ubuntu 26.04 LTS, x86-64 |
+| NVIDIA driver | 595.91.07 |
+| Python | 3.12.13 |
+| PySCF / GPU4PySCF | 2.14.0 / 1.8.1 |
+| CuPy / cuTensor | 14.2.0 / 2.8.1 |
+| geomeTRIC | 1.1.1 |
+
+The archived neutral EDA run used 16 physical cores/compute threads, 50% workload
+pacing, and CPU/GPU thermal cooldown thresholds of 85°C/75°C. Earlier small-system
+timings used their own recorded settings and are not directly comparable with this
+paced run. GPU power limits and temporary CPU frequency limits are shared hardware
+settings; no fixed frequency or power setting is claimed for all tests.
+Exact per-run hardware, versions, and calculation settings are saved in result JSON.
+
+On the development host (RTX 4080 SUPER, Ryzen 9 5950X, Ubuntu 26.04), **37 local
+tests passed in the latest full suite, including actual GPU tests**. Separately,
+nine optimization-foundation scientific checks passed with actual GPU execution. Water and
 water-dimer CPU/GPU single-point energies differed by at most **9.21e-12 hartree**;
 maximum gradient differences were **7.35e-7 hartree/bohr**. Water finite-difference
 gradients agreed within **3.59e-6 hartree/bohr**, and frozen oxygen displacement was
