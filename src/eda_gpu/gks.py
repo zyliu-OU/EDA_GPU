@@ -46,7 +46,7 @@ def hf_like(mf, density, algebra):
     """Full exact exchange, even when SCF uses a hybrid fraction."""
     xp = algebra.xp
     density = xp.asarray(density)
-    j, k = mf.get_jk(mf.mol, density, hermi=1)
+    j, k = (mf._eda_pacer.run(mf.get_jk,mf.mol,density,hermi=1) if hasattr(mf,"_eda_pacer") else mf.get_jk(mf.mol,density,hermi=1))
     h = xp.asarray(mf.get_hcore())
     total = density.sum(axis=0) if density.ndim == 3 else density
     one = algebra.trace(total, h)
@@ -84,6 +84,12 @@ def orthonormalized_density(occupied, overlap, algebra, minimum_eigenvalue=1e-8)
     occupied, overlap = xp.asarray(occupied), xp.asarray(overlap)
     if xp.iscomplexobj(occupied) or not bool(xp.isfinite(occupied).all()):
         raise ValueError('occupied orbitals must be finite and real')
+    if occupied.shape[1] == 0:
+        # Fully spin-polarized systems can have an empty beta occupied space.
+        density = xp.zeros_like(overlap)
+        return density, occupied, dict(density_checks(density,overlap,0,algebra),
+            occupied_overlap_min_eigenvalue=None,occupied_overlap_condition_number=None,
+            occupied_overlap_threshold=minimum_eigenvalue)
     metric = occupied.T @ overlap @ occupied
     metric = .5*(metric+metric.T)
     eigenvalues, vectors = xp.linalg.eigh(metric)
@@ -99,11 +105,21 @@ def orthonormalized_density(occupied, overlap, algebra, minimum_eigenvalue=1e-8)
     return density, orthogonal, checks
 
 
-def reference_state(symbols, coords, metadata, settings, algebra):
-    mf = make_mf(symbols, coords, metadata, settings)
+def reference_state(symbols, coords, metadata, settings, algebra,progress=None,label="reference SCF",initial_density=None):
+    if progress:progress.update(label)
+    mf = make_mf(symbols, coords, metadata, settings,progress=progress,label=label)
     if mf.mol.has_ecp() or mf.mol.pseudo:
         raise ValueError('EDA supports all-electron bases only')
-    energy = float(mf.kernel())
+    if initial_density is not None:
+        initial_density=algebra.xp.asarray(initial_density)
+        overlap=algebra.xp.asarray(mf.get_ovlp())
+        if metadata["spin"]:
+            if initial_density.shape!=(2,mf.mol.nao,mf.mol.nao):raise ValueError("spin density seed shape mismatch")
+            spin_density_checks(initial_density,overlap,mf.mol.nelec,algebra)
+        else:
+            if initial_density.shape!=(mf.mol.nao,mf.mol.nao):raise ValueError("density seed shape mismatch")
+            density_checks(initial_density,overlap,mf.mol.nelectron,algebra)
+    energy = float(mf._eda_pacer.run(mf.kernel,dm0=initial_density))
     if not mf.converged or not np.isfinite(energy):
         raise RuntimeError('EDA reference SCF did not converge to a finite energy')
     xp = algebra.xp
@@ -121,7 +137,8 @@ def reference_state(symbols, coords, metadata, settings, algebra):
     summary = dict(parts, **checks, energy_hartree=energy, scf_converged=True,
                    occupied_orbitals=[c.shape[1] for c in occupied] if isinstance(occupied,tuple) else occupied.shape[1],
                    generalized_correlation_hartree=energy-parts['hf_like_total_hartree'],
-                   libxc_definition=repr(dft.libxc.parse_xc(settings.xc)))
+                   libxc_definition=repr(dft.libxc.parse_xc(settings.xc)),
+                   scf_cycles=int(mf.cycles),scf_initial_guess=("supplied density; SCF converged on selected backend" if initial_density is not None else "backend default"),compute_limits=mf._eda_pacer.report())
     return mf, density, occupied, summary
 
 
@@ -166,8 +183,12 @@ def decompose_states(complex_state, fragment_states, metadata, algebra):
     h = xp.asarray(mf.get_hcore())
     ha = xp.asarray(fragment_states[0][0].get_hcore())
     hb = xp.asarray(fragment_states[1][0].get_hcore())
-    jb,kb = mf.get_jk(mf.mol, db, hermi=1)
-    ja,_ = mf.get_jk(mf.mol, da, hermi=1)
+    if hasattr(mf,"_eda_pacer"):
+        jb,kb = mf._eda_pacer.run(mf.get_jk,mf.mol,db,hermi=1)
+        ja,_ = mf._eda_pacer.run(mf.get_jk,mf.mol,da,hermi=1)
+    else:
+        jb,kb = mf.get_jk(mf.mol,db,hermi=1)
+        ja,_ = mf.get_jk(mf.mol,da,hermi=1)
     ta,tb = (da.sum(axis=0),db.sum(axis=0)) if unrestricted else (da,db)
     en_ab, en_ba = algebra.trace(ta,h-ha), algebra.trace(tb,h-hb)
     ee = algebra.trace(ta,jb.sum(axis=0) if unrestricted else jb)
@@ -200,24 +221,30 @@ def decompose_states(complex_state, fragment_states, metadata, algebra):
                     nuclear_nuclear_hartree=nn)), asn_density, asn_orbitals
 
 
-def decompose(symbols, coords, metadata, settings, out):
+def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
+    seeds=initial_densities or {}
     # CPU scope checker validates chemistry/numerics before requesting hardware.
     validate_gks_scope(symbols,coords,metadata,settings)
     algebra = Algebra(settings.backend)
     algebra.synchronize()
     start = time.perf_counter()
-    complex_state = reference_state(symbols,coords,metadata,settings,algebra)
+    from .progress import ProgressWriter
+    progress=ProgressWriter(out)
+    from .citations import information
+    progress.current.update(information(metadata))
+    complex_state = reference_state(symbols,coords,metadata,settings,algebra,progress,label="complex SCF",initial_density=seeds.get("complex_density"))
     fragments=[]
     summaries=[]
     for i,f in enumerate(metadata['fragments']):
         actual = set(f['atoms'])
         labels = [s if n in actual else 'ghost-'+s for n,s in enumerate(symbols)]
-        state = reference_state(labels,coords,f,settings,algebra)
+        state = reference_state(labels,coords,f,settings,algebra,progress,label=f"fragment {i} SCF",initial_density=seeds.get(f"fragment_{i}_density"))
         assert_common_basis(complex_state[0],state[0])
         state[3].update(name=f.get('name',f'fragment_{i}'),atoms=f['atoms'],charge=f['charge'],spin=f['spin'],
                         ghost_atoms=[n for n in range(len(symbols)) if n not in actual])
         summaries.append(state[3]); fragments.append(state)
         Path(out,f'fragment_{i}.xyz').write_text(xyz_text([symbols[n] for n in f['atoms']],[coords[n] for n in f['atoms']]))
+    progress.update("EDA intermediates and components")
     result,asn_density,asn_orbitals = decompose_states(complex_state,fragments,metadata,algebra)
     algebra.synchronize()
     calculation_seconds=time.perf_counter()-start
@@ -228,6 +255,10 @@ def decompose(symbols, coords, metadata, settings, out):
         **archive_occupied(fragments),
         asn_density=host_array(asn_density),
         **({'asn_occupied_alpha':host_array(asn_orbitals[0]),'asn_occupied_beta':host_array(asn_orbitals[1])} if isinstance(asn_orbitals,tuple) else {'asn_occupied':host_array(asn_orbitals)}))
+    progress.update("EDA components complete",components_hartree=result["components_hartree"],
+                    counterpoise_interaction_energy_hartree=result["counterpoise_interaction_energy_hartree"])
+    from .citations import information
+    result.update(information(metadata))
     result.update(stage=('experimental_complete_unrestricted_gks_eda' if metadata['spin'] else 'experimental_complete_closed_shell_gks_eda'),
         all_components_computed=True,full_eda_available=False,scientifically_validated=False,
         reference_component_validation='pending external matched-settings validation; complete experimental component calculation only',

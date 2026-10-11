@@ -1,0 +1,40 @@
+{
+  "case": "A_H2O",
+  "units": "kcal/mol",
+  "components": {
+    "electrostatic": {
+      "gpu": -17.279387452633685,
+      "paper": -17.34,
+      "gpu_minus_paper": 0.06061254736631483
+    },
+    "pauli": {
+      "gpu": 19.53539638255772,
+      "paper": 19.69,
+      "gpu_minus_paper": -0.15460361744228024
+    },
+    "polarization": {
+      "gpu": -7.048318196017304,
+      "paper": -7.07,
+      "gpu_minus_paper": 0.02168180398269648
+    },
+    "generalized_correlation": {
+      "gpu": -5.489210473252412,
+      "paper": -5.54,
+      "gpu_minus_paper": 0.05078952674758774
+    },
+    "total": {
+      "gpu": -10.281519792317027,
+      "paper": -10.27,
+      "gpu_minus_paper": -0.011519792317027822
+    }
+  },
+  "scientifically_validated": false,
+  "limitations": [
+    "Constructed starting geometry; original Cartesian coordinates unavailable in supplied manuscript/SI.",
+    "GPU geometry optimized with density fitting; EDA uses direct J/K.",
+    "Paper numerical grid and convergence settings not specified.",
+    "CPU common-geometry comparison and cation benchmarks pending."
+  ],
+  "scf_converged": true,
+  "closure_residual_hartree": -8.441521787139195e-11
+}

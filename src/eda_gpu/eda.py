@@ -63,7 +63,7 @@ def calculate_state(symbols, coords, metadata, settings):
     mf = make_mf(symbols, coords, metadata, settings)
     if mf.mol.has_ecp() or mf.mol.pseudo:
         raise ValueError("EDA reference preparation supports all-electron bases only")
-    energy = float(mf.kernel())
+    energy = float(mf._eda_pacer.run(mf.kernel))
     if not mf.converged:
         raise RuntimeError("EDA reference SCF did not converge")
     dm = np.asarray(mf.make_rdm1())

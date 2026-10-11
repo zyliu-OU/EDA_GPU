@@ -35,6 +35,8 @@ def main():
     p.add_argument('--xyz',required=True);p.add_argument('--metadata',required=True)
     p.add_argument('--case',choices=['A_H2O','A_cation_H2O','H_cation_H2O'],required=True)
     p.add_argument('--output',required=True);p.add_argument('--grid-level',type=int,default=3)
+    p.add_argument('--opt-density-fitting',action='store_true')
+    p.add_argument('--auxbasis',default='aug-cc-pvdz-jkfit')
     p.add_argument('--cart',action='store_true');p.add_argument('--maxsteps',type=int,default=100)
     p.add_argument('--gpu-optimized',help='reuse converged GPU optimized.xyz, with matching result.json')
     p.add_argument('--cpu-optimized',help='reuse converged CPU optimized.xyz with matching result.json')
@@ -43,7 +45,7 @@ def main():
     reference=json.loads((Path(__file__).resolve().parents[1]/'references/tryptamine_water_2017.json').read_text())
     ref=reference['cases'][a.case]
     if (m['charge'],m['spin'])!=(ref['charge'],ref['spin']):raise ValueError('case charge/spin mismatch')
-    settings=Settings(xc='m06-2x',basis='aug-cc-pvdz',grid_level=a.grid_level,density_fitting=False,conv_tol=1e-10,cart=a.cart)
+    settings=Settings(xc='m06-2x',basis='aug-cc-pvdz',grid_level=a.grid_level,density_fitting=a.opt_density_fitting,auxbasis=a.auxbasis,conv_tol=1e-10,cart=a.cart)
     results=dict(hardware=hardware(),paper_reference=reference,geometry_provenance=m.get('geometry_provenance','user supplied; original provenance not verified'),case=a.case,scientifically_validated=False,optimizations={},common_geometry_eda={})
     coords={}
     for backend in ('gpu','cpu'):
@@ -53,7 +55,7 @@ def main():
             path=Path(reuse);r=json.loads(path.with_name('result.json').read_text())
             # Ensure reused geometry really comes from identical settings and seed.
             for key,value in vars(replace(settings,backend=backend)).items():
-                if r['settings'][key]!=value:raise ValueError('reused optimizer settings mismatch: '+key)
+                if r['settings'].get(key,value)!=value:raise ValueError('reused optimizer settings mismatch: '+key)
             if not np.allclose(r['initial_coordinates_angstrom'],c,rtol=0,atol=1e-10):raise ValueError('reused initial geometry mismatch')
             _,xyz,_=load(path,a.metadata)
         else:
@@ -68,7 +70,7 @@ def main():
     # geometry and backend differences. CPU optimization result archived separately.
     for backend in ('cpu','gpu'):
         dest=out/(backend+'_common_geometry_eda');dest.mkdir()
-        r=decompose(s,coords['gpu'],m,replace(settings,backend=backend,conv_tol=1e-12),dest)
+        r=decompose(s,coords['gpu'],m,replace(settings,backend=backend,conv_tol=1e-9,conv_tol_grad=1e-6,density_fitting=False),dest)
         write(dest/'result.json',r);results['common_geometry_eda'][backend]=dict(result=r,components_kcal_mol=table(r))
         write(out/'progress.json',results)
     cpu=results['common_geometry_eda']['cpu']['components_kcal_mol'];gpu=results['common_geometry_eda']['gpu']['components_kcal_mol']
@@ -77,6 +79,7 @@ def main():
     results['component_agreement_tolerance_hartree']=1e-7
     results['cpu_gpu_eda_passed']=max(abs(v) for v in results['gpu_minus_cpu_kcal_mol'].values())<1e-7*EH_TO_KCAL
     results['hydrogen_bond_distances_angstrom']={key:float(np.linalg.norm(coords['gpu'][i]-coords['gpu'][j])) for key,(i,j) in m.get('comparison_atoms',{}).items()}
+    results['timing_interpretation']='elapsed calculation times only; reused or overlapping runs are not a controlled speed benchmark'
     results['paper_comparison_status']='exploratory: original Cartesian coordinates and numerical settings not verified; no D0, Hessian, intra-EDA or individual H-bond decomposition'
     write(out/'result.json',results)
     return 0 if results['cpu_gpu_eda_passed'] else 1

@@ -6,7 +6,7 @@ name = "EDA_GPU"
 version = "0.1.0"
 description = "Experimental CPU/GPU GKS-EDA and reproducible molecular optimization"
 requires-python = ">=3.11"
-dependencies = ["numpy", "pyscf>=2.8", "geometric>=1.1"]
+dependencies = ["numpy", "pyscf>=2.8", "geometric>=1.1", "threadpoolctl>=3.6"]
 [project.optional-dependencies]
 test = ["pytest"]
 [project.scripts]

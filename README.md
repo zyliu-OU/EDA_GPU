@@ -220,10 +220,10 @@ source scripts/gpu-env.sh
 .env/bin/python scripts/compare_tryptamine.py \
   --xyz examples/tryptamine_water/constructed_bridge.xyz \
   --metadata examples/tryptamine_water/neutral.json \
-  --case A_H2O --output runs/tryptamine_comparison
+  --case A_H2O --opt-density-fitting --output runs/tryptamine_comparison
 ```
 
-This runs CPU/GPU optimization sequentially from identical input, then direct
+This runs CPU/GPU density-fitted optimization (aug-cc-pVDZ-JKFIT) sequentially from identical input, then direct
 counterpoise EDA on the same GPU-optimized geometry. Outputs include coordinates,
 trajectories, settings, spin diagnostics, aligned geometry RMSD, all EDA terms,
 backend differences and differences from the paper. Pauli is exchange plus
@@ -231,3 +231,75 @@ repulsion, matching Table 3. Paper agreement remains exploratory until original
 coordinates and numerical settings are matched. No ZPE/deformation-corrected D0,
 minimum/Hessian certification, intra-EDA or individual-H-bond decomposition is
 claimed. A separate H⁺–H₂O starting conformer is required to study that isomer.
+
+### Live calculation progress and research attribution
+
+```bash
+.env/bin/eda-gpu monitor runs/my-calculation
+.env/bin/eda-gpu status runs/my-calculation
+```
+
+`monitor` follows SCF cycles, optimization evaluations, energies, gradient norms,
+temperature cooldowns and final EDA components. Ctrl+C exits the viewer while the
+calculation continues. `status` prints one snapshot; `--json` gives machine-readable
+output. For older running jobs, add `--log /path/to/calculation.log`. New calculations
+record atomic `progress.json` snapshots and an `events.jsonl` history beside results.
+
+Calculation output, monitoring and JSON results carry this acknowledgement:
+“If EDA_GPU has benefited your research, please support us by citing this project
+and the GKS-EDA publications below.” Method attribution includes Peifeng Su et al.,
+[original GKS-EDA, 2014](https://doi.org/10.1021/jp500405s),
+[Su, Tang and Wu review, 2020](https://doi.org/10.1002/wcms.1460), and
+[Su and Li orbital derivation, 2009](https://doi.org/10.1063/1.3159673).
+Tryptamine runs additionally cite [Liu et al., 2017](https://doi.org/10.1039/C7CP03491A).
+
+### Computing limits
+
+Molecular CLI commands default to 16 physical cores/compute threads, 50% workload
+pacing, GPU cooldown at 75°C until 65°C and CPU cooldown at 85°C until 75°C.
+These settings affect this calculation process. `--threads`, `--cpu-core-limit`,
+`--compute-duty-cycle`, `--gpu-temperature-limit` and `--cpu-temperature-limit`
+are configurable; temperature limit 0 disables that sensor guard. Library Settings
+retain unpaced defaults for explicitly controlled benchmarks. CPU sensor availability
+and actual pacing/temperature statistics are reported. Software checks occur at SCF
+cycles and workload boundaries; long kernels cannot be interrupted by these controls.
+Pacing is an average workload target, not a fixed instantaneous utilization or watt cap.
+
+GPU power/clocks are never changed automatically. `nvidia-smi -pl` changes the shared
+GPU and affects other projects. The developer's original RTX 4080 SUPER power limit
+was 320 W; restoring it is an explicit administrator action.
+
+For an optional **temporary system-wide CPU frequency cap**:
+
+```bash
+sudo /usr/bin/python3 scripts/cpu_frequency_cap.py apply --max-mhz 3000 --minutes 60
+sudo /usr/bin/python3 scripts/cpu_frequency_cap.py restore
+```
+
+The helper saves the original limits, applies the ceiling across CPU policies and
+starts an automatic restore timer. Manual restore can end it early; later manual
+policy changes are preserved. This hardware setting affects other CPU applications
+while active and is not installed as a boot service. Neither this helper nor process
+pacing modifies firmware or Windows configuration.
+
+### Completed exploratory neutral tryptamine–water benchmark
+
+GPU M06-2X/aug-cc-pVDZ direct counterpoise GKS-EDA at the GPU
+density-fitted optimized geometry converged with all six components.
+Values below are kcal/mol, compared with PCCP Table 3:
+
+| Component | GPU | Paper |
+|---|---:|---:|
+| Electrostatic | -17.279 | -17.34 |
+| Pauli | 19.535 | 19.69 |
+| Polarization | -7.048 | -7.07 |
+| Generalized correlation | -5.489 | -5.54 |
+| Total | -10.282 | -10.27 |
+
+This is encouraging exploratory agreement, not a verified reproduction.
+The maximum component difference is 0.155 kcal/mol. Original Cartesian
+coordinates are unavailable; the seed was reconstructed. Paper grid settings
+are unspecified. CPU comparison and cation calculations remain pending.
+SCF thresholds were 1e-9 Eh and orbital-gradient 1e-6; an earlier 1e-12 Eh
+attempt did not converge and was excluded. Energy closure residual was
+8.45e-11 Eh. See [archived results](reports/tryptamine_neutral_gpu_2026-10-11/paper_comparison.json).

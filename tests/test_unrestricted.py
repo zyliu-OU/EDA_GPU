@@ -68,3 +68,10 @@ def test_unrestricted_gpu_cpu_agreement(tmp_path):
     a=singlepoint(s,c,m,settings);b=singlepoint(s,c,m,replace(settings,backend='gpu'))
     assert abs(a['energy_hartree']-b['energy_hartree'])<1e-7
     assert np.max(np.abs(np.array(a['gradient_hartree_per_bohr'])-b['gradient_hartree_per_bohr']))<1e-6
+
+
+def test_empty_spin_channel():
+    from eda_gpu.gks import orthonormalized_density
+    density,occupied,checks=orthonormalized_density(np.zeros((3,0)),np.eye(3),Algebra('cpu'))
+    assert np.array_equal(density,np.zeros((3,3)))
+    assert occupied.shape==(3,0) and checks['electron_count']==0

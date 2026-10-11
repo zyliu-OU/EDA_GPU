@@ -150,3 +150,13 @@ def test_gpu_each_component_and_fixed_density(references,tmp_path):
         assert abs(end_to_end['components_hartree'][k]-value)<1e-7,k
     assert end_to_end['backend_used']=='gpu'
     assert end_to_end['execution']['orbital_matrix_algebra']=='gpu'
+
+@pytest.mark.scientific
+def test_warm_density_seed_still_converges_actual_scf(references):
+    symbols,coords,meta,settings,cold,_=references
+    warm=reference_state(symbols,coords,meta,settings,Algebra('cpu'),initial_density=cold[1])
+    assert abs(warm[3]['energy_hartree']-cold[3]['energy_hartree'])<1e-9
+    assert warm[3]['scf_converged'] and warm[3]['scf_cycles']>=1
+    assert warm[3]['scf_initial_guess'].startswith('supplied density')
+    with pytest.raises(RuntimeError,match='density'):
+        reference_state(symbols,coords,meta,settings,Algebra('cpu'),initial_density=np.zeros_like(cold[1]))

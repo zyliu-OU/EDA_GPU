@@ -18,11 +18,19 @@ class Settings:
     auxbasis: str = "def2-universal-jkfit"
     grid_level: int = 3
     conv_tol: float = 1e-10
+    conv_tol_grad: float | None = None
     max_cycle: int = 100
     threads: int = 4
     density_fitting: bool = True
     dispersion: str = "none"
     cart: bool = False
+    cpu_core_limit: int = 0
+    compute_duty_cycle: float = 1.0
+    gpu_temperature_limit: float = 0.0
+    gpu_resume_temperature: float = 65.0
+    cpu_temperature_limit: float = 0.0
+    cpu_resume_temperature: float = 75.0
+    max_cooldown_seconds: float = 600.0
 
 
 def hardware():
@@ -47,12 +55,29 @@ def hardware():
     return {"cpu_model": cpu_model, "logical_cpus": os.cpu_count(), "memory_total_kib": mem_kib, "platform": platform.platform(), "python": platform.python_version(), "processor": platform.processor(), "gpu": gpu, "versions": versions}
 
 
-def make_mf(symbols, coords, metadata, settings):
+def make_mf(symbols, coords, metadata, settings,progress=None,label="SCF"):
     if settings.backend not in ("cpu", "gpu"):
         raise ValueError("backend must be cpu or gpu")
     if settings.threads < 1 or settings.max_cycle < 1 or (not np.isfinite(settings.conv_tol) or settings.conv_tol <= 0) or settings.grid_level < 0:
         raise ValueError("invalid numerical settings")
-    lib.num_threads(settings.threads)
+    if type(settings.cpu_core_limit) is not int or settings.cpu_core_limit<0:
+        raise ValueError("CPU core limit must be a nonnegative integer")
+    if settings.cpu_core_limit and hasattr(os,"sched_getaffinity"):
+        physical={}
+        for cpu in sorted(os.sched_getaffinity(0)):
+            topology=Path(f"/sys/devices/system/cpu/cpu{cpu}/topology")
+            try:
+                key=(topology.joinpath("physical_package_id").read_text().strip(),topology.joinpath("core_id").read_text().strip())
+            except OSError:
+                key=("unknown",cpu)
+            physical.setdefault(key,cpu)
+        cores=set(list(physical.values())[:settings.cpu_core_limit])
+        for task in Path("/proc/self/task").iterdir():
+            try:os.sched_setaffinity(int(task.name),cores)
+            except ProcessLookupError:pass
+    lib.num_threads(min(settings.threads,settings.cpu_core_limit) if settings.cpu_core_limit else settings.threads)
+    from threadpoolctl import threadpool_limits
+    thread_limits = threadpool_limits(limits=min(settings.threads,settings.cpu_core_limit) if settings.cpu_core_limit else settings.threads)
     mol = gto.M(atom=list(zip(symbols, coords)), unit="Angstrom", charge=metadata["charge"], spin=metadata["spin"], basis=settings.basis, cart=settings.cart, verbose=0)
     if settings.backend == "gpu":
         try:
@@ -77,7 +102,19 @@ def make_mf(symbols, coords, metadata, settings):
     mf.grids.level = settings.grid_level
     mf.grids.prune = None
     mf.conv_tol = settings.conv_tol
+    if settings.conv_tol_grad is not None:
+        if not np.isfinite(settings.conv_tol_grad) or settings.conv_tol_grad<=0:raise ValueError("SCF gradient tolerance must be positive")
+        mf.conv_tol_grad = settings.conv_tol_grad
     mf.max_cycle = settings.max_cycle
+    from .runtime import WorkloadPacer
+    mf._eda_thread_limits = thread_limits
+    device = cp.cuda.Device().pci_bus_id if settings.backend == "gpu" else None
+    mf._eda_pacer = WorkloadPacer(settings,device=device)
+    mf._eda_pacer.progress=progress
+    def callback(env):
+        if progress:progress.scf(env,label)
+        mf._eda_pacer.checkpoint(env)
+    mf.callback = callback
     return mf
 
 
@@ -85,16 +122,23 @@ def host_array(a):
     return np.asarray(a.get() if hasattr(a, "get") else a)
 
 
-def singlepoint(symbols, coords, metadata, settings):
+def singlepoint(symbols, coords, metadata, settings,out=None):
     start = time.perf_counter()
-    mf = make_mf(symbols, coords, metadata, settings)
-    energy = float(mf.kernel())
+    from .progress import ProgressWriter
+    progress=ProgressWriter(out) if out else None
+    if progress:
+        from .citations import information
+        progress.current.update(information(metadata))
+    if progress:progress.update("single-point SCF")
+    mf = make_mf(symbols, coords, metadata, settings,progress=progress)
+    energy = float(mf._eda_pacer.run(mf.kernel))
     if not mf.converged:
         raise RuntimeError("SCF did not converge; no successful result produced")
-    grad = host_array(mf.nuc_grad_method().kernel())
+    if progress:progress.update("analytic gradient")
+    grad = host_array(mf._eda_pacer.run(mf.nuc_grad_method().kernel))
     if not np.isfinite(energy) or not np.isfinite(grad).all():
         raise RuntimeError("nonfinite energy or gradient")
-    return {"energy_hartree": energy, "gradient_hartree_per_bohr": grad.tolist(), "scf_converged": True, "backend_used": settings.backend, "settings": asdict(settings), "seconds": time.perf_counter() - start}
+    return {"energy_hartree": energy, "gradient_hartree_per_bohr": grad.tolist(), "scf_converged": True, "backend_used": settings.backend, "settings": asdict(settings), "compute_limits": mf._eda_pacer.report(), "seconds": time.perf_counter() - start}
 
 
 OPT_THRESHOLDS = dict(convergence_energy=1e-6, convergence_grms=3e-4,
@@ -110,16 +154,24 @@ def optimize(symbols, coords, metadata, settings, out, maxsteps=100, constraints
     if maxsteps < 1:
         raise ValueError("maxsteps must be positive")
     start = time.perf_counter()
-    mf = make_mf(symbols, coords, metadata, settings)
+    from .progress import ProgressWriter
+    progress=ProgressWriter(out)
+    from .citations import information
+    progress.current.update(information(metadata))
+    progress.update("optimization starting")
+    mf = make_mf(symbols, coords, metadata, settings,progress=progress,label="optimization SCF")
     scanner = mf.nuc_grad_method().as_scanner()
     frames = []
     def energy_gradient(mol):
-        energy, gradient = scanner(mol)
+        energy, gradient = mf._eda_pacer.run(scanner,mol)
         if not scanner.base.converged:
             raise RuntimeError("SCF failed during optimization")
         arr = host_array(gradient)
         if not np.isfinite(energy) or not np.isfinite(arr).all():
             raise RuntimeError("nonfinite optimization evaluation")
+        progress.update("optimization evaluation",optimization_evaluation=len(frames)+1,energy_hartree=float(energy),
+                        gradient_rms_hartree_per_bohr=float(np.sqrt(np.mean(arr**2))),
+                        gradient_max_hartree_per_bohr=float(np.max(np.abs(arr))))
         frames.append({"energy_hartree": float(energy), "coordinates_angstrom": mol.atom_coords(unit="Angstrom").tolist()})
         return float(energy), arr
     wrapped = as_pyscf_method(mf.mol, energy_gradient)
@@ -141,10 +193,11 @@ def optimize(symbols, coords, metadata, settings, out, maxsteps=100, constraints
         finally:
             Path(out, "trajectory.xyz").write_text("".join(xyz_text(symbols, f["coordinates_angstrom"], f"evaluation {i}; E={f['energy_hartree']:.12f} Eh") for i, f in enumerate(frames)))
     final_coords = mol.atom_coords(unit="Angstrom")
+    progress.update("final optimized-geometry verification")
     final = singlepoint(symbols, final_coords, metadata, settings)
     frozen_error = float(np.max(np.abs(final_coords[frozen] - coords[frozen]))) if frozen else 0.0
     Path(out, "optimized.xyz").write_text(xyz_text(symbols, final_coords))
-    final.update(optimization_converged=bool(converged), optimization_thresholds=OPT_THRESHOLDS,
+    final.update(optimization_compute_limits=mf._eda_pacer.report(),optimization_converged=bool(converged), optimization_thresholds=OPT_THRESHOLDS,
                  constraints=constraint_text, frozen_max_displacement_angstrom=frozen_error,
                  frozen_tolerance_angstrom=1e-5, evaluations=frames,
                  stationary_point_class="constrained stationary point; minimum not established" if constraint_text else "stationary point; minimum not established",
