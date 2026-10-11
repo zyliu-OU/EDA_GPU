@@ -1,0 +1,129 @@
+{
+  "energy_hartree": -76.35832577165134,
+  "gradient_hartree_per_bohr": [
+    [
+      1.7098011587131131e-16,
+      1.0222411853624922e-15,
+      -7.358967028237018e-05
+    ],
+    [
+      5.1856277904382964e-05,
+      1.928459992144735e-17,
+      3.286817982117718e-05
+    ],
+    [
+      -5.185627790948999e-05,
+      -2.0284482174197279e-16,
+      3.286817982495194e-05
+    ]
+  ],
+  "scf_converged": true,
+  "backend_used": "cpu",
+  "settings": {
+    "backend": "cpu",
+    "xc": "b3lyp",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "max_cycle": 100,
+    "threads": 4,
+    "density_fitting": true,
+    "dispersion": "none"
+  },
+  "seconds": 3.020109702000127,
+  "optimization_converged": true,
+  "optimization_thresholds": {
+    "convergence_energy": 1e-06,
+    "convergence_grms": 0.0003,
+    "convergence_gmax": 0.00045,
+    "convergence_drms": 0.0012,
+    "convergence_dmax": 0.0018
+  },
+  "constraints": null,
+  "frozen_max_displacement_angstrom": 0.0,
+  "frozen_tolerance_angstrom": 1e-05,
+  "evaluations": [
+    {
+      "energy_hartree": -76.35180577417098,
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.8,
+          0.0,
+          0.65
+        ],
+        [
+          -0.8,
+          0.0,
+          0.65
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.35817175563703,
+      "coordinates_angstrom": [
+        [
+          -3.622947556519601e-14,
+          -9.493993070243726e-16,
+          0.02098002694990469
+        ],
+        [
+          0.745046931037748,
+          -6.453041683810367e-16,
+          0.6396255111756449
+        ],
+        [
+          -0.7450469310377472,
+          7.756269840950337e-16,
+          0.639625511175731
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.3583256496931,
+      "coordinates_angstrom": [
+        [
+          1.8437514812071822e-14,
+          4.977309378539695e-15,
+          0.032697421562630696
+        ],
+        [
+          0.756742448435465,
+          -1.3451012774556872e-14,
+          0.6338507755413876
+        ],
+        [
+          -0.756742448435404,
+          2.233543172980587e-14,
+          0.6338507755414233
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.35832577165131,
+      "coordinates_angstrom": [
+        [
+          4.7863721506414247e-14,
+          -5.611771313522605e-16,
+          0.03274711147411171
+        ],
+        [
+          0.7570883116427657,
+          -2.655489456509856e-14,
+          0.6339507319565798
+        ],
+        [
+          -0.7570883116427214,
+          2.939379020899435e-14,
+          0.6339507319565211
+        ]
+      ]
+    }
+  ],
+  "stationary_point_class": "stationary point; minimum not established"
+}

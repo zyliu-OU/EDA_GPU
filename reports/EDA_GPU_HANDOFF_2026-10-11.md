@@ -1,16 +1,67 @@
 # EDA_GPU build handoff — 2026-10-11
 
-Stage 1: package and CLI implemented. Eight local tests passed. A real GPU4PySCF
-B3LYP/def2-SVP density-fitted water energy/gradient run succeeded on RTX 4080 SUPER,
-driver 595.91.07. Python 3.12.13 is isolated in `.env`; system Python/drivers unchanged.
-GitHub target verified as authenticated personal account zyliu-OU; no existing EDA_GPU
-repository was found. Private repository creation is authorized by the original handoff.
+Repository: https://github.com/zyliu-OU/EDA_GPU (verified private, personal account).
+Workspace: /home/zyliu/Documents/EDA_GPU. Original supplied handoff is preserved
+locally and deliberately not included in published code (contains unrelated project
+context and attachment identifiers). No papers, credentials or employer data published.
+Initial tested stage committed/pushed as 7dfcad8; this report accompanies the final
+validation stage. Use `git log -1` and `git ls-remote origin refs/heads/main` for final SHA.
 
-Full CPU/GPU scientific validation is in progress, not yet claimed passed.
-The environment requires `source scripts/gpu-env.sh` for pip-installed CUDA 12 libraries.
+## Completed and tested
 
-EDA remains unavailable: original derivation full text and matching global-hybrid
-individual component reference output unavailable. XEDA manual grouped reference
-examples were located; these do not remove the intermediate-state definition blocker.
-See docs/GKS_EDA_SPEC.md. HPLC modeling, conformer generation and minima classification
-are deferred. Original user handoff preserved locally.
+CLI: inspect, singlepoint, optimize, validate. Explicit CPU/GPU selection, restricted
+closed-shell gas-phase DFT, density fitting, analytic gradients, geomeTRIC convergence
+reporting, XYZ plus explicit identity/protonation/charge/spin/fragment metadata,
+frozen atoms and external freeze/set constraints, reproducible settings and JSON results.
+Initial/final XYZ and evaluation trajectories are retained. SCF failure, optimizer
+iteration limits, missing GPU and existing output directories fail explicitly.
+
+12 local pytest tests passed, including one actual marked GPU test (no GPU skip).
+Nine scientific checks passed in reports/validation_2026-10-11/result.json:
+- Water and hydrogen-bonded water dimer CPU/GPU energies and gradients agreed.
+- Water and dimer optimized to converged stationary points on both backends.
+- Water all-nine-component finite differences passed.
+- Frozen oxygen examples passed on CPU and GPU.
+
+Largest single-point energy discrepancy: 9.208634e-12 Eh.
+Largest single-point gradient discrepancy: 7.342964e-07 Eh/bohr.
+Water finite-difference gradient error: 3.582325e-06 Eh/bohr.
+Largest frozen atom displacement: 1.781698e-11 angstrom.
+
+Dependency consistency check passed; wheel built as eda_gpu-0.1.0-py3-none-any.whl.
+Repeated warmed benchmarks (3 repetitions, 4 CPU threads) and memory snapshots are
+in reports/benchmark_2026-10-11.json. These do not establish production speedups.
+
+## Reproducible environment
+
+Ubuntu 26.04 LTS; Ryzen 9 5950X (32 logical CPUs), approximately 30 GiB RAM;
+RTX 4080 SUPER 16 GiB, driver 595.91.07. Python 3.12.13 isolated under `.env`.
+PySCF 2.14.0, GPU4PySCF 1.8.1, geomeTRIC 1.1.1, CuPy 14.2.0, cuTensor 2.8.1.
+Exact CPU/GPU pins: requirements-cpu-lock.txt and requirements-gpu-lock.txt.
+CUDA 12 pip wheel runtime libraries coexist with system CUDA 13 toolkit; source
+scripts/gpu-env.sh before GPU work. No system Python/driver upgrade occurred.
+
+Run `.env/bin/eda-gpu validate --gpu --output runs/another_validation` to reproduce.
+Output directory must be new. GPU status must be confirmed by successful GPU execution.
+SciPy 1.18 deprecation warnings from upstream GPU4PySCF do not invalidate current runs.
+
+## Scientific blockers and scope
+
+Faithful original GKS-EDA remains explicitly unavailable. Accessible ACS pages expose
+abstract/paywall, not full intermediate-state derivation. Full original paper/supporting
+material and reproducible matching global-hybrid individual component reference data
+are needed, ideally authorized XEDA execution/source. Official XEDA manual grouped
+examples were found but combine exchange/repulsion and correlation/dispersion and use
+a range-separated ammonia–water example outside the initial scope. No invented EDA
+values, substitute ALMO/DM decomposition or arithmetic-closure validation is present.
+See docs/GKS_EDA_SPEC.md for exact missing definitions and source links.
+
+No Hessians/minimum classification, conformer generation, solvent/open-shell/
+range-separated/double-hybrid EDA, RNA/TEAH+/C18 models, sampling or HPLC retention
+predictions are implemented. Chemical metadata is retained, not inferred from XYZ.
+
+## GitHub verification
+
+Private repository created and first stage pushed successfully. CPU GitHub Actions
+is running; final status will be recorded after the final validation-stage push.
+Local hardware validation is independent of remote CI (which lacks a GPU).

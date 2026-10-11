@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "command": "validate",
+  "hardware": {
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.91.07, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "status": "success",
+  "passed": true,
+  "checks": {
+    "water_cpu_gpu": true,
+    "water_cpu_optimization": true,
+    "water_gpu_optimization": true,
+    "water_dimer_cpu_gpu": true,
+    "water_dimer_cpu_optimization": true,
+    "water_dimer_gpu_optimization": true,
+    "finite_difference": true,
+    "frozen_cpu": true,
+    "frozen_gpu": true
+  },
+  "results": {
+    "water": {
+      "cpu": {
+        "energy_hartree": -76.35180577417091,
+        "gradient_hartree_per_bohr": [
+          [
+            4.382196660043018e-15,
+            -2.824825519867914e-17,
+            -0.060698162339457795
+          ],
+          [
+            0.04012708363886763,
+            -4.456291219567438e-16,
+            0.03034544267055672
+          ],
+          [
+            -0.040127083638867855,
+            3.1657223964018e-16,
+            0.030345442670558276
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "cpu",
+        "settings": {
+          "backend": "cpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 0.7831161230001271
+      },
+      "gpu": {
+        "energy_hartree": -76.35180577417098,
+        "gradient_hartree_per_bohr": [
+          [
+            -2.559710771205726e-13,
+            -4.5140027352448615e-15,
+            -0.060698049961007694
+          ],
+          [
+            0.040126967228036214,
+            2.2262947136441935e-15,
+            0.03034538648193097
+          ],
+          [
+            -0.040126967227786636,
+            2.063143800795234e-15,
+            0.03034538648164542
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "gpu",
+        "settings": {
+          "backend": "gpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 1.2664326680001068
+      },
+      "energy_difference_hartree": 7.105427357601002e-14,
+      "gradient_max_difference_hartree_per_bohr": 1.1641108121906996e-07,
+      "cpu_optimization": {
+        "energy_hartree": -76.35832577165134,
+        "gradient_hartree_per_bohr": [
+          [
+            1.7098011587131131e-16,
+            1.0222411853624922e-15,
+            -7.358967028237018e-05
+          ],
+          [
+            5.1856277904382964e-05,
+            1.928459992144735e-17,
+            3.286817982117718e-05
+          ],
+          [
+            -5.185627790948999e-05,
+            -2.0284482174197279e-16,
+            3.286817982495194e-05
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "cpu",
+        "settings": {
+          "backend": "cpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 3.020109702000127,
+        "optimization_converged": true,
+        "optimization_thresholds": {
+          "convergence_energy": 1e-06,
+          "convergence_grms": 0.0003,
+          "convergence_gmax": 0.00045,
+          "convergence_drms": 0.0012,
+          "convergence_dmax": 0.0018
+        },
+        "constraints": null,
+        "frozen_max_displacement_angstrom": 0.0,
+        "frozen_tolerance_angstrom": 1e-05,
+        "stationary_point_class": "stationary point; minimum not established"
+      },
+      "gpu_optimization": {
+        "energy_hartree": -76.3583257716418,
+        "gradient_hartree_per_bohr": [
+          [
+            -5.699104485978976e-13,
+            -1.303465409275432e-15,
+            -7.330702616492601e-05
+          ],
+          [
+            5.1654246224108746e-05,
+            6.73430080999215e-18,
+            3.2726857552178856e-05
+          ],
+          [
+            -5.16542456499014e-05,
+            2.2873635744353187e-16,
+            3.272685706523504e-05
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "gpu",
+        "settings": {
+          "backend": "gpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 1.7781085030001123,
+        "optimization_converged": true,
+        "optimization_thresholds": {
+          "convergence_energy": 1e-06,
+          "convergence_grms": 0.0003,
+          "convergence_gmax": 0.00045,
+          "convergence_drms": 0.0012,
+          "convergence_dmax": 0.0018
+        },
+        "constraints": null,
+        "frozen_max_displacement_angstrom": 0.0,
+        "frozen_tolerance_angstrom": 1e-05,
+        "stationary_point_class": "stationary point; minimum not established"
+      }
+    },
+    "water_dimer": {
+      "cpu": {
+        "energy_hartree": -152.72802302635574,
+        "gradient_hartree_per_bohr": [
+          [
+            0.014233613393342281,
+            0.00582815401163872,
+            -0.001967700117469273
+          ],
+          [
+            -0.013271469943116898,
+            -0.0005949580176239783,
+            0.0021259984433822862
+          ],
+          [
+            0.00018049536802666744,
+            -0.004812893770170135,
+            0.000531248853985135
+          ],
+          [
+            0.0019927973534878962,
+            -0.001076209995030275,
+            0.004591286108649673
+          ],
+          [
+            -0.0019609213842088913,
+            -0.00728106522059635,
+            -0.002741283922278459
+          ],
+          [
+            -0.001182680276009318,
+            0.007937847109326768,
+            -0.0025378514357776716
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "cpu",
+        "settings": {
+          "backend": "cpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 1.6641595920000327
+      },
+      "gpu": {
+        "energy_hartree": -152.72802302634653,
+        "gradient_hartree_per_bohr": [
+          [
+            0.0142330705704099,
+            0.005828737200646916,
+            -0.001967871864791776
+          ],
+          [
+            -0.013270942447307643,
+            -0.0005948210210178079,
+            0.002126092731895759
+          ],
+          [
+            0.00018045902554642002,
+            -0.004813628066549391,
+            0.0005313267021056734
+          ],
+          [
+            0.001992974493329358,
+            -0.0010757137744727557,
+            0.004591467485161704
+          ],
+          [
+            -0.001961137785450262,
+            -0.007281439317519567,
+            -0.0027416550498944314
+          ],
+          [
+            -0.0011825893468597748,
+            0.00793773909646589,
+            -0.0025376620726642596
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "gpu",
+        "settings": {
+          "backend": "gpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 0.5673655069999768
+      },
+      "energy_difference_hartree": 9.208633855450898e-12,
+      "gradient_max_difference_hartree_per_bohr": 7.342963792567048e-07,
+      "cpu_optimization": {
+        "energy_hartree": -152.73045143993915,
+        "gradient_hartree_per_bohr": [
+          [
+            1.4976263646993004e-06,
+            1.473718337807739e-06,
+            1.550873547806475e-06
+          ],
+          [
+            -1.4741081180158488e-06,
+            3.4697131368055523e-07,
+            1.2894990786271876e-07
+          ],
+          [
+            -4.299053728562541e-07,
+            7.015743701543897e-07,
+            -1.4338208482733705e-06
+          ],
+          [
+            1.7315970524123259e-07,
+            -1.4448325806881712e-06,
+            -1.5525127188276144e-06
+          ],
+          [
+            6.103458367601178e-07,
+            2.808531656128821e-07,
+            8.082514657559159e-10
+          ],
+          [
+            -3.8469593399703683e-07,
+            -1.3836704564340607e-06,
+            1.315619419517411e-06
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "cpu",
+        "settings": {
+          "backend": "cpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 51.31420047000006,
+        "optimization_converged": true,
+        "optimization_thresholds": {
+          "convergence_energy": 1e-06,
+          "convergence_grms": 0.0003,
+          "convergence_gmax": 0.00045,
+          "convergence_drms": 0.0012,
+          "convergence_dmax": 0.0018
+        },
+        "constraints": null,
+        "frozen_max_displacement_angstrom": 0.0,
+        "frozen_tolerance_angstrom": 1e-05,
+        "stationary_point_class": "stationary point; minimum not established"
+      },
+      "gpu_optimization": {
+        "energy_hartree": -152.73045144083852,
+        "gradient_hartree_per_bohr": [
+          [
+            1.528005010964506e-06,
+            1.7815949360233674e-06,
+            1.550161767394087e-06
+          ],
+          [
+            -1.33047840367162e-06,
+            3.169556080928615e-07,
+            1.8531142975675152e-07
+          ],
+          [
+            -3.325232305062542e-07,
+            4.458055240519343e-07,
+            -1.4316245833256858e-06
+          ],
+          [
+            1.7586441192207758e-07,
+            -1.094245597021981e-06,
+            -1.8053108625792902e-06
+          ],
+          [
+            2.7244901201761706e-07,
+            2.469043938191362e-07,
+            1.5775290340691583e-07
+          ],
+          [
+            -3.2101755476077187e-07,
+            -1.724412806769493e-06,
+            1.3518265299383714e-06
+          ]
+        ],
+        "scf_converged": true,
+        "backend_used": "gpu",
+        "settings": {
+          "backend": "gpu",
+          "xc": "b3lyp",
+          "basis": "def2-svp",
+          "auxbasis": "def2-universal-jkfit",
+          "grid_level": 3,
+          "conv_tol": 1e-10,
+          "max_cycle": 100,
+          "threads": 4,
+          "density_fitting": true,
+          "dispersion": "none"
+        },
+        "seconds": 14.307831870999962,
+        "optimization_converged": true,
+        "optimization_thresholds": {
+          "convergence_energy": 1e-06,
+          "convergence_grms": 0.0003,
+          "convergence_gmax": 0.00045,
+          "convergence_drms": 0.0012,
+          "convergence_dmax": 0.0018
+        },
+        "constraints": null,
+        "frozen_max_displacement_angstrom": 0.0,
+        "frozen_tolerance_angstrom": 1e-05,
+        "stationary_point_class": "stationary point; minimum not established"
+      }
+    },
+    "finite_difference": {
+      "step_bohr": 0.001,
+      "gradient_hartree_per_bohr": [
+        [
+          -4.263256414560601e-11,
+          3.552713678800501e-11,
+          -0.06069458001434214
+        ],
+        [
+          0.040125234029630974,
+          0.0,
+          0.03034729204642872
+        ],
+        [
+          -0.0401252341148961,
+          -3.552713678800501e-11,
+          0.030347292025112438
+        ]
+      ],
+      "max_error_hartree_per_bohr": 3.582325115658591e-06
+    },
+    "frozen_cpu": {
+      "energy_hartree": -76.35832577853299,
+      "gradient_hartree_per_bohr": [
+        [
+          -3.5084460183973892e-15,
+          -6.403173730752391e-16,
+          9.138630334248887e-06
+        ],
+        [
+          -6.96098184760352e-06,
+          4.1033367893735844e-16,
+          -8.495602172420291e-06
+        ],
+        [
+          6.9609818535987245e-06,
+          -2.4880953920769205e-16,
+          -8.495602178415496e-06
+        ]
+      ],
+      "scf_converged": true,
+      "backend_used": "cpu",
+      "settings": {
+        "backend": "cpu",
+        "xc": "b3lyp",
+        "basis": "def2-svp",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-10,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": true,
+        "dispersion": "none"
+      },
+      "seconds": 3.6027822319999814,
+      "optimization_converged": true,
+      "optimization_thresholds": {
+        "convergence_energy": 1e-06,
+        "convergence_grms": 0.0003,
+        "convergence_gmax": 0.00045,
+        "convergence_drms": 0.0012,
+        "convergence_dmax": 0.0018
+      },
+      "constraints": "$freeze\nxyz 1\n$end\n",
+      "frozen_max_displacement_angstrom": 1.7816427336772193e-11,
+      "frozen_tolerance_angstrom": 1e-05,
+      "stationary_point_class": "constrained stationary point; minimum not established"
+    },
+    "frozen_gpu": {
+      "energy_hartree": -76.35832577853157,
+      "gradient_hartree_per_bohr": [
+        [
+          1.78830234587544e-13,
+          1.245883215741477e-16,
+          9.453824042715553e-06
+        ],
+        [
+          -7.186534313641246e-06,
+          1.487951658700596e-16,
+          -8.65319937704001e-06
+        ],
+        [
+          7.186534134007161e-06,
+          -3.188463391708519e-16,
+          -8.653199174091242e-06
+        ]
+      ],
+      "scf_converged": true,
+      "backend_used": "gpu",
+      "settings": {
+        "backend": "gpu",
+        "xc": "b3lyp",
+        "basis": "def2-svp",
+        "auxbasis": "def2-universal-jkfit",
+        "grid_level": 3,
+        "conv_tol": 1e-10,
+        "max_cycle": 100,
+        "threads": 4,
+        "density_fitting": true,
+        "dispersion": "none"
+      },
+      "seconds": 2.3420458040000085,
+      "optimization_converged": true,
+      "optimization_thresholds": {
+        "convergence_energy": 1e-06,
+        "convergence_grms": 0.0003,
+        "convergence_gmax": 0.00045,
+        "convergence_drms": 0.0012,
+        "convergence_dmax": 0.0018
+      },
+      "constraints": "$freeze\nxyz 1\n$end\n",
+      "frozen_max_displacement_angstrom": 1.781697808766637e-11,
+      "frozen_tolerance_angstrom": 1e-05,
+      "stationary_point_class": "constrained stationary point; minimum not established"
+    }
+  },
+  "settings": {
+    "backend": "cpu",
+    "xc": "b3lyp",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "max_cycle": 100,
+    "threads": 4,
+    "density_fitting": true,
+    "dispersion": "none"
+  },
+  "gpu_validation": "executed",
+  "tolerances": {
+    "energy_hartree": 1e-07,
+    "gradient_hartree_per_bohr": 1e-06,
+    "finite_difference_hartree_per_bohr": 2e-05,
+    "frozen_angstrom": 1e-05
+  }
+}

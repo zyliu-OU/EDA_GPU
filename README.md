@@ -8,10 +8,22 @@ until its intermediate-state definitions and matching component references are s
 ## Install
 
 Use Python 3.12 in an isolated environment; do not upgrade system Python/drivers.
-CPU: `python -m pip install -e '.[test]'`.
+CPU: `python -m pip install -r requirements-cpu-lock.txt -e '.[test]'`.
 The actual host GPU installation and exact pins are in `requirements-gpu-lock.txt`
-when validation finishes. CUDA wheel names depend on driver/runtime compatibility.
-CUDA 12 runtimes can coexist with the host CUDA 13 toolkit.
+after verified local execution. Install with `python -m pip install -r requirements-gpu-lock.txt -e '.[test]'`. CUDA wheel names depend on driver/runtime compatibility.
+CUDA 12 runtimes can coexist with the host CUDA 13 toolkit. Source
+`scripts/gpu-env.sh` before GPU execution; it exposes the environment's NVIDIA
+wheel libraries without modifying the system loader. The script targets the verified
+Python 3.12 `.env` layout. Exact host installation:
+
+```bash
+/home/zyliu/anaconda3/bin/conda create -p "$PWD/.env" python=3.12 pip -y
+.env/bin/python -m pip install -r requirements-gpu-lock.txt -e '.[test]'
+source scripts/gpu-env.sh
+```
+
+All nine local scientific validation checks and twelve tests passed. GPU acceleration
+was actually executed; GKS-EDA components remain blocked. See the recorded evidence.
 
 ```bash
 source scripts/gpu-env.sh # GPU wheel library paths

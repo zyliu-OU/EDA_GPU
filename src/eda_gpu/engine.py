@@ -2,6 +2,8 @@
 from dataclasses import dataclass, asdict
 from importlib.metadata import version, PackageNotFoundError
 import platform
+import os
+from pathlib import Path
 import subprocess
 import time
 import numpy as np
@@ -34,7 +36,14 @@ def hardware():
             versions[pkg] = version(pkg)
         except PackageNotFoundError:
             versions[pkg] = None
-    return {"platform": platform.platform(), "python": platform.python_version(), "processor": platform.processor(), "gpu": gpu, "versions": versions}
+    cpu_model = platform.processor()
+    mem_kib = None
+    try:
+        cpu_model = next(line.split(":", 1)[1].strip() for line in Path("/proc/cpuinfo").read_text().splitlines() if line.startswith("model name"))
+        mem_kib = int(next(line.split()[1] for line in Path("/proc/meminfo").read_text().splitlines() if line.startswith("MemTotal:")))
+    except (OSError, StopIteration, ValueError):
+        pass
+    return {"cpu_model": cpu_model, "logical_cpus": os.cpu_count(), "memory_total_kib": mem_kib, "platform": platform.platform(), "python": platform.python_version(), "processor": platform.processor(), "gpu": gpu, "versions": versions}
 
 
 def make_mf(symbols, coords, metadata, settings):
@@ -42,7 +51,7 @@ def make_mf(symbols, coords, metadata, settings):
         raise ValueError("initial implementation supports restricted closed-shell spin=0 only")
     if settings.backend not in ("cpu", "gpu"):
         raise ValueError("backend must be cpu or gpu")
-    if settings.threads < 1 or settings.max_cycle < 1 or settings.conv_tol <= 0 or settings.grid_level < 0:
+    if settings.threads < 1 or settings.max_cycle < 1 or (not np.isfinite(settings.conv_tol) or settings.conv_tol <= 0) or settings.grid_level < 0:
         raise ValueError("invalid numerical settings")
     lib.num_threads(settings.threads)
     mol = gto.M(atom=list(zip(symbols, coords)), unit="Angstrom", charge=metadata["charge"], spin=metadata["spin"], basis=settings.basis, verbose=0)
@@ -60,6 +69,8 @@ def make_mf(symbols, coords, metadata, settings):
         mf = dft.RKS(mol)
     mf.xc = settings.xc
     # Initial supported functional scope: global hybrids/GGA/LDA, no range separation or NLC.
+    if dft.libxc.xc_type(settings.xc) == "HF":
+        raise ValueError("use a supported DFT functional; HF is outside this CLI scope")
     if dft.libxc.is_nlc(settings.xc) or abs(dft.libxc.rsh_coeff(settings.xc)[0]) > 1e-14:
         raise ValueError("range-separated and nonlocal-correlation functionals are outside initial scope")
     if settings.density_fitting:
@@ -97,6 +108,8 @@ def optimize(symbols, coords, metadata, settings, out, maxsteps=100, constraints
     from tempfile import TemporaryDirectory
     from pyscf.geomopt import geometric_solver, as_pyscf_method
     from .model import xyz_text
+    if maxsteps < 1:
+        raise ValueError("maxsteps must be positive")
     start = time.perf_counter()
     mf = make_mf(symbols, coords, metadata, settings)
     scanner = mf.nuc_grad_method().as_scanner()
@@ -115,6 +128,8 @@ def optimize(symbols, coords, metadata, settings, out, maxsteps=100, constraints
     if constraints and frozen:
         raise ValueError("use frozen_atoms metadata or an external constraints file, not both")
     constraint_text = Path(constraints).read_text() if constraints else ("$freeze\n" + "".join(f"xyz {i+1}\n" for i in frozen) + "$end\n" if frozen else None)
+    if constraint_text and "$scan" in constraint_text.lower():
+        raise ValueError("constraint scans are outside this single-geometry optimizer scope")
     with TemporaryDirectory(prefix="eda-gpu-") as tmp:
         params = dict(OPT_THRESHOLDS)
         params.update(maxsteps=maxsteps, assert_convergence=True)
