@@ -84,3 +84,5 @@ EDA decomposition or GPU EDA validation is claimed.
 
 Full local suite after this stage: **20 passed**, including actual GPU execution
 (7.53 seconds). CPU CI additionally exercises the experimental CLI with PBE0/STO-3G.
+
+CPU CI passed for EDA code commit `7e2917676cca1c7ef0d5fe22f17d9abb0378c97c`: https://github.com/zyliu-OU/EDA_GPU/actions/runs/38171856321. The clean installation, test suite, CPU scientific validation and EDA CLI smoke check all succeeded; GPU execution is not claimed on this CPU-only runner.
