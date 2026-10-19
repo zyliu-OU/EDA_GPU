@@ -31,6 +31,8 @@ for method attribution, benchmark sources, and software documentation.
 | Independent cross-program check | HF/DFT energies and analytic gradients (RKS, UKS, exact and density-fitted) agree with Psi4 1.11 on CPU and GPU (21/21 within preset tolerances, up to 425 basis functions); optimized minima agree for water and water dimer; not an EDA validation |
 | Published tryptamine–water benchmark | Neutral and radical-cation totals within 0.012 kcal/mol of Liu et al. 2017 Table 3, components within 0.20 kcal/mol, H-bond geometry within 0.05 Å; constructed geometry, exploratory |
 | Matched XEDA comparison | GAMESS-XEDA inputs and EDA_GPU values prepared (`reports/xeda_matched_2026-10-18/`); external XEDA run pending |
+| Experimental GKS-EDA(sol) | C-PCM/IEF-PCM on CPU and GPU; vacuum-limit, screening and CPU/GPU checks pass; documented interpretations; external validation pending |
+| CPU/GPU scaling benchmark | GPU 3–7× faster than CPU from ~250 basis functions on this host; slower for tiny systems ([benchmark](reports/benchmark_scaling_2026-10-18.json)) |
 | CPU EDA preparation | Counterpoise fragment references, frozen electrostatics, generalized correlation; independent algebra checks passed, published component validation unresolved |
 | Complete experimental GKS-EDA | Six gas-phase terms on CPU/GPU; independent mathematical tests and component-wise CPU/GPU agreement passed; external matched-settings validation pending |
 
@@ -462,6 +464,27 @@ For these tiny cases, measured complete EDA GPU medians were slower than CPU
 measurements do not establish larger-system throughput or speedup. See
 [GPU EDA validation and timings](reports/gks_eda_gpu_2026-10-11/result.json),
 [methods](docs/GKS_EDA_SPEC.md), and [validation details](docs/VALIDATION.md).
+
+## Experimental GKS-EDA(sol)
+
+`eda --solvent cpcm|iefpcm [--solvent-eps E]` adds the solvent extension of the review
+(Eqs. 12–13): all reference SCFs use a PCM reaction field, the six gas-phase-form terms are
+evaluated with the gas-phase functional at the SCRF densities, and ΔG_desol is the change in
+electrostatic solvation energy. Monomers sit in the supermolecule cavity with only their own
+nuclei. Two definitions are documented interpretations pending the original derivation
+([specification](docs/GKS_EDA_SOL_SPEC.md)). `singlepoint` and `optimize` accept the same
+flags (PCM analytic gradients pass finite-difference checks).
+
+```bash
+.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu \
+  --xc pbe0 --solvent cpcm --output runs/gks_sol_dimer
+.env/bin/python scripts/validate_gks_sol.py --gpu --output runs/gks_sol_validation
+```
+
+Validated internally: vacuum limit (1.6e-9 Eh), dielectric screening at separation, CPU/GPU
+agreement for C-PCM and IEF-PCM (≤9.6e-9 Eh). Not externally validated: the XEDA II BH₃–NH₃
+example differs strongly and depends on unknown cavity radii, to which desolvation is very
+sensitive. See [validation](docs/VALIDATION.md).
 
 The next scientific gate is individual component output from XEDA with explicitly
 matched functional, basis representation, quadrature, integral and counterpoise

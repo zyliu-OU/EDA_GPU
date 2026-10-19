@@ -1,0 +1,42 @@
+{
+  "xeda": {
+    "electrostatic": -0.149777,
+    "exchange": -0.219316,
+    "repulsion": 0.410406,
+    "polarization": -0.09824,
+    "generalized_correlation": -0.023502,
+    "desolvation": -0.004018,
+    "total": -0.084447
+  },
+  "eda_gpu": {
+    "gas": {
+      "electrostatic": -0.14867770853008722,
+      "exchange": -0.2174283962201602,
+      "repulsion": 0.4073710451699242,
+      "polarization": -0.0988117123002894,
+      "generalized_correlation": -0.023349179877712345,
+      "explicit_dispersion": 0.0,
+      "total": -0.08089595175835029
+    },
+    "complex_cavity": {
+      "electrostatic": -0.15588536310987067,
+      "exchange": -0.22708911616509037,
+      "repulsion": 0.4225811491728848,
+      "polarization": -0.09391468519504542,
+      "generalized_correlation": -0.023454775468643163,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.021819695943983107,
+      "total": -0.09958248672734271
+    },
+    "own_cavity": {
+      "electrostatic": -0.17025109759901724,
+      "exchange": -0.2404252230473795,
+      "repulsion": 0.44404437517695783,
+      "polarization": -0.08924031153958367,
+      "generalized_correlation": -0.023509723625295464,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.012990819255310499,
+      "total": -0.09237279989523017
+    }
+  }
+}

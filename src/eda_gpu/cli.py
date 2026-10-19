@@ -38,6 +38,9 @@ def main(argv=None):
         q.add_argument("--gpu-temperature-limit", type=float, default=75.0)
         q.add_argument("--cpu-temperature-limit", type=float, default=85.0)
         q.add_argument("--no-density-fitting", action="store_true")
+        if name != "eda-prepare":
+            q.add_argument("--solvent", choices=["none", "cpcm", "iefpcm"], default="none", help="PCM electrostatic solvation; for eda this is experimental GKS-EDA(sol)")
+            q.add_argument("--solvent-eps", type=float, default=78.3553, help="dielectric constant; default water")
         if name == "eda":
             q.add_argument("--reference-seed",help="NPZ reference densities at this exact geometry/basis; actual SCFs still run")
         if name == "optimize":
@@ -72,7 +75,8 @@ def main(argv=None):
             settings = Settings(backend=a.backend, xc=a.xc, basis=a.basis, auxbasis=a.auxbasis,
                                 grid_level=a.grid_level, conv_tol=a.conv_tol,conv_tol_grad=a.scf_gradient_tol, max_cycle=a.max_cycle,
                                 threads=a.threads, cpu_core_limit=a.cpu_core_limit,cart=a.cart, compute_duty_cycle=a.compute_duty_cycle,
-                                gpu_temperature_limit=a.gpu_temperature_limit,cpu_temperature_limit=a.cpu_temperature_limit, density_fitting=(False if a.command in ("eda-prepare", "eda") else not a.no_density_fitting))
+                                gpu_temperature_limit=a.gpu_temperature_limit,cpu_temperature_limit=a.cpu_temperature_limit,
+                                solvent=getattr(a, "solvent", "none"), solvent_eps=getattr(a, "solvent_eps", 78.3553), density_fitting=(False if a.command in ("eda-prepare", "eda") else not a.no_density_fitting))
             result.update(information(metadata))
             result.update(metadata=metadata, symbols=symbols, initial_coordinates_angstrom=coords.tolist(), settings=asdict(settings), backend_requested=a.backend)
             (out / "initial.xyz").write_text(xyz_text(symbols, coords))

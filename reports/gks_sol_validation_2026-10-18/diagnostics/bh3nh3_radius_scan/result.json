@@ -1,0 +1,64 @@
+{
+  "xeda": {
+    "electrostatic": -0.149777,
+    "exchange": -0.219316,
+    "repulsion": 0.410406,
+    "polarization": -0.09824,
+    "generalized_correlation": -0.023502,
+    "desolvation": -0.004018,
+    "total": -0.084447
+  },
+  "eda_gpu_by_vdw_scale": {
+    "1.0": {
+      "electrostatic": -0.16077105762981603,
+      "exchange": -0.23452512294436983,
+      "repulsion": 0.4338658639934465,
+      "polarization": -0.09033893971636076,
+      "generalized_correlation": -0.023953245874871243,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.029078211190696077,
+      "total": -0.10480071338410824
+    },
+    "1.2": {
+      "electrostatic": -0.1558853631099808,
+      "exchange": -0.22708911616518695,
+      "repulsion": 0.42258114917308376,
+      "polarization": -0.09391468519496016,
+      "generalized_correlation": -0.02345477546867869,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.021819695943995396,
+      "total": -0.09958248672728587
+    },
+    "1.4": {
+      "electrostatic": -0.15351067723298328,
+      "exchange": -0.22363653996264368,
+      "repulsion": 0.417240831111485,
+      "polarization": -0.09594646180241284,
+      "generalized_correlation": -0.023328040019919172,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.015365338218233136,
+      "total": -0.0945462261400678
+    },
+    "1.6": {
+      "electrostatic": -0.1521096172909786,
+      "exchange": -0.2217448061602697,
+      "repulsion": 0.41426345686429045,
+      "polarization": -0.09706245776843048,
+      "generalized_correlation": -0.023326214810765578,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.010788674447709163,
+      "total": -0.09076831363067583
+    },
+    "1.8": {
+      "electrostatic": -0.15119318550028638,
+      "exchange": -0.220562634542143,
+      "repulsion": 0.4123843814154782,
+      "polarization": -0.09768088419482979,
+      "generalized_correlation": -0.02334340736749141,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.007735073253419593,
+      "total": -0.08813080346224922
+    }
+  },
+  "note": "diagnostic radius scan; not used to set defaults"
+}

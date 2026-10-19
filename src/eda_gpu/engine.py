@@ -24,6 +24,11 @@ class Settings:
     density_fitting: bool = True
     dispersion: str = "none"
     cart: bool = False
+    solvent: str = "none"
+    solvent_eps: float = 78.3553
+    solvent_lebedev_order: int = 29
+    solvent_vdw_scale: float = 1.2
+    solvent_monomer_cavity: str = "complex"
     cpu_core_limit: int = 0
     compute_duty_cycle: float = 1.0
     gpu_temperature_limit: float = 0.0
@@ -55,7 +60,7 @@ def hardware():
     return {"cpu_model": cpu_model, "logical_cpus": os.cpu_count(), "memory_total_kib": mem_kib, "platform": platform.platform(), "python": platform.python_version(), "processor": platform.processor(), "gpu": gpu, "versions": versions}
 
 
-def make_mf(symbols, coords, metadata, settings,progress=None,label="SCF"):
+def make_mf(symbols, coords, metadata, settings,progress=None,label="SCF",cavity_mol=None):
     if settings.backend not in ("cpu", "gpu"):
         raise ValueError("backend must be cpu or gpu")
     if settings.threads < 1 or settings.max_cycle < 1 or (not np.isfinite(settings.conv_tol) or settings.conv_tol <= 0) or settings.grid_level < 0:
@@ -106,6 +111,9 @@ def make_mf(symbols, coords, metadata, settings,progress=None,label="SCF"):
         if not np.isfinite(settings.conv_tol_grad) or settings.conv_tol_grad<=0:raise ValueError("SCF gradient tolerance must be positive")
         mf.conv_tol_grad = settings.conv_tol_grad
     mf.max_cycle = settings.max_cycle
+    mf.chkfile = None  # no checkpoint files: unused here, and HDF5 locks on them failed during long EDA runs
+    from .solvent import attach
+    mf = attach(mf, settings, cavity_mol)
     from .runtime import WorkloadPacer
     mf._eda_thread_limits = thread_limits
     device = cp.cuda.Device().pci_bus_id if settings.backend == "gpu" else None

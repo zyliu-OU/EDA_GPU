@@ -1,0 +1,211 @@
+{
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720404,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "tolerances": {
+    "vacuum_limit": 1e-06,
+    "cpu_gpu": 1e-07,
+    "fd_gradient": 2e-05,
+    "separation_fraction": 0.05,
+    "screening_total_hartree": 1e-06,
+    "screening_ratio": 0.02
+  },
+  "checks": {
+    "vacuum_limit": {
+      "eps": 1.000001,
+      "difference_hartree": {
+        "electrostatic": -1.4701448947107565e-09,
+        "exchange": -2.3345976887800823e-10,
+        "repulsion": 4.389448804431595e-10,
+        "polarization": 1.569702590131783e-09,
+        "generalized_correlation": -3.049080987693742e-10,
+        "explicit_dispersion": 0.0,
+        "desolvation": -3.2894375724941447e-10,
+        "total": -3.285265393060399e-10
+      },
+      "passed": true,
+      "counts_toward_result": true
+    },
+    "separation_desolvation_vanishes_preregistered": {
+      "scan": [
+        {
+          "shift_angstrom": 0.0,
+          "desolvation_hartree": -0.00023483849018044942,
+          "electrostatic_hartree": -0.01720784425155486,
+          "total_hartree": -0.00712855608290397
+        },
+        {
+          "shift_angstrom": 4.0,
+          "desolvation_hartree": 0.00037267729833021304,
+          "electrostatic_hartree": -0.0003779434258976977,
+          "total_hartree": -4.034208870962175e-06
+        },
+        {
+          "shift_angstrom": 8.0,
+          "desolvation_hartree": 7.813585685757102e-05,
+          "electrostatic_hartree": -7.9055569964126e-05,
+          "total_hartree": -5.388922943438956e-07
+        },
+        {
+          "shift_angstrom": 12.0,
+          "desolvation_hartree": 2.8085685168058316e-05,
+          "electrostatic_hartree": -2.8304317796212786e-05,
+          "total_hartree": -2.4093623096632655e-08
+        }
+      ],
+      "note": "criterion physically wrong (unscreened gas-phase electrostatics); superseded by separation_screening",
+      "passed": false,
+      "counts_toward_result": false
+    },
+    "separation_screening": {
+      "scan": [
+        {
+          "shift_angstrom": 0.0,
+          "desolvation_hartree": -0.00023483849018044942,
+          "electrostatic_hartree": -0.01720784425155486,
+          "total_hartree": -0.00712855608290397
+        },
+        {
+          "shift_angstrom": 4.0,
+          "desolvation_hartree": 0.00037267729833021304,
+          "electrostatic_hartree": -0.0003779434258976977,
+          "total_hartree": -4.034208870962175e-06
+        },
+        {
+          "shift_angstrom": 8.0,
+          "desolvation_hartree": 7.813585685757102e-05,
+          "electrostatic_hartree": -7.9055569964126e-05,
+          "total_hartree": -5.388922943438956e-07
+        },
+        {
+          "shift_angstrom": 12.0,
+          "desolvation_hartree": 2.8085685168058316e-05,
+          "electrostatic_hartree": -2.8304317796212786e-05,
+          "total_hartree": -2.4093623096632655e-08
+        }
+      ],
+      "ratio_minus_desolvation_over_electrostatic": [
+        0.9883662453262645,
+        0.9922756439590386
+      ],
+      "expected_ratio": 0.9872376214499848,
+      "passed": true,
+      "counts_toward_result": true
+    },
+    "cpu_gpu_cpcm": {
+      "gpu_minus_cpu_hartree": {
+        "electrostatic": -6.585310075024609e-11,
+        "exchange": 9.387254147619206e-09,
+        "repulsion": -9.559215641274932e-09,
+        "polarization": -1.3093881534587126e-09,
+        "generalized_correlation": 3.954568228436983e-09,
+        "explicit_dispersion": 0.0,
+        "desolvation": -2.407255929315344e-09,
+        "total": -4.916955731459893e-12
+      },
+      "passed": true,
+      "counts_toward_result": true
+    },
+    "cpu_gpu_iefpcm": {
+      "gpu_minus_cpu_hartree": {
+        "electrostatic": -1.907913826926233e-10,
+        "exchange": 9.166086108874927e-09,
+        "repulsion": -9.255018085241318e-09,
+        "polarization": -1.3281180599733489e-09,
+        "generalized_correlation": 3.944634840991057e-09,
+        "explicit_dispersion": 0.0,
+        "desolvation": -2.336062218666335e-09,
+        "total": -4.945377440890297e-12
+      },
+      "passed": true,
+      "counts_toward_result": true
+    },
+    "pcm_gradient_fd_cpu": {
+      "max_error_hartree_per_bohr": 3.750772450517026e-06,
+      "step_bohr": 0.001,
+      "passed": true,
+      "counts_toward_result": true
+    },
+    "pcm_gradient_fd_gpu": {
+      "max_error_hartree_per_bohr": 3.726819458677033e-06,
+      "step_bohr": 0.001,
+      "passed": true,
+      "counts_toward_result": true
+    }
+  },
+  "passed": true,
+  "exploratory_xeda_bh3nh3": {
+    "source": "XEDA II manual Section 1.2.7, PDF sha256 269131a8383e117af77fd32a806d22ec0c8cd5a08213477c237ba59a76d89952",
+    "settings": "PBE0/6-31G, INT=LR (RI), SOLVENT=Water (C-PCM); radii and discretization unspecified",
+    "components_hartree": {
+      "electrostatic": -0.149777,
+      "exchange": -0.219316,
+      "repulsion": 0.410406,
+      "polarization": -0.09824,
+      "generalized_correlation": -0.023502,
+      "desolvation": -0.004018,
+      "total": -0.084447
+    },
+    "eda_gpu_hartree": {
+      "electrostatic": -0.15588536563526034,
+      "exchange": -0.22708910732818086,
+      "repulsion": 0.42258113420956533,
+      "polarization": -0.09391466573003981,
+      "generalized_correlation": -0.02345477861882017,
+      "explicit_dispersion": 0.0,
+      "desolvation": -0.0218197036064216,
+      "total": -0.09958248670932335
+    },
+    "eda_gpu_minus_xeda_hartree": {
+      "electrostatic": -0.006108365635260349,
+      "exchange": -0.007773107328180845,
+      "repulsion": 0.012175134209565341,
+      "polarization": 0.004325334269960179,
+      "generalized_correlation": 4.7221381179827354e-05,
+      "desolvation": -0.0178017036064216,
+      "total": -0.015135486709323354
+    },
+    "note": "not a validation: radii, surface discretization and RI settings differ or are unknown"
+  },
+  "settings": {
+    "backend": "cpu",
+    "xc": "pbe0",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-11,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 100,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "none",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 0.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  }
+}

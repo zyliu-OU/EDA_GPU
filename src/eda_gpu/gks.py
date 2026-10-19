@@ -4,7 +4,7 @@ Su & Li 2009 (10.1063/1.3159673), Eqs. 6-12, evaluated on KS
 orbitals as specified by Su, Tang & Wu 2020 (10.1002/wcms.1460),
 Eqs. 2-5,8-9,11. External matched-settings validation remains pending.
 """
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path
 import time
 import numpy as np
@@ -105,9 +105,9 @@ def orthonormalized_density(occupied, overlap, algebra, minimum_eigenvalue=1e-8)
     return density, orthogonal, checks
 
 
-def reference_state(symbols, coords, metadata, settings, algebra,progress=None,label="reference SCF",initial_density=None):
+def reference_state(symbols, coords, metadata, settings, algebra,progress=None,label="reference SCF",initial_density=None,cavity_mol=None):
     if progress:progress.update(label)
-    mf = make_mf(symbols, coords, metadata, settings,progress=progress,label=label)
+    mf = make_mf(symbols, coords, metadata, settings,progress=progress,label=label,cavity_mol=cavity_mol)
     if mf.mol.has_ecp() or mf.mol.pseudo:
         raise ValueError('EDA supports all-electron bases only')
     if initial_density is not None:
@@ -125,6 +125,15 @@ def reference_state(symbols, coords, metadata, settings, algebra,progress=None,l
     xp = algebra.xp
     density = xp.asarray(mf.make_rdm1())
     overlap = xp.asarray(mf.get_ovlp())
+    solvation = {}
+    if settings.solvent != 'none':
+        # Eq. 12: the six gas-phase terms use the gas-phase functional at SCRF densities.
+        e_solvent = float(mf.scf_summary['e_solvent'])
+        gas = float(make_mf(symbols, coords, metadata, replace(settings, solvent='none')).energy_tot(dm=density))
+        if abs(energy-e_solvent-gas) > 1e-8:
+            raise RuntimeError('SCRF energy does not separate into gas-phase functional and solvation energy')
+        solvation = dict(scrf_free_energy_hartree=energy, solvation_hartree=e_solvent, cavity=mf._eda_cavity)
+        energy = gas
     if density.ndim == 3:
         occupied = tuple(xp.asarray(mf.mo_coeff)[i][:,xp.asarray(mf.mo_occ)[i]>0] for i in range(2))
         checks = spin_density_checks(density, overlap, mf.mol.nelec, algebra)
@@ -134,7 +143,7 @@ def reference_state(symbols, coords, metadata, settings, algebra,progress=None,l
         occupied = xp.asarray(mf.mo_coeff)[:,xp.asarray(mf.mo_occ)>0]
         checks = density_checks(density, overlap, mf.mol.nelectron, algebra)
     parts = hf_like(mf, density, algebra)
-    summary = dict(parts, **checks, energy_hartree=energy, scf_converged=True,
+    summary = dict(parts, **checks, **solvation, energy_hartree=energy, scf_converged=True,
                    occupied_orbitals=[c.shape[1] for c in occupied] if isinstance(occupied,tuple) else occupied.shape[1],
                    generalized_correlation_hartree=energy-parts['hf_like_total_hartree'],
                    libxc_definition=repr(dft.libxc.parse_xc(settings.xc)),
@@ -238,7 +247,8 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
     for i,f in enumerate(metadata['fragments']):
         actual = set(f['atoms'])
         labels = [s if n in actual else 'ghost-'+s for n,s in enumerate(symbols)]
-        state = reference_state(labels,coords,f,settings,algebra,progress,label=f"fragment {i} SCF",initial_density=seeds.get(f"fragment_{i}_density"))
+        state = reference_state(labels,coords,f,settings,algebra,progress,label=f"fragment {i} SCF",initial_density=seeds.get(f"fragment_{i}_density"),
+                                cavity_mol=complex_state[0].mol if settings.solvent != 'none' and settings.solvent_monomer_cavity == 'complex' else None)
         assert_common_basis(complex_state[0],state[0])
         state[3].update(name=f.get('name',f'fragment_{i}'),atoms=f['atoms'],charge=f['charge'],spin=f['spin'],
                         ghost_atoms=[n for n in range(len(symbols)) if n not in actual])
@@ -246,6 +256,8 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
         Path(out,f'fragment_{i}.xyz').write_text(xyz_text([symbols[n] for n in f['atoms']],[coords[n] for n in f['atoms']]))
     progress.update("EDA intermediates and components")
     result,asn_density,asn_orbitals = decompose_states(complex_state,fragments,metadata,algebra)
+    if settings.solvent != 'none':
+        add_desolvation(result, complex_state[3], summaries, settings)
     algebra.synchronize()
     calculation_seconds=time.perf_counter()-start
     # Host transfer only at archive/report boundary; SCF and matrix operations stay on selected backend.
@@ -259,7 +271,7 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
                     counterpoise_interaction_energy_hartree=result["counterpoise_interaction_energy_hartree"])
     from .citations import information
     result.update(information(metadata))
-    result.update(stage=('experimental_complete_unrestricted_gks_eda' if metadata['spin'] else 'experimental_complete_closed_shell_gks_eda'),
+    result.update(stage=('experimental_complete_unrestricted_gks_eda' if metadata['spin'] else 'experimental_complete_closed_shell_gks_eda')+('_sol' if settings.solvent != 'none' else ''),
         all_components_computed=True,full_eda_available=False,scientifically_validated=False,
         reference_component_validation='pending external matched-settings validation; complete experimental component calculation only',
         backend_used=settings.backend,scf_converged=True,settings=asdict(settings),
@@ -267,7 +279,8 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
         fragment_reference_geometry='complex coordinates; no separate optimization or deformation term',
         reference_states=dict(complex=complex_state[3],fragments=summaries),
         component_sources={'orbital_intermediates':'10.1063/1.3159673 Eqs.6-12, evaluated with KS orbitals per 10.1002/wcms.1460 Eqs.2-5 and Section 2.2',
-            'generalized_correlation':'10.1002/wcms.1460 Eq.9', 'explicit_dispersion':'10.1002/wcms.1460 Eq.11; absent for selected methods'},
+            'generalized_correlation':'10.1002/wcms.1460 Eq.9', 'explicit_dispersion':'10.1002/wcms.1460 Eq.11; absent for selected methods',
+            **({'desolvation':'10.1002/wcms.1460 Eqs.12-13 and Section 2.3; monomers in supermolecule cavity; interpretation documented in docs/GKS_EDA_SOL_SPEC.md'} if settings.solvent != 'none' else {})},
         execution={'scf':settings.backend,'direct_jk':settings.backend,'orbital_matrix_algebra':settings.backend,
             'one_electron_integrals':'backend implementation; common-basis verification on CPU',
             'molecule_construction_and_output':'cpu',
@@ -276,6 +289,20 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
                              'Authenticated original 2014 PDF and source-level confirmation of its step-number/exchange wording remain desirable.'],
         calculation_seconds=calculation_seconds,seconds=time.perf_counter()-start)
     return result
+
+
+def add_desolvation(result, complex_summary, fragment_summaries, settings):
+    """Eq. 13 desolvation; Eq. 12 total free energy and seven-term closure."""
+    from .solvent import describe
+    components = result['components_hartree']
+    components['desolvation'] = complex_summary['solvation_hartree']-sum(f['solvation_hartree'] for f in fragment_summaries)
+    gas = result['counterpoise_interaction_energy_hartree']
+    free = complex_summary['scrf_free_energy_hartree']-sum(f['scrf_free_energy_hartree'] for f in fragment_summaries)
+    residual = free-sum(components.values())
+    if abs(residual) > 1e-8:
+        raise RuntimeError('GKS-EDA(sol) closure check failed')
+    result.update(counterpoise_interaction_energy_hartree=free, gas_phase_functional_interaction_hartree=gas,
+                  total_closure_residual_hartree=residual, solvent=describe(settings))
 
 
 def spin_form(density, occupied, algebra):
@@ -308,6 +335,13 @@ def archive_occupied(fragments):
 def validate_gks_scope(symbols,coords,metadata,settings):
     if settings.density_fitting or settings.dispersion != 'none':
         raise ValueError('complete EDA requires direct integrals and no explicit dispersion')
+    if settings.solvent not in ('none','cpcm','iefpcm'):
+        raise ValueError('EDA solvent must be none, cpcm or iefpcm')
+    if settings.solvent_monomer_cavity not in ('complex','own'):
+        raise ValueError('monomer cavity must be complex or own')
+    if settings.solvent != 'none' and settings.solvent_monomer_cavity == 'own' and settings.backend != 'gpu':
+        # GPU4PySCF drops ghost atoms from the cavity; CPU PySCF would give ghosts an element-0 sphere.
+        raise ValueError('monomer-own-cavity diagnostic requires the GPU backend')
     if settings.xc.lower() not in ('b3lyp','b3lyp5','pbe0','m06-2x'):
         raise ValueError('complete EDA supports b3lyp, b3lyp5, pbe0 and m06-2x')
     if len(metadata['fragments']) != 2:

@@ -311,3 +311,57 @@ the exact-integral value (8.2e-6) but within the preset 5e-5 tolerance; it is at
 differences in density-fitted gradient implementations, not investigated further. UKS energies
 and gradients, including meta-GGA, agree at the quadrature level. Still not compared: EDA
 components (no Psi4 GKS-EDA) and open-shell optimized geometries.
+
+## CPU/GPU scaling benchmark (gate 6), 2026-10-18
+
+`scripts/benchmark_scaling.py` times the two production paths with one excluded warm-up and
+three repetitions per case and backend; every repetition reruns all SCFs. 16 CPU threads, no
+workload pacing, grid 3; energy+gradient uses density fitting (optimizer evaluation), EDA uses
+direct integrals (all reference and intermediate SCFs). Peak memory is whole-device nvidia-smi
+sampling (0.25 s; idle baseline ~360 MiB). Archive: `reports/benchmark_scaling_2026-10-18.json`.
+
+| System (basis functions) | Task | CPU median (s) | GPU median (s) | CPU/GPU | CPU−GPU value (Eh) | GPU peak (MiB) |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Water dimer, B3LYP/def2-SVP (48) | energy+gradient | 1.2 | 0.5 | 2.4 | 9.4e-12 | 826 |
+| Water dimer, B3LYP/def2-SVP (48) | GKS-EDA | 2.4 | 14.1 | 0.17 | 5.2e-12 | 1487 |
+| Tryptamine–water, M06-2X/def2-SVP (252) | energy+gradient | 56.9 | 8.4 | 6.8 | 8.4e-12 | 3055 |
+| Tryptamine–water, M06-2X/def2-SVP (252) | GKS-EDA | 169.5 | 53.9 | 3.1 | 2.1e-11 | 1837 |
+| Tryptamine–water, M06-2X/aug-cc-pVDZ (425) | energy+gradient | 137.5 | 22.0 | 6.3 | 7.7e-11 | 8887 |
+| Tryptamine–water, M06-2X/aug-cc-pVDZ (425) | GKS-EDA | 548.6 | 121.1 | 4.5 | 1.1e-11 | 1591 |
+
+Repetition spread is small (GPU EDA 121.1 s in all three repetitions). For tiny systems the GPU
+EDA is slower because fixed per-SCF overheads dominate; from ~250 basis functions the GPU is
+3–7× faster on this host. Remaining CPU work: molecule construction, one-electron integrals for
+the common-basis check, PCM/output bookkeeping and parts of GPU4PySCF's hybrid direct J/K.
+The aug-cc-pVDZ EDA row was rerun separately (same settings, exclusive host) after an HDF5
+checkpoint-file lock failure; checkpoint files are now disabled (`mf.chkfile = None`) because
+nothing uses them. These numbers describe this host only and do not establish general speedups.
+
+## Experimental GKS-EDA(sol), 2026-10-18
+
+Specification and interpretations: `docs/GKS_EDA_SOL_SPEC.md`. Validation:
+`.env/bin/python scripts/validate_gks_sol.py --gpu --output runs/gks_sol_validation`
+(`reports/gks_sol_validation_2026-10-18/`). Water dimer, PBE0/def2-SVP, exact integrals.
+
+| Check (tolerance fixed before running) | Result |
+| --- | --- |
+| Vacuum limit ε = 1.000001 vs gas-phase GKS-EDA (1e-6 Eh) | max component difference 1.6e-9 Eh; desolvation 0 — PASS |
+| CPU/GPU, C-PCM (1e-7 Eh) | max component difference 9.6e-9 Eh — PASS |
+| CPU/GPU, IEF-PCM (1e-7 Eh) | max component difference 9.3e-9 Eh — PASS |
+| PCM analytic gradient vs central differences, water (2e-5 Eh/bohr) | 3.8e-6 (CPU), 3.7e-6 (GPU) — PASS |
+| Separation screening: total → 0, −ΔG_desol/ΔE_ele → 1 − 1/ε = 0.987 (±0.02) | totals −4.0e-6, −5.4e-7, −2.4e-8 Eh at +4/+8/+12 Å; ratios 0.988, 0.992 — PASS |
+| Preregistered "desolvation → 0 at separation" | FAIL, recorded and non-counting: criterion physically wrong |
+
+The preregistered separation criterion was an error in the test design: the gas-phase-form
+electrostatic term is the unscreened vacuum interaction, so at long range desolvation must
+cancel the fraction (1 − 1/ε) of it while the total decays. The observed ratios confirm the
+dielectric screening behaviour; the corrected criterion was fixed before the archived rerun.
+
+Exploratory XEDA II BH₃–NH₃ C-PCM example (PBE0/6-31G, water; XEDA radii, discretization and
+RI settings unknown): differences are large (desolvation −17.8 mEh, components up to 12 mEh).
+Diagnostics (`diagnostics/`): the monomer-own-cavity variant is further from XEDA; enlarging
+the cavity (modified Bondi × 1.0→1.8) moves every component monotonically toward XEDA (largest
+difference 25 → 3.7 mEh) without converging, and our gas-phase EDA alone already differs from
+XEDA's solvated total by 3.6 mEh. The comparison is unresolved; no settings were tuned to it.
+The scan shows desolvation for this polar complex changes by ~13 kcal/mol across ordinary radius
+choices, so application results must report cavity-radius sensitivity.
