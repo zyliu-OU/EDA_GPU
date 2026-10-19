@@ -78,3 +78,7 @@ coordinates/GAMESS outputs, which would allow an identical-geometry comparison w
 The user (project owner) accepts the PCCP 2017 tryptamine–water agreement (totals ≤0.012, components ≤0.20 kcal/mol)
 as sufficient external validation. The matched XEDA run and the original-coordinate comparison are dropped from the
 next steps. README/VALIDATION updated; `scientifically_validated` left false in code (strict definition = matched XEDA output).
+- Follow-up: per the user, gas-phase GKS-EDA results now set `scientifically_validated: true` (basis: the published benchmark,
+  stated in `reference_component_validation`); solvated results stay `false`; `full_eda_available` stays false
+  (reserved for matched XEDA). Tests updated (`tests/test_gks.py`, `tests/test_solvent.py`); 13 CPU tests pass.
+  The running stage 7.3 process loaded the old code but uses `--skip-eda`, so it is unaffected.

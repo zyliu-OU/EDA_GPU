@@ -45,6 +45,7 @@ def test_gks_eda_sol_closure_and_vacuum_limit(tmp_path):
     sol = decompose(s, c, m, replace(FAST, solvent="cpcm"), tmp_path / "sol")
     near = decompose(s, c, m, replace(FAST, solvent="cpcm", solvent_eps=1.000001), tmp_path / "eps1")
     assert sol["stage"].endswith("_sol") and "desolvation" in sol["components_hartree"]
+    assert gas["scientifically_validated"] is True and sol["scientifically_validated"] is False
     assert abs(sum(sol["components_hartree"].values()) - sol["counterpoise_interaction_energy_hartree"]) < 1e-8
     assert abs(sol["components_hartree"]["desolvation"]) > 1e-5
     for k, v in gas["components_hartree"].items():

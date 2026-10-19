@@ -115,7 +115,7 @@ def test_cli_complete_is_explicitly_experimental(tmp_path):
     result=json.loads((out/'result.json').read_text())
     assert code==0 and result['status']=='success'
     assert result['all_components_computed'] is True
-    assert result['scientifically_validated'] is False and result['full_eda_available'] is False
+    assert result['scientifically_validated'] is True and result['full_eda_available'] is False
     assert all(v is not None for v in result['components_hartree'].values())
     assert abs(result['total_closure_residual_hartree'])<1e-8
     assert result['settings']['density_fitting'] is False

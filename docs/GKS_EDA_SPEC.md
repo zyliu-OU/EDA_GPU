@@ -2,10 +2,13 @@
 
 All six gas-phase terms are now computed by the experimental `eda` command. This
 supersedes the earlier two-component preparation stage. Independent algebra and
-many-electron determinant checks support the implementation. External validation
-against XEDA under explicitly identical settings remains unresolved; therefore
-`scientifically_validated` and the validated-release flag `full_eda_available` remain
-false, while `all_components_computed` is true. No solvent extension is claimed. The unrestricted extension is described below. The older `eda-prepare` command retains its CPU-only partial result format.
+many-electron determinant checks support the implementation. Gas-phase results
+reproduce published GKS-EDA values (Liu et al. 2017 tryptamine–water, neutral and radical
+cation: totals ≤0.012, components ≤0.20 kcal/mol on reconstructed geometries), accepted by the
+project owner on 2026-10-19 as the external benchmark; gas-phase results therefore report
+`scientifically_validated: true`. A matched-settings XEDA comparison was not performed, so
+`full_eda_available` (reserved for that gate) remains false. Solvated GKS-EDA(sol) results report
+`scientifically_validated: false` (internal checks only; `docs/GKS_EDA_SOL_SPEC.md`). The unrestricted extension is described below. The older `eda-prepare` command retains its CPU-only partial result format.
 
 ## Sources and provenance
 

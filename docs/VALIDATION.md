@@ -290,8 +290,9 @@ states (neutral: Pauli −0.15, attractive terms 0.02–0.06 less negative; cati
 attractive terms 0.05–0.09 more negative), which points to geometry differences between the
 reconstructed and original structures rather than a systematic convention difference; grid
 (≤0.0015 kcal/mol) and backend (≤7e-6 kcal/mol) are excluded. (Corrected 2026-10-19: an earlier
-version stated the same sign pattern in both charge states.) These remain exploratory comparisons
-(`scientifically_validated=false`) until original coordinates or matched XEDA output exist.
+version stated the same sign pattern in both charge states.) Accepted by the project owner on 2026-10-19 as the external component benchmark for gas-phase
+GKS-EDA (`scientifically_validated: true` in gas-phase results from that date; earlier archived
+results keep `false`). Agreement tighter than ~0.2 kcal/mol per component is not demonstrated.
 
 ## Psi4 cross-check extended to density fitting and UKS, 2026-10-18
 

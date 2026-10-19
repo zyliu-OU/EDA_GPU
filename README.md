@@ -102,8 +102,8 @@ See [validation details](docs/VALIDATION.md),
    foundation is established, with explicit chemical states, solvent/sampling assumptions,
    and experimental validation before interpreting HPLC retention trends.
 
-Complete restricted/unrestricted EDA is implemented experimentally; an externally validated EDA
-release and HPLC remain future work. Total-energy closure alone will not count
+Complete restricted/unrestricted gas-phase EDA reproduces published GKS-EDA values to ≤0.20 kcal/mol
+per component (see the benchmark row above); GKS-EDA(sol) and the HPLC study remain experimental. Total-energy closure alone will not count
 as component validation, and ALMO-EDA or other decompositions will not be substituted
 for the original GKS-EDA definitions. The exact current blockers are documented in
 [the GKS-EDA source gate](docs/GKS_EDA_SPEC.md).
@@ -457,10 +457,11 @@ source scripts/gpu-env.sh
 ```
 
 All terms, intermediate energies, condition checks and reference densities are saved.
-Results state `all_components_computed: true`, `scientifically_validated: false`, and
-`full_eda_available: false`: the last flag is the external-validation release gate.
-A successful process means the experimental calculation converged and its internal
-checks passed. It does not imply validated agreement with XEDA.
+Gas-phase results state `all_components_computed: true`, `scientifically_validated: true`
+(published-benchmark agreement, ≤0.20 kcal/mol per component) and `full_eda_available: false`
+(reserved for a matched-settings XEDA comparison, not performed). Solvated results state
+`scientifically_validated: false`. A successful process means the calculation converged and its
+internal checks passed; it does not imply agreement with XEDA tighter than ~0.2 kcal/mol.
 
 **28 local tests passed**, including actual GPU EDA, independent integral/PBE0
 checks and a many-electron determinant energy check. Repeated CPU/GPU comparisons
@@ -499,8 +500,8 @@ sensitive. See [validation](docs/VALIDATION.md).
 Component-level external agreement is established only to the published-table level
 (≤0.20 kcal/mol on reconstructed geometries, Liu et al. 2017); the project owner accepted
 this on 2026-10-19 and deferred a matched-settings XEDA run. Tighter agreement than
-~0.2 kcal/mol per component is therefore not demonstrated, and the code flag
-`scientifically_validated` stays false under its strict definition (matched XEDA output). Open-shell, solvent, double-hybrid and RNA/HPLC applications remain deferred.
+~0.2 kcal/mol per component is therefore not demonstrated. Gas-phase results report
+`scientifically_validated: true` on this basis; `full_eda_available` stays false. Open-shell, solvent, double-hybrid and RNA/HPLC applications remain deferred.
 
 
 ### Tryptamine–water paper benchmark (under development)

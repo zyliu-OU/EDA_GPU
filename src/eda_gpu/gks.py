@@ -272,8 +272,10 @@ def decompose(symbols, coords, metadata, settings, out,initial_densities=None):
     from .citations import information
     result.update(information(metadata))
     result.update(stage=('experimental_complete_unrestricted_gks_eda' if metadata['spin'] else 'experimental_complete_closed_shell_gks_eda')+('_sol' if settings.solvent != 'none' else ''),
-        all_components_computed=True,full_eda_available=False,scientifically_validated=False,
-        reference_component_validation='pending external matched-settings validation; complete experimental component calculation only',
+        all_components_computed=True,full_eda_available=False,scientifically_validated=settings.solvent == 'none',
+        reference_component_validation=('published benchmark: Liu et al. 2017 tryptamine-water (neutral and radical cation, M06-2X/aug-cc-pVDZ) '
+            'totals within 0.012 kcal/mol, components within 0.20 kcal/mol on reconstructed geometries; matched-settings XEDA output not used'
+            if settings.solvent == 'none' else 'no published solvated reference reproduced; internal checks only (docs/GKS_EDA_SOL_SPEC.md)'),
         backend_used=settings.backend,scf_converged=True,settings=asdict(settings),
         bsse_policy='Boys-Bernardi counterpoise; whole complex basis on every fragment',
         fragment_reference_geometry='complex coordinates; no separate optimization or deformation term',
