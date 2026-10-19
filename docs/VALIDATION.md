@@ -285,10 +285,12 @@ with aug-cc-pvdz-jkfit, grid 3, 20 evaluations, converged; the A⁺–H₂O bind
 | Total | −13.56 | −13.56 | −0.00 |
 
 Neutral and cation totals both agree with the paper within 0.012 kcal/mol, and individual
-components within 0.20 kcal/mol, with the same sign pattern (Pauli high by 0.15–0.20 kcal/mol,
-attractive terms slightly more negative). A systematic pattern across charge states suggests a
-geometry or convention difference rather than numerical noise; grid (≤0.0015 kcal/mol) and
-backend (≤7e-6 kcal/mol) are excluded. These remain exploratory comparisons
+components within 0.20 kcal/mol. The component offsets have opposite signs in the two charge
+states (neutral: Pauli −0.15, attractive terms 0.02–0.06 less negative; cation: Pauli +0.20,
+attractive terms 0.05–0.09 more negative), which points to geometry differences between the
+reconstructed and original structures rather than a systematic convention difference; grid
+(≤0.0015 kcal/mol) and backend (≤7e-6 kcal/mol) are excluded. (Corrected 2026-10-19: an earlier
+version stated the same sign pattern in both charge states.) These remain exploratory comparisons
 (`scientifically_validated=false`) until original coordinates or matched XEDA output exist.
 
 ## Psi4 cross-check extended to density fitting and UKS, 2026-10-18

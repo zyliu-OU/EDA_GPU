@@ -65,3 +65,10 @@ Per-seed values: `runs/hplc_{ionpair,surface}_cpcm_def2svp/summary.json`.
 - `runs/queue_hplc_followup.sh` (runs/ is local).
 - This handoff.
 
+
+## Correction (session 2)
+
+`docs/VALIDATION.md` (and the 2026-10-18 handoff, line 93) said the tryptamine–water Pauli offset vs the
+PCCP 2017 Table 3 was +0.15–0.20 kcal/mol in both charge states. Actually neutral −0.15, cation +0.20
+(opposite signs). VALIDATION.md corrected. Asked the user (the paper's author) for original 2017
+coordinates/GAMESS outputs, which would allow an identical-geometry comparison without installing XEDA.
