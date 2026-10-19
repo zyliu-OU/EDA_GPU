@@ -81,6 +81,7 @@ def complex_metadata(hm, gm, nh, identity):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--host', required=True, help='monomer stem, e.g. examples/hplc/residue_A')
+    p.add_argument('--host-xyz', help='host coordinates overriding <host>.xyz (e.g. an optimized complex)')
     p.add_argument('--guest', required=True)
     p.add_argument('--acceptor', type=int, nargs='+', required=True, help='host acceptor atom indices (0-based)')
     p.add_argument('--donor-h', type=int, required=True, help='guest donor hydrogen index (0-based)')
@@ -89,7 +90,7 @@ def main():
     p.add_argument('--keep', type=int, default=1, help='placements kept per acceptor (largest heavy-atom clearance)')
     p.add_argument('--output', required=True, help='output stem; _<acceptor>_<k>.xyz/.json appended')
     a = p.parse_args()
-    hs, hc, hm = load(a.host + '.xyz', a.host + '.json')
+    hs, hc, hm = load(a.host_xyz or a.host + '.xyz', a.host + '.json')
     gs, gc, gm = load(a.guest + '.xyz', a.guest + '.json')
     out = Path(a.output); out.parent.mkdir(parents=True, exist_ok=True)
     for acc in a.acceptor:
@@ -98,7 +99,8 @@ def main():
         for n, (k, g, clearance) in enumerate(found):
             stem = Path(f'{out}_{acc}_{n}')
             meta = complex_metadata(hm, gm, len(hs), f"{hm['identity']} + {gm['identity']}")
-            meta['placement'] = {'host': a.host, 'guest': a.guest, 'host_acceptor': acc, 'guest_donor_h': a.donor_h + len(hs),
+            if a.host_xyz: meta['geometry_provenance'] = f'seeded placement on optimized host {a.host_xyz}; not optimized'
+            meta['placement'] = {'host': a.host, 'host_geometry': a.host_xyz or a.host + '.xyz', 'guest': a.guest, 'host_acceptor': acc, 'guest_donor_h': a.donor_h + len(hs),
                                  'h_acceptor_distance_angstrom': a.distance, 'tilt_deg_azimuth_step_rotation_step': list(k), 'rotation_steps': a.steps,
                                  'min_heavy_atom_distance_angstrom': clearance}
             stem.with_suffix('.xyz').write_text(xyz_text(hs + gs, np.vstack([hc, g]), f'{stem.name}; placement seed; angstrom'))

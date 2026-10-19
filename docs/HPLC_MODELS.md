@@ -1,7 +1,8 @@
 # Ion-pair RP-HPLC model study (gate 7): models, reference states, limits
 
 Status: stage 7.1 (residue···TEAH⁺ ion pairs) and 7.2 (pairs with a stationary-phase proxy)
-in progress; 7.3 (ternary complexes and three-body cycle) planned. Nothing here predicts
+complete (results in `docs/VALIDATION.md`, archive `reports/hplc_{ionpair,surface}_2026-10-19/`);
+7.3 (ternary complexes and three-body cycle) optimization in progress. Nothing here predicts
 retention. EDA quantities are electronic interaction descriptors of labelled small models.
 
 ## Chemical models (`scripts/build_hplc_models.py`, `examples/hplc/`)

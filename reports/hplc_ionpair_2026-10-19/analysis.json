@@ -1,0 +1,255 @@
+{
+  "campaign": "runs/hplc_ionpair_cpcm_def2svp",
+  "optimization_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "conv_tol_grad": null,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": true,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "eda_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "selection": "lowest optimized PCM free energy among successful placements; ranges over all successful placements",
+  "groups": {
+    "residue_A_teah": {
+      "placements": 2,
+      "successful": 2,
+      "failed": {},
+      "selected": "residue_A_teah_17_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_A_teah_17_0": 0.0,
+        "residue_A_teah_18_0": 0.41106087902927324
+      },
+      "components_kcal_mol": {
+        "electrostatic": -108.3149994035851,
+        "exchange": -57.63022561542861,
+        "repulsion": 102.37561829852552,
+        "polarization": -25.148458111556696,
+        "generalized_correlation": -10.874664247278854,
+        "desolvation": 80.82682391720277,
+        "total": -18.7659051723669
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -110.07536764726864,
+          -108.3149994035851
+        ],
+        "exchange": [
+          -59.953467103018205,
+          -57.63022561542861
+        ],
+        "repulsion": [
+          102.37561829852552,
+          106.06204126284027
+        ],
+        "polarization": [
+          -25.148458111556696,
+          -24.242230010238842
+        ],
+        "generalized_correlation": [
+          -12.154202904378739,
+          -10.874664247278854
+        ],
+        "desolvation": [
+          80.82682391720277,
+          82.15974970111516
+        ],
+        "total": [
+          -18.7659051723669,
+          -18.203476651122504
+        ]
+      }
+    },
+    "residue_C_teah": {
+      "placements": 2,
+      "successful": 2,
+      "failed": {},
+      "selected": "residue_C_teah_16_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_C_teah_16_0": 0.0,
+        "residue_C_teah_17_0": 0.31982975469122393
+      },
+      "components_kcal_mol": {
+        "electrostatic": -113.41816613704717,
+        "exchange": -61.758833934983606,
+        "repulsion": 110.22961907422737,
+        "polarization": -27.439496450994117,
+        "generalized_correlation": -11.090673211292474,
+        "desolvation": 83.73746805193787,
+        "total": -19.74008260125179
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -113.41816613704717,
+          -112.67986304872264
+        ],
+        "exchange": [
+          -65.07767550186433,
+          -61.758833934983606
+        ],
+        "repulsion": [
+          110.22961907422737,
+          115.48249984174211
+        ],
+        "polarization": [
+          -27.439496450994117,
+          -26.305848720964722
+        ],
+        "generalized_correlation": [
+          -13.048698471493646,
+          -11.090673211292474
+        ],
+        "desolvation": [
+          81.660619039443,
+          83.73746805193787
+        ],
+        "total": [
+          -19.968966968403667,
+          -19.74008260125179
+        ]
+      }
+    },
+    "residue_G_teah": {
+      "placements": 2,
+      "successful": 1,
+      "failed": {
+        "residue_G_teah_13_0": "RuntimeError: optimization not converged"
+      },
+      "selected": "residue_G_teah_14_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_G_teah_14_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -112.01101857439856,
+        "exchange": -62.177014522366825,
+        "repulsion": 109.29574438724774,
+        "polarization": -25.90318324092622,
+        "generalized_correlation": -12.987444031129344,
+        "desolvation": 84.14727738963528,
+        "total": -19.63563867428861
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -112.01101857439856,
+          -112.01101857439856
+        ],
+        "exchange": [
+          -62.177014522366825,
+          -62.177014522366825
+        ],
+        "repulsion": [
+          109.29574438724774,
+          109.29574438724774
+        ],
+        "polarization": [
+          -25.90318324092622,
+          -25.90318324092622
+        ],
+        "generalized_correlation": [
+          -12.987444031129344,
+          -12.987444031129344
+        ],
+        "desolvation": [
+          84.14727738963528,
+          84.14727738963528
+        ],
+        "total": [
+          -19.63563867428861,
+          -19.63563867428861
+        ]
+      }
+    },
+    "residue_U_teah": {
+      "placements": 2,
+      "successful": 2,
+      "failed": {},
+      "selected": "residue_U_teah_17_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_U_teah_16_0": 1.2597949847856087,
+        "residue_U_teah_17_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -109.62022281201493,
+        "exchange": -62.000549773234525,
+        "repulsion": 110.2759577971765,
+        "polarization": -26.469402453737345,
+        "generalized_correlation": -12.711634080128222,
+        "desolvation": 80.54339696318786,
+        "total": -19.982454519393883
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -111.26768085531074,
+          -109.62022281201493
+        ],
+        "exchange": [
+          -62.000549773234525,
+          -56.68843184264768
+        ],
+        "repulsion": [
+          100.89936677968889,
+          110.2759577971765
+        ],
+        "polarization": [
+          -26.469402453737345,
+          -24.79463151810474
+        ],
+        "generalized_correlation": [
+          -12.711634080128222,
+          -9.25524173646377
+        ],
+        "desolvation": [
+          80.54339696318786,
+          82.92346735147613
+        ],
+        "total": [
+          -19.982454519393883,
+          -18.183151881289113
+        ]
+      }
+    }
+  }
+}

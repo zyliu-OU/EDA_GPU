@@ -82,6 +82,7 @@ def main():
     p.add_argument('--solvent', default='cpcm', choices=['none', 'cpcm', 'iefpcm']); p.add_argument('--solvent-eps', type=float, default=78.3553)
     p.add_argument('--maxsteps', type=int, default=200); p.add_argument('--threads', type=int, default=16)
     p.add_argument('--skip-eda', action='store_true')
+    p.add_argument('--continue-unconverged', action='store_true', help='restart a not-converged optimization from its last geometry')
     p.add_argument('--preopt', choices=['none', 'xtb'], default='none', help='GFN2-xTB/ALPB seed refinement before DFT')
     a = p.parse_args()
     out = Path(a.output); out.mkdir(parents=True, exist_ok=True)
@@ -105,6 +106,9 @@ def main():
             elif a.preopt == 'xtb':
                 coords = read_xyz(out / name / 'xtb' / 'xtbopt.xyz')
             if case.get('optimization') != 'converged':
+                if a.continue_unconverged and case.get('optimization') == 'not converged' and (opt_dir / 'optimized.xyz').exists():
+                    coords = read_xyz(opt_dir / 'optimized.xyz')  # last geometry of the capped run
+                    case['restarted_from_unconverged'] = case.get('restarted_from_unconverged', 0) + 1
                 if opt_dir.exists(): opt_dir.rename(opt_dir.with_name(f'optimization_failed_{len(list(opt_dir.parent.glob("optimization_failed_*")))}'))
                 opt_dir.mkdir(parents=True)
                 print(f'{name}: optimizing ({len(symbols)} atoms)', flush=True)

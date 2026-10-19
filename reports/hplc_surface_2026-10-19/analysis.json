@@ -1,0 +1,299 @@
+{
+  "campaign": "runs/hplc_surface_cpcm_def2svp",
+  "optimization_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "conv_tol_grad": null,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": true,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "eda_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "selection": "lowest optimized PCM free energy among successful placements; ranges over all successful placements",
+  "groups": {
+    "c8_teah": {
+      "placements": 2,
+      "successful": 2,
+      "failed": {},
+      "selected": "c8_teah_13_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "c8_teah_13_0": 0.0,
+        "c8_teah_14_0": 1.9627457518863374
+      },
+      "components_kcal_mol": {
+        "electrostatic": -25.840660940780253,
+        "exchange": -32.6499699780746,
+        "repulsion": 56.11863948261982,
+        "polarization": -6.2727466661800975,
+        "generalized_correlation": -12.08682446685145,
+        "desolvation": 9.401615636081857,
+        "total": -11.329947129661242
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -25.840660940780253,
+          -19.739088272996202
+        ],
+        "exchange": [
+          -32.6499699780746,
+          -27.846842663765305
+        ],
+        "repulsion": [
+          48.713811411681725,
+          56.11863948261982
+        ],
+        "polarization": [
+          -6.953760067617754,
+          -6.2727466661800975
+        ],
+        "generalized_correlation": [
+          -12.08682446685145,
+          -7.558401567187406
+        ],
+        "desolvation": [
+          4.96307834348175,
+          9.401615636081857
+        ],
+        "total": [
+          -11.329947129661242,
+          -8.421202913352683
+        ]
+      }
+    },
+    "residue_A_c8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "residue_A_c8_17_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_A_c8_17_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -27.948146414987296,
+        "exchange": -57.13801414386266,
+        "repulsion": 97.04684863047586,
+        "polarization": -14.349403390362053,
+        "generalized_correlation": -15.514080295913043,
+        "desolvation": 2.9863581384456794,
+        "total": -14.916437456271662
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -27.948146414987296,
+          -27.948146414987296
+        ],
+        "exchange": [
+          -57.13801414386266,
+          -57.13801414386266
+        ],
+        "repulsion": [
+          97.04684863047586,
+          97.04684863047586
+        ],
+        "polarization": [
+          -14.349403390362053,
+          -14.349403390362053
+        ],
+        "generalized_correlation": [
+          -15.514080295913043,
+          -15.514080295913043
+        ],
+        "desolvation": [
+          2.9863581384456794,
+          2.9863581384456794
+        ],
+        "total": [
+          -14.916437456271662,
+          -14.916437456271662
+        ]
+      }
+    },
+    "residue_C_c8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "residue_C_c8_16_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_C_c8_16_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -39.65493484794796,
+        "exchange": -67.40471568024368,
+        "repulsion": 115.80165150727873,
+        "polarization": -18.848822903688724,
+        "generalized_correlation": -16.279617077740458,
+        "desolvation": 7.521438939555498,
+        "total": -18.86500009235593
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -39.65493484794796,
+          -39.65493484794796
+        ],
+        "exchange": [
+          -67.40471568024368,
+          -67.40471568024368
+        ],
+        "repulsion": [
+          115.80165150727873,
+          115.80165150727873
+        ],
+        "polarization": [
+          -18.848822903688724,
+          -18.848822903688724
+        ],
+        "generalized_correlation": [
+          -16.279617077740458,
+          -16.279617077740458
+        ],
+        "desolvation": [
+          7.521438939555498,
+          7.521438939555498
+        ],
+        "total": [
+          -18.86500009235593,
+          -18.86500009235593
+        ]
+      }
+    },
+    "residue_G_c8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "residue_G_c8_13_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_G_c8_13_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -35.09033244719773,
+        "exchange": -65.78938304582816,
+        "repulsion": 110.6400013398989,
+        "polarization": -13.925557521394449,
+        "generalized_correlation": -19.32120294112538,
+        "desolvation": 8.055278384143321,
+        "total": -15.43119620405099
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -35.09033244719773,
+          -35.09033244719773
+        ],
+        "exchange": [
+          -65.78938304582816,
+          -65.78938304582816
+        ],
+        "repulsion": [
+          110.6400013398989,
+          110.6400013398989
+        ],
+        "polarization": [
+          -13.925557521394449,
+          -13.925557521394449
+        ],
+        "generalized_correlation": [
+          -19.32120294112538,
+          -19.32120294112538
+        ],
+        "desolvation": [
+          8.055278384143321,
+          8.055278384143321
+        ],
+        "total": [
+          -15.43119620405099,
+          -15.43119620405099
+        ]
+      }
+    },
+    "residue_U_c8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "residue_U_c8_16_0",
+      "selected_relative_free_energy_kcal_mol": {
+        "residue_U_c8_16_0": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -36.48680419391794,
+        "exchange": -60.94512740481678,
+        "repulsion": 104.43777103991816,
+        "polarization": -16.459487803901908,
+        "generalized_correlation": -15.694049804547147,
+        "desolvation": 10.291945830947446,
+        "total": -14.855752271486269
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -36.48680419391794,
+          -36.48680419391794
+        ],
+        "exchange": [
+          -60.94512740481678,
+          -60.94512740481678
+        ],
+        "repulsion": [
+          104.43777103991816,
+          104.43777103991816
+        ],
+        "polarization": [
+          -16.459487803901908,
+          -16.459487803901908
+        ],
+        "generalized_correlation": [
+          -15.694049804547147,
+          -15.694049804547147
+        ],
+        "desolvation": [
+          10.291945830947446,
+          10.291945830947446
+        ],
+        "total": [
+          -14.855752271486269,
+          -14.855752271486269
+        ]
+      }
+    }
+  }
+}

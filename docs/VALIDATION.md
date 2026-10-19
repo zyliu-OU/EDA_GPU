@@ -365,3 +365,28 @@ difference 25 → 3.7 mEh) without converging, and our gas-phase EDA alone alrea
 XEDA's solvated total by 3.6 mEh. The comparison is unresolved; no settings were tuned to it.
 The scan shows desolvation for this polar complex changes by ~13 kcal/mol across ordinary radius
 choices, so application results must report cavity-radius sensitivity.
+
+## HPLC model stages 7.1 and 7.2 (application, not validation), 2026-10-19
+
+Models and limits: `docs/HPLC_MODELS.md`. M06-2X/def2-SVP, DF (def2-universal-jkfit), grid 3,
+C-PCM water; GPU optimization then direct-integral counterpoise GKS-EDA(sol) at each optimized
+geometry. Archive: `reports/hplc_ionpair_2026-10-19/`, `reports/hplc_surface_2026-10-19/`
+(summary, `analysis.json`, per-case optimized XYZ and optimization/EDA results). Table from
+`scripts/analyze_hplc.py`: lowest-PCM-free-energy placement per group, kcal/mol.
+
+| Group | n | elec | exch | rep | pol | gcorr | desolv | total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| residue_A···TEAH⁺ | 2/2 | -108.31 | -57.63 | 102.38 | -25.15 | -10.87 | 80.83 | -18.77 |
+| residue_C···TEAH⁺ | 2/2 | -113.42 | -61.76 | 110.23 | -27.44 | -11.09 | 83.74 | -19.74 |
+| residue_G···TEAH⁺ | 1/2 | -112.01 | -62.18 | 109.30 | -25.90 | -12.99 | 84.15 | -19.64 |
+| residue_U···TEAH⁺ | 2/2 | -109.62 | -62.00 | 110.28 | -26.47 | -12.71 | 80.54 | -19.98 |
+| C8 proxy···TEAH⁺ | 2/2 | -25.84 | -32.65 | 56.12 | -6.27 | -12.09 | 9.40 | -11.33 |
+| residue_A···C8 | 1/1 | -27.95 | -57.14 | 97.05 | -14.35 | -15.51 | 2.99 | -14.92 |
+| residue_C···C8 | 1/1 | -39.65 | -67.40 | 115.80 | -18.85 | -16.28 | 7.52 | -18.87 |
+| residue_G···C8 | 1/1 | -35.09 | -65.79 | 110.64 | -13.93 | -19.32 | 8.06 | -15.43 |
+| residue_U···C8 | 1/1 | -36.49 | -60.95 | 104.44 | -16.46 | -15.69 | 10.29 | -14.86 |
+
+Component closure ≤ 3e-10 Eh; bonding topology preserved in every converged case. residue_G···TEAH⁺
+placement 13 hit the 200-step cap on a flat surface (rms gradient 6e-5 Eh/bohr; 2.9 kcal/mol above
+placement 14) and is excluded. Single local placements at def2-SVP without sampling: base differences
+of ~1–4 kcal/mol are within placement/basis/cavity uncertainty and are not established.
