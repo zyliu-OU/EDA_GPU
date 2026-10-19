@@ -97,4 +97,6 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
   The running ternary job predates this (GPU guard 80 C only, CPU guard off).
 - User asked for CPU/GPU power caps (no overheating). Hardware caps need sudo (user must run; see chat).
 - `runs/queue_hplc_reagents.sh` prepared (waits for the ternary job, then reagent ion pairs + surface pairs with EDA);
-  NOT started — waiting for the user's go-ahead (≈23 seeds, roughly 1–2 GPU-hours each).
+  STARTED (PID 22731, log `runs/hplc_reagents.log`): it polls every 5 min and begins only when the ternary job has
+  finished AND the user has set GPU power limit <= 220 W and CPU boost off. After a reboot: re-apply the caps and
+  relaunch with `nohup /bin/bash runs/queue_hplc_reagents.sh > runs/hplc_reagents.log 2>&1 &`.
