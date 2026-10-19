@@ -134,3 +134,17 @@ CPU/GPU direct M06-2X/aug-cc-pVDZ optimizations are running from the same seed. 
 comparison script archives both optimizers and evaluates common-geometry counterpoise EDA.
 No completed tryptamine result is claimed by this implementation commit. Original geometries
 are needed for matched paper replication; Table 3 is the attributed exploratory target.
+
+## Independent Psi4 energy/gradient cross-check (2026-10-18)
+
+Added `scripts/compare_psi4.py` and `scripts/psi4_reference.py`. Psi4 1.11 (separate
+conda env `.psi4-env`, lock `requirements-psi4-conda-lock.txt`, not part of `.env`)
+was compared with EDA_GPU CPU and actual GPU single points under matched exact-integral
+settings, identical Libxc functional IDs and bohr coordinates. 13/13 comparisons passed
+preset tolerances: HF 3e-13 Eh; B3LYP/PBE0 on water, water dimer and CO₂ dimer within
+1.6e-8 Eh and 3.9e-7 Eh/bohr; M06-2X/aug-cc-pVDZ tryptamine–water 7.9e-7 Eh and
+8.2e-6 Eh/bohr. Archive: `reports/psi4_crosscheck_2026-10-18/`; details in
+docs/VALIDATION.md. This is the first independent-program validation of the energy and
+gradient layer; it does not validate EDA components (Psi4 has no GKS-EDA). The CO₂
+result localizes the XEDA component differences to EDA settings/definitions rather than
+the SCF energy. Remaining EDA gate unchanged: matched XEDA component outputs.

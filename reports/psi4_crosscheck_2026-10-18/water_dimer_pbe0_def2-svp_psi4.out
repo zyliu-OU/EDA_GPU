@@ -1,0 +1,404 @@
+
+  Memory set to  14.901 GiB by Python driver.
+  Threads set to 16 by Python driver.
+
+Scratch directory: /tmp/
+gradient() will perform analytic gradient computation.
+   => Libint2 <=
+
+    Primary   basis highest AM E, G, H:  7, 6, 4
+    Auxiliary basis highest AM E, G, H:  7, 7, 6
+    Onebody   basis highest AM E, G, H:  -, -, -
+    Solid Harmonics ordering:            Gaussian
+
+*** tstart() called on corsair680-ubuntu
+*** at Sun Oct 18 16:47:34 2026
+
+   => Loading Basis Set <=
+
+    Name: DEF2-SVP
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 4     entry O          line   130 file /home/zyliu/Documents/EDA_GPU/.psi4-env/share/psi4/basis/def2-svp.gbs 
+    atoms 2-3, 5-6 entry H          line    15 file /home/zyliu/Documents/EDA_GPU/.psi4-env/share/psi4/basis/def2-svp.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RKS Reference
+                       16 Threads,  15258 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         O            0.000000000000     0.000000000000     0.000000000000    15.994914619570
+         H            1.814137079582     0.000000000000     0.000000000000     1.007825032230
+         H           -0.453534269896     1.757445295846     0.000000000000     1.007825032230
+         O            5.385719455010     0.000000000000     0.000000000000    15.994914619570
+         H            5.952637292380     1.417294593424     0.982657584774     1.007825032230
+         H            5.952637292380    -1.417294593424     0.982657584774     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      6.80374  B =      0.11131  C =      0.11019 [cm^-1]
+  Rotational constants: A = 203970.97038  B =   3336.90992  C =   3303.48070 [MHz]
+  Nuclear repulsion =   37.087747833870424
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 20
+  Nalpha       = 10
+  Nbeta        = 10
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is PK.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-10
+  Density threshold  = 1.00e-09
+  Integral threshold = 1.00e-14
+
+  ==> Primary Basis <==
+
+  Basis Set: DEF2-SVP
+    Blend: DEF2-SVP
+    Number of shells: 24
+    Number of basis functions: 48
+    Number of Cartesian functions: 50
+    Spherical Harmonics?: true
+    Max angular momentum: 2
+
+  ==> DFT Potential <==
+
+   => LibXC <=
+
+    Version 7.1.2
+    S. Lehtola, C. Steigemann, M. J. T. Oliveira, and M. A. L. Marques,  SoftwareX 7, 1–5 (2018) (10.1016/j.softx.2017.11.002)
+
+   => Composite Functional: PBE0 <= 
+
+    PBE0 Hyb-GGA Exchange-Correlation Functional
+
+    C. Adamo and V. Barone,  J. Chem. Phys. 110, 6158 (1999) (10.1063/1.478522)
+    M. Ernzerhof and G. E. Scuseria,  J. Chem. Phys. 110, 5029 (1999) (10.1063/1.478401)
+
+    Deriv               =              1
+    GGA                 =           TRUE
+    Meta                =          FALSE
+
+    Exchange Hybrid     =           TRUE
+    MP2 Hybrid          =          FALSE
+
+   => Exchange Functionals <=
+
+    0.7500   Perdew, Burke & Ernzerhof
+
+   => Exact (HF) Exchange <=
+
+    0.2500               HF 
+
+   => Correlation Functionals <=
+
+    1.0000   Perdew, Burke & Ernzerhof
+
+   => LibXC Density Thresholds  <==
+
+    XC_HYB_GGA_XC_PBEH:  1.00E-15 
+
+   => Molecular Quadrature <=
+
+    Radial Scheme          =       TREUTLER
+    Pruning Scheme         =           NONE
+    Nuclear Scheme         =       TREUTLER
+
+    Blocking Scheme        =         OCTREE
+    BS radius alpha        =              1
+    Pruning alpha          =              1
+    Radial Points          =            150
+    Spherical Points       =           1202
+    Total Points           =        1035567
+    Total Blocks           =           6868
+    Max Points             =            256
+    Max Functions          =             47
+    Weights Tolerance      =       1.00E-15
+
+  ==> Integral Setup <==
+
+  Using in-core PK algorithm.
+   Calculation information:
+      Number of atoms:                   6
+      Number of AO shells:              24
+      Number of primitives:             44
+      Number of atomic orbitals:        50
+      Number of basis functions:        48
+
+      Integral cutoff                 1.00e-14
+      Number of threads:                16
+
+  Performing in-core PK
+  Using 1384152 doubles for integral storage.
+  We computed 94380 shell quartets total.
+  Whereas there are 45150 unique shell quartets.
+   109.04 percent of shell quartets recomputed by reordering.
+
+  ==> DiskJK: Disk-Based J/K Matrices <==
+
+    J tasked:                  Yes
+    K tasked:                  Yes
+    wK tasked:                  No
+    Memory [MiB]:            10314
+    Schwarz Cutoff:          1E-14
+
+    OpenMP threads:             16
+
+  Cached 100.0% of DFT collocation blocks in 1.103 [GiB].
+
+  Minimum eigenvalue in the overlap matrix is 2.9142184795E-02.
+  Reciprocal condition number of the overlap matrix is 7.0021755107E-03.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A         48      48 
+   -------------------------
+    Total      48      48
+   -------------------------
+
+  ==> Iterations <==
+
+                        Total Energy        Delta E     RMS |[F,P]|
+
+   @RKS iter SAD:  -151.95223606777952   -1.51952e+02   0.00000e+00 
+   @RKS iter   1:  -152.32288112322738   -3.70645e-01   1.68560e-02 DIIS/ADIIS
+   @RKS iter   2:  -152.17197569291719    1.50905e-01   2.14663e-02 DIIS/ADIIS
+   @RKS iter   3:  -152.56403703058371   -3.92061e-01   5.40382e-04 DIIS/ADIIS
+   @RKS iter   4:  -152.56413011263874   -9.30821e-05   4.07692e-04 DIIS/ADIIS
+   @RKS iter   5:  -152.56426522905679   -1.35116e-04   4.28822e-05 DIIS
+   @RKS iter   6:  -152.56426668602506   -1.45697e-06   6.24330e-06 DIIS
+   @RKS iter   7:  -152.56426671744404   -3.14190e-08   4.64720e-07 DIIS
+   @RKS iter   8:  -152.56426671762395   -1.79909e-10   1.02218e-07 DIIS
+   @RKS iter   9:  -152.56426671763367   -9.72022e-12   9.49166e-09 DIIS
+   @RKS iter  10:  -152.56426671763379   -1.13687e-13   7.35485e-10 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+   Electrons on quadrature grid:
+      Ntotal   =   19.9999999996 ; deviation = -4.217e-10 
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -19.233578     2A    -19.154498     3A     -1.047880  
+       4A     -0.972186     5A     -0.562588     6A     -0.501717  
+       7A     -0.424244     8A     -0.360846     9A     -0.331920  
+      10A     -0.272893  
+
+    Virtual:                                                              
+
+      11A      0.037973    12A      0.110054    13A      0.122883  
+      14A      0.249534    15A      0.536127    16A      0.609547  
+      17A      0.631685    18A      0.665026    19A      0.896019  
+      20A      0.957276    21A      0.986112    22A      0.994999  
+      23A      1.015092    24A      1.082920    25A      1.107529  
+      26A      1.306797    27A      1.327618    28A      1.337055  
+      29A      1.432137    30A      1.490605    31A      1.586944  
+      32A      1.617736    33A      1.759782    34A      1.870312  
+      35A      2.201658    36A      2.225756    37A      2.286267  
+      38A      2.508289    39A      2.940991    40A      2.974907  
+      41A      3.009940    42A      3.060538    43A      3.181290  
+      44A      3.241933    45A      3.479378    46A      3.570648  
+      47A      3.826049    48A      3.895430  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [    10 ]
+    NA   [    10 ]
+    NB   [    10 ]
+
+  @RKS Final Energy:  -152.56426671763379
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             37.0877478338704236
+    One-Electron Energy =                -283.5511346939401847
+    Two-Electron Energy =                 107.9704492627927976
+    DFT Exchange-Correlation Energy =     -14.0713291203568094
+    Empirical Dispersion Energy =           0.0000000000000000
+    VV10 Nonlocal Energy =                  0.0000000000000000
+    Total Energy =                       -152.5642667176337852
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+
+ Multipole Moments:
+
+ ------------------------------------------------------------------------------------
+     Multipole            Electronic (a.u.)      Nuclear  (a.u.)        Total (a.u.)
+ ------------------------------------------------------------------------------------
+
+ L = 1.  Multiply by 2.5417464519 to convert [e a0] to [Debye]
+ Dipole X            :        -55.1798870           56.3516330            1.1717461
+ Dipole Y            :         -1.1636603            1.7574453            0.5937850
+ Dipole Z            :         -1.2574569            1.9653152            0.7078583
+ Magnitude           :                                                    1.4921906
+
+ ------------------------------------------------------------------------------------
+
+*** tstop() called on corsair680-ubuntu at Sun Oct 18 16:47:36 2026
+Module time:
+	user time   =      21.17 seconds =       0.35 minutes
+	system time =       1.93 seconds =       0.03 minutes
+	total time  =          2 seconds =       0.03 minutes
+Total time:
+	user time   =      21.17 seconds =       0.35 minutes
+	system time =       1.93 seconds =       0.03 minutes
+	total time  =          2 seconds =       0.03 minutes
+
+*** tstart() called on corsair680-ubuntu
+*** at Sun Oct 18 16:47:36 2026
+
+
+         ------------------------------------------------------------
+                                   SCF GRAD                          
+                          Rob Parrish, Justin Turney,                
+                       Andy Simmonett, and Alex Sokolov              
+         ------------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         O            0.000000000000     0.000000000000     0.000000000000    15.994914619570
+         H            1.814137079582     0.000000000000     0.000000000000     1.007825032230
+         H           -0.453534269896     1.757445295846     0.000000000000     1.007825032230
+         O            5.385719455010     0.000000000000     0.000000000000    15.994914619570
+         H            5.952637292380     1.417294593424     0.982657584774     1.007825032230
+         H            5.952637292380    -1.417294593424     0.982657584774     1.007825032230
+
+  Nuclear repulsion =   37.087747833870424
+
+  ==> Basis Set <==
+
+  Basis Set: DEF2-SVP
+    Blend: DEF2-SVP
+    Number of shells: 24
+    Number of basis functions: 48
+    Number of Cartesian functions: 50
+    Spherical Harmonics?: true
+    Max angular momentum: 2
+
+  ==> DirectJKGrad: Integral-Direct SCF Gradients <==
+
+    Gradient:                    1
+    J tasked:                  Yes
+    K tasked:                  Yes
+    wK tasked:                  No
+    Integrals threads:          16
+    Schwarz Cutoff:          1E-14
+
+  ==> DFT Potential <==
+
+   => LibXC <=
+
+    Version 7.1.2
+    S. Lehtola, C. Steigemann, M. J. T. Oliveira, and M. A. L. Marques,  SoftwareX 7, 1–5 (2018) (10.1016/j.softx.2017.11.002)
+
+   => Composite Functional: PBE0 <= 
+
+    PBE0 Hyb-GGA Exchange-Correlation Functional
+
+    C. Adamo and V. Barone,  J. Chem. Phys. 110, 6158 (1999) (10.1063/1.478522)
+    M. Ernzerhof and G. E. Scuseria,  J. Chem. Phys. 110, 5029 (1999) (10.1063/1.478401)
+
+    Deriv               =              1
+    GGA                 =           TRUE
+    Meta                =          FALSE
+
+    Exchange Hybrid     =           TRUE
+    MP2 Hybrid          =          FALSE
+
+   => Exchange Functionals <=
+
+    0.7500   Perdew, Burke & Ernzerhof
+
+   => Exact (HF) Exchange <=
+
+    0.2500               HF 
+
+   => Correlation Functionals <=
+
+    1.0000   Perdew, Burke & Ernzerhof
+
+   => LibXC Density Thresholds  <==
+
+    XC_HYB_GGA_XC_PBEH:  1.00E-15 
+
+   => Molecular Quadrature <=
+
+    Radial Scheme          =       TREUTLER
+    Pruning Scheme         =           NONE
+    Nuclear Scheme         =       TREUTLER
+
+    Blocking Scheme        =         OCTREE
+    BS radius alpha        =              1
+    Pruning alpha          =              1
+    Radial Points          =            150
+    Spherical Points       =           1202
+    Total Points           =        1035567
+    Total Blocks           =           6868
+    Max Points             =            256
+    Max Functions          =             47
+    Weights Tolerance      =       1.00E-15
+
+
+  -Total Gradient:
+     Atom            X                  Y                   Z
+    ------   -----------------  -----------------  -----------------
+       1        0.012303656373     0.002185196560    -0.001994314013
+       2       -0.010637225485    -0.000851172361     0.002162848225
+       3       -0.001051283069    -0.000912303482     0.000548616063
+       4        0.000401144544    -0.001124589201     0.000713719365
+       5       -0.000915842126    -0.004108822524    -0.000811910092
+       6       -0.000100450518     0.004811661794    -0.000618928454
+
+
+*** tstop() called on corsair680-ubuntu at Sun Oct 18 16:47:36 2026
+Module time:
+	user time   =       2.73 seconds =       0.05 minutes
+	system time =       0.04 seconds =       0.00 minutes
+	total time  =          0 seconds =       0.00 minutes
+Total time:
+	user time   =      23.92 seconds =       0.40 minutes
+	system time =       1.97 seconds =       0.03 minutes
+	total time  =          2 seconds =       0.03 minutes

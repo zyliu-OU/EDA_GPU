@@ -1,0 +1,36 @@
+{
+  "energy_hartree": -76.35179544057671,
+  "gradient_hartree_per_bohr": [
+    [
+      1.0123152316410256e-14,
+      2.5553252535627236e-15,
+      -0.06069466807906776
+    ],
+    [
+      0.04013118300578758,
+      7.990685009816569e-17,
+      0.030347339436415044
+    ],
+    [
+      -0.040131183005788634,
+      -1.1340495551391046e-16,
+      0.03034733943641757
+    ]
+  ],
+  "nbf": 24,
+  "seconds": 0.9067273059999934,
+  "psi4_version": "1.11",
+  "libxc_version": "7.1.2",
+  "options": {
+    "method": "b3lyp",
+    "basis": "def2-svp",
+    "puream": true,
+    "scf_type": "pk",
+    "radial": 150,
+    "spherical": 1202,
+    "e_convergence": 1e-10,
+    "d_convergence": 1e-09,
+    "ints_tolerance": 1e-14,
+    "pruning": "none"
+  }
+}

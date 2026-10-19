@@ -133,3 +133,53 @@ required before marking the implementation scientifically validated.
 Two additional tests passed on the actual GPU host: water radical-cation dimer independently contracted four-index total energy and spin-resolved cross exchange, analytic meta-GGA gradient finite difference, CPU/GPU energies, gradients and all EDA components. Tolerances: energy 1e-7 Eh, gradient difference 1e-6 Eh/bohr, EDA 2e-7 Eh, finite-difference derivative 2e-4 Eh/bohr. These small-system tests are internal implementation checks; they do not establish agreement with the tryptamine paper.
 
 An empty-beta-channel regression passed separately after the 28-test full suite; fully spin-polarized occupied spaces now archive a zero density without an invalid eigenvalue access.
+
+## Independent Psi4 cross-check of energies and gradients, 2026-10-18
+
+Command (after creating the separate Psi4 environment below and sourcing `scripts/gpu-env.sh`):
+`.env/bin/python scripts/compare_psi4.py --gpu --output runs/psi4_crosscheck`.
+Psi4 1.11 (conda-forge, Libxc 7.1.2, libint 2.13.1) is an independently developed
+program with its own integral, quadrature and SCF code. It is installed apart from
+`.env` with `conda create -p .psi4-env -c conda-forge --override-channels python=3.12 psi4`;
+the exact package set is `requirements-psi4-conda-lock.txt`. EDA_GPU used PySCF 2.14.0
+(Libxc 7.0.0) on CPU and GPU4PySCF 1.8.1 on the RTX 4080 SUPER through the normal
+`singlepoint` path; HF uses PySCF directly because the CLI is DFT-only.
+
+Matched settings: exact integrals on both sides (no density fitting; Psi4 PK, or direct
+for tryptamine–water), identical Libxc functional IDs (B3LYP 402 = VWN-RPA variant,
+PBE0 406, M06-2X 450+236), the same spherical/Cartesian basis representation,
+unpruned grids (PySCF level 8, Psi4 150 radial × 1202 Lebedev points), no grid-weight
+gradients, `no_com`/`no_reorient`, and coordinates passed to Psi4 in bohr using
+PySCF's Bohr constant (0.52917721092 Å). The two programs' different Bohr constants
+would otherwise shift nuclear repulsion by roughly 1e-6 Eh for the largest case.
+Tolerances were fixed before running: HF 1e-8 Eh / 1e-7 Eh/bohr; GGA hybrids
+2e-6 Eh / 2e-5 Eh/bohr; M06-2X 2e-5 Eh / 5e-5 Eh/bohr (maximum absolute gradient element),
+reflecting the different radial/atomic-partition schemes at finite grid size.
+PySCF SCF thresholds: 1e-12 Eh with 1e-7 orbital-gradient norm, except 1e-10/1e-6 for
+M06-2X/aug-cc-pVDZ, where the first run showed 1e-12/1e-7 is below the GPU meta-GGA
+noise floor (explicit nonconvergence failure; no result was used).
+
+All 13 comparisons passed (`reports/psi4_crosscheck_2026-10-18/result.json`;
+EDA_GPU minus Psi4):
+
+| System | Method / basis | Functions | CPU ΔE (Eh) | GPU ΔE (Eh) | CPU / GPU max \|ΔG\| (Eh/bohr) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Water | PBE0 / def2-SVP | 24 | −7.3e-10 | −7.5e-10 | 6.3e-9 / 4.3e-9 |
+| Water | B3LYP / def2-SVP | 24 | −8.0e-10 | −8.4e-10 | 5.4e-10 / 2.2e-9 |
+| Water dimer | HF / def2-SVP | 48 | +3.4e-13 | — | 1.5e-8 / — |
+| Water dimer | PBE0 / def2-SVP | 48 | −6.1e-9 | −6.0e-9 | 7.3e-8 / 7.1e-8 |
+| Water dimer | B3LYP / def2-SVP | 48 | −2.1e-9 | −2.1e-9 | 1.8e-8 / 1.6e-8 |
+| CO₂ dimer (XEDA II geometry) | B3LYP / 6-31G* Cartesian | 90 | −1.6e-8 | −1.6e-8 | 3.9e-7 / 3.9e-7 |
+| Tryptamine–water, neutral constructed geometry | M06-2X / aug-cc-pVDZ | 425 | +7.9e-7 | +7.9e-7 | 8.2e-6 / 8.0e-6 |
+
+Interpretation. The HF agreement (3e-13 Eh) confirms basis definitions, integrals,
+nuclear repulsion and geometry handling; the DFT differences are at the expected
+quadrature level, and CPU and GPU deviate from Psi4 almost identically. The CO₂ dimer
+total energy agrees with Psi4 to 1.6e-8 Eh, so the 1–5e-6 Eh component differences
+from the rounded XEDA II values (above) do not originate in the SCF energy layer.
+
+Scope. This validates restricted closed-shell energies and analytic gradients only.
+Psi4 has no GKS-EDA, so no EDA component, intermediate state or decomposition is
+validated here; open-shell/UKS gradients and optimized geometries were not compared.
+Timings in the JSON are single cold runs with different grids and programs, not
+benchmarks; they establish no speedup.

@@ -1,0 +1,107 @@
+{
+  "energy_hartree": -152.5642667237044,
+  "gradient_hartree_per_bohr": [
+    [
+      0.012303649616291601,
+      0.0021851935456247418,
+      -0.0019943137506836656
+    ],
+    [
+      -0.010637223522798944,
+      -0.0008511730258302652,
+      0.002162849394252507
+    ],
+    [
+      -0.0010512842400587363,
+      -0.0009123008761942053,
+      0.0005486172755382645
+    ],
+    [
+      0.00040110511742197374,
+      -0.001124565743852668,
+      0.0007136460477386031
+    ],
+    [
+      -0.0009158419144388308,
+      -0.004108820699965321,
+      -0.0008119094120271342
+    ],
+    [
+      -0.00010045154089510788,
+      0.0048116615544748775,
+      -0.000618929128698209
+    ]
+  ],
+  "scf_converged": true,
+  "backend_used": "cpu",
+  "settings": {
+    "backend": "cpu",
+    "xc": "pbe0",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 8,
+    "conv_tol": 1e-12,
+    "conv_tol_grad": 1e-07,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 0.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "compute_limits": {
+    "scope": "this calculation process only; GPU power and clocks unchanged",
+    "cpu_thread_limit": 16,
+    "allowed_cpu_cores": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "duty_cycle_target": 1.0,
+    "work_seconds": 6.419587739000235,
+    "pacing_and_cooldown_seconds": 0.0,
+    "temperature_cooldown_seconds": 0.0,
+    "max_gpu_temperature_c": null,
+    "max_cpu_temperature_c": null,
+    "cpu_sensor_available": false,
+    "gpu_temperature_limit_c": 0.0,
+    "cpu_temperature_limit_c": 0.0,
+    "limitation": "checked at SCF-cycle and workload boundaries; long kernels are not interrupted; no per-process watt or instantaneous-utilization guarantee"
+  },
+  "seconds": 6.422377840000081
+}

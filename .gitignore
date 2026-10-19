@@ -10,3 +10,4 @@ dist/
 *.chk
 *.pdf
 .env.*
+/.psi4-env/
