@@ -1,0 +1,234 @@
+{
+  "energy_hartree": -76.27634177812999,
+  "gradient_hartree_per_bohr": [
+    [
+      -6.178951096169616e-06,
+      -2.417068841811809e-07,
+      1.9303835270712e-05
+    ],
+    [
+      -1.7825899807366596e-06,
+      -1.6292055889099988e-07,
+      -7.744364511896862e-06
+    ],
+    [
+      7.969396315310462e-06,
+      3.085962848592416e-07,
+      -1.1559999964827483e-05
+    ]
+  ],
+  "scf_converged": true,
+  "backend_used": "cpu",
+  "settings": {
+    "backend": "cpu",
+    "xc": "pbe0",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 8,
+    "conv_tol": 1e-11,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 100,
+    "threads": 8,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 0.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "compute_limits": {
+    "scope": "this calculation process only; GPU power and clocks unchanged",
+    "cpu_thread_limit": 8,
+    "allowed_cpu_cores": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "duty_cycle_target": 1.0,
+    "work_seconds": 1.5187556669989135,
+    "pacing_and_cooldown_seconds": 0.0,
+    "temperature_cooldown_seconds": 0.0,
+    "max_gpu_temperature_c": null,
+    "max_cpu_temperature_c": null,
+    "cpu_sensor_available": false,
+    "gpu_temperature_limit_c": 0.0,
+    "cpu_temperature_limit_c": 0.0,
+    "limitation": "checked at SCF-cycle and workload boundaries; long kernels are not interrupted; no per-process watt or instantaneous-utilization guarantee"
+  },
+  "seconds": 7.433487677000812,
+  "optimization_compute_limits": {
+    "scope": "this calculation process only; GPU power and clocks unchanged",
+    "cpu_thread_limit": 8,
+    "allowed_cpu_cores": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "duty_cycle_target": 1.0,
+    "work_seconds": 5.849735667994537,
+    "pacing_and_cooldown_seconds": 0.0,
+    "temperature_cooldown_seconds": 0.0,
+    "max_gpu_temperature_c": null,
+    "max_cpu_temperature_c": null,
+    "cpu_sensor_available": false,
+    "gpu_temperature_limit_c": 0.0,
+    "cpu_temperature_limit_c": 0.0,
+    "limitation": "checked at SCF-cycle and workload boundaries; long kernels are not interrupted; no per-process watt or instantaneous-utilization guarantee"
+  },
+  "optimization_converged": true,
+  "optimization_thresholds": {
+    "convergence_energy": 1e-06,
+    "convergence_grms": 0.0003,
+    "convergence_gmax": 0.00045,
+    "convergence_drms": 0.0012,
+    "convergence_dmax": 0.0018
+  },
+  "constraints": null,
+  "frozen_max_displacement_angstrom": 0.0,
+  "frozen_tolerance_angstrom": 1e-05,
+  "evaluations": [
+    {
+      "energy_hartree": -76.26235475995037,
+      "coordinates_angstrom": [
+        [
+          0.037462750768622016,
+          -0.011389643283571817,
+          -0.046594465510377096
+        ],
+        [
+          0.8234087791224655,
+          0.035902551492453444,
+          0.6769953847269783
+        ],
+        [
+          -0.7833685336473272,
+          -0.048144356746554796,
+          0.6002325536092435
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.27602070913045,
+      "coordinates_angstrom": [
+        [
+          0.044410785913471106,
+          -0.01064511318505869,
+          -0.004051132759321801
+        ],
+        [
+          0.7504503326069192,
+          0.031865707084892614,
+          0.6489795606299483
+        ],
+        [
+          -0.7173584962584075,
+          -0.04485034097181809,
+          0.5857056899168889
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.27634157956378,
+      "coordinates_angstrom": [
+        [
+          0.04333025458433041,
+          -0.010555731896686493,
+          0.012104828151896618
+        ],
+        [
+          0.7699887631475673,
+          0.03281720330991929,
+          0.6420947018455929
+        ],
+        [
+          -0.735815522894509,
+          -0.045891451281158464,
+          0.5764341563571738
+        ]
+      ]
+    },
+    {
+      "energy_hartree": -76.27634177813009,
+      "coordinates_angstrom": [
+        [
+          0.04334480816913483,
+          -0.010556942028085664,
+          0.011741764367986433
+        ],
+        [
+          0.7695135451291857,
+          0.032794829873684365,
+          0.6422516160842648
+        ],
+        [
+          -0.7353551339643817,
+          -0.04586484384596404,
+          0.5766403105970451
+        ]
+      ]
+    }
+  ],
+  "stationary_point_class": "stationary point; minimum not established"
+}

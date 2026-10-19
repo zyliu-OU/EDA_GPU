@@ -11,3 +11,4 @@ dist/
 *.pdf
 .env.*
 /.psi4-env/
+timer.dat

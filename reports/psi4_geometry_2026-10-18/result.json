@@ -1,0 +1,110 @@
+{
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720404,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "method": "pbe0/def2-svp exact integrals",
+  "energy_tolerance_hartree": 1e-06,
+  "eda_gpu_optimizer": "geomeTRIC, default EDA_GPU thresholds",
+  "psi4_optimizer": "optking gau_tight",
+  "cases": [
+    {
+      "system": "water",
+      "aligned_rmsd_angstrom": 1.8843483287266708e-05,
+      "rmsd_tolerance_angstrom": 0.002,
+      "distances_angstrom": [
+        {
+          "atoms": [
+            0,
+            1
+          ],
+          "eda_gpu": 0.9626749626826581,
+          "psi4": 0.9626814658548513,
+          "tolerance": 0.001
+        },
+        {
+          "atoms": [
+            0,
+            2
+          ],
+          "eda_gpu": 0.9626684867286166,
+          "psi4": 0.9626857520849127,
+          "tolerance": 0.001
+        }
+      ],
+      "energy_eda_gpu_hartree": -76.27634177812999,
+      "energy_psi4_hartree": -76.27634178153089,
+      "energy_difference_hartree": 3.400899117877998e-09,
+      "hessian_pbe0_def2svp": {
+        "eda_gpu": {
+          "imaginary_cm-1": [],
+          "lowest_real_cm-1": 1643.3154092133973,
+          "minimum": true
+        },
+        "psi4": {
+          "imaginary_cm-1": [],
+          "lowest_real_cm-1": 1643.3946448259023,
+          "minimum": true
+        }
+      },
+      "start_perturbation_angstrom": 0.05,
+      "seed": 20261018,
+      "eda_gpu_converged": true,
+      "eda_gpu_final_max_gradient": 1.9303835270712e-05,
+      "psi4_final_max_gradient": 3.6365366863216897e-06,
+      "passed": true
+    },
+    {
+      "system": "water_dimer",
+      "aligned_rmsd_angstrom": 0.001123025765129777,
+      "rmsd_tolerance_angstrom": 0.02,
+      "distances_angstrom": [
+        {
+          "atoms": [
+            0,
+            3
+          ],
+          "eda_gpu": 2.7503920028462354,
+          "psi4": 2.750536359704697,
+          "tolerance": 0.005
+        }
+      ],
+      "energy_eda_gpu_hartree": -152.5663382994997,
+      "energy_psi4_hartree": -152.56633830742967,
+      "energy_difference_hartree": 7.929969569886453e-09,
+      "hessian_pbe0_def2svp": {
+        "eda_gpu": {
+          "imaginary_cm-1": [],
+          "lowest_real_cm-1": 100.73515193176831,
+          "minimum": true
+        },
+        "psi4": {
+          "imaginary_cm-1": [],
+          "lowest_real_cm-1": 100.84884564392341,
+          "minimum": true
+        }
+      },
+      "start_perturbation_angstrom": 0.05,
+      "seed": 20261018,
+      "eda_gpu_converged": true,
+      "eda_gpu_final_max_gradient": 1.4149316685418967e-05,
+      "psi4_final_max_gradient": 2.6850633128572277e-06,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

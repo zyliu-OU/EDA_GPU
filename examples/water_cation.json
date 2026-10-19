@@ -1,0 +1,31 @@
+{
+  "identity": "water radical cation",
+  "protonation": "H2O radical cation; one electron removed from neutral water; doublet",
+  "charge": 1,
+  "spin": 1,
+  "fragments": [
+    {
+      "name": "water",
+      "atoms": [
+        0,
+        1,
+        2
+      ],
+      "charge": 1,
+      "spin": 1
+    }
+  ],
+  "bonds": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      2,
+      1
+    ]
+  ],
+  "stereochemistry": "achiral"
+}

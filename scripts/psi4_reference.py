@@ -22,7 +22,8 @@ def main(job_path, out_path):
     psi4.core.set_output_file(out_path.removesuffix('.json') + '.out', False)
     psi4.set_memory(job['memory'])
     psi4.set_num_threads(job['threads'])
-    lines = [f"{job['charge']} {job['multiplicity']}", 'units bohr', 'symmetry c1', 'no_com', 'no_reorient']
+    frame = [] if job.get('task') == 'optimize' else ['no_com', 'no_reorient']  # optimizers may use their own frame
+    lines = [f"{job['charge']} {job['multiplicity']}", 'units bohr', 'symmetry c1', *frame]
     lines += [f'{s} {x:.12f} {y:.12f} {z:.12f}' for s, (x, y, z) in zip(job['symbols'], job['coordinates_bohr'])]
     psi4.geometry('\n'.join(lines))
     psi4.set_options({'basis': job['basis'], 'puream': job['puream'], 'scf_type': job['scf_type'],
@@ -30,14 +31,20 @@ def main(job_path, out_path):
                       'e_convergence': 1e-10, 'd_convergence': 1e-9, 'ints_tolerance': 1e-14,
                       'dft_radial_points': job['radial'], 'dft_spherical_points': job['spherical'],
                       'dft_pruning_scheme': 'none', 'guess': 'sad', 'maxiter': 200})
+    if job.get('df_basis_scf'):
+        psi4.set_options({'df_basis_scf': job['df_basis_scf']})
     if job['method'] == 'hf':
         psi4.set_options({'reference': 'rhf' if job['multiplicity'] == 1 else 'uhf'})
     start = time.perf_counter()
+    if job.get('task') == 'optimize':
+        psi4.set_options({'g_convergence': 'gau_tight', 'geom_maxiter': 100, 'opt_coordinates': 'both'})
+        psi4.optimize(job['method'])
     grad, wfn = psi4.gradient(job['method'], return_wfn=True)
     result = {'energy_hartree': wfn.energy(), 'gradient_hartree_per_bohr': grad.np.tolist(),
+              'coordinates_bohr': wfn.molecule().geometry().np.tolist(), 'task': job.get('task', 'gradient'),
               'nbf': wfn.basisset().nbf(), 'seconds': time.perf_counter() - start,
               'psi4_version': psi4.__version__, 'libxc_version': libxc_version(),
-              'options': {k: job[k] for k in ('method', 'basis', 'puream', 'scf_type', 'radial', 'spherical')} |
+              'options': {k: job[k] for k in ('method', 'basis', 'puream', 'scf_type', 'radial', 'spherical') if k in job} | {'df_basis_scf': job.get('df_basis_scf')} |
                          {'e_convergence': 1e-10, 'd_convergence': 1e-9, 'ints_tolerance': 1e-14, 'pruning': 'none'}}
     open(out_path, 'w').write(json.dumps(result, indent=2) + '\n')
 

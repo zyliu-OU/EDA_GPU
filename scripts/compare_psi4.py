@@ -27,7 +27,7 @@ TOL = {'hf': (1e-8, 1e-7), 'dft': (2e-6, 2e-5), 'mgga': (2e-5, 5e-5)}  # (energy
 SCF_TOL = {'hf': (1e-12, 1e-7), 'dft': (1e-12, 1e-7), 'mgga': (1e-10, 1e-6)}
 TRYP = ('tryptamine_water_neutral', ROOT / 'reports/tryptamine_neutral_gpu_2026-10-11/initial.xyz',
         ROOT / 'examples/tryptamine_water/neutral.json')
-CASES = [  # name, xyz, metadata, basis, cart, method, tolerance class, psi4 scf_type
+CASES = [  # name, xyz, metadata, basis, cart, method, tolerance class, psi4 scf_type (or 'df:<auxbasis>')
     ('water', ROOT / 'examples/water.xyz', ROOT / 'examples/water.json', 'def2-svp', False, 'pbe0', 'dft', 'pk'),
     ('water', ROOT / 'examples/water.xyz', ROOT / 'examples/water.json', 'def2-svp', False, 'b3lyp', 'dft', 'pk'),
     ('water_dimer', ROOT / 'examples/water_dimer.xyz', ROOT / 'examples/water_dimer.json', 'def2-svp', False, 'hf', 'hf', 'pk'),
@@ -35,6 +35,13 @@ CASES = [  # name, xyz, metadata, basis, cart, method, tolerance class, psi4 scf
     ('water_dimer', ROOT / 'examples/water_dimer.xyz', ROOT / 'examples/water_dimer.json', 'def2-svp', False, 'b3lyp', 'dft', 'pk'),
     ('co2_dimer_xeda_ii', ROOT / 'examples/co2_dimer_xeda_ii.xyz', ROOT / 'examples/co2_dimer_xeda_ii.json', '6-31g*', True, 'b3lyp', 'dft', 'pk'),
     (*TRYP, 'aug-cc-pvdz', False, 'm06-2x', 'mgga', 'direct'),
+]
+WATER_CATION = ('water_cation', ROOT / 'examples/water.xyz', ROOT / 'examples/water_cation.json')
+EXTENDED = [  # density-fitted paths used by validate/optimize, and unrestricted open-shell gradients
+    ('water_dimer', ROOT / 'examples/water_dimer.xyz', ROOT / 'examples/water_dimer.json', 'def2-svp', False, 'b3lyp', 'dft', 'df:def2-universal-jkfit'),
+    (*TRYP, 'aug-cc-pvdz', False, 'm06-2x', 'mgga', 'df:aug-cc-pvdz-jkfit'),
+    (*WATER_CATION, 'def2-svp', False, 'pbe0', 'dft', 'pk'),
+    (*WATER_CATION, 'def2-svp', False, 'm06-2x', 'mgga', 'pk'),
 ]
 
 
@@ -54,19 +61,23 @@ def main():
     parser.add_argument('--threads', type=int, default=16)
     parser.add_argument('--skip-large', action='store_true', help='omit tryptamine-water M06-2X/aug-cc-pVDZ')
     parser.add_argument('--only', nargs='+', help='run only these system names')
+    parser.add_argument('--set', choices=('core', 'extended', 'all'), default='core',
+                        help='core = archived 2026-10-18 cases; extended = density fitting and UKS')
     args = parser.parse_args()
     out = Path(args.output); out.mkdir(parents=True, exist_ok=False)
     report = {'hardware': hardware(), 'gpu_requested': args.gpu, 'gpu_executed': False, 'tolerances': TOL, 'pyscf_scf_tolerances': SCF_TOL,
               'grid': {'pyscf_level': GRID_LEVEL, 'pyscf_prune': None, 'psi4_radial': RADIAL, 'psi4_spherical': SPHERICAL, 'psi4_pruning': 'none'},
               'bohr_angstrom_pyscf': BOHR, 'pyscf_libxc_version': libxc.__version__, 'scope': 'DFT/HF energies and analytic gradients only; not EDA validation', 'cases': [], 'passed': False}
     passed = True
-    for name, xyz, meta_path, basis, cart, method, tol_class, scf_type in CASES:
+    cases = {'core': CASES, 'extended': EXTENDED, 'all': CASES + EXTENDED}[args.set]
+    for name, xyz, meta_path, basis, cart, method, tol_class, scf_type in cases:
+        auxbasis = scf_type.split(':', 1)[1] if scf_type.startswith('df:') else None
         if args.skip_large and name == TRYP[0]: continue
         if args.only and name not in args.only: continue
         symbols, coords, meta = load(xyz, meta_path)
-        label = f'{name}_{method}_{basis.replace("*", "s")}'
+        label = f'{name}_{method}_{basis.replace("*", "s")}' + (f'_df_{auxbasis}' if auxbasis else '')
         job = {'symbols': symbols, 'coordinates_bohr': (np.asarray(coords) / BOHR).tolist(), 'charge': meta['charge'],
-               'multiplicity': meta['spin'] + 1, 'method': method, 'basis': basis, 'puream': not cart, 'scf_type': scf_type,
+               'multiplicity': meta['spin'] + 1, 'method': method, 'basis': basis, 'puream': not cart, 'scf_type': 'df' if auxbasis else scf_type, 'df_basis_scf': auxbasis,
                'radial': RADIAL, 'spherical': SPHERICAL, 'threads': args.threads, 'memory': '16 GB'}
         (out / f'{label}_psi4_job.json').write_text(json.dumps(job, indent=2) + '\n')
         print(f'{label}: psi4', flush=True)
@@ -80,7 +91,8 @@ def main():
                 continue
             print(f'{label}: eda_gpu {backend}', flush=True)
             conv_tol, conv_tol_grad = SCF_TOL[tol_class]
-            settings = Settings(backend=backend, xc=method, basis=basis, cart=cart, density_fitting=False, grid_level=GRID_LEVEL,
+            settings = Settings(backend=backend, xc=method, basis=basis, cart=cart, density_fitting=bool(auxbasis),
+                                auxbasis=auxbasis or Settings.auxbasis, grid_level=GRID_LEVEL,
                                 conv_tol=conv_tol, conv_tol_grad=conv_tol_grad, max_cycle=200, threads=args.threads)
             try:
                 runs[backend] = singlepoint(symbols, coords, meta, settings)
@@ -92,7 +104,7 @@ def main():
             if runs[backend]['backend_used'] != backend: raise RuntimeError('backend mismatch')
             if backend == 'gpu': report['gpu_executed'] = True
         e_tol, g_tol = TOL[tol_class]
-        case = {'system': name, 'method': method, 'basis': basis, 'cart': cart, 'natoms': len(symbols), 'nbf_psi4': psi['nbf'],
+        case = {'system': name, 'method': method, 'basis': basis, 'cart': cart, 'auxbasis': auxbasis, 'spin': meta['spin'], 'natoms': len(symbols), 'nbf_psi4': psi['nbf'],
                 'psi4': psi, 'eda_gpu': {}, 'energy_tolerance_hartree': e_tol, 'gradient_tolerance_hartree_per_bohr': g_tol}
         for backend, r in runs.items():
             if 'error' in r:

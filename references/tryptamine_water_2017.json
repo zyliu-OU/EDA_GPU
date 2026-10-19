@@ -1,6 +1,6 @@
 {
   "doi": "10.1039/C7CP03491A",
-  "title": "Unravelling hydrogen bonding interactions of tryptamine–water dimer from neutral to cation",
+  "title": "Unravelling hydrogen bonding interactions of tryptamine\u2013water dimer from neutral to cation",
   "source": "User-supplied accepted manuscript, Table 3 (printed page 21)",
   "method": {
     "xc": "m06-2x",
@@ -56,5 +56,18 @@
     "Pauli combines exchange and repulsion; individual values not supplied.",
     "Electronic interaction is not D0; no deformation or zero-point corrections included in this comparison."
   ],
-  "scientifically_validated": false
+  "scientifically_validated": false,
+  "published_geometry_angles_degree": {
+    "A_H2O": [
+      165.5,
+      128.3,
+      123.4
+    ],
+    "A_cation_H2O": [
+      155.3,
+      134.0,
+      122.6
+    ]
+  },
+  "published_geometry_notes": "Table 1 (accepted manuscript p. 20): distances/angles for H-bond-1 (water O-H...N amine), H-bond-2 (water O...H-C, indole C2-H, 2.390 A in text and table) and H-bond-3 (water O...H-C side-chain CH2). The text quotes H-bond-3 as 2.621 A versus 2.612 A in Table 1, and text and caption assign the H6/H18 labels to H-bonds 2/3 differently; comparisons map bonds by chemical identity."
 }

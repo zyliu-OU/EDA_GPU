@@ -183,3 +183,71 @@ Psi4 has no GKS-EDA, so no EDA component, intermediate state or decomposition is
 validated here; open-shell/UKS gradients and optimized geometries were not compared.
 Timings in the JSON are single cold runs with different grids and programs, not
 benchmarks; they establish no speedup.
+
+## Matched-settings GAMESS-XEDA kit, 2026-10-18 (external run pending)
+
+`scripts/xeda_matched.py prepare --gpu --output runs/xeda_matched` writes GAMESS-XEDA
+inputs and computes EDA_GPU components for the same five cases; `compare` parses the
+`ES/EX/REP/POL/CORR/E` table from GAMESS logs. Inputs use only keywords documented in
+the official [XEDA GAMESS manual](https://xmvb.xmu.edu.cn/docs/xeda/_downloads/222e6e0bd8ccfe3ce8fe39d17fc3eef3/XEDA_gms.pdf)
+and fix every setting the earlier manual comparison left open: functional variant,
+`ISPHER`, bohr coordinates (PySCF constant), `NRAD=150 NLEB=1202`, `SUPBAS=.T.`
+counterpoise, tight integral/SCF thresholds. PBE0 cases are primary because they have no
+VWN-variant ambiguity; B3LYP cases assume GAMESS `B3LYP` = VWN5 (`b3lyp5`), which each
+log must confirm. Preset per-component tolerances: 2e-6 Eh (PBE0/B3LYP), 1e-5 Eh
+(M06-2X); XEDA prints 1e-6 Eh. Kit, instructions and EDA_GPU values:
+`reports/xeda_matched_2026-10-18/` (see its README).
+
+EDA_GPU side (level-8 unpruned grid, exact integrals): CPU and GPU agree within
+2.0e-8 Eh per component on all four small cases; closure residuals ≤7e-12 Eh. No
+GAMESS/XEDA installation exists on the development host, so **no external component
+validation is claimed from this kit until the GAMESS logs are compared.**
+
+Diagnostic: CO₂ dimer B3LYP5 (VWN5) components differ from the rounded XEDA II manual
+values by 1–3e-5 Eh, versus 1–5e-6 Eh for the VWN-RPA `b3lyp` variant reported above,
+indicating the manual example used the VWN-RPA form. Tryptamine–water M06-2X components
+on the level-8 grid differ from the archived level-3 GPU EDA by ≤2.4e-6 Eh (≤0.0015
+kcal/mol), so grid choice cannot explain the 0.01–0.15 kcal/mol differences from the paper.
+
+## Original tryptamine–water data search and Table 1 geometry, 2026-10-18
+
+No original Cartesian coordinates or calculation outputs from Liu et al. (2017) were found
+on the development host: the accepted manuscript (30 pages) and four-page SI contain no
+coordinate tables. The manuscript states the EDA used a local GAMESS version with
+counterpoise correction and M06-2X/U-M06-2X/aug-cc-pVDZ. Table 1 hydrogen-bond geometry
+is the available geometric reference (`scripts/tryptamine_hbond_geometry.py`;
+`reports/tryptamine_neutral_gpu_2026-10-11/hbond_geometry_comparison.json`):
+
+| Neutral A–H₂O H-bond | EDA_GPU GPU-optimized (Å / °) | Paper Table 1 (Å / °) | Difference |
+| --- | --- | --- | --- |
+| 1: water O–H···N (amine) | 1.908 / 166.3 | 1.905 / 165.5 | +0.003 Å / +0.8° |
+| 2: water O···H–C (indole C2–H) | 2.367 / 128.9 | 2.390 / 128.3 | −0.023 Å / +0.6° |
+| 3: water O···H–C (side-chain CH₂) | 2.659 / 122.6 | 2.612 / 123.4 | +0.047 Å / −0.8° |
+
+The constructed seed optimizes to the paper's binding motif within 0.05 Å and 1°. This is
+geometric consistency, not identity: the comparison remains exploratory until original
+coordinates are available. The paper's text gives H-bond-3 as 2.621 Å (Table 1: 2.612 Å)
+and labels H-bonds 2/3 inconsistently between text and caption; bonds are mapped by chemistry.
+
+## Optimized-geometry cross-check against Psi4, 2026-10-18
+
+`scripts/compare_psi4_geometry.py` optimizes water and water dimer with EDA_GPU (geomeTRIC,
+default production thresholds) and Psi4 1.11 (optking, `gau_tight`) from the same seeded
+symmetry-broken start (0.05 Å uniform perturbation, seed 20261018), PBE0/def2-SVP, exact
+integrals, unpruned large grids. Every final structure is classified by an analytic PySCF
+Hessian at the same settings. Preset tolerances: aligned RMSD 2e-3 Å (water) / 2e-2 Å
+(dimer), O–H 1e-3 Å, O···O 5e-3 Å, energy 1e-6 Eh, and both structures true minima.
+
+| System | Aligned RMSD (Å) | ΔE (Eh) | Key distance, EDA_GPU / Psi4 (Å) | Lowest frequency, EDA_GPU / Psi4 (cm⁻¹) | Result |
+| --- | ---: | ---: | --- | --- | --- |
+| Water | 1.9e-5 | +3.4e-9 | O–H 0.96267 / 0.96268 | 1643.3 / 1643.4 | PASS |
+| Water dimer | 1.1e-3 | +7.9e-9 | O···O 2.75039 / 2.75054 | 100.7 / 100.8 | PASS |
+
+Archive: `reports/psi4_geometry_2026-10-18/`. Finding recorded during development: from the
+exactly mirror-symmetric example dimer start, geomeTRIC converged (as reported, "minimum not
+established") to a trans-linear first-order saddle (one 53.7i cm⁻¹ mode, 3.2e-4 Eh above the
+cyclic Ci minimum at PBE0/def2-SVP without counterpoise), because symmetric gradients preserve
+the mirror plane (`symmetric_start_saddle_diagnostic.json`). The archived 2026-10-11 validation
+dimer (B3LYP/def2-SVP, density-fitted, grid 3) was checked separately and is a true minimum on
+CPU and GPU (lowest frequency 105.1 cm⁻¹, no imaginary modes). Optimizer convergence still does
+not establish a minimum; Hessian classification is required where minima are claimed.
