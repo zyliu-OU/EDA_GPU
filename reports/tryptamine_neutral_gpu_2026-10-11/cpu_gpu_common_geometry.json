@@ -1,0 +1,29 @@
+{
+  "description": "CPU minus GPU direct GKS-EDA at the identical GPU-optimized geometry, M06-2X/aug-cc-pVDZ, grid 3, conv 1e-9/1e-6",
+  "settings_differences": {
+    "backend": [
+      "cpu",
+      "gpu"
+    ],
+    "compute_duty_cycle": [
+      1.0,
+      0.5
+    ],
+    "note": "pacing only; no numerical effect"
+  },
+  "component_difference_hartree": {
+    "electrostatic": 4.6556181132473284e-10,
+    "exchange": -1.1060624333092406e-08,
+    "repulsion": 1.0727944754762575e-08,
+    "polarization": 7.060634743538685e-09,
+    "generalized_correlation": -7.263750489983067e-09,
+    "explicit_dispersion": 0.0,
+    "counterpoise_total": 2.3888446776254568e-11
+  },
+  "max_abs_component_difference_hartree": 1.1060624333092406e-08,
+  "cpu_closure_residual_hartree": 9.706742354342879e-12,
+  "gpu_closure_residual_hartree": -8.441521787139195e-11,
+  "cpu_seconds": 674.7113267839995,
+  "gpu_seconds": 249.84760436499892,
+  "timing_note": "single runs, GPU at 50% pacing; not a benchmark"
+}

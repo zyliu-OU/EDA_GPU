@@ -74,3 +74,31 @@ Running at time of writing (outputs under `runs/`, not yet archived):
   Table 3 `A_cation_H2O` and Table 1 cation H-bonds (`--case A_cation_H2O`).
 - 3c not started: `.env/bin/python scripts/compare_psi4.py --gpu --set extended --output
   runs/psi4_crosscheck_extended` (DF and UKS cases), after 3a/3b free the CPU.
+
+## Final state at stop (supersedes the "Next steps" and "Running" lists above)
+
+All requested items done except the external XEDA run, which needs the user. No jobs running.
+Local suite 40 passed (GPU exercised). Results archived and documented in docs/VALIDATION.md.
+
+| Item | Result | Archive |
+| --- | --- | --- |
+| 1 Matched XEDA | Kit + EDA_GPU values ready; CPU/GPU agree ≤2e-8 Eh. **Blocked:** no GAMESS/XEDA on host | `reports/xeda_matched_2026-10-18/` |
+| 2 Original 2017 data | None on host (PDFs only). Table 1 H-bonds match ≤0.05 Å / 1° | `reports/tryptamine_neutral_gpu_2026-10-11/hbond_geometry_comparison.json` |
+| 3a Neutral CPU EDA, common geometry | CPU−GPU ≤1.1e-8 Eh per component | `reports/tryptamine_neutral_gpu_2026-10-11/cpu_gpu_common_geometry.json` |
+| 3b Radical cation | Total −13.56 vs paper −13.56 kcal/mol; components ≤0.20; H-bonds ≤0.021 Å / 3.2° | `reports/tryptamine_cation_gpu_2026-10-18/` |
+| 3c Psi4 DF + UKS | 8/8 pass (21/21 total with core set) | `reports/psi4_crosscheck_extended_2026-10-18/` |
+| 3d Psi4 geometry | Same Hessian-verified minima; symmetric-start Cs saddle documented | `reports/psi4_geometry_2026-10-18/` |
+
+Findings worth remembering:
+- Pauli is 0.15–0.20 kcal/mol higher than the paper in both charge states while totals match;
+  grid and backend are excluded as causes. Matched XEDA output is the way to resolve it.
+- The XEDA II manual CO₂ example appears to use VWN-RPA B3LYP (VWN5 differs by 1–3e-5 Eh).
+- `examples/water_dimer.xyz` is exactly mirror-symmetric; PBE0/def2-SVP exact optimization
+  from it stops at a Cs saddle. Use a perturbed start or Hessian check when claiming minima.
+
+Next steps:
+1. User runs `reports/xeda_matched_2026-10-18/gamess_inputs/*.inp` with GAMESS+XEDA, checks the
+   five log items in that README, then `scripts/xeda_matched.py compare`. If components pass,
+   update `scientifically_validated` gates and docs; otherwise investigate the Pauli/convention gap.
+2. If original 2017 coordinates turn up, rerun the tryptamine comparisons at those geometries.
+3. Optional: CPU EDA for the cation; Hessian classification of tryptamine minima.

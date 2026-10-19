@@ -28,7 +28,9 @@ for method attribution, benchmark sources, and software documentation.
 | Machine-readable calculation results | Settings, units, convergence, versions, hardware, timing, and chemical metadata |
 | Optimized structures and trajectories | XYZ outputs and evaluated-geometry trajectories |
 | Scientific validation and CPU CI | CPU/GPU agreement, finite differences, constraints, and explicit failure handling |
-| Independent cross-program check | Restricted HF/DFT energies and analytic gradients agree with Psi4 1.11 on CPU and GPU (13/13 within preset tolerances, up to 425 basis functions); not an EDA validation |
+| Independent cross-program check | HF/DFT energies and analytic gradients (RKS, UKS, exact and density-fitted) agree with Psi4 1.11 on CPU and GPU (21/21 within preset tolerances, up to 425 basis functions); optimized minima agree for water and water dimer; not an EDA validation |
+| Published tryptamine–water benchmark | Neutral and radical-cation totals within 0.012 kcal/mol of Liu et al. 2017 Table 3, components within 0.20 kcal/mol, H-bond geometry within 0.05 Å; constructed geometry, exploratory |
+| Matched XEDA comparison | GAMESS-XEDA inputs and EDA_GPU values prepared (`reports/xeda_matched_2026-10-18/`); external XEDA run pending |
 | CPU EDA preparation | Counterpoise fragment references, frozen electrostatics, generalized correlation; independent algebra checks passed, published component validation unresolved |
 | Complete experimental GKS-EDA | Six gas-phase terms on CPU/GPU; independent mathematical tests and component-wise CPU/GPU agreement passed; external matched-settings validation pending |
 

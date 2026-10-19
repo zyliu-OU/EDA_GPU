@@ -1,0 +1,35 @@
+{
+  "symbols": [
+    "O",
+    "H",
+    "H"
+  ],
+  "coordinates_bohr": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.5117808996520496,
+      0.0,
+      1.2283219809672903
+    ],
+    [
+      -1.5117808996520496,
+      0.0,
+      1.2283219809672903
+    ]
+  ],
+  "charge": 1,
+  "multiplicity": 2,
+  "method": "m06-2x",
+  "basis": "def2-svp",
+  "puream": true,
+  "scf_type": "pk",
+  "df_basis_scf": null,
+  "radial": 150,
+  "spherical": 1202,
+  "threads": 12,
+  "memory": "16 GB"
+}

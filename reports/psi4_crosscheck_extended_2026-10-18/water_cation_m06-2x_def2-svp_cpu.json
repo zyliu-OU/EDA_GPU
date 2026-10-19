@@ -1,0 +1,92 @@
+{
+  "energy_hartree": -75.86890534252981,
+  "gradient_hartree_per_bohr": [
+    [
+      -5.432033551820107e-16,
+      -8.927165412956695e-17,
+      -0.032472252841005744
+    ],
+    [
+      0.005775449584352499,
+      -1.087676208049957e-16,
+      0.016236257696548462
+    ],
+    [
+      -0.005775449584351833,
+      1.4295143650455834e-16,
+      0.016236257696548906
+    ]
+  ],
+  "scf_converged": true,
+  "backend_used": "cpu",
+  "settings": {
+    "backend": "cpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 8,
+    "conv_tol": 1e-10,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 12,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 0.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "compute_limits": {
+    "scope": "this calculation process only; GPU power and clocks unchanged",
+    "cpu_thread_limit": 12,
+    "allowed_cpu_cores": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "duty_cycle_target": 1.0,
+    "work_seconds": 4.19030991499676,
+    "pacing_and_cooldown_seconds": 0.0,
+    "temperature_cooldown_seconds": 0.0,
+    "max_gpu_temperature_c": null,
+    "max_cpu_temperature_c": null,
+    "cpu_sensor_available": false,
+    "gpu_temperature_limit_c": 0.0,
+    "cpu_temperature_limit_c": 0.0,
+    "limitation": "checked at SCF-cycle and workload boundaries; long kernels are not interrupted; no per-process watt or instantaneous-utilization guarantee"
+  },
+  "seconds": 4.193143124000926
+}

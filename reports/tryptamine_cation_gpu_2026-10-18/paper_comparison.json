@@ -1,0 +1,42 @@
+{
+  "case": "A_cation_H2O",
+  "units": "kcal/mol",
+  "reference": "10.1039/C7CP03491A",
+  "procedure": "GPU UKS M06-2X/aug-cc-pVDZ (DF aug-cc-pvdz-jkfit, grid 3) optimization from the neutral GPU-optimized geometry with one electron removed (paper procedure); GPU direct counterpoise GKS-EDA, grid 3, conv 1e-9/1e-6",
+  "components": {
+    "electrostatic": {
+      "gpu": -22.329839224627506,
+      "paper": -22.24,
+      "gpu_minus_paper": -0.08983922462750726
+    },
+    "pauli": {
+      "gpu": 23.681794071514275,
+      "paper": 23.48,
+      "gpu_minus_paper": 0.20179407151427498
+    },
+    "polarization": {
+      "gpu": -9.61512686336258,
+      "paper": -9.57,
+      "gpu_minus_paper": -0.04512686336257943
+    },
+    "generalized_correlation": {
+      "gpu": -5.299112109965978,
+      "paper": -5.22,
+      "gpu_minus_paper": -0.07911210996597795
+    },
+    "total": {
+      "gpu": -13.56228423568508,
+      "paper": -13.56,
+      "gpu_minus_paper": -0.0022842356850798495
+    }
+  },
+  "scf_converged": true,
+  "closure_residual_hartree": -1.7409026997761146e-10,
+  "scientifically_validated": false,
+  "limitations": [
+    "Constructed seed geometry; original Cartesian coordinates unavailable.",
+    "Optimized with density fitting; EDA with direct J/K.",
+    "Paper grid/convergence settings not specified.",
+    "GPU only; CPU agreement for this case not separately run (neutral CPU/GPU agree to 1.1e-8 Eh)."
+  ]
+}

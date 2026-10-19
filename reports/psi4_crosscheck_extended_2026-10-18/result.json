@@ -1,0 +1,841 @@
+{
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720404,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "gpu_requested": true,
+  "gpu_executed": true,
+  "tolerances": {
+    "hf": [
+      1e-08,
+      1e-07
+    ],
+    "dft": [
+      2e-06,
+      2e-05
+    ],
+    "mgga": [
+      2e-05,
+      5e-05
+    ]
+  },
+  "pyscf_scf_tolerances": {
+    "hf": [
+      1e-12,
+      1e-07
+    ],
+    "dft": [
+      1e-12,
+      1e-07
+    ],
+    "mgga": [
+      1e-10,
+      1e-06
+    ]
+  },
+  "grid": {
+    "pyscf_level": 8,
+    "pyscf_prune": null,
+    "psi4_radial": 150,
+    "psi4_spherical": 1202,
+    "psi4_pruning": "none"
+  },
+  "bohr_angstrom_pyscf": 0.52917721092,
+  "pyscf_libxc_version": "7.0.0",
+  "scope": "DFT/HF energies and analytic gradients only; not EDA validation",
+  "cases": [
+    {
+      "system": "water_dimer",
+      "method": "b3lyp",
+      "basis": "def2-svp",
+      "cart": false,
+      "auxbasis": "def2-universal-jkfit",
+      "spin": 0,
+      "natoms": 6,
+      "nbf_psi4": 48,
+      "psi4": {
+        "energy_hartree": -152.72802357271365,
+        "gradient_hartree_per_bohr": [
+          [
+            0.014232590239411869,
+            0.0058280211166151785,
+            -0.001967838249602037
+          ],
+          [
+            -0.013271439684746977,
+            -0.0005957277450859546,
+            0.0021259578642712808
+          ],
+          [
+            0.00018125058079937473,
+            -0.004812878599320114,
+            0.000531289980373491
+          ],
+          [
+            0.0020021118047666986,
+            -0.0010761975166556994,
+            0.004589732640628674
+          ],
+          [
+            -0.001961373206581296,
+            -0.007280924184969284,
+            -0.0027412841729401727
+          ],
+          [
+            -0.001183149916846843,
+            0.007937705231115366,
+            -0.0025378527794311656
+          ]
+        ],
+        "coordinates_bohr": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.814137079582,
+            0.0,
+            0.0
+          ],
+          [
+            -0.453534269896,
+            1.757445295846,
+            0.0
+          ],
+          [
+            5.38571945501,
+            0.0,
+            0.0
+          ],
+          [
+            5.95263729238,
+            1.417294593424,
+            0.982657584774
+          ],
+          [
+            5.95263729238,
+            -1.417294593424,
+            0.982657584774
+          ]
+        ],
+        "task": "gradient",
+        "nbf": 48,
+        "seconds": 1.9914110680001613,
+        "psi4_version": "1.11",
+        "libxc_version": "7.1.2",
+        "options": {
+          "method": "b3lyp",
+          "basis": "def2-svp",
+          "puream": true,
+          "scf_type": "df",
+          "radial": 150,
+          "spherical": 1202,
+          "df_basis_scf": "def2-universal-jkfit",
+          "e_convergence": 1e-10,
+          "d_convergence": 1e-09,
+          "ints_tolerance": 1e-14,
+          "pruning": "none"
+        }
+      },
+      "eda_gpu": {
+        "cpu": {
+          "energy_hartree": -152.72802357484807,
+          "energy_minus_psi4_hartree": -2.13441353480448e-09,
+          "max_abs_gradient_difference_hartree_per_bohr": 1.9352930702432047e-08,
+          "passed": true,
+          "settings": {
+            "backend": "cpu",
+            "xc": "b3lyp",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-12,
+            "conv_tol_grad": 1e-07,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": true,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 6.356962903002568,
+          "note": null
+        },
+        "gpu": {
+          "energy_hartree": -152.72802357484687,
+          "energy_minus_psi4_hartree": -2.133219823008403e-09,
+          "max_abs_gradient_difference_hartree_per_bohr": 1.3512120051756976e-08,
+          "passed": true,
+          "settings": {
+            "backend": "gpu",
+            "xc": "b3lyp",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-12,
+            "conv_tol_grad": 1e-07,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": true,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 12.57629097699828,
+          "note": null
+        }
+      },
+      "energy_tolerance_hartree": 2e-06,
+      "gradient_tolerance_hartree_per_bohr": 2e-05
+    },
+    {
+      "system": "tryptamine_water_neutral",
+      "method": "m06-2x",
+      "basis": "aug-cc-pvdz",
+      "cart": false,
+      "auxbasis": "aug-cc-pvdz-jkfit",
+      "spin": 0,
+      "natoms": 27,
+      "nbf_psi4": 425,
+      "psi4": {
+        "energy_hartree": -574.086203566593,
+        "gradient_hartree_per_bohr": [
+          [
+            2.2740603288162742e-05,
+            -2.5700840449144335e-05,
+            2.9973625496906853e-05
+          ],
+          [
+            3.775342405079596e-05,
+            3.755106734370378e-05,
+            3.928161783505607e-05
+          ],
+          [
+            7.81083581763431e-06,
+            -2.846290050048661e-05,
+            3.8771760155709156e-05
+          ],
+          [
+            -2.328589979447293e-05,
+            4.677287952224371e-05,
+            -8.250042768401245e-06
+          ],
+          [
+            -1.4314708596929043e-05,
+            4.949752950081376e-06,
+            -9.540954557173131e-05
+          ],
+          [
+            -4.487703716762881e-05,
+            -6.986067600808082e-05,
+            -7.236008518138326e-07
+          ],
+          [
+            5.8539918921240996e-05,
+            1.457261862625181e-05,
+            -6.807983966664044e-05
+          ],
+          [
+            3.3717463997939845e-05,
+            5.974713627619754e-05,
+            -1.6584734942037826e-05
+          ],
+          [
+            -1.5182171661382027e-06,
+            5.360859324288203e-05,
+            7.718688293523179e-07
+          ],
+          [
+            -6.3617165768734e-05,
+            4.8315359782794e-05,
+            -2.60831205070311e-05
+          ],
+          [
+            4.981258483466311e-05,
+            -2.2429061531964445e-05,
+            -3.584511339184415e-05
+          ],
+          [
+            -3.459827516383296e-05,
+            3.8434737513998174e-05,
+            8.674826289745141e-06
+          ],
+          [
+            -1.2377113863745737e-05,
+            8.732100753972016e-06,
+            -5.72140897398786e-05
+          ],
+          [
+            7.808729770228395e-06,
+            -7.376044359276579e-06,
+            -5.654703221849577e-06
+          ],
+          [
+            2.5834535980415185e-05,
+            -5.8647747069595635e-05,
+            6.809051777394853e-06
+          ],
+          [
+            -5.012285344625084e-05,
+            3.887388576087614e-05,
+            3.217079093632835e-05
+          ],
+          [
+            2.273861492400192e-05,
+            1.0367807119639194e-05,
+            4.336775935898096e-05
+          ],
+          [
+            -1.1145474451242782e-05,
+            7.053536853707243e-06,
+            7.628551573731152e-05
+          ],
+          [
+            2.7479505095212575e-05,
+            7.12149760039027e-06,
+            -0.00017717955039335542
+          ],
+          [
+            2.568200693299494e-05,
+            -3.133075813116504e-05,
+            -1.540512892271584e-05
+          ],
+          [
+            9.93466661163428e-05,
+            6.674413243233299e-05,
+            3.562207184777677e-05
+          ],
+          [
+            4.5664828140376534e-05,
+            -4.3438547477743505e-05,
+            5.214162109657555e-05
+          ],
+          [
+            -7.016000245947326e-05,
+            -8.828380070846631e-05,
+            2.764377219720282e-05
+          ],
+          [
+            -8.302741952643383e-05,
+            -5.154344581857068e-05,
+            -1.6012213734067915e-05
+          ],
+          [
+            -6.213336923582835e-05,
+            -6.500045120400033e-05,
+            0.00010728930736026918
+          ],
+          [
+            1.2016576390919478e-05,
+            2.109580162570901e-05,
+            -1.081133177503052e-05
+          ],
+          [
+            -1.1674682113244073e-05,
+            3.159346457090595e-05,
+            2.400986599977034e-05
+          ]
+        ],
+        "coordinates_bohr": [
+          [
+            5.372993238728,
+            0.545902198671,
+            1.335580928025
+          ],
+          [
+            4.58145410412,
+            0.483678793297,
+            -1.326481294422
+          ],
+          [
+            3.029199534222,
+            -1.908222257556,
+            -1.829524143706
+          ],
+          [
+            0.744581280099,
+            -2.054680743658,
+            -0.164141453996
+          ],
+          [
+            0.484430238818,
+            -3.51573674866,
+            1.960628712195
+          ],
+          [
+            -1.833386068346,
+            -3.06259907231,
+            3.067116104436
+          ],
+          [
+            -3.12129760581,
+            -1.283828442876,
+            1.675985707882
+          ],
+          [
+            -5.516956961668,
+            -0.221887387295,
+            2.038433081226
+          ],
+          [
+            -6.329284478466,
+            1.550198649119,
+            0.286543094663
+          ],
+          [
+            -4.802890009499,
+            2.252375442786,
+            -1.784463337936
+          ],
+          [
+            -2.429111111668,
+            1.198801077348,
+            -2.131438524312
+          ],
+          [
+            -1.54902634008,
+            -0.597436856027,
+            -0.381186237726
+          ],
+          [
+            6.505090072236,
+            2.060825305009,
+            1.663548456742
+          ],
+          [
+            3.813747039823,
+            0.768639763596,
+            2.443274620523
+          ],
+          [
+            3.465494560406,
+            2.160211475597,
+            -1.853705887312
+          ],
+          [
+            6.287444879426,
+            0.456898627962,
+            -2.503302725214
+          ],
+          [
+            2.464306277371,
+            -1.927398881252,
+            -3.827575134314
+          ],
+          [
+            4.224395367617,
+            -3.566597030911,
+            -1.487190973641
+          ],
+          [
+            1.824946941986,
+            -4.837668177992,
+            2.775552636748
+          ],
+          [
+            -2.483666174341,
+            -3.920883892433,
+            4.636205943077
+          ],
+          [
+            -6.701649301192,
+            -0.763937415485,
+            3.631695958994
+          ],
+          [
+            -8.183473794382,
+            2.413456892848,
+            0.51112976412
+          ],
+          [
+            -5.513345306622,
+            3.640253483679,
+            -3.126781044627
+          ],
+          [
+            -1.269348271694,
+            1.746557406267,
+            -3.742511031108
+          ],
+          [
+            6.28338992577,
+            -4.538405790345,
+            2.993133476106
+          ],
+          [
+            6.257689245002,
+            -2.758226270694,
+            2.475828293099
+          ],
+          [
+            7.999689345025,
+            -4.88480463619,
+            3.473053938154
+          ]
+        ],
+        "task": "gradient",
+        "nbf": 425,
+        "seconds": 634.1157274179968,
+        "psi4_version": "1.11",
+        "libxc_version": "7.1.2",
+        "options": {
+          "method": "m06-2x",
+          "basis": "aug-cc-pvdz",
+          "puream": true,
+          "scf_type": "df",
+          "radial": 150,
+          "spherical": 1202,
+          "df_basis_scf": "aug-cc-pvdz-jkfit",
+          "e_convergence": 1e-10,
+          "d_convergence": 1e-09,
+          "ints_tolerance": 1e-14,
+          "pruning": "none"
+        }
+      },
+      "eda_gpu": {
+        "cpu": {
+          "energy_hartree": -574.0862028205671,
+          "energy_minus_psi4_hartree": 7.460258757419069e-07,
+          "max_abs_gradient_difference_hartree_per_bohr": 3.304356901021044e-05,
+          "passed": true,
+          "settings": {
+            "backend": "cpu",
+            "xc": "m06-2x",
+            "basis": "aug-cc-pvdz",
+            "auxbasis": "aug-cc-pvdz-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-10,
+            "conv_tol_grad": 1e-06,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": true,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 987.885311132999,
+          "note": null
+        },
+        "gpu": {
+          "energy_hartree": -574.0862028204962,
+          "energy_minus_psi4_hartree": 7.460968163286452e-07,
+          "max_abs_gradient_difference_hartree_per_bohr": 2.7088834096355985e-05,
+          "passed": true,
+          "settings": {
+            "backend": "gpu",
+            "xc": "m06-2x",
+            "basis": "aug-cc-pvdz",
+            "auxbasis": "aug-cc-pvdz-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-10,
+            "conv_tol_grad": 1e-06,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": true,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 148.75737982899955,
+          "note": null
+        }
+      },
+      "energy_tolerance_hartree": 2e-05,
+      "gradient_tolerance_hartree_per_bohr": 5e-05
+    },
+    {
+      "system": "water_cation",
+      "method": "pbe0",
+      "basis": "def2-svp",
+      "cart": false,
+      "auxbasis": null,
+      "spin": 1,
+      "natoms": 3,
+      "nbf_psi4": 24,
+      "psi4": {
+        "energy_hartree": -75.82742004540432,
+        "gradient_hartree_per_bohr": [
+          [
+            -1.5997619895458115e-14,
+            -7.089057796091532e-15,
+            -0.03211904194862203
+          ],
+          [
+            0.006854123069014312,
+            -5.800966590727686e-17,
+            0.016059519056031618
+          ],
+          [
+            -0.006854123069016171,
+            1.401398717681113e-16,
+            0.016059519056031424
+          ]
+        ],
+        "coordinates_bohr": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.511780899652,
+            0.0,
+            1.228321980967
+          ],
+          [
+            -1.511780899652,
+            0.0,
+            1.228321980967
+          ]
+        ],
+        "task": "gradient",
+        "nbf": 24,
+        "seconds": 1.2928620749989932,
+        "psi4_version": "1.11",
+        "libxc_version": "7.1.2",
+        "options": {
+          "method": "pbe0",
+          "basis": "def2-svp",
+          "puream": true,
+          "scf_type": "pk",
+          "radial": 150,
+          "spherical": 1202,
+          "df_basis_scf": null,
+          "e_convergence": 1e-10,
+          "d_convergence": 1e-09,
+          "ints_tolerance": 1e-14,
+          "pruning": "none"
+        }
+      },
+      "eda_gpu": {
+        "cpu": {
+          "energy_hartree": -75.82742004600783,
+          "energy_minus_psi4_hartree": -6.035065780451987e-10,
+          "max_abs_gradient_difference_hartree_per_bohr": 4.004297005089086e-09,
+          "passed": true,
+          "settings": {
+            "backend": "cpu",
+            "xc": "pbe0",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-12,
+            "conv_tol_grad": 1e-07,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": false,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 2.666333201999805,
+          "note": null
+        },
+        "gpu": {
+          "energy_hartree": -75.82742004603601,
+          "energy_minus_psi4_hartree": -6.316867029454443e-10,
+          "max_abs_gradient_difference_hartree_per_bohr": 3.426733230504908e-09,
+          "passed": true,
+          "settings": {
+            "backend": "gpu",
+            "xc": "pbe0",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-12,
+            "conv_tol_grad": 1e-07,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": false,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 5.935367458001565,
+          "note": null
+        }
+      },
+      "energy_tolerance_hartree": 2e-06,
+      "gradient_tolerance_hartree_per_bohr": 2e-05
+    },
+    {
+      "system": "water_cation",
+      "method": "m06-2x",
+      "basis": "def2-svp",
+      "cart": false,
+      "auxbasis": null,
+      "spin": 1,
+      "natoms": 3,
+      "nbf_psi4": 24,
+      "psi4": {
+        "energy_hartree": -75.8689053425029,
+        "gradient_hartree_per_bohr": [
+          [
+            1.9294793898467362e-15,
+            6.160740691543246e-15,
+            -0.03247210422052965
+          ],
+          [
+            0.005775450171386892,
+            1.8334017095535385e-16,
+            0.01623625535266217
+          ],
+          [
+            -0.005775450171389751,
+            1.454803869439765e-17,
+            0.01623625535266167
+          ]
+        ],
+        "coordinates_bohr": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.511780899652,
+            0.0,
+            1.228321980967
+          ],
+          [
+            -1.511780899652,
+            0.0,
+            1.228321980967
+          ]
+        ],
+        "task": "gradient",
+        "nbf": 24,
+        "seconds": 1.9409135179994337,
+        "psi4_version": "1.11",
+        "libxc_version": "7.1.2",
+        "options": {
+          "method": "m06-2x",
+          "basis": "def2-svp",
+          "puream": true,
+          "scf_type": "pk",
+          "radial": 150,
+          "spherical": 1202,
+          "df_basis_scf": null,
+          "e_convergence": 1e-10,
+          "d_convergence": 1e-09,
+          "ints_tolerance": 1e-14,
+          "pruning": "none"
+        }
+      },
+      "eda_gpu": {
+        "cpu": {
+          "energy_hartree": -75.86890534252981,
+          "energy_minus_psi4_hartree": -2.6915358830592595e-11,
+          "max_abs_gradient_difference_hartree_per_bohr": 1.4862047609254248e-07,
+          "passed": true,
+          "settings": {
+            "backend": "cpu",
+            "xc": "m06-2x",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-10,
+            "conv_tol_grad": 1e-06,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": false,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 4.193143124000926,
+          "note": null
+        },
+        "gpu": {
+          "energy_hartree": -75.86890534256123,
+          "energy_minus_psi4_hartree": -5.833555860590423e-11,
+          "max_abs_gradient_difference_hartree_per_bohr": 2.41389036925721e-07,
+          "passed": true,
+          "settings": {
+            "backend": "gpu",
+            "xc": "m06-2x",
+            "basis": "def2-svp",
+            "auxbasis": "def2-universal-jkfit",
+            "grid_level": 8,
+            "conv_tol": 1e-10,
+            "conv_tol_grad": 1e-06,
+            "max_cycle": 200,
+            "threads": 12,
+            "density_fitting": false,
+            "dispersion": "none",
+            "cart": false,
+            "cpu_core_limit": 0,
+            "compute_duty_cycle": 1.0,
+            "gpu_temperature_limit": 0.0,
+            "gpu_resume_temperature": 65.0,
+            "cpu_temperature_limit": 0.0,
+            "cpu_resume_temperature": 75.0,
+            "max_cooldown_seconds": 600.0
+          },
+          "seconds": 6.455788587001734,
+          "note": null
+        }
+      },
+      "energy_tolerance_hartree": 2e-05,
+      "gradient_tolerance_hartree_per_bohr": 5e-05
+    }
+  ],
+  "passed": true
+}

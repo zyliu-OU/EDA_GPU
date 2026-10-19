@@ -251,3 +251,63 @@ the mirror plane (`symmetric_start_saddle_diagnostic.json`). The archived 2026-1
 dimer (B3LYP/def2-SVP, density-fitted, grid 3) was checked separately and is a true minimum on
 CPU and GPU (lowest frequency 105.1 cm⁻¹, no imaginary modes). Optimizer convergence still does
 not establish a minimum; Hessian classification is required where minima are claimed.
+
+## Neutral tryptamine–water CPU/GPU EDA at the common geometry, 2026-10-18
+
+CPU direct GKS-EDA at exactly the archived GPU-optimized geometry, with the archived GPU EDA
+settings (M06-2X/aug-cc-pVDZ, 425 functions, grid 3, conv 1e-9 / 1e-6; only backend and workload
+pacing differ). CPU minus GPU: electrostatic 4.7e-10, exchange −1.1e-8, repulsion 1.1e-8,
+polarization 7.1e-9, generalized correlation −7.3e-9, counterpoise total 2.4e-11 Eh; closure
+9.7e-12 Eh. Maximum component difference 1.1e-8 Eh (7e-6 kcal/mol). Archive:
+`reports/tryptamine_neutral_gpu_2026-10-11/cpu_gpu_common_geometry.json` and
+`cpu_common_geometry_eda/`. Single CPU and GPU runs only; timings are not benchmarks.
+
+## Radical-cation tryptamine–water (A⁺–H₂O), 2026-10-18
+
+Following the paper's procedure, A⁺–H₂O was optimized from the neutral GPU-optimized geometry
+with one electron removed (doublet, spin on tryptamine): GPU U-M06-2X/aug-cc-pVDZ, density fitting
+with aug-cc-pvdz-jkfit, grid 3, 20 evaluations, converged; the A⁺–H₂O binding motif is retained
+(no collapse to H⁺–H₂O). GPU direct counterpoise GKS-EDA (grid 3, conv 1e-9/1e-6), closure
+1.7e-10 Eh. Archive: `reports/tryptamine_cation_gpu_2026-10-18/`.
+
+| A⁺–H₂O H-bond | EDA_GPU (Å / °) | Paper Table 1 (Å / °) | Difference |
+| --- | --- | --- | --- |
+| 1: water O–H···N | 1.942 / 156.5 | 1.950 / 155.3 | −0.008 Å / +1.2° |
+| 2: water O···H–C (indole) | 2.078 / 130.8 | 2.057 / 134.0 | +0.021 Å / −3.2° |
+| 3: water O···H–C (side chain) | 2.494 / 122.0 | 2.500 / 122.6 | −0.006 Å / −0.6° |
+
+| A⁺–H₂O, kcal/mol | EDA_GPU GPU | Paper Table 3 | Difference |
+| --- | ---: | ---: | ---: |
+| Electrostatic | −22.33 | −22.24 | −0.09 |
+| Pauli (exchange + repulsion) | 23.68 | 23.48 | +0.20 |
+| Polarization | −9.62 | −9.57 | −0.05 |
+| Generalized correlation | −5.30 | −5.22 | −0.08 |
+| Total | −13.56 | −13.56 | −0.00 |
+
+Neutral and cation totals both agree with the paper within 0.012 kcal/mol, and individual
+components within 0.20 kcal/mol, with the same sign pattern (Pauli high by 0.15–0.20 kcal/mol,
+attractive terms slightly more negative). A systematic pattern across charge states suggests a
+geometry or convention difference rather than numerical noise; grid (≤0.0015 kcal/mol) and
+backend (≤7e-6 kcal/mol) are excluded. These remain exploratory comparisons
+(`scientifically_validated=false`) until original coordinates or matched XEDA output exist.
+
+## Psi4 cross-check extended to density fitting and UKS, 2026-10-18
+
+`.env/bin/python scripts/compare_psi4.py --gpu --set extended --output runs/psi4_crosscheck_extended`
+uses the same matched settings and preset tolerances as the core set. Density-fitted cases use
+the same auxiliary basis in both programs (Psi4 `scf_type df`, `df_basis_scf`). All 8 comparisons
+passed (`reports/psi4_crosscheck_extended_2026-10-18/result.json`; EDA_GPU minus Psi4):
+
+| System | Method / basis (auxiliary) | Reference | CPU ΔE (Eh) | GPU ΔE (Eh) | CPU / GPU max \|ΔG\| (Eh/bohr) |
+| --- | --- | --- | ---: | ---: | ---: |
+| Water dimer | B3LYP / def2-SVP (def2-universal-jkfit) | RKS | −2.1e-9 | −2.1e-9 | 1.9e-8 / 1.4e-8 |
+| Tryptamine–water | M06-2X / aug-cc-pVDZ (aug-cc-pvdz-jkfit) | RKS | +7.5e-7 | +7.5e-7 | 3.3e-5 / 2.7e-5 |
+| Water radical cation | PBE0 / def2-SVP | UKS | −6.0e-10 | −6.3e-10 | 4.0e-9 / 3.4e-9 |
+| Water radical cation | M06-2X / def2-SVP | UKS | −2.7e-11 | −5.8e-11 | 1.5e-7 / 2.4e-7 |
+
+The first two rows are the density-fitted paths actually used by `validate` and by the tryptamine
+optimizations. The tryptamine density-fitted gradient difference (3.3e-5 Eh/bohr) is four times
+the exact-integral value (8.2e-6) but within the preset 5e-5 tolerance; it is attributed to
+differences in density-fitted gradient implementations, not investigated further. UKS energies
+and gradients, including meta-GGA, agree at the quadrature level. Still not compared: EDA
+components (no Psi4 GKS-EDA) and open-shell optimized geometries.

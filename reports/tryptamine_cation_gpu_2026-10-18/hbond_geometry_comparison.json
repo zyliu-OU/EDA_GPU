@@ -1,0 +1,50 @@
+{
+  "xyz": "reports/tryptamine_cation_gpu_2026-10-18/optimization/optimized.xyz",
+  "case": "A_cation_H2O",
+  "reference": "10.1039/C7CP03491A",
+  "notes": "Table 1 (accepted manuscript p. 20): distances/angles for H-bond-1 (water O-H...N amine), H-bond-2 (water O...H-C, indole C2-H, 2.390 A in text and table) and H-bond-3 (water O...H-C side-chain CH2). The text quotes H-bond-3 as 2.621 A versus 2.612 A in Table 1, and text and caption assign the H6/H18 labels to H-bonds 2/3 differently; comparisons map bonds by chemical identity.",
+  "hbonds": [
+    {
+      "hbond": "hbond1",
+      "atoms": [
+        0,
+        25,
+        24
+      ],
+      "distance_angstrom": 1.9415156106727842,
+      "angle_degree": 156.48917696097885,
+      "paper_distance_angstrom": 1.95,
+      "paper_angle_degree": 155.3,
+      "distance_difference_angstrom": -0.008484389327215736,
+      "angle_difference_degree": 1.1891769609788412
+    },
+    {
+      "hbond": "hbond2",
+      "atoms": [
+        24,
+        18,
+        4
+      ],
+      "distance_angstrom": 2.0778986783853846,
+      "angle_degree": 130.81030517340335,
+      "paper_distance_angstrom": 2.057,
+      "paper_angle_degree": 134.0,
+      "distance_difference_angstrom": 0.020898678385384617,
+      "angle_difference_degree": -3.18969482659665
+    },
+    {
+      "hbond": "hbond3",
+      "atoms": [
+        24,
+        17,
+        2
+      ],
+      "distance_angstrom": 2.4935533495037956,
+      "angle_degree": 122.01259038975331,
+      "paper_distance_angstrom": 2.5,
+      "paper_angle_degree": 122.6,
+      "distance_difference_angstrom": -0.006446650496204409,
+      "angle_difference_degree": -0.5874096102466808
+    }
+  ]
+}
