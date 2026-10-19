@@ -84,10 +84,13 @@ def main():
     p.add_argument('--skip-eda', action='store_true')
     p.add_argument('--continue-unconverged', action='store_true', help='restart a not-converged optimization from its last geometry')
     p.add_argument('--preopt', choices=['none', 'xtb'], default='none', help='GFN2-xTB/ALPB seed refinement before DFT')
+    p.add_argument('--gpu-temperature-limit', type=float, default=80.0, help='pause until 65 C at this GPU temperature; 0 disables')
+    p.add_argument('--cpu-temperature-limit', type=float, default=85.0, help='pause until 75 C at this CPU (k10temp Tctl) temperature; 0 disables')
     a = p.parse_args()
     out = Path(a.output); out.mkdir(parents=True, exist_ok=True)
     common = dict(backend='gpu', xc=a.xc, basis=a.basis, auxbasis=a.auxbasis, grid_level=3, max_cycle=200, threads=a.threads,
-                  compute_duty_cycle=1.0, gpu_temperature_limit=80.0, solvent=a.solvent, solvent_eps=a.solvent_eps)
+                  compute_duty_cycle=1.0, gpu_temperature_limit=a.gpu_temperature_limit,
+                  cpu_temperature_limit=a.cpu_temperature_limit, solvent=a.solvent, solvent_eps=a.solvent_eps)
     opt_settings = Settings(density_fitting=True, conv_tol=1e-10, **common)
     eda_settings = Settings(density_fitting=False, conv_tol=1e-9, conv_tol_grad=1e-6, **common)
     summary_path = out / 'summary.json'

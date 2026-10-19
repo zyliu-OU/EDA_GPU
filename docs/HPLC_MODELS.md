@@ -58,6 +58,32 @@ proxy S the planned cycle compares, at a common ternary geometry:
 
 The two adsorption pictures are different reference states and are never mixed in one comparison.
 
+## Ion-pair reagent series (`scripts/build_hplc_reagents.py`, `examples/hplc/reagents/`)
+
+Cations of common IP-RP buffers, built like TEAH⁺ (RDKit ETKDG/MMFF94, alkyl C–C chain dihedrals set
+anti and re-minimized): hexylammonium (HAA), dibutylammonium (DBAA), tributylammonium (TBuAA) and
+DIPEA-H⁺ (DIPEA/HFIP or acetate). Acetate and HFIP counter-anions are not modelled. Seeds: N–H on the
+residue_A phosphate O (both non-bridging O) and on the C8-proxy silanol O. Surface pairs get a second,
+chain-contact seed (`build_hplc_complexes.py --select contact`: most heavy-atom pairs within 4.5 Å),
+since alkyl-chain contact with the C8 ligand is the interaction of interest there; the analysis treats
+it as another placement of the same pair. Further bases: `--bases A C G U`. Not yet optimized.
+
+Placement selection fix (2026-10-19): the clearance used to rank placements included the acceptor and
+donor X atoms, whose distances to the partner's H-bond motif are fixed by the H-bond geometry, so every
+accepted placement had the same clearance and the choice fell to sampling order. The clearance now
+excludes them. The TEAH⁺ stage 7.1–7.3 seeds were built before the fix; their placements are valid
+(clash checks were unaffected) but were not selected by a meaningful clearance.
+
+## Comparing with measured retention (`scripts/hplc_retention.py`)
+
+Measured data go in a CSV following `examples/hplc/retention_template.csv` (sequence or base counts,
+reagent, buffer, column, gradient, temperature, retention time, and a `condition_group` shared by rows
+that may be compared). The script builds composition-weighted residue···reagent and residue···C8
+descriptors and reagent···C8 terms from `analyze_hplc.py` output, and per condition group reports
+Pearson r, slope and leave-one-out RMSE against a group-mean baseline (≥4 samples). It is a correlation
+test, not a prediction; many descriptors are tested at once, and if composition varies along a single
+direction all composition descriptors are collinear.
+
 ## Interpretation limits
 
 Single optimized placements are local stationary points (no Hessian classification for these

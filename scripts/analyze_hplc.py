@@ -17,7 +17,7 @@ def main():
     summary = json.loads((Path(a.campaign) / 'summary.json').read_text())
     groups = {}
     for name, case in summary['cases'].items():
-        groups.setdefault(re.sub(r'_\d+_\d+$', '', name), []).append((name, case))
+        groups.setdefault(re.sub(r'(_contact)?_\d+_\d+$', '', name), []).append((name, case))  # contact seeds are alternative placements
     table = {}
     for group, cases in sorted(groups.items()):
         done = [(n, c) for n, c in cases if c.get('eda') == 'success']

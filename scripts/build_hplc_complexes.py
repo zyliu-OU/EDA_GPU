@@ -6,7 +6,9 @@ Approach directions are sampled on cones (0/30/50/70/85 deg, 8 azimuths) around 
 outward direction (away from its bonded neighbours), and the guest is rotated about each
 approach axis in fixed steps. Outside the H-bond motif (acceptor and its neighbours versus donor X and
 its neighbours), heavy atoms closer than 2.6 A or H...H closer than 1.8 A reject a placement;
-the largest remaining heavy-atom clearance wins. The host keeps its coordinates; fragments, charges, spins,
+the largest heavy-atom clearance excluding the acceptor and donor X wins, or with --select contact the
+most heavy-atom pairs within 4.5 A (ties: clearance) (before 2026-10-19 the
+clearance included them, was set by the H-bond geometry and did not discriminate between placements). The host keeps its coordinates; fragments, charges, spins,
 bonds and frozen atoms are carried into complex metadata. These are optimization seeds only.
 """
 import argparse
@@ -14,6 +16,9 @@ import json
 from pathlib import Path
 import numpy as np
 from eda_gpu.model import load, xyz_text
+
+
+CONTACT = 4.5  # angstrom; heavy-atom pair counted as a contact by --select contact
 
 
 def rotation(axis, angle):
@@ -49,6 +54,9 @@ def place(hs, hc, hm, gs, gc, gm, acceptor, donor_h, distance, steps):
     # Contacts inside the H-bond motif (acceptor + neighbours vs donor X + neighbours) are fixed by the placement itself.
     pair = np.ones((len(hs), len(gs)), bool)
     pair[np.ix_([acceptor] + neighbours(hm, acceptor), [heavy] + neighbours(gm, heavy))] = False
+    # The acceptor and donor X sit at fixed distances from every atom of the other partner's motif, so the
+    # selection clearance also leaves out the acceptor row and the donor-X column.
+    free = pair.copy(); free[acceptor, :] = False; free[:, heavy] = False
     for tilt in (0, 30, 50, 70, 85):
         for azimuth in range(8 if tilt else 1):
             axis = rotation(outward, 2 * np.pi * azimuth / 8) @ (rotation(perp, np.radians(tilt)) @ outward)
@@ -58,10 +66,11 @@ def place(hs, hc, hm, gs, gc, gm, acceptor, donor_h, distance, steps):
             for k in range(steps):
                 g = (base - target_h) @ rotation(axis, 2 * np.pi * k / steps).T + target_h
                 d = np.linalg.norm(hc[:, None, :] - g[None, :, :], axis=2)
-                clearance = float(d[np.outer(heavy_h, heavy_g) & pair].min())
-                if clearance < 2.6 or d[np.outer(~heavy_h, ~heavy_g) & pair].min() < 1.8:
+                if d[np.outer(heavy_h, heavy_g) & pair].min() < 2.6 or d[np.outer(~heavy_h, ~heavy_g) & pair].min() < 1.8:
                     continue
-                accepted.append(((tilt, azimuth, k), g, clearance))
+                clearance = float(d[np.outer(heavy_h, heavy_g) & free].min())
+                contacts = int((d[np.outer(heavy_h, heavy_g) & free] < CONTACT).sum())
+                accepted.append(((tilt, azimuth, k), g, clearance, contacts))
     return accepted
 
 
@@ -87,25 +96,29 @@ def main():
     p.add_argument('--donor-h', type=int, required=True, help='guest donor hydrogen index (0-based)')
     p.add_argument('--distance', type=float, default=1.8)
     p.add_argument('--steps', type=int, default=12)
-    p.add_argument('--keep', type=int, default=1, help='placements kept per acceptor (largest heavy-atom clearance)')
+    p.add_argument('--keep', type=int, default=1, help='placements kept per acceptor')
+    p.add_argument('--select', choices=['clearance', 'contact'], default='clearance',
+                   help=f'rank by largest heavy-atom clearance, or by most heavy-atom pairs within {CONTACT} A (e.g. alkyl chain on C8)')
     p.add_argument('--output', required=True, help='output stem; _<acceptor>_<k>.xyz/.json appended')
     a = p.parse_args()
     hs, hc, hm = load(a.host_xyz or a.host + '.xyz', a.host + '.json')
     gs, gc, gm = load(a.guest + '.xyz', a.guest + '.json')
     out = Path(a.output); out.parent.mkdir(parents=True, exist_ok=True)
     for acc in a.acceptor:
-        found = sorted(place(hs, hc, hm, gs, gc, gm, acc, a.donor_h, a.distance, a.steps), key=lambda t: -t[2])[:a.keep]
+        rank = (lambda t: -t[2]) if a.select == 'clearance' else (lambda t: (-t[3], -t[2]))
+        found = sorted(place(hs, hc, hm, gs, gc, gm, acc, a.donor_h, a.distance, a.steps), key=rank)[:a.keep]
         if not found: raise RuntimeError(f'no clash-free placement at acceptor {acc}')
-        for n, (k, g, clearance) in enumerate(found):
+        for n, (k, g, clearance, contacts) in enumerate(found):
             stem = Path(f'{out}_{acc}_{n}')
             meta = complex_metadata(hm, gm, len(hs), f"{hm['identity']} + {gm['identity']}")
             if a.host_xyz: meta['geometry_provenance'] = f'seeded placement on optimized host {a.host_xyz}; not optimized'
             meta['placement'] = {'host': a.host, 'host_geometry': a.host_xyz or a.host + '.xyz', 'guest': a.guest, 'host_acceptor': acc, 'guest_donor_h': a.donor_h + len(hs),
                                  'h_acceptor_distance_angstrom': a.distance, 'tilt_deg_azimuth_step_rotation_step': list(k), 'rotation_steps': a.steps,
-                                 'min_heavy_atom_distance_angstrom': clearance}
+                                 'selection': a.select, 'min_heavy_atom_distance_angstrom': clearance,
+                                 'clearance_excludes': 'acceptor atom and donor heavy atom', f'heavy_atom_contacts_within_{CONTACT}_angstrom': contacts}
             stem.with_suffix('.xyz').write_text(xyz_text(hs + gs, np.vstack([hc, g]), f'{stem.name}; placement seed; angstrom'))
             stem.with_suffix('.json').write_text(json.dumps(meta, indent=2) + '\n')
-            print(f'{stem}: clearance {clearance:.2f} A')
+            print(f'{stem}: clearance {clearance:.2f} A, {contacts} contacts < {CONTACT} A')
 
 
 if __name__ == '__main__':

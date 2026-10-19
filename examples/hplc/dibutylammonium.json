@@ -1,0 +1,205 @@
+{
+  "identity": "dibutylammonium (DBA+)",
+  "protonation": "protonated amine, 2 N-H donor(s)",
+  "stereochemistry": "no stereocenters",
+  "ion_pair_buffer": "dibutylammonium acetate (DBAA)",
+  "conformer_selection": {
+    "criterion": "lowest MMFF94 ETKDG conformer, C-C chain dihedrals set anti and re-minimized",
+    "chain_dihedrals_deg": [
+      -179.99999960679523,
+      179.99999841155966,
+      -179.9999981281524,
+      179.9999952104518
+    ],
+    "mmff94_kcal_mol": -2.2606728580253783,
+    "embedded": 200
+  },
+  "donor_h": [
+    18,
+    19
+  ],
+  "charge": 1,
+  "spin": 0,
+  "bonds": [
+    [
+      0,
+      1,
+      1.0
+    ],
+    [
+      1,
+      2,
+      1.0
+    ],
+    [
+      2,
+      3,
+      1.0
+    ],
+    [
+      3,
+      4,
+      1.0
+    ],
+    [
+      4,
+      5,
+      1.0
+    ],
+    [
+      5,
+      6,
+      1.0
+    ],
+    [
+      6,
+      7,
+      1.0
+    ],
+    [
+      7,
+      8,
+      1.0
+    ],
+    [
+      0,
+      9,
+      1.0
+    ],
+    [
+      0,
+      10,
+      1.0
+    ],
+    [
+      0,
+      11,
+      1.0
+    ],
+    [
+      1,
+      12,
+      1.0
+    ],
+    [
+      1,
+      13,
+      1.0
+    ],
+    [
+      2,
+      14,
+      1.0
+    ],
+    [
+      2,
+      15,
+      1.0
+    ],
+    [
+      3,
+      16,
+      1.0
+    ],
+    [
+      3,
+      17,
+      1.0
+    ],
+    [
+      4,
+      18,
+      1.0
+    ],
+    [
+      4,
+      19,
+      1.0
+    ],
+    [
+      5,
+      20,
+      1.0
+    ],
+    [
+      5,
+      21,
+      1.0
+    ],
+    [
+      6,
+      22,
+      1.0
+    ],
+    [
+      6,
+      23,
+      1.0
+    ],
+    [
+      7,
+      24,
+      1.0
+    ],
+    [
+      7,
+      25,
+      1.0
+    ],
+    [
+      8,
+      26,
+      1.0
+    ],
+    [
+      8,
+      27,
+      1.0
+    ],
+    [
+      8,
+      28,
+      1.0
+    ]
+  ],
+  "fragments": [
+    {
+      "name": "dibutylammonium",
+      "atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "charge": 1,
+      "spin": 0
+    }
+  ],
+  "smiles": "CCCC[NH2+]CCCC",
+  "geometry_provenance": "RDKit ETKDG + MMFF94 seed (rdkit 2026.9.1); not quantum-optimized"
+}

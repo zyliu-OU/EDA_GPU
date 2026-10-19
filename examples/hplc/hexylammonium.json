@@ -1,0 +1,170 @@
+{
+  "identity": "hexylammonium (HA+)",
+  "protonation": "protonated amine, 3 N-H donor(s)",
+  "stereochemistry": "no stereocenters",
+  "ion_pair_buffer": "hexylammonium acetate (HAA)",
+  "conformer_selection": {
+    "criterion": "lowest MMFF94 ETKDG conformer, C-C chain dihedrals set anti and re-minimized",
+    "chain_dihedrals_deg": [
+      -179.9999968968143,
+      179.99999288991296,
+      179.99999756631863,
+      179.9999956087845
+    ],
+    "mmff94_kcal_mol": -2.4802464674562223,
+    "embedded": 200
+  },
+  "donor_h": [
+    20,
+    21,
+    22
+  ],
+  "charge": 1,
+  "spin": 0,
+  "bonds": [
+    [
+      0,
+      1,
+      1.0
+    ],
+    [
+      1,
+      2,
+      1.0
+    ],
+    [
+      2,
+      3,
+      1.0
+    ],
+    [
+      3,
+      4,
+      1.0
+    ],
+    [
+      4,
+      5,
+      1.0
+    ],
+    [
+      5,
+      6,
+      1.0
+    ],
+    [
+      0,
+      7,
+      1.0
+    ],
+    [
+      0,
+      8,
+      1.0
+    ],
+    [
+      0,
+      9,
+      1.0
+    ],
+    [
+      1,
+      10,
+      1.0
+    ],
+    [
+      1,
+      11,
+      1.0
+    ],
+    [
+      2,
+      12,
+      1.0
+    ],
+    [
+      2,
+      13,
+      1.0
+    ],
+    [
+      3,
+      14,
+      1.0
+    ],
+    [
+      3,
+      15,
+      1.0
+    ],
+    [
+      4,
+      16,
+      1.0
+    ],
+    [
+      4,
+      17,
+      1.0
+    ],
+    [
+      5,
+      18,
+      1.0
+    ],
+    [
+      5,
+      19,
+      1.0
+    ],
+    [
+      6,
+      20,
+      1.0
+    ],
+    [
+      6,
+      21,
+      1.0
+    ],
+    [
+      6,
+      22,
+      1.0
+    ]
+  ],
+  "fragments": [
+    {
+      "name": "hexylammonium",
+      "atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "charge": 1,
+      "spin": 0
+    }
+  ],
+  "smiles": "CCCCCC[NH3+]",
+  "geometry_provenance": "RDKit ETKDG + MMFF94 seed (rdkit 2026.9.1); not quantum-optimized"
+}

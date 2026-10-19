@@ -82,3 +82,19 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
   stated in `reference_component_validation`); solvated results stay `false`; `full_eda_available` stays false
   (reserved for matched XEDA). Tests updated (`tests/test_gks.py`, `tests/test_solvent.py`); 13 CPU tests pass.
   The running stage 7.3 process loaded the old code but uses `--skip-eda`, so it is unaffected.
+
+## Session 2, later: reagent series, retention comparison, thermal guard
+
+- `scripts/build_hplc_reagents.py`: hexylammonium, dibutylammonium, tributylammonium, DIPEA-H+ monomers
+  (`examples/hplc/<name>.xyz/json`) and 23 seeds in `examples/hplc/reagents/` (8 residue_A ion pairs; 15 C8 surface
+  pairs incl. chain-contact seeds; one duplicate contact seed removed). Not yet optimized.
+- Fixed `build_hplc_complexes.py` placement ranking: clearance included the acceptor/donor-X atoms and was identical
+  for every placement (choice fell to sampling order). TEAH+ 7.1–7.3 seeds predate the fix (valid, not meaningfully
+  ranked). Added `--select contact`. `analyze_hplc.py` folds `_contact` seeds into their pair group.
+- `scripts/hplc_retention.py` + `examples/hplc/retention_template.csv`: correlate measured retention with
+  composition-weighted EDA descriptors per condition group (LOO RMSE vs group mean). Tested on synthetic data only.
+- `run_hplc_stage.py`: `--cpu-temperature-limit` (default 85 C, resume 75) and `--gpu-temperature-limit` (80, resume 65).
+  The running ternary job predates this (GPU guard 80 C only, CPU guard off).
+- User asked for CPU/GPU power caps (no overheating). Hardware caps need sudo (user must run; see chat).
+- `runs/queue_hplc_reagents.sh` prepared (waits for the ternary job, then reagent ion pairs + surface pairs with EDA);
+  NOT started — waiting for the user's go-ahead (≈23 seeds, roughly 1–2 GPU-hours each).

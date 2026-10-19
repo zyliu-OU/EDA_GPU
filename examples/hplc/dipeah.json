@@ -1,0 +1,199 @@
+{
+  "identity": "N,N-diisopropylethylammonium (DIPEA-H+)",
+  "protonation": "protonated amine, 1 N-H donor(s)",
+  "stereochemistry": "no stereocenters",
+  "ion_pair_buffer": "DIPEA/HFIP or DIPEA acetate",
+  "conformer_selection": {
+    "criterion": "lowest MMFF94 ETKDG conformer, C-C chain dihedrals set anti and re-minimized",
+    "chain_dihedrals_deg": [],
+    "mmff94_kcal_mol": 20.12139315546881,
+    "embedded": 200
+  },
+  "donor_h": [
+    14
+  ],
+  "charge": 1,
+  "spin": 0,
+  "bonds": [
+    [
+      0,
+      1,
+      1.0
+    ],
+    [
+      1,
+      2,
+      1.0
+    ],
+    [
+      2,
+      3,
+      1.0
+    ],
+    [
+      3,
+      4,
+      1.0
+    ],
+    [
+      3,
+      5,
+      1.0
+    ],
+    [
+      2,
+      6,
+      1.0
+    ],
+    [
+      6,
+      7,
+      1.0
+    ],
+    [
+      6,
+      8,
+      1.0
+    ],
+    [
+      0,
+      9,
+      1.0
+    ],
+    [
+      0,
+      10,
+      1.0
+    ],
+    [
+      0,
+      11,
+      1.0
+    ],
+    [
+      1,
+      12,
+      1.0
+    ],
+    [
+      1,
+      13,
+      1.0
+    ],
+    [
+      2,
+      14,
+      1.0
+    ],
+    [
+      3,
+      15,
+      1.0
+    ],
+    [
+      4,
+      16,
+      1.0
+    ],
+    [
+      4,
+      17,
+      1.0
+    ],
+    [
+      4,
+      18,
+      1.0
+    ],
+    [
+      5,
+      19,
+      1.0
+    ],
+    [
+      5,
+      20,
+      1.0
+    ],
+    [
+      5,
+      21,
+      1.0
+    ],
+    [
+      6,
+      22,
+      1.0
+    ],
+    [
+      7,
+      23,
+      1.0
+    ],
+    [
+      7,
+      24,
+      1.0
+    ],
+    [
+      7,
+      25,
+      1.0
+    ],
+    [
+      8,
+      26,
+      1.0
+    ],
+    [
+      8,
+      27,
+      1.0
+    ],
+    [
+      8,
+      28,
+      1.0
+    ]
+  ],
+  "fragments": [
+    {
+      "name": "dipeah",
+      "atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "charge": 1,
+      "spin": 0
+    }
+  ],
+  "smiles": "CC[NH+](C(C)C)C(C)C",
+  "geometry_provenance": "RDKit ETKDG + MMFF94 seed (rdkit 2026.9.1); not quantum-optimized"
+}
