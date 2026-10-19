@@ -29,8 +29,8 @@ for method attribution, benchmark sources, and software documentation.
 | Optimized structures and trajectories | XYZ outputs and evaluated-geometry trajectories |
 | Scientific validation and CPU CI | CPU/GPU agreement, finite differences, constraints, and explicit failure handling |
 | Independent cross-program check | HF/DFT energies and analytic gradients (RKS, UKS, exact and density-fitted) agree with Psi4 1.11 on CPU and GPU (21/21 within preset tolerances, up to 425 basis functions); optimized minima agree for water and water dimer; not an EDA validation |
-| Published tryptamine–water benchmark | Neutral and radical-cation totals within 0.012 kcal/mol of Liu et al. 2017 Table 3, components within 0.20 kcal/mol, H-bond geometry within 0.05 Å; constructed geometry, exploratory |
-| Matched XEDA comparison | GAMESS-XEDA inputs and EDA_GPU values prepared (`reports/xeda_matched_2026-10-18/`); external XEDA run pending |
+| Published tryptamine–water benchmark | Neutral and radical-cation totals within 0.012 kcal/mol of Liu et al. 2017 Table 3, components within 0.20 kcal/mol, H-bond geometry within 0.05 Å; reconstructed geometry. Accepted by the project owner (2026-10-19) as the external component benchmark |
+| Matched XEDA comparison | GAMESS-XEDA inputs and EDA_GPU values prepared (`reports/xeda_matched_2026-10-18/`); not run — deferred by project decision 2026-10-19 (kit kept for anyone with XEDA access) |
 | Experimental GKS-EDA(sol) | C-PCM/IEF-PCM on CPU and GPU; vacuum-limit, screening and CPU/GPU checks pass; documented interpretations; external validation pending |
 | CPU/GPU scaling benchmark | GPU 3–7× faster than CPU from ~250 basis functions on this host; slower for tiny systems ([benchmark](reports/benchmark_scaling_2026-10-18.json)) |
 | CPU EDA preparation | Counterpoise fragment references, frozen electrostatics, generalized correlation; independent algebra checks passed, published component validation unresolved |
@@ -496,9 +496,11 @@ agreement for C-PCM and IEF-PCM (≤9.6e-9 Eh). Not externally validated: the XE
 example differs strongly and depends on unknown cavity radii, to which desolvation is very
 sensitive. See [validation](docs/VALIDATION.md).
 
-The next scientific gate is individual component output from XEDA with explicitly
-matched functional, basis representation, quadrature, integral and counterpoise
-settings. Open-shell, solvent, double-hybrid and RNA/HPLC applications remain deferred.
+Component-level external agreement is established only to the published-table level
+(≤0.20 kcal/mol on reconstructed geometries, Liu et al. 2017); the project owner accepted
+this on 2026-10-19 and deferred a matched-settings XEDA run. Tighter agreement than
+~0.2 kcal/mol per component is therefore not demonstrated, and the code flag
+`scientifically_validated` stays false under its strict definition (matched XEDA output). Open-shell, solvent, double-hybrid and RNA/HPLC applications remain deferred.
 
 
 ### Tryptamine–water paper benchmark (under development)

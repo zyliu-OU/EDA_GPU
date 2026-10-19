@@ -184,7 +184,7 @@ validated here; open-shell/UKS gradients and optimized geometries were not compa
 Timings in the JSON are single cold runs with different grids and programs, not
 benchmarks; they establish no speedup.
 
-## Matched-settings GAMESS-XEDA kit, 2026-10-18 (external run pending)
+## Matched-settings GAMESS-XEDA kit, 2026-10-18 (not run; deferred by project decision 2026-10-19)
 
 `scripts/xeda_matched.py prepare --gpu --output runs/xeda_matched` writes GAMESS-XEDA
 inputs and computes EDA_GPU components for the same five cases; `compare` parses the

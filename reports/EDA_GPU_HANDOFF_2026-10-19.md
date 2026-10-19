@@ -39,7 +39,7 @@ Per-seed values: `runs/hplc_{ionpair,surface}_cpcm_def2svp/summary.json`.
    per base: `.env/bin/python scripts/three_body_hplc.py runs/hplc_ternary_cpcm_def2svp/<case>/optimization/optimized.xyz --metadata examples/hplc/ternary/<case>.json --names residue_X teah c8_silane_proxy --output runs/hplc_three_body/<case>`;
    archive and document like 7.1/7.2.
 2. Sensitivity: aug-cc-pVDZ EDA(sol) on the lowest pair per base; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
-3. External XEDA run still waits on the user (`reports/xeda_matched_2026-10-18/README.md`).
+3. (Dropped 2026-10-19 by user decision: external XEDA run.)
 
 ## Earlier stopped state (session 1, superseded)
 
@@ -72,3 +72,9 @@ Per-seed values: `runs/hplc_{ionpair,surface}_cpcm_def2svp/summary.json`.
 PCCP 2017 Table 3 was +0.15–0.20 kcal/mol in both charge states. Actually neutral −0.15, cation +0.20
 (opposite signs). VALIDATION.md corrected. Asked the user (the paper's author) for original 2017
 coordinates/GAMESS outputs, which would allow an identical-geometry comparison without installing XEDA.
+
+## Decision (2026-10-19)
+
+The user (project owner) accepts the PCCP 2017 tryptamine–water agreement (totals ≤0.012, components ≤0.20 kcal/mol)
+as sufficient external validation. The matched XEDA run and the original-coordinate comparison are dropped from the
+next steps. README/VALIDATION updated; `scientifically_validated` left false in code (strict definition = matched XEDA output).
