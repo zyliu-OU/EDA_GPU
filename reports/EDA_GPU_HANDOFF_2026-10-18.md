@@ -102,3 +102,25 @@ Next steps:
    update `scientifically_validated` gates and docs; otherwise investigate the Pauli/convention gap.
 2. If original 2017 coordinates turn up, rerun the tryptamine comparisons at those geometries.
 3. Optional: CPU EDA for the cation; Hessian classification of tryptamine minima.
+
+## Session 3 (same day): gate 6 benchmark, GKS-EDA(sol), HPLC stage 7.1 started
+
+User decisions (memory `hplc-stage-decisions`): capped RNA residues; short alkylsilane proxy;
+M06-2X/def2-SVP screening + aug-cc-pVDZ subset; implement GKS-EDA(sol).
+
+Pushed: `4bf17da` (GKS-EDA(sol) + scaling benchmark), `8be3b5d` (HPLC builders/seeds).
+- Gate 6: `reports/benchmark_scaling_2026-10-18.json` — GPU 3–7x faster from ~250 bf.
+- GKS-EDA(sol): `src/eda_gpu/solvent.py`, `docs/GKS_EDA_SOL_SPEC.md`,
+  `reports/gks_sol_validation_2026-10-18/`. Internal checks pass; two definitions are
+  interpretations; XEDA BH3–NH3 unresolved (cavity radii unknown; desolvation radius-sensitive).
+- 43 tests pass.
+
+RUNNING (nohup, survives the session): stage 7.1 ion pairs
+`.env/bin/python scripts/run_hplc_stage.py examples/hplc/ionpair/residue_{A,G,C,U}_teah_* --output
+runs/hplc_ionpair_cpcm_def2svp` (log `runs/hplc_ionpair_cpcm_def2svp.log`, progress in
+`runs/hplc_ionpair_cpcm_def2svp/summary.json`). 8 seeds; GPU M06-2X/def2-SVP DF + C-PCM water
+optimization, then GKS-EDA(sol). If interrupted, rerun the same command: completed stages skip.
+
+Next after 7.1: archive results; aug-cc-pVDZ EDA(sol) on lowest pair per base; radius
+(vdw_scale 1.2 vs 1.4) and dielectric (acetonitrile 35.688) sensitivity on one case;
+stage 7.2 TEAH+...proxy and residue...proxy; stage 7.3 ternary and three-body cycle.
