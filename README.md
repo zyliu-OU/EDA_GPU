@@ -303,50 +303,60 @@ Official software websites and implementation documentation:
     Independent program for the energy/gradient cross-check (version 1.11 used);
     [website and citation guidance](https://psicode.org/).
 
+16. **Bannwarth, C.; Ehlert, S.; Grimme, S. (2019).** “GFN2-xTB—An Accurate and Broadly
+    Parametrized Self-Consistent Tight-Binding Quantum Chemical Method with Multipole
+    Electrostatics and Density-Dependent Dispersion Contributions.” *Journal of Chemical Theory
+    and Computation* **15**, 1652–1671. [DOI: 10.1021/acs.jctc.8b01176](https://doi.org/10.1021/acs.jctc.8b01176).
+    Seed refinement before DFT optimization in the HPLC model study ([xtb](https://github.com/grimme-lab/xtb)).
+17. **Ehlert, S.; Stahn, M.; Spicher, S.; Grimme, S. (2021).** “Robust and Efficient Implicit
+    Solvation Model for Fast Semiempirical Methods.” *Journal of Chemical Theory and Computation*
+    **17**, 4250–4261. [DOI: 10.1021/acs.jctc.1c00471](https://doi.org/10.1021/acs.jctc.1c00471).
+    ALPB implicit solvation used with GFN2-xTB seed refinement.
+
 ### Density functionals and counterpoise convention
 
-16. **Boys, S. F.; Bernardi, F. (1970).** “The calculation of small molecular
+18. **Boys, S. F.; Bernardi, F. (1970).** “The calculation of small molecular
     interactions by the differences of separate total energies. Some procedures
     with reduced errors.” *Molecular Physics* **19**, 553–566.
     [DOI: 10.1080/00268977000101561](https://doi.org/10.1080/00268977000101561).
     Ghost-basis counterpoise convention for fragment references and BSSE treatment.
-17. **Becke, A. D. (1993).** “Density-functional thermochemistry. III. The role of
+19. **Becke, A. D. (1993).** “Density-functional thermochemistry. III. The role of
     exact exchange.” *Journal of Chemical Physics* **98**, 5648–5652.
     [DOI: 10.1063/1.464913](https://doi.org/10.1063/1.464913).
     Three-parameter hybrid construction relevant to B3LYP.
-18. **Stephens, P. J.; Devlin, F. J.; Chabalowski, C. F.; Frisch, M. J. (1994).**
+20. **Stephens, P. J.; Devlin, F. J.; Chabalowski, C. F.; Frisch, M. J. (1994).**
     “Ab Initio Calculation of Vibrational Absorption and Circular Dichroism Spectra
     Using Density Functional Force Fields.” *Journal of Physical Chemistry* **98**,
     11623–11627. [DOI: 10.1021/j100096a001](https://doi.org/10.1021/j100096a001).
     B3LYP reference returned by the installed Libxc interface.
-19. **Becke, A. D. (1988).** “Density-functional exchange-energy approximation
+21. **Becke, A. D. (1988).** “Density-functional exchange-energy approximation
     with correct asymptotic behavior.” *Physical Review A* **38**, 3098–3100.
     [DOI: 10.1103/PhysRevA.38.3098](https://doi.org/10.1103/PhysRevA.38.3098).
     B88 exchange contribution to B3LYP/B3LYP5.
-20. **Lee, C.; Yang, W.; Parr, R. G. (1988).** “Development of the Colle-Salvetti
+22. **Lee, C.; Yang, W.; Parr, R. G. (1988).** “Development of the Colle-Salvetti
     correlation-energy formula into a functional of the electron density.”
     *Physical Review B* **37**, 785–789.
     [DOI: 10.1103/PhysRevB.37.785](https://doi.org/10.1103/PhysRevB.37.785).
     LYP correlation contribution to B3LYP/B3LYP5.
-21. **Vosko, S. H.; Wilk, L.; Nusair, M. (1980).** “Accurate spin-dependent
+23. **Vosko, S. H.; Wilk, L.; Nusair, M. (1980).** “Accurate spin-dependent
     electron liquid correlation energies for local spin density calculations:
     a critical analysis.” *Canadian Journal of Physics* **58**, 1200–1211.
     [DOI: 10.1139/p80-159](https://doi.org/10.1139/p80-159).
     Local correlation and the explicitly recorded B3LYP variant convention.
-22. **Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996).** “Generalized Gradient
+24. **Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996).** “Generalized Gradient
     Approximation Made Simple.” *Physical Review Letters* **77**, 3865–3868.
     [DOI: 10.1103/PhysRevLett.77.3865](https://doi.org/10.1103/PhysRevLett.77.3865).
     PBE exchange/correlation underlying PBE0 and independent PBE component checks.
-23. **Adamo, C.; Barone, V. (1999).** “Toward reliable density functional methods
+25. **Adamo, C.; Barone, V. (1999).** “Toward reliable density functional methods
     without adjustable parameters: The PBE0 model.” *Journal of Chemical Physics*
     **110**, 6158–6170. [DOI: 10.1063/1.478522](https://doi.org/10.1063/1.478522).
     PBE0 global hybrid functional.
-24. **Ernzerhof, M.; Scuseria, G. E. (1999).** “Assessment of the
+26. **Ernzerhof, M.; Scuseria, G. E. (1999).** “Assessment of the
     Perdew–Burke–Ernzerhof exchange-correlation functional.” *Journal of Chemical
     Physics* **110**, 5029–5036.
     [DOI: 10.1063/1.478401](https://doi.org/10.1063/1.478401).
     Companion PBE0 reference returned by the installed Libxc interface.
-25. **Zhao, Y.; Truhlar, D. G. (2008).** “The M06 suite of density functionals
+27. **Zhao, Y.; Truhlar, D. G. (2008).** “The M06 suite of density functionals
     for main group thermochemistry, thermochemical kinetics, noncovalent
     interactions, excited states, and transition elements: two new functionals
     and systematic testing of four M06-class functionals and 12 other functionals.”
@@ -356,39 +366,39 @@ Official software websites and implementation documentation:
 
 ### Orbital and auxiliary basis sets
 
-26. **Weigend, F.; Ahlrichs, R. (2005).** “Balanced basis sets of split valence,
+28. **Weigend, F.; Ahlrichs, R. (2005).** “Balanced basis sets of split valence,
     triple zeta valence and quadruple zeta valence quality for H to Rn: Design and
     assessment of accuracy.” *Physical Chemistry Chemical Physics* **7**, 3297–3305.
     [DOI: 10.1039/B508541A](https://doi.org/10.1039/B508541A).
     def2-SVP basis used in the optimization-foundation validation.
-27. **Weigend, F. (2002).** “A fully direct RI-HF algorithm: Implementation,
+29. **Weigend, F. (2002).** “A fully direct RI-HF algorithm: Implementation,
     optimised auxiliary basis sets, demonstration of accuracy and efficiency.”
     *Physical Chemistry Chemical Physics* **4**, 4285–4291.
     [DOI: 10.1039/B204199P](https://doi.org/10.1039/B204199P).
     Correlation-consistent J/K-fitting auxiliary bases relevant to the
     aug-cc-pVDZ-JKFIT density-fitted optimization path.
-28. **Dunning, T. H., Jr. (1989).** “Gaussian basis sets for use in correlated
+30. **Dunning, T. H., Jr. (1989).** “Gaussian basis sets for use in correlated
     molecular calculations. I. The atoms boron through neon and hydrogen.”
     *Journal of Chemical Physics* **90**, 1007–1023.
     [DOI: 10.1063/1.456153](https://doi.org/10.1063/1.456153).
     Correlation-consistent cc-pVDZ foundation.
-29. **Kendall, R. A.; Dunning, T. H., Jr.; Harrison, R. J. (1992).** “Electron
+31. **Kendall, R. A.; Dunning, T. H., Jr.; Harrison, R. J. (1992).** “Electron
     affinities of the first-row atoms revisited. Systematic basis sets and wave
     functions.” *Journal of Chemical Physics* **96**, 6796–6806.
     [DOI: 10.1063/1.462569](https://doi.org/10.1063/1.462569).
     Diffuse augmentation underlying aug-cc-pVDZ in the molecular benchmark.
-30. **Hehre, W. J.; Ditchfield, R.; Pople, J. A. (1972).** “Self—Consistent
+32. **Hehre, W. J.; Ditchfield, R.; Pople, J. A. (1972).** “Self—Consistent
     Molecular Orbital Methods. XII. Further Extensions of Gaussian—Type Basis
     Sets for Use in Molecular Orbital Studies of Organic Molecules.”
     *Journal of Chemical Physics* **56**, 2257–2261.
     [DOI: 10.1063/1.1677527](https://doi.org/10.1063/1.1677527).
     6-31G basis underlying the XEDA CO₂ example.
-31. **Hariharan, P. C.; Pople, J. A. (1973).** “The influence of polarization
+33. **Hariharan, P. C.; Pople, J. A. (1973).** “The influence of polarization
     functions on molecular orbital hydrogenation energies.” *Theoretica Chimica
     Acta* **28**, 213–222.
     [DOI: 10.1007/BF00533485](https://doi.org/10.1007/BF00533485).
     Polarization functions relevant to the example's 6-31G* basis.
-32. **Weigend, F. (2008).** “Hartree–Fock exchange fitting basis sets for H to Rn.”
+34. **Weigend, F. (2008).** “Hartree–Fock exchange fitting basis sets for H to Rn.”
     *Journal of Computational Chemistry* **29**, 167–175.
     [DOI: 10.1002/jcc.20702](https://doi.org/10.1002/jcc.20702).
     Universal J/K-fitting auxiliary basis family used as def2-universal-jkfit

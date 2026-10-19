@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """Resumable optimize -> GKS-EDA(sol) campaign over labelled complex seeds.
 
-For each <seed>.xyz/.json: GPU optimization (density fitting, PCM, frozen atoms from
-metadata), then direct-integral counterpoise GKS-EDA(sol) at the optimized geometry with the
+For each <seed>.xyz/.json: optional GFN2-xTB/ALPB pre-optimization of the seed (anchor internal
+geometry constrained; rejected if any bond breaks or a hydrogen changes partner, e.g. proton transfer), GPU
+optimization (density fitting, PCM, frozen atoms from metadata), then direct-integral counterpoise GKS-EDA(sol) at the optimized geometry with the
 same functional, basis and solvent. Completed stages are skipped on restart; a failure is
 recorded and the campaign continues. Optimized structures are stationary points, not
 established minima, and EDA values are electronic descriptors, not retention free energies.
@@ -10,13 +11,62 @@ established minima, and EDA values are electronic descriptors, not retention fre
 import argparse
 from dataclasses import asdict
 import json
+import os
 from pathlib import Path
+import subprocess
 import traceback
+import numpy as np
+from pyscf.data import radii
+from pyscf.data.elements import charge
 from eda_gpu.engine import Settings, hardware, optimize
 from eda_gpu.gks import decompose
-from eda_gpu.model import load
+from eda_gpu.model import load, xyz_text
 
 KCAL = 627.509474
+XTB = Path(__file__).resolve().parents[1] / '.xtb-env' / 'bin' / 'xtb'
+ALPB = {78.3553: 'water', 35.688: 'acetonitrile'}
+
+
+def read_xyz(path):
+    lines = Path(path).read_text().splitlines()
+    return np.array([[float(v) for v in line.split()[1:4]] for line in lines[2:2 + int(lines[0])]])
+
+
+def topology_preserved(symbols, coords, meta):
+    """Every metadata bond within 1.25x covalent radii and every H nearest its bonded partner."""
+    c = np.asarray(coords); cov = lambda x: radii.COVALENT[charge(x)] * radii.BOHR
+    partner = {}
+    for i, j, _ in meta['bonds']:
+        if np.linalg.norm(c[i] - c[j]) > 1.25 * (cov(symbols[i]) + cov(symbols[j])): return False
+        if symbols[i] == 'H': partner[i] = j
+        if symbols[j] == 'H': partner[j] = i
+    heavy = [k for k, x in enumerate(symbols) if x != 'H']
+    return all(min(heavy, key=lambda k: np.linalg.norm(c[h] - c[k])) == p for h, p in partner.items())
+
+
+def xtb_preoptimize(symbols, coords, meta, eps, folder):
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / 'seed.xyz').write_text(xyz_text(symbols, coords))
+    control = f"$chrg {meta['charge']}\n$spin {meta['spin']}\n$opt\n maxcycle=3000\n$end\n"
+    if meta.get('frozen_atoms'):
+        # Constrain the anchor's internal geometry (rigid-body motion allowed); exact $fix fights ANCopt here.
+        control += '$constrain\n force constant=1.0\n atoms: ' + ','.join(str(i + 1) for i in meta['frozen_atoms']) + '\n$end\n'
+    (folder / 'xcontrol').write_text(control)
+    env = dict(os.environ, OMP_NUM_THREADS='4', OMP_STACKSIZE='1G')
+    with open(folder / 'xtb.out', 'w') as log:
+        subprocess.run([str(XTB), 'seed.xyz', '--gfn', '2', '--alpb', ALPB[eps], '--opt', 'normal', '--input', 'xcontrol'],  # seed refinement only; DFT converges tightly
+                       cwd=folder, stdout=log, stderr=subprocess.STDOUT, env=env, check=True)
+    if 'GEOMETRY OPTIMIZATION CONVERGED' not in (folder / 'xtb.out').read_text():
+        raise RuntimeError('xTB pre-optimization did not converge')
+    xyz = read_xyz(folder / 'xtbopt.xyz')
+    if not topology_preserved(symbols, xyz, meta):
+        raise RuntimeError('xTB pre-optimization changed bonding topology (bond broken or proton moved)')
+    frozen = meta.get('frozen_atoms', [])
+    if frozen:
+        internal = lambda x: np.linalg.norm(x[frozen][:, None] - x[frozen][None], axis=2)
+        if np.abs(internal(xyz) - internal(np.asarray(coords))).max() > 0.02:
+            raise RuntimeError('xTB distorted the frozen anchor geometry')
+    return xyz
 
 
 def write(path, obj):
@@ -32,6 +82,7 @@ def main():
     p.add_argument('--solvent', default='cpcm', choices=['none', 'cpcm', 'iefpcm']); p.add_argument('--solvent-eps', type=float, default=78.3553)
     p.add_argument('--maxsteps', type=int, default=200); p.add_argument('--threads', type=int, default=16)
     p.add_argument('--skip-eda', action='store_true')
+    p.add_argument('--preopt', choices=['none', 'xtb'], default='none', help='GFN2-xTB/ALPB seed refinement before DFT')
     a = p.parse_args()
     out = Path(a.output); out.mkdir(parents=True, exist_ok=True)
     common = dict(backend='gpu', xc=a.xc, basis=a.basis, auxbasis=a.auxbasis, grid_level=3, max_cycle=200, threads=a.threads,
@@ -47,6 +98,12 @@ def main():
         symbols, coords, meta = load(stem + '.xyz', stem + '.json')
         opt_dir, eda_dir = out / name / 'optimization', out / name / 'eda'
         try:
+            if a.preopt == 'xtb' and case.get('preoptimization') != 'GFN2-xTB/ALPB converged':
+                print(f'{name}: GFN2-xTB pre-optimization', flush=True)
+                coords = xtb_preoptimize(symbols, coords, meta, a.solvent_eps, out / name / 'xtb')
+                case['preoptimization'] = 'GFN2-xTB/ALPB converged'; write(summary_path, summary)
+            elif a.preopt == 'xtb':
+                coords = read_xyz(out / name / 'xtb' / 'xtbopt.xyz')
             if case.get('optimization') != 'converged':
                 if opt_dir.exists(): opt_dir.rename(opt_dir.with_name(f'optimization_failed_{len(list(opt_dir.parent.glob("optimization_failed_*")))}'))
                 opt_dir.mkdir(parents=True)
@@ -58,6 +115,10 @@ def main():
                             frozen_max_displacement_angstrom=r['frozen_max_displacement_angstrom'])
                 write(summary_path, summary)
                 if not r['optimization_converged']: raise RuntimeError('optimization not converged')
+                _, final, _ = load(opt_dir / 'optimized.xyz', stem + '.json')
+                case['bonding_topology_preserved'] = bool(topology_preserved(symbols, final, meta)); write(summary_path, summary)
+                if not case['bonding_topology_preserved']:
+                    raise RuntimeError('DFT optimization changed bonding topology; fragment definitions invalid, EDA skipped')
             if not a.skip_eda and case.get('eda') != 'success':
                 _, xyz, _ = load(opt_dir / 'optimized.xyz', stem + '.json')
                 if eda_dir.exists(): eda_dir.rename(eda_dir.with_name(f'eda_failed_{len(list(eda_dir.parent.glob("eda_failed_*")))}'))
