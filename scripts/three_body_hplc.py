@@ -44,7 +44,7 @@ def main():
     symbols, coords, meta = load(a.xyz, a.metadata)
     r, t, s = a.names
     settings = Settings(backend='gpu', xc=a.xc, basis=a.basis, density_fitting=False, grid_level=3, conv_tol=1e-9, conv_tol_grad=1e-6,
-                        max_cycle=200, threads=16, compute_duty_cycle=1.0, gpu_temperature_limit=80.0, solvent=a.solvent, solvent_eps=a.solvent_eps)
+                        max_cycle=200, threads=16, compute_duty_cycle=1.0, gpu_temperature_limit=80.0, cpu_temperature_limit=85.0, solvent=a.solvent, solvent_eps=a.solvent_eps)
     out = Path(a.output); out.mkdir(parents=True, exist_ok=True)
     jobs = {'RT|S': [(r, t), s], 'R|TS': [r, (t, s)], 'R|T': [r, t], 'T|S': [t, s], 'R|S': [r, s]}
     report_path = out / 'three_body.json'
