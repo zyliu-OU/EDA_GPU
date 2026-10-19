@@ -115,11 +115,16 @@ Pushed: `4bf17da` (GKS-EDA(sol) + scaling benchmark), `8be3b5d` (HPLC builders/s
   interpretations; XEDA BH3–NH3 unresolved (cavity radii unknown; desolvation radius-sensitive).
 - 43 tests pass.
 
-RUNNING (nohup, survives the session): stage 7.1 ion pairs
-`.env/bin/python scripts/run_hplc_stage.py examples/hplc/ionpair/residue_{A,G,C,U}_teah_* --output
-runs/hplc_ionpair_cpcm_def2svp` (log `runs/hplc_ionpair_cpcm_def2svp.log`, progress in
-`runs/hplc_ionpair_cpcm_def2svp/summary.json`). 8 seeds; GPU M06-2X/def2-SVP DF + C-PCM water
-optimization, then GKS-EDA(sol). If interrupted, rerun the same command: completed stages skip.
+RUNNING (nohup, survives the session): `runs/queue_hplc.sh` → stage 7.1 ion pairs then 7.2
+surface pairs, each seed refined with GFN2-xTB/ALPB (`.xtb-env`, xtb 6.7.1) then GPU M06-2X/def2-SVP
+DF + C-PCM optimization and GKS-EDA(sol). Log `runs/hplc_campaign.log`; progress in
+`runs/hplc_{ionpair,surface}_cpcm_def2svp/summary.json`. If interrupted, rerun `runs/queue_hplc.sh`
+(completed stages skip). The first unrefined 7.1 attempt (~60 s/DFT step, too slow) is kept in
+`runs/abandoned_hplc_ionpair_no_preopt/`. Pushed `b06638f`.
+
+Stage 7.3 ready, not run: ternary seeds via `build_hplc_complexes.py` with the optimized ion pair
+as host (silanol O–H → free phosphate O), optimize with `run_hplc_stage.py --skip-eda`, then
+`scripts/three_body_hplc.py <opt.xyz> --metadata <json> --names residue_X teah c8_silane_proxy`.
 
 Next after 7.1: archive results; aug-cc-pVDZ EDA(sol) on lowest pair per base; radius
 (vdw_scale 1.2 vs 1.4) and dielectric (acetonitrile 35.688) sensitivity on one case;

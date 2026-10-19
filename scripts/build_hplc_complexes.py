@@ -69,8 +69,7 @@ def complex_metadata(hm, gm, nh, identity):
     shift = lambda atoms: [a + nh for a in atoms]
     meta = {'identity': identity, 'protonation': f"host: {hm['protonation']}; guest: {gm['protonation']}",
             'charge': hm['charge'] + gm['charge'], 'spin': hm['spin'] + gm['spin'],
-            'fragments': [dict(hm['fragments'][0], name=hm['fragments'][0]['name']),
-                          dict(gm['fragments'][0], atoms=shift(gm['fragments'][0]['atoms']))],
+            'fragments': [dict(f) for f in hm['fragments']] + [dict(f, atoms=shift(f['atoms'])) for f in gm['fragments']],
             'bonds': hm['bonds'] + [[i + nh, j + nh, o] for i, j, o in gm['bonds']],
             'stereochemistry': f"host: {hm['stereochemistry']}; guest: {gm['stereochemistry']}",
             'geometry_provenance': 'seeded donor-acceptor placement of RDKit/MMFF94 monomer seeds; not optimized'}
