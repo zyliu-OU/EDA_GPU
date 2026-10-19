@@ -49,3 +49,28 @@ the archive are single cold runs, not benchmarks.
 2. Ask whether original tryptamine–water coordinates/outputs from the 2017 work exist.
 3. Optional: extend the Psi4 check to UKS (water radical-cation dimer) and DF paths.
 4. Pending from earlier: CPU common-geometry tryptamine comparison and cation benchmarks.
+
+## Session 2 update (same day) — XEDA kit, Table 1 geometry, Psi4 geometry; 3a–3c running
+
+Committed and pushed `626622f`:
+- Item 1 (matched XEDA): `scripts/xeda_matched.py` + `reports/xeda_matched_2026-10-18/`
+  (5 GAMESS-XEDA inputs from official manual keywords, EDA_GPU values, README with run/check
+  steps). **Blocked on user:** no GAMESS/XEDA on this host. User must run the five inputs and
+  supply logs; then `scripts/xeda_matched.py compare ...`. Check B3LYP VWN form in GAMESS logs.
+- Item 2: no original 2017 coordinates/outputs on host (only manuscript + SI PDFs in
+  ~/Downloads). Table 1 H-bond geometry matches within 0.05 Å / 1°
+  (`scripts/tryptamine_hbond_geometry.py`).
+- Item 3d: Psi4 geometry cross-check passes (water, water dimer; Hessian-verified minima).
+  Symmetric example dimer start → geomeTRIC Cs saddle at PBE0/def2-SVP (documented);
+  archived B3LYP validation dimer verified to be a true minimum.
+
+Running at time of writing (outputs under `runs/`, not yet archived):
+- 3a `runs/tryptamine_neutral_cpu_common_eda` — CPU EDA at the GPU common geometry with the
+  archived GPU EDA settings; compare components with
+  `reports/tryptamine_neutral_gpu_2026-10-11/result.json`.
+- 3b `runs/tryptamine_cation_gpu_df_opt` — GPU UKS M06-2X/aug-cc-pVDZ (DF aug-cc-pvdz-jkfit,
+  grid 3) optimization from the neutral optimized geometry with one electron removed
+  (paper procedure). Next: GPU direct EDA with the neutral EDA settings, then compare with
+  Table 3 `A_cation_H2O` and Table 1 cation H-bonds (`--case A_cation_H2O`).
+- 3c not started: `.env/bin/python scripts/compare_psi4.py --gpu --set extended --output
+  runs/psi4_crosscheck_extended` (DF and UKS cases), after 3a/3b free the CPU.
