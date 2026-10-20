@@ -1,0 +1,125 @@
+{
+  "jobs": {
+    "RT|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -30.1886337259171,
+        "exchange": -59.67643552185594,
+        "repulsion": 101.58560051363575,
+        "polarization": -12.488929207257923,
+        "generalized_correlation": -16.66214505659375,
+        "explicit_dispersion": 0.0,
+        "desolvation": 2.2727151834562944,
+        "total": -15.157827854963536
+      }
+    },
+    "R|TS": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -141.32310592375023,
+        "exchange": -105.46054419324906,
+        "repulsion": 183.45848375215405,
+        "polarization": -35.35579581687246,
+        "generalized_correlation": -20.604148267115363,
+        "explicit_dispersion": 0.0,
+        "desolvation": 87.51409558574628,
+        "total": -31.771014738364887
+      }
+    },
+    "R|T": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -111.6220832911239,
+        "exchange": -53.12961810426894,
+        "repulsion": 94.05247807440796,
+        "polarization": -23.40117936911559,
+        "generalized_correlation": -8.86077027608672,
+        "explicit_dispersion": 0.0,
+        "desolvation": 85.26147102543904,
+        "total": -17.699701932171806
+      }
+    },
+    "T|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -0.25637186350874835,
+        "exchange": -9.129786696371866,
+        "repulsion": 14.81442533180511,
+        "polarization": -0.4105317722889959,
+        "generalized_correlation": -4.863758816485078,
+        "explicit_dispersion": 0.0,
+        "desolvation": -1.3079016725244288,
+        "total": -1.153925592384848
+      }
+    },
+    "R|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -31.069540193662753,
+        "exchange": -52.09148343265835,
+        "repulsion": 89.38044763326448,
+        "polarization": -16.490762877496675,
+        "generalized_correlation": -11.793302635302844,
+        "explicit_dispersion": 0.0,
+        "desolvation": 6.928948137040258,
+        "total": -15.135693340978225
+      }
+    }
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720424,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 85.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "source_geometry": "runs/hplc_ternary_cpcm_def2svp/residue_C_teah_c8_17_0/optimization/optimized.xyz",
+  "definition": "dE3 = dE((RT)|S) - dE(T|S) - dE(R|S) at the ternary geometry; pairs in their own dimer basis",
+  "three_body_kcal_mol": {
+    "electrostatic": 1.1372783312544001,
+    "exchange": 1.5448346071742733,
+    "repulsion": -2.6092724514338386,
+    "polarization": 4.412365442527747,
+    "generalized_correlation": -0.005083604805829367,
+    "explicit_dispersion": 0.0,
+    "desolvation": -3.348331281059535,
+    "total": 1.1317910783995373
+  }
+}

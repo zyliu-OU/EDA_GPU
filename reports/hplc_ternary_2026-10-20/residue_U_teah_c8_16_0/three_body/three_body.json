@@ -1,0 +1,125 @@
+{
+  "jobs": {
+    "RT|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -34.0253719091711,
+        "exchange": -69.88474241325068,
+        "repulsion": 117.81610350898282,
+        "polarization": -12.280059306647184,
+        "generalized_correlation": -20.66538533907716,
+        "explicit_dispersion": 0.0,
+        "desolvation": 4.173418796223781,
+        "total": -14.866036619241367
+      }
+    },
+    "R|TS": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -134.65398581526046,
+        "exchange": -129.56195658689822,
+        "repulsion": 223.04294768605342,
+        "polarization": -35.80162645978484,
+        "generalized_correlation": -31.696710087025103,
+        "explicit_dispersion": 0.0,
+        "desolvation": 75.37729293741398,
+        "total": -33.29403822163587
+      }
+    },
+    "R|T": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -106.59455460295102,
+        "exchange": -59.54057408386181,
+        "repulsion": 105.9516575057319,
+        "polarization": -25.181543089960094,
+        "generalized_correlation": -11.97588352560377,
+        "explicit_dispersion": 0.0,
+        "desolvation": 78.7383614757272,
+        "total": -18.602536413105884
+      }
+    },
+    "T|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -6.4050518420612645,
+        "exchange": -2.033992398348167,
+        "repulsion": 3.210247505212673,
+        "polarization": -0.24449858176045658,
+        "generalized_correlation": -0.784468228764846,
+        "explicit_dispersion": 0.0,
+        "desolvation": 5.928366010325652,
+        "total": -0.32939760121486483
+      }
+    },
+    "R|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -29.05325261646267,
+        "exchange": -69.38803774252678,
+        "repulsion": 116.62655369131765,
+        "polarization": -15.058609218466847,
+        "generalized_correlation": -20.19281345869924,
+        "explicit_dispersion": 0.0,
+        "desolvation": 1.336481515701664,
+        "total": -15.72967776202829
+      }
+    }
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720424,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 85.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "source_geometry": "runs/hplc_ternary_cpcm_def2svp/residue_U_teah_c8_16_0/optimization/optimized.xyz",
+  "definition": "dE3 = dE((RT)|S) - dE(T|S) - dE(R|S) at the ternary geometry; pairs in their own dimer basis",
+  "three_body_kcal_mol": {
+    "electrostatic": 1.432932549352838,
+    "exchange": 1.5372877276242605,
+    "repulsion": -2.0206976875475107,
+    "polarization": 3.02304849358012,
+    "generalized_correlation": 0.31189634838692726,
+    "explicit_dispersion": 0.0,
+    "desolvation": -3.091428729803535,
+    "total": 1.1930387440017878
+  }
+}

@@ -102,3 +102,21 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
   pairs with EDA. No hardware-cap gate (would stall unattended); software guards GPU 80/65 C, CPU 85/75 C on all runs;
   cap status is logged. User authorized continuing the build without asking. After a reboot: re-apply caps if wanted,
   restart `runs/queue_hplc_ternary.sh` and then `runs/queue_hplc_reagents.sh` (both resume).
+
+## 2026-10-20: stage 7.3 complete
+
+- Ternary optimizations: all four converged, topology preserved (archive `reports/hplc_ternary_2026-10-20/`).
+- Three-body GKS-EDA(sol): ΔE₃ = +0.97 to +1.19 kcal/mol (small, anti-cooperative) for all bases; closure ≤ 2.1e-10 Eh.
+  Table in `docs/VALIDATION.md`.
+- Model caveat: this ternary arrangement has the residue H-bonded directly to the silanol (residual-silanol
+  picture) and TEAH⁺ barely touching the C8 proxy (T···S −0.3 to −2.1). The usual IP-RP picture is a *bridged*
+  arrangement: reagent alkyl chains on the C8 ligand, phosphate paired with the reagent N–H, no direct R–S contact.
+- Reagent series started automatically at ~05:50 (queue `runs/queue_hplc_reagents.sh`, log `runs/hplc_reagents.log`).
+
+## Next (updated 2026-10-20)
+
+1. Reagent series finishes → `analyze_hplc.py` on `runs/hplc_reagents_{ionpair,surface}_cpcm_def2svp`, archive, document.
+2. Bridged ternaries: residue phosphate on the N–H of each optimized reagent···C8 *contact* pair (TEAH⁺ included:
+   needs a TEAH⁺ contact seed on C8), optimize, three-body EDA. Compare with the silanol-bound arrangement above.
+3. Sensitivity: aug-cc-pVDZ EDA(sol) on the lowest pair per base; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
+4. When the user provides retention data: `scripts/hplc_retention.py`.

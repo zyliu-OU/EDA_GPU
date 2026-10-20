@@ -410,3 +410,24 @@ M06-2X/def2-SVP, DF, C-PCM water, frozen silane anchor. Archive: `reports/hplc_t
 All four converged with bonding topology preserved; frozen-anchor displacement ≤ 6.2e-8 Å; maximum GPU
 temperature 61 °C. Constrained stationary points (no Hessian at this size; minima not established).
 Single seeds (selected before the 2026-10-19 placement-ranking fix). Three-body GKS-EDA(sol) follows.
+
+### Three-body GKS-EDA(sol) at the ternary geometries
+
+`scripts/three_body_hplc.py` (M06-2X/def2-SVP, direct integrals, C-PCM water; R = residue, T = TEAH⁺,
+S = C8 proxy). Pairs in their own dimer basis, (RT)|S and R|(TS) in the trimer basis;
+ΔE₃ = ΔE((RT)|S) − ΔE(T|S) − ΔE(R|S). Closure ≤ 2.1e-10 Eh in all 20 decompositions. kcal/mol.
+
+| Base | R···T | T···S | R···S | (RT)···S | R···(TS) | ΔE₃ elec | ΔE₃ pol | ΔE₃ desolv | ΔE₃ total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A | -18.28 | -2.02 | -13.78 | -14.80 | -31.31 | +1.35 | +2.41 | -2.13 | +1.00 |
+| C | -17.70 | -1.15 | -15.14 | -15.16 | -31.77 | +1.14 | +4.41 | -3.35 | +1.13 |
+| G | -18.95 | -2.07 | -16.74 | -17.84 | -34.97 | +0.93 | +2.46 | -1.64 | +0.97 |
+| U | -18.60 | -0.33 | -15.73 | -14.87 | -33.29 | +1.43 | +3.02 | -3.09 | +1.19 |
+
+The three-body term is small and anti-cooperative (+0.97 to +1.19 kcal/mol) for every base:
+polarization and electrostatics are less favourable in the trimer, partly offset by desolvation.
+In this arrangement the residue binds the surface directly through the silanol O–H···O–P bond
+(R···S −13.8 to −16.7) while TEAH⁺ barely touches the proxy (T···S −0.3 to −2.1), so the larger
+R···(TS) than (RT)···S reflects the geometry built here (silanol on the second phosphate O), not a
+general preference between the two adsorption pictures. One placement per base; the base spread
+(≈3 kcal/mol in (RT)···S, G most favourable) is not established.

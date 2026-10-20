@@ -2,7 +2,8 @@
 
 Status: stage 7.1 (residue···TEAH⁺ ion pairs) and 7.2 (pairs with a stationary-phase proxy)
 complete (results in `docs/VALIDATION.md`, archive `reports/hplc_{ionpair,surface}_2026-10-19/`);
-7.3 (ternary complexes and three-body cycle) optimization in progress. Nothing here predicts
+7.3 (ternary complexes and three-body cycle) complete for one TEAH⁺ arrangement per base
+(`reports/hplc_ternary_2026-10-20/`); ion-pair reagent series running. Nothing here predicts
 retention. EDA quantities are electronic interaction descriptors of labelled small models.
 
 ## Chemical models (`scripts/build_hplc_models.py`, `examples/hplc/`)
