@@ -393,3 +393,20 @@ Component closure ≤ 3e-10 Eh; bonding topology preserved in every converged ca
 placement 13 hit the 200-step cap on a flat surface (rms gradient 6e-5 Eh/bohr; 2.9 kcal/mol above
 placement 14) and is excluded. Single local placements at def2-SVP without sampling: base differences
 of ~1–4 kcal/mol are within placement/basis/cavity uncertainty and are not established.
+
+## HPLC stage 7.3 ternary optimization (application), 2026-10-20
+
+Residue···TEAH⁺···C8-proxy complexes (104–108 atoms; TEAH⁺ on the lower-energy phosphate O of each
+optimized ion pair, C8 silanol O–H on the other non-bridging O), GFN2-xTB/ALPB pre-refinement, then GPU
+M06-2X/def2-SVP, DF, C-PCM water, frozen silane anchor. Archive: `reports/hplc_ternary_2026-10-20/`.
+
+| Complex | DFT evaluations | Wall time (h) | N–H···O–P (Å) | Si–O–H···O–P (Å) |
+| --- | ---: | ---: | ---: | ---: |
+| residue_A···TEAH⁺···C8 | 38 | 2.31 | 1.58 | 1.61 |
+| residue_C···TEAH⁺···C8 | 35 | 1.84 | 1.58 | 1.61 |
+| residue_G···TEAH⁺···C8 | 63 | 3.97 | 1.60 | 1.60 |
+| residue_U···TEAH⁺···C8 | 53 | 2.83 | 1.54 | 1.62 |
+
+All four converged with bonding topology preserved; frozen-anchor displacement ≤ 6.2e-8 Å; maximum GPU
+temperature 61 °C. Constrained stationary points (no Hessian at this size; minima not established).
+Single seeds (selected before the 2026-10-19 placement-ranking fix). Three-body GKS-EDA(sol) follows.

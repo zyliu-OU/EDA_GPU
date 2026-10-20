@@ -1,0 +1,110 @@
+{
+  "cases": {
+    "residue_A_teah_c8_18_0": {
+      "seed": "examples/hplc/ternary/residue_A_teah_c8_18_0",
+      "preoptimization": "GFN2-xTB/ALPB converged",
+      "optimization": "converged",
+      "optimized_energy_hartree": -3176.3249108936416,
+      "evaluations": 38,
+      "frozen_max_displacement_angstrom": 6.204133073950402e-08,
+      "bonding_topology_preserved": true
+    },
+    "residue_C_teah_c8_17_0": {
+      "seed": "examples/hplc/ternary/residue_C_teah_c8_17_0",
+      "preoptimization": "GFN2-xTB/ALPB converged",
+      "optimization": "converged",
+      "optimized_energy_hartree": -3104.0122290451673,
+      "evaluations": 35,
+      "frozen_max_displacement_angstrom": 8.773846982279565e-09,
+      "bonding_topology_preserved": true
+    },
+    "residue_G_teah_c8_13_0": {
+      "seed": "examples/hplc/ternary/residue_G_teah_c8_13_0",
+      "preoptimization": "GFN2-xTB/ALPB converged",
+      "optimization": "converged",
+      "optimized_energy_hartree": -3251.5047427409118,
+      "evaluations": 63,
+      "frozen_max_displacement_angstrom": 1.5666054231644466e-08,
+      "bonding_topology_preserved": true
+    },
+    "residue_U_teah_c8_16_0": {
+      "seed": "examples/hplc/ternary/residue_U_teah_c8_16_0",
+      "preoptimization": "GFN2-xTB/ALPB converged",
+      "optimization": "converged",
+      "optimized_energy_hartree": -3123.876673393156,
+      "evaluations": 53,
+      "frozen_max_displacement_angstrom": 1.8997827366806774e-08,
+      "bonding_topology_preserved": true
+    }
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720424,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "optimization_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "conv_tol_grad": null,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": true,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "eda_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 0.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  }
+}
