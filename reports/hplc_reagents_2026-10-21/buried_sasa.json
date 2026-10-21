@@ -1,0 +1,299 @@
+{
+  "method": "Shrake-Rupley, probe 1.4 A, Bondi radii, 960 points; nonpolar = C and H on C/Si",
+  "cases": {
+    "hplc_ionpair_cpcm_def2svp/residue_A_teah_17_0": {
+      "residue_A|teah": {
+        "buried_total_A2": 165.57527414098433,
+        "buried_nonpolar_A2": 109.07662053141308
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_A_teah_18_0": {
+      "residue_A|teah": {
+        "buried_total_A2": 191.2017493801377,
+        "buried_nonpolar_A2": 129.24080207878546
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_C_teah_16_0": {
+      "residue_C|teah": {
+        "buried_total_A2": 172.97732719976466,
+        "buried_nonpolar_A2": 113.09681193045702
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_C_teah_17_0": {
+      "residue_C|teah": {
+        "buried_total_A2": 155.9903587306859,
+        "buried_nonpolar_A2": 91.18629756677069
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_G_teah_14_0": {
+      "residue_G|teah": {
+        "buried_total_A2": 176.74858926891318,
+        "buried_nonpolar_A2": 120.59919698661702
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_U_teah_16_0": {
+      "residue_U|teah": {
+        "buried_total_A2": 146.25288758112924,
+        "buried_nonpolar_A2": 85.84925524709706
+      }
+    },
+    "hplc_ionpair_cpcm_def2svp/residue_U_teah_17_0": {
+      "residue_U|teah": {
+        "buried_total_A2": 199.3413476012165,
+        "buried_nonpolar_A2": 153.1066960699436
+      }
+    },
+    "hplc_surface_cpcm_def2svp/c8_teah_13_0": {
+      "c8_silane_proxy|teah": {
+        "buried_total_A2": 207.90100948500356,
+        "buried_nonpolar_A2": 152.84620567908337
+      }
+    },
+    "hplc_surface_cpcm_def2svp/c8_teah_14_0": {
+      "c8_silane_proxy|teah": {
+        "buried_total_A2": 162.0728486271786,
+        "buried_nonpolar_A2": 90.9920424210236
+      }
+    },
+    "hplc_surface_cpcm_def2svp/residue_A_c8_17_0": {
+      "residue_A|c8_silane_proxy": {
+        "buried_total_A2": 239.25638705849133,
+        "buried_nonpolar_A2": 129.15296838417873
+      }
+    },
+    "hplc_surface_cpcm_def2svp/residue_C_c8_16_0": {
+      "residue_C|c8_silane_proxy": {
+        "buried_total_A2": 238.635241830999,
+        "buried_nonpolar_A2": 88.86151900311415
+      }
+    },
+    "hplc_surface_cpcm_def2svp/residue_G_c8_13_0": {
+      "residue_G|c8_silane_proxy": {
+        "buried_total_A2": 270.6452042677828,
+        "buried_nonpolar_A2": 149.34058097675904
+      }
+    },
+    "hplc_surface_cpcm_def2svp/residue_U_c8_16_0": {
+      "residue_U|c8_silane_proxy": {
+        "buried_total_A2": 222.33999446837572,
+        "buried_nonpolar_A2": 105.6940415413543
+      }
+    },
+    "hplc_ternary_cpcm_def2svp/residue_A_teah_c8_18_0": {
+      "residue_A|teah": {
+        "buried_total_A2": 168.19647244348232,
+        "buried_nonpolar_A2": 108.6116648186819
+      },
+      "residue_A|c8_silane_proxy": {
+        "buried_total_A2": 241.9760860716517,
+        "buried_nonpolar_A2": 116.84538646465921
+      },
+      "teah|c8_silane_proxy": {
+        "buried_total_A2": 150.33690567091855,
+        "buried_nonpolar_A2": 111.18122580993077
+      },
+      "residue_A+teah|c8_silane_proxy": {
+        "buried_total_A2": 313.91208615799167,
+        "buried_nonpolar_A2": 186.9341876665535
+      }
+    },
+    "hplc_ternary_cpcm_def2svp/residue_C_teah_c8_17_0": {
+      "residue_C|teah": {
+        "buried_total_A2": 144.97096069883173,
+        "buried_nonpolar_A2": 79.5474821833838
+      },
+      "residue_C|c8_silane_proxy": {
+        "buried_total_A2": 220.37303807197554,
+        "buried_nonpolar_A2": 128.7114437166556
+      },
+      "teah|c8_silane_proxy": {
+        "buried_total_A2": 167.8788626621922,
+        "buried_nonpolar_A2": 158.96668266674578
+      },
+      "residue_C+teah|c8_silane_proxy": {
+        "buried_total_A2": 306.7979116330264,
+        "buried_nonpolar_A2": 231.40827496679117
+      }
+    },
+    "hplc_ternary_cpcm_def2svp/residue_G_teah_c8_13_0": {
+      "residue_G|teah": {
+        "buried_total_A2": 179.07832107698664,
+        "buried_nonpolar_A2": 121.94563123806813
+      },
+      "residue_G|c8_silane_proxy": {
+        "buried_total_A2": 321.47315485592367,
+        "buried_nonpolar_A2": 182.03186323032054
+      },
+      "teah|c8_silane_proxy": {
+        "buried_total_A2": 149.0418940552189,
+        "buried_nonpolar_A2": 110.5106266780831
+      },
+      "residue_G+teah|c8_silane_proxy": {
+        "buried_total_A2": 385.02372578704444,
+        "buried_nonpolar_A2": 242.23773754279694
+      }
+    },
+    "hplc_ternary_cpcm_def2svp/residue_U_teah_c8_16_0": {
+      "residue_U|teah": {
+        "buried_total_A2": 180.72897145304808,
+        "buried_nonpolar_A2": 131.7687369673738
+      },
+      "residue_U|c8_silane_proxy": {
+        "buried_total_A2": 307.0590696123255,
+        "buried_nonpolar_A2": 201.28589920600888
+      },
+      "teah|c8_silane_proxy": {
+        "buried_total_A2": 85.10590206538018,
+        "buried_nonpolar_A2": 40.50507768150874
+      },
+      "residue_U+teah|c8_silane_proxy": {
+        "buried_total_A2": 327.6014360833369,
+        "buried_nonpolar_A2": 213.88852903557824
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_dibutylammonium_17_0": {
+      "residue_A|dibutylammonium": {
+        "buried_total_A2": 160.70839734185927,
+        "buried_nonpolar_A2": 93.57115908992671
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_dibutylammonium_18_0": {
+      "residue_A|dibutylammonium": {
+        "buried_total_A2": 228.68669361603224,
+        "buried_nonpolar_A2": 155.58004578617602
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_dipeah_17_0": {
+      "residue_A|dipeah": {
+        "buried_total_A2": 194.10590438795975,
+        "buried_nonpolar_A2": 128.91276744587321
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_dipeah_18_0": {
+      "residue_A|dipeah": {
+        "buried_total_A2": 191.43506892153482,
+        "buried_nonpolar_A2": 131.6907207498096
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_hexylammonium_17_0": {
+      "residue_A|hexylammonium": {
+        "buried_total_A2": 167.77218595664897,
+        "buried_nonpolar_A2": 98.66184818568138
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_hexylammonium_18_0": {
+      "residue_A|hexylammonium": {
+        "buried_total_A2": 146.27216387005285,
+        "buried_nonpolar_A2": 78.49085985422624
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_tributylammonium_17_0": {
+      "residue_A|tributylammonium": {
+        "buried_total_A2": 286.08214102850945,
+        "buried_nonpolar_A2": 196.9552137330354
+      }
+    },
+    "hplc_reagents_ionpair_cpcm_def2svp/residue_A_tributylammonium_18_0": {
+      "residue_A|tributylammonium": {
+        "buried_total_A2": 270.6307503235821,
+        "buried_nonpolar_A2": 162.47413996478497
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_13_0": {
+      "c8_silane_proxy|dibutylammonium": {
+        "buried_total_A2": 251.14245101970312,
+        "buried_nonpolar_A2": 180.89853368053787
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_14_0": {
+      "c8_silane_proxy|dibutylammonium": {
+        "buried_total_A2": 167.39178490119195,
+        "buried_nonpolar_A2": 88.2332004723961
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_contact_13_0": {
+      "c8_silane_proxy|dibutylammonium": {
+        "buried_total_A2": 230.21867425659502,
+        "buried_nonpolar_A2": 176.42817823417352
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_contact_14_0": {
+      "c8_silane_proxy|dibutylammonium": {
+        "buried_total_A2": 249.38038929617016,
+        "buried_nonpolar_A2": 182.83663454841508
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dipeah_13_0": {
+      "c8_silane_proxy|dipeah": {
+        "buried_total_A2": 207.44332132327747,
+        "buried_nonpolar_A2": 148.678621224709
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dipeah_14_0": {
+      "c8_silane_proxy|dipeah": {
+        "buried_total_A2": 221.21923652519524,
+        "buried_nonpolar_A2": 163.9072298135975
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dipeah_contact_13_0": {
+      "c8_silane_proxy|dipeah": {
+        "buried_total_A2": 231.2568920887901,
+        "buried_nonpolar_A2": 169.90531558746375
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_dipeah_contact_14_0": {
+      "c8_silane_proxy|dipeah": {
+        "buried_total_A2": 192.45623314160923,
+        "buried_nonpolar_A2": 134.35649301607475
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_14_0": {
+      "c8_silane_proxy|hexylammonium": {
+        "buried_total_A2": 143.96535259838117,
+        "buried_nonpolar_A2": 49.19943535031848
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_contact_13_0": {
+      "c8_silane_proxy|hexylammonium": {
+        "buried_total_A2": 219.67714650127277,
+        "buried_nonpolar_A2": 127.80129814497172
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_contact_14_0": {
+      "c8_silane_proxy|hexylammonium": {
+        "buried_total_A2": 204.75900842436897,
+        "buried_nonpolar_A2": 136.12350798402508
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_teah_contact_13_0": {
+      "c8_silane_proxy|teah": {
+        "buried_total_A2": 205.3513347752521,
+        "buried_nonpolar_A2": 139.27360911771825
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_teah_contact_14_0": {
+      "c8_silane_proxy|teah": {
+        "buried_total_A2": 182.76392238644758,
+        "buried_nonpolar_A2": 124.85526963406778
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_13_0": {
+      "c8_silane_proxy|tributylammonium": {
+        "buried_total_A2": 292.9895647229481,
+        "buried_nonpolar_A2": 222.89927126454324
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_14_0": {
+      "c8_silane_proxy|tributylammonium": {
+        "buried_total_A2": 154.1590615410555,
+        "buried_nonpolar_A2": 61.52272523310626
+      }
+    },
+    "hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_contact_14_0": {
+      "c8_silane_proxy|tributylammonium": {
+        "buried_total_A2": 223.3105214508612,
+        "buried_nonpolar_A2": 144.58198440442766
+      }
+    }
+  }
+}
