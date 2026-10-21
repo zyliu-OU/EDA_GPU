@@ -120,3 +120,21 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
    needs a TEAH⁺ contact seed on C8), optimize, three-body EDA. Compare with the silanol-bound arrangement above.
 3. Sensitivity: aug-cc-pVDZ EDA(sol) on the lowest pair per base; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
 4. When the user provides retention data: `scripts/hplc_retention.py`.
+
+## 2026-10-21: reagent series complete; bridged ternaries running
+
+- Reagent series: 25/25 converged + EDA (c8_hexylammonium_13_0 re-run with `--preopt none` after the xTB anchor gate
+  rejected it at 0.020 Å). Archive `reports/hplc_reagents_2026-10-21/`; table in `docs/VALIDATION.md`.
+- Finding: reagent···C8 EDA totals are flat (−10.6 to −12.7) and within placement spread; no cavitation term in
+  C-PCM → hydrophobic effect missing. Added `scripts/buried_sasa.py` (FreeSASA cross-check −0.6 %); buried nonpolar
+  area tracks hydrophobicity (TBA 223, DBA 183, DIPEA 170, HA 138, TEAH 139 Å² max).
+- Bridged ternaries: `scripts/build_hplc_bridged.py` → `examples/hplc/bridged/` (5 reagents, residue_A).
+  RUNNING: `runs/queue_hplc_bridged.sh` → `runs/hplc_bridged.log` (optimize, then three-body into
+  `runs/hplc_three_body_bridged/`).
+
+## Next (updated 2026-10-21)
+
+1. Bridged ternaries finish → archive, compare with the silanol-bound ternary (TEAH⁺) and across reagents.
+2. Sensitivity: aug-cc-pVDZ EDA(sol) on selected pairs; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
+3. Placement sampling for the base comparison (more seeds per base, xTB-ranked).
+4. When the user provides retention data: `scripts/hplc_retention.py` (add buried-SASA descriptors).

@@ -3,7 +3,8 @@
 Status: stage 7.1 (residue···TEAH⁺ ion pairs) and 7.2 (pairs with a stationary-phase proxy)
 complete (results in `docs/VALIDATION.md`, archive `reports/hplc_{ionpair,surface}_2026-10-19/`);
 7.3 (ternary complexes and three-body cycle) complete for one TEAH⁺ arrangement per base
-(`reports/hplc_ternary_2026-10-20/`); ion-pair reagent series running. Nothing here predicts
+(`reports/hplc_ternary_2026-10-20/`); ion-pair reagent series complete for residue A
+(`reports/hplc_reagents_2026-10-21/`); bridged ternaries (C8 on reagent chains) running. Nothing here predicts
 retention. EDA quantities are electronic interaction descriptors of labelled small models.
 
 ## Chemical models (`scripts/build_hplc_models.py`, `examples/hplc/`)
@@ -67,7 +68,7 @@ DIPEA-H⁺ (DIPEA/HFIP or acetate). Acetate and HFIP counter-anions are not mode
 residue_A phosphate O (both non-bridging O) and on the C8-proxy silanol O. Surface pairs get a second,
 chain-contact seed (`build_hplc_complexes.py --select contact`: most heavy-atom pairs within 4.5 Å),
 since alkyl-chain contact with the C8 ligand is the interaction of interest there; the analysis treats
-it as another placement of the same pair. Further bases: `--bases A C G U`. Not yet optimized.
+it as another placement of the same pair. Further bases: `--bases A C G U`. Results: `docs/VALIDATION.md`.
 
 Placement selection fix (2026-10-19): the clearance used to rank placements included the acceptor and
 donor X atoms, whose distances to the partner's H-bond motif are fixed by the H-bond geometry, so every
@@ -92,3 +93,16 @@ sizes), not ensembles. PCM electrostatics omit cavitation and dispersion–repul
 terms; desolvation depends strongly on cavity radii (see the BH₃–NH₃ radius scan in
 `docs/VALIDATION.md`). Base-dependent EDA differences are hypotheses for comparison with
 controlled retention data on same-length, same-termini oligonucleotides, not retention factors.
+
+## Bridged ternaries (`scripts/build_hplc_bridged.py`, `examples/hplc/bridged/`)
+
+The stage 7.3 ternaries bind the residue directly to a silanol. The bridged arrangement instead docks the
+C8 proxy as a rigid body on the alkyl chains of the optimized residue_A···reagent ion pair (most
+proxy-C···reagent-C contacts within 4.5 Å; no proxy heavy atom within 4.0 Å of the residue), so the
+reagent sits between phosphate and phase. One seed per reagent; three-body GKS-EDA(sol) as in stage 7.3.
+
+## Hydrophobic descriptor (`scripts/buried_sasa.py`)
+
+C-PCM electrostatics have no cavitation term, so GKS-EDA(sol) omits the hydrophobic effect. Buried total
+and nonpolar SASA on association (Shrake–Rupley, 1.4 Å probe, Bondi radii) is reported beside the EDA,
+as an area; it is not added to any EDA component.

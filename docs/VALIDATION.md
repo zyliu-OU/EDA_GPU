@@ -431,3 +431,30 @@ In this arrangement the residue binds the surface directly through the silanol O
 R···(TS) than (RT)···S reflects the geometry built here (silanol on the second phosphate O), not a
 general preference between the two adsorption pictures. One placement per base; the base spread
 (≈3 kcal/mol in (RT)···S, G most favourable) is not established.
+
+## Ion-pair reagent series (application), 2026-10-21
+
+Same protocol as stages 7.1/7.2 (M06-2X/def2-SVP, C-PCM water, GPU optimization then GKS-EDA(sol)); seeds
+from `scripts/build_hplc_reagents.py` (placement ranking after the 2026-10-19 fix; C8 pairs include
+chain-contact seeds). Archive: `reports/hplc_reagents_2026-10-21/` (TEAH⁺ residue_A value from stage 7.1;
+TEAH⁺···C8 from the two chain-contact seeds). All 25 cases converged with topology preserved and EDA
+closure ≤ 3e-10 Eh. c8_hexylammonium_13_0: the xTB refinement was rejected (anchor distortion 0.020 Å
+against the 0.02 Å gate) and DFT started from the RDKit seed. kcal/mol; "selected" = lowest PCM free
+energy; range over all placements. Buried nonpolar SASA from `scripts/buried_sasa.py` (Å², C and C/Si-bound H;
+FreeSASA cross-check on one complex: −0.6 %).
+
+| Reagent | residue_A··· total (selected) | range | ···C8 total (selected) | range | ···C8 Pauli | ···C8 gcorr | buried nonpolar SASA, selected | all C8 placements |
+| --- | ---: | --- | ---: | --- | ---: | ---: | ---: | --- |
+| TEAH⁺ (TEAA) | -18.77 | -18.8 to -18.2 | -10.55 | -10.7 to -10.6 | 23.6 | -11.4 | 125 | 125–139 |
+| hexylammonium (HAA) | -17.74 | -17.7 to -17.4 | -12.52 | -12.5 to -8.8 | 24.1 | -12.3 | 128 | 49–138 |
+| DIPEA-H⁺ | -19.08 | -19.1 to -18.8 | -12.08 | -12.1 to -10.7 | 30.3 | -16.7 | 170 | 134–170 |
+| dibutylammonium (DBAA) | -23.42 | -23.4 to -19.1 | -10.82 | -14.2 to -8.9 | 22.7 | -13.1 | 181 | 88–183 |
+| tributylammonium (TBuAA) | -23.52 | -24.3 to -23.5 | -12.67 | -12.7 to -8.0 | 32.8 | -18.7 | 223 | 62–223 |
+
+Reagent···C8 interaction totals are nearly flat across reagents (−10.6 to −12.7) and the placement range
+within one reagent (up to 5.3 kcal/mol) exceeds the spread between reagents. This is expected: C-PCM has
+no cavitation term, so the hydrophobic effect that dominates alkylammonium adsorption on C18 in water is
+absent from GKS-EDA(sol). The buried nonpolar area tracks reagent hydrophobicity (tributylammonium largest)
+and is reported as a separate empirical descriptor, without a surface-tension coefficient (literature
+values span ~0.005–0.03 kcal/mol/Å²). A single C8 ligand cannot wrap a bulky reagent as a C18 brush can,
+so buried areas of large reagents are likely underestimated. One residue (A); single local placements.

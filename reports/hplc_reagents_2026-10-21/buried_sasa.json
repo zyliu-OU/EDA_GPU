@@ -247,6 +247,12 @@
         "buried_nonpolar_A2": 134.35649301607475
       }
     },
+    "hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_13_0": {
+      "c8_silane_proxy|hexylammonium": {
+        "buried_total_A2": 201.30856579700446,
+        "buried_nonpolar_A2": 137.76747723970982
+      }
+    },
     "hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_14_0": {
       "c8_silane_proxy|hexylammonium": {
         "buried_total_A2": 143.96535259838117,
