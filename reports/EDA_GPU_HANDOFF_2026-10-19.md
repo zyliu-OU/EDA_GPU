@@ -138,3 +138,11 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
 2. Sensitivity: aug-cc-pVDZ EDA(sol) on selected pairs; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
 3. Placement sampling for the base comparison (more seeds per base, xTB-ranked).
 4. When the user provides retention data: `scripts/hplc_retention.py` (add buried-SASA descriptors).
+
+## 2026-10-21 08:40 status — user: stop after the current queue, save handoff
+
+- Running: `runs/queue_hplc_bridged.sh` (PID 393702). Bridged optimizations: dibutylammonium converged (33 evals,
+  1.9 h); DIPEA-H⁺ at step ~39 (2.6 h); hexylammonium, TEAH⁺, tributylammonium (107–125 atoms) still to run; then
+  three-body EDA on each converged case (≈40–60 min each). Estimated finish ≈ late evening 2026-10-21 to early 10-22.
+- Plan agreed with the user: when this queue finishes, archive bridged results to `reports/hplc_bridged_<date>/`,
+  document in `docs/VALIDATION.md`, update this handoff, commit/push, and STOP — do not start the sensitivity stage.
