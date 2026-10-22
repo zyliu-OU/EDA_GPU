@@ -458,3 +458,38 @@ absent from GKS-EDA(sol). The buried nonpolar area tracks reagent hydrophobicity
 and is reported as a separate empirical descriptor, without a surface-tension coefficient (literature
 values span ~0.005–0.03 kcal/mol/Å²). A single C8 ligand cannot wrap a bulky reagent as a C18 brush can,
 so buried areas of large reagents are likely underestimated. One residue (A); single local placements.
+
+## Bridged ternaries (application), 2026-10-22
+
+residue_A···reagent⁺···C8-proxy with the C8 ligand docked on the reagent alkyl chains of each optimized residue_A
+ion pair (`scripts/build_hplc_bridged.py`, most proxy-C···reagent-C contacts within 4.5 Å) and no direct
+residue–silane contact: phosphate on the reagent N–H, alkyl chains on C8. GFN2-xTB/ALPB pre-refinement, then
+GPU M06-2X/def2-SVP, DF, C-PCM water, frozen silane anchor; three-body GKS-EDA(sol) as in stage 7.3.
+Archive: `reports/hplc_bridged_2026-10-22/`. All five converged with topology preserved (frozen-anchor
+displacement ≤ 2.7e-8 Å); closure ≤ 4.0e-10 Eh in all 25 decompositions. Constrained stationary points, one
+seed per reagent. kcal/mol.
+
+| Reagent | DFT evals | Wall (h) | N–H···O–P (Å) | R···T | T···S | R···S | (RT)···S | R···(TS) | ΔE₃ elec | ΔE₃ pol | ΔE₃ desolv | ΔE₃ total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| TEAH⁺ | 126 | 6.04 | 1.54 | -19.22 | -2.15 | +0.02 | -2.11 | -19.30 | -0.12 | +0.32 | -0.33 | +0.02 |
+| hexylammonium | 28 | 1.52 | 1.55 | -18.27 | -3.75 | -0.09 | -3.83 | -18.40 | +0.01 | +0.27 | -0.29 | +0.01 |
+| DIPEA-H⁺ | 59 | 3.71 | 1.59 | -19.99 | -2.59 | -1.04 | -3.92 | -21.47 | -0.05 | +0.53 | -0.38 | -0.30 |
+| dibutylammonium | 33 | 2.01 | 1.57 | -23.44 | -2.37 | +0.02 | -2.35 | -23.47 | -0.04 | +0.25 | -0.24 | +0.01 |
+| tributylammonium | 67 | 5.21 | 1.64 | -24.70 | -3.17 | +0.04 | -3.11 | -24.74 | +0.27 | +0.36 | -0.76 | +0.03 |
+
+In the bridged arrangement the three-body term is negligible (|ΔE₃| ≤ 0.3, against +1.0 to +1.2 for the
+silanol-bound TEAH⁺ ternaries), so the complex is pairwise additive: the residue binds the reagent
+(R···T −18.3 to −24.7, ordered as in the ion-pair series) and the reagent binds C8 only weakly through its
+chains (T···S −2.2 to −3.8, mostly exchange + generalized correlation), with no direct residue–C8 term.
+
+Reagent···C8 is 7–10 kcal/mol weaker here than in the isolated reagent···C8 pairs of the reagent series
+(−10.6 to −12.7). Re-checking those 17 optimized pairs shows that every one, including the chain-contact
+seeds, ended with the reagent N–H hydrogen-bonded to a silanol O (N–H···O 1.75–2.04 Å); in the bridged
+complexes this N–H is used by the phosphate (N–H···O(silanol) 7.2–10.3 Å) while C···C contacts within 4.5 Å are
+as many or more (10–20 vs 0–16). The isolated-pair values therefore measure mainly the N–H···silanol
+hydrogen bond, not hydrophobic retention; the chain-only contribution is ≈ −2 to −4 kcal/mol in C-PCM, which
+still lacks a cavitation term (see the buried-SASA discussion above). For the bridged model, the
+reagent-dependent part of retention at this level is R···T (DBA/TBA ≈ 4–6 kcal/mol stronger than TEAH⁺/HA)
+plus the hydrophobic term C-PCM omits. DIPEA-H⁺ is the only case with a small direct residue–C8 contact
+(R···S −1.0, closest heavy atoms 3.2 Å). One residue, one seed per reagent; differences of ~1–2 kcal/mol are
+not established.

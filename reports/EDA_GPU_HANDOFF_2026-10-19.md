@@ -146,3 +146,21 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
   three-body EDA on each converged case (≈40–60 min each). Estimated finish ≈ late evening 2026-10-21 to early 10-22.
 - Plan agreed with the user: when this queue finishes, archive bridged results to `reports/hplc_bridged_<date>/`,
   document in `docs/VALIDATION.md`, update this handoff, commit/push, and STOP — do not start the sensitivity stage.
+
+## 2026-10-22: bridged ternaries complete — STOPPED (per user plan)
+
+- `runs/queue_hplc_bridged.sh` finished 2026-10-22 01:31. All 5 converged, topology preserved; three-body EDA on all
+  5 (closure ≤ 4.0e-10 Eh). Archive `reports/hplc_bridged_2026-10-22/`; table in `docs/VALIDATION.md`.
+- Findings: ΔE₃ ≈ 0 (|ΔE₃| ≤ 0.3) — bridged complex is pairwise additive. R···T −18.3 to −24.7 (DBA/TBA strongest),
+  T···S only −2.2 to −3.8, R···S ≈ 0 (DIPEA −1.0).
+- Re-interpretation: all 17 isolated reagent···C8 pairs of the reagent series optimized to an N–H···O(silanol)
+  H-bond (1.75–2.04 Å), so their −10.6 to −12.7 is mostly that H-bond, not chain contact. Chain-only ≈ −2 to −4.
+- Nothing running. Sensitivity stage NOT started (user instruction).
+
+## Next (updated 2026-10-22)
+
+1. Sensitivity: aug-cc-pVDZ EDA(sol) on selected pairs; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
+2. Decide the surface model for retention: silanol-bound vs bridged (or both, weighted); consider endcapped proxy
+   (no free silanol) to test the N–H···silanol contribution directly.
+3. Placement sampling (more seeds per base/reagent, xTB-ranked).
+4. When the user provides retention data: `scripts/hplc_retention.py` (add buried-SASA descriptors).

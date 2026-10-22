@@ -1,0 +1,125 @@
+{
+  "jobs": {
+    "RT|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -1.8556411632383956,
+        "exchange": -10.971801528322514,
+        "repulsion": 17.562642558300528,
+        "polarization": -0.5298216517778845,
+        "generalized_correlation": -6.359042143690449,
+        "explicit_dispersion": 0.0,
+        "desolvation": -0.19307991442830133,
+        "total": -2.3467437918251184
+      }
+    },
+    "R|TS": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -126.64515547503075,
+        "exchange": -68.60237890636425,
+        "repulsion": 120.17949969375019,
+        "polarization": -22.382121982317223,
+        "generalized_correlation": -19.68197453851858,
+        "explicit_dispersion": 0.0,
+        "desolvation": 93.66088164750776,
+        "total": -23.47124941928446
+      }
+    },
+    "R|T": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -126.63176190735778,
+        "exchange": -68.61331786131032,
+        "repulsion": 120.19260284446344,
+        "polarization": -22.484793629673195,
+        "generalized_correlation": -19.567005261690326,
+        "explicit_dispersion": 0.0,
+        "desolvation": 93.66807605226957,
+        "total": -23.436199826089577
+      }
+    },
+    "T|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -1.6619120072974218,
+        "exchange": -10.756517225608643,
+        "repulsion": 17.238931058784047,
+        "polarization": -0.763524289767905,
+        "generalized_correlation": -6.28681461442023,
+        "explicit_dispersion": 0.0,
+        "desolvation": -0.14361949204575822,
+        "total": -2.3734566892193367
+      }
+    },
+    "R|S": {
+      "status": "success",
+      "components_kcal_mol": {
+        "electrostatic": -0.15738628189419315,
+        "exchange": -2.9914299707023713e-05,
+        "repulsion": 3.429150342098182e-05,
+        "polarization": -0.019501582275886428,
+        "generalized_correlation": 0.002245322436026182,
+        "explicit_dispersion": 0.0,
+        "desolvation": 0.19430751896455772,
+        "total": 0.01966956955105822
+      }
+    }
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 9 5950X 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total_kib": 31720424,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "processor": "",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 595.99.02, 16376 MiB",
+    "versions": {
+      "EDA_GPU": "0.1.0",
+      "pyscf": "2.14.0",
+      "geometric": "1.1.1",
+      "numpy": "2.5.4",
+      "gpu4pyscf-cuda12x": "1.8.1",
+      "cupy-cuda12x": "14.2.0",
+      "cutensor-cu12": "2.8.1"
+    }
+  },
+  "settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 85.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "source_geometry": "runs/hplc_bridged_cpcm_def2svp/residue_A_dibutylammonium_c8_bridged/optimization/optimized.xyz",
+  "definition": "dE3 = dE((RT)|S) - dE(T|S) - dE(R|S) at the ternary geometry; pairs in their own dimer basis",
+  "three_body_kcal_mol": {
+    "electrostatic": -0.03634287404678058,
+    "exchange": -0.21525438841416342,
+    "repulsion": 0.32367720801305994,
+    "polarization": 0.2532042202659069,
+    "generalized_correlation": -0.07447285170624565,
+    "explicit_dispersion": 0.0,
+    "desolvation": -0.24376794134710084,
+    "total": 0.007043327843160117
+  }
+}
