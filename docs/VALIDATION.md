@@ -480,7 +480,7 @@ seed per reagent. kcal/mol.
 In the bridged arrangement the three-body term is negligible (|ΔE₃| ≤ 0.3, against +1.0 to +1.2 for the
 silanol-bound TEAH⁺ ternaries), so the complex is pairwise additive: the residue binds the reagent
 (R···T −18.3 to −24.7, ordered as in the ion-pair series) and the reagent binds C8 only weakly through its
-chains (T···S −2.2 to −3.8, mostly exchange + generalized correlation), with no direct residue–C8 term.
+chains (T···S −2.1 to −3.7, mostly exchange + generalized correlation), with no direct residue–C8 term.
 
 Reagent···C8 is 7–10 kcal/mol weaker here than in the isolated reagent···C8 pairs of the reagent series
 (−10.6 to −12.7). Re-checking those 17 optimized pairs shows that every one, including the chain-contact

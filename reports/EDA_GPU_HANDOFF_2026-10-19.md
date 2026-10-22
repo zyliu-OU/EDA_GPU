@@ -152,7 +152,7 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
 - `runs/queue_hplc_bridged.sh` finished 2026-10-22 01:31. All 5 converged, topology preserved; three-body EDA on all
   5 (closure ≤ 4.0e-10 Eh). Archive `reports/hplc_bridged_2026-10-22/`; table in `docs/VALIDATION.md`.
 - Findings: ΔE₃ ≈ 0 (|ΔE₃| ≤ 0.3) — bridged complex is pairwise additive. R···T −18.3 to −24.7 (DBA/TBA strongest),
-  T···S only −2.2 to −3.8, R···S ≈ 0 (DIPEA −1.0).
+  T···S only −2.1 to −3.7, R···S ≈ 0 (DIPEA −1.0).
 - Re-interpretation: all 17 isolated reagent···C8 pairs of the reagent series optimized to an N–H···O(silanol)
   H-bond (1.75–2.04 Å), so their −10.6 to −12.7 is mostly that H-bond, not chain contact. Chain-only ≈ −2 to −4.
 - Nothing running. Sensitivity stage NOT started (user instruction).
@@ -164,3 +164,14 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
    (no free silanol) to test the N–H···silanol contribution directly.
 3. Placement sampling (more seeds per base/reagent, xTB-ranked).
 4. When the user provides retention data: `scripts/hplc_retention.py` (add buried-SASA descriptors).
+
+## 2026-10-22: literature comparison + README figures
+
+- User added two papers (repo root, PDFs git-ignored): Donegan/Gilar 2022 (J Chromatogr A 1666:462860) and
+  Maurer/Guillarme 2025 (J Chromatogr A 1740:465574). Both rank TEA < DIPEA < DBA < HA < TBA.
+- README: new "HPLC application study (experimental)" section (systems, bridged table, insights, limits) + refs 35–36.
+- Figures: `scripts/plot_hplc_figures.py` (system python3: numpy + matplotlib; .env has no matplotlib) →
+  `docs/figures/hplc_structures.png`, `hplc_pair_diagram.png`, `hplc_eda_vs_experiment.png`.
+- Conclusion: qualitative support only (base-independent ion pair → length-based ionic mode; bridged = additive;
+  pairing strength ≠ reagent order). EDA does not reproduce reagent order and inverts base order (C strongest).
+  Top next step: nonpolar/cavitation solvation term, silanol-free proxy.

@@ -98,15 +98,97 @@ See [validation details](docs/VALIDATION.md),
    outputs, component by component.
 5. Extend the implemented GPU component path after external validation; improve
    performance beyond the current small-system direct-integral measurements.
-6. Explore nucleotide/RNA–triethylammonium–stationary-phase models after the scientific
-   foundation is established, with explicit chemical states, solvent/sampling assumptions,
-   and experimental validation before interpreting HPLC retention trends.
+6. Nucleotide/RNA–ion-pair reagent–stationary-phase models: first results and a comparison with
+   published retention data are in the [HPLC application study](#hplc-application-study-experimental);
+   a nonpolar solvation term and placement sampling are needed before retention trends can be interpreted.
 
 Complete restricted/unrestricted gas-phase EDA reproduces published GKS-EDA values to ≤0.20 kcal/mol
 per component (see the benchmark row above); GKS-EDA(sol) and the HPLC study remain experimental. Total-energy closure alone will not count
 as component validation, and ALMO-EDA or other decompositions will not be substituted
 for the original GKS-EDA definitions. The exact current blockers are documented in
 [the GKS-EDA source gate](docs/GKS_EDA_SPEC.md).
+
+## HPLC application study (experimental)
+
+An application of GKS-EDA(sol) to ion-pair reversed-phase (IP-RP) HPLC of RNA: how a capped RNA
+residue (nucleotide with a −1 phosphodiester), an alkylammonium ion-pair reagent and a C8
+stationary-phase proxy (octyldimethylsilyl–O–Si(OH)₃) interact. All structures were optimized on
+the GPU at M06-2X/def2-SVP in C-PCM water (frozen silane anchor), then decomposed with three-body
+GKS-EDA(sol). This is exploratory work: one starting geometry per case, constrained stationary points, no
+cavitation term in the solvent model. Full tables: [validation](docs/VALIDATION.md); models and
+limits: [HPLC models](docs/HPLC_MODELS.md); figures: `scripts/plot_hplc_figures.py`.
+
+![Optimized model systems](docs/figures/hplc_structures.png)
+
+**Model systems compared** (archives under `reports/`):
+
+| System | What it models | Cases | Archive |
+| --- | --- | --- | --- |
+| Ion pair (residue···reagent) | phosphate–ammonium salt bridge in solution | 4 bases × TEAH⁺; residue A × 5 reagents | `hplc_ionpair_2026-10-19/`, `hplc_reagents_2026-10-21/` |
+| Residue···C8 / reagent···C8 | direct adsorption on the proxy | 4 bases; 5 reagents (17 placements) | `hplc_surface_2026-10-19/`, `hplc_reagents_2026-10-21/` |
+| Silanol-bound ternary | residue on a silanol, reagent on the phosphate ("direct" mode) | 4 bases × TEAH⁺ | `hplc_ternary_2026-10-20/` |
+| Bridged ternary | reagent chains on C8, residue held only by the reagent ("ionic" mode) | residue A × 5 reagents | `hplc_bridged_2026-10-22/` |
+
+**Bridged ternaries, residue A** (kcal/mol; R = residue, T = reagent, S = C8 proxy; ΔE₃ = three-body term):
+
+| Reagent | R···T | T···S | R···S | ΔE₃ |
+| --- | ---: | ---: | ---: | ---: |
+| TEAH⁺ (triethylammonium) | −19.2 | −2.1 | 0.0 | +0.02 |
+| DIPEA-H⁺ | −20.0 | −2.6 | −1.0 | −0.30 |
+| dibutylammonium | −23.4 | −2.4 | 0.0 | +0.01 |
+| hexylammonium | −18.3 | −3.7 | −0.1 | +0.01 |
+| tributylammonium | −24.7 | −3.2 | 0.0 | +0.03 |
+
+For comparison, the silanol-bound TEAH⁺ ternaries give R···S −13.8 to −16.7 and ΔE₃ +1.0 to +1.2 for all four bases.
+
+![Pair interactions in the two adsorption modes](docs/figures/hplc_pair_diagram.png)
+
+### Comparison with published IP-RP retention data
+
+Reference data: Donegan, Nguyen & Gilar 2022 (13 alkylamines, oligo-dT on C18;
+[ref. 35](#hplc-retention-literature-comparison-data)) and Maurer et al. 2025 (13 alkylamines, 200–6000 nt RNA on a
+polymeric DNAPac RP column; [ref. 36](#hplc-retention-literature-comparison-data)). For the five reagents modelled here, both
+rank retention TEA < DIPEA < DBA < HA < TBA.
+
+![EDA descriptors vs published retention](docs/figures/hplc_eda_vs_experiment.png)
+
+**What the EDA supports (qualitative):**
+
+1. *Length-based separation in the ionic mode.* The ion-pair energy per phosphate barely depends on the
+   base (TEAH⁺: A −18.8, C −19.7, G −19.6, U −20.0 kcal/mol). Each phosphate contributes about the same
+   binding, so when retention runs through the reagent the column effectively counts charges.
+   This matches both papers: hydrophobic reagents give length-based separation, and RNA shows on-off
+   elution across 200–6000 nt.
+2. *A molecular picture of mixed-mode retention.* In the bridged complex the residue never touches the
+   ligand (R···S ≈ 0) and the energies are pairwise additive (ΔE₃ ≈ 0): the oligonucleotide is held at
+   arm's length by the reagent. Only the direct arrangement puts the nucleobase in contact with the
+   surface, and only that can discriminate sequences. This is consistent with Donegan's finding that
+   weak reagents keep sequence, modification and phosphorothioate-diastereomer selectivity, and strong
+   ones suppress it.
+3. *Pairing strength does not set the reagent ranking.* Dibutyl- and tributylammonium pair 4–6
+   kcal/mol more strongly than TEAH⁺, but hexylammonium pairs weakest and is among the most retained
+   (rank correlation 0.4). This supports choosing reagents by hydrophobicity (retention, boiling
+   point, logD), as both papers do.
+4. *The reagent's N–H is contested.* Every isolated reagent···C8 pair optimized into an N–H···silanol
+   hydrogen bond (1.75–2.04 Å). That bond gives most of the −10.6 to −12.7 kcal/mol, while chain-only
+   contact gives just −2 to −4. Maurer's column has no silanols, yet it shows the same reagent order,
+   so the measured order comes from hydrophobic adsorption, not from polar surface sites.
+
+**What the current model gets wrong:**
+
+- *Reagent order is not reproduced quantitatively.* With n = 4–5 reagents, one starting geometry each,
+  and differences of 0.3–2 kcal/mol, no correlation is established. The likely cause is that C-PCM has
+  no cavitation (hydrophobic) term.
+- *Base order is inverted.* Both papers find T > A > G > C, with C/G-rich oligos eluting first. Here
+  the direct residue···C8 contact puts C strongest (−18.9) and A/U weakest (−14.9), because these
+  contacts are polar hydrogen bonds to the silanol.
+- *Not modelled:* HFIP (Donegan: tertiary amines gain the most apparent hydrophobicity with it),
+  counter-anions, acetonitrile, reagent concentration and micelles (Maurer's 100–200 mM plateau),
+  RNA secondary structure, and reagent mixtures (Maurer's best: 100 mM BA + 50 mM TPA).
+
+**Next steps:** add a nonpolar solvation term (SMD, or SASA × γ) and test whether HA/DBA > DIPEA/TEA
+and T > A > G > C emerge; use a silanol-free (endcapped or alkane/DVB-like) surface proxy; compare
+phosphorothioate with phosphate ion pairs; model HFIP pairing with each reagent; add BA, TPA and DEA.
 
 ## Install
 
@@ -410,6 +492,20 @@ Basis definitions and their source references can also be inspected through
 representation, auxiliary basis, and installed functional definitions must be
 reported with each result because these choices affect comparison with published data.
 
+### HPLC retention literature (comparison data)
+
+35. **Donegan, M.; Nguyen, J. M.; Gilar, M. (2022).** “Effect of ion-pairing reagent hydrophobicity on
+    liquid chromatography and mass spectrometry analysis of oligonucleotides.” *Journal of
+    Chromatography A* **1666**, 462860.
+    [DOI: 10.1016/j.chroma.2022.462860](https://doi.org/10.1016/j.chroma.2022.462860).
+    Source of the % acetonitrile at elution and the reagent hydrophobicity order used in the
+    [HPLC comparison](#comparison-with-published-ip-rp-retention-data).
+36. **Maurer, J.; Malburet, C.; François-Heude, M.; Guillarme, D. (2025).** “Evaluation of ion pairing
+    reversed-phase liquid chromatography for the separation of large RNA molecules.” *Journal of
+    Chromatography A* **1740**, 465574.
+    [DOI: 10.1016/j.chroma.2024.465574](https://doi.org/10.1016/j.chroma.2024.465574).
+    Reagent classification and large-RNA retention on a silanol-free polymeric column.
+
 ### Project terms
 
 This repository is public for development visibility. No project license has been
@@ -501,7 +597,7 @@ Component-level external agreement is established only to the published-table le
 (≤0.20 kcal/mol on reconstructed geometries, Liu et al. 2017); the project owner accepted
 this on 2026-10-19 and deferred a matched-settings XEDA run. Tighter agreement than
 ~0.2 kcal/mol per component is therefore not demonstrated. Gas-phase results report
-`scientifically_validated: true` on this basis; `full_eda_available` stays false. Open-shell, solvent, double-hybrid and RNA/HPLC applications remain deferred.
+`scientifically_validated: true` on this basis; `full_eda_available` stays false. Open-shell, solvent and double-hybrid validation remain deferred; the RNA/HPLC application is exploratory ([HPLC application study](#hplc-application-study-experimental)).
 
 
 ### Tryptamine–water paper benchmark (under development)
