@@ -182,6 +182,10 @@ rank retention TEA < DIPEA < DBA < HA < TBA.
   non-electrostatic (CDS) term does not fix this: in water it adds only −0.7 to −1.0 kcal/mol to chain
   contact (4–6 cal/mol/Å² of buried nonpolar area, vs ≈ 25 from alkane transfer) and changes no rank
   (`reports/hplc_nonpolar_2026-10-26/`).
+  On a silanol-free three-chain C8 patch every reagent binds by chain contact (−4.9 to −8.9 kcal/mol,
+  dispersion-like) and TEAH⁺ is weakest, but the order is TEAH⁺ < TBuAA < DIPEA-H⁺ < HAA < DBAA
+  (ρ = 0.3; 0.6 with CDS): linear DBAA inserts between the three chains, bulky TBuAA cannot be wrapped,
+  and the two placements per reagent differ by up to 1.8 kcal/mol (`reports/hplc_patch_2026-10-27/`).
 - *Base order is inverted.* Both papers find T > A > G > C, with C/G-rich oligos eluting first. Here
   the direct residue···C8 contact puts C strongest (−18.9) and A/U weakest (−14.9), because these
   contacts are polar hydrogen bonds to the silanol.
@@ -189,8 +193,9 @@ rank retention TEA < DIPEA < DBA < HA < TBA.
   counter-anions, acetonitrile, reagent concentration and micelles (Maurer's 100–200 mM plateau),
   RNA secondary structure, and reagent mixtures (Maurer's best: 100 mM BA + 50 mM TPA).
 
-**Next steps:** use a silanol-free (endcapped or alkane/DVB-like) surface proxy with several chains
-that can bury the reagent, and test whether HA/DBA > DIPEA/TEA and T > A > G > C emerge; compare
+**Next steps:** sample more placements per reagent on the silanol-free patch and use a larger/denser
+brush (≥ 5–7 chains) that can wrap bulky tertiary reagents, then test whether HA/DBA/TBA > DIPEA/TEA and
+T > A > G > C emerge; compare
 phosphorothioate with phosphate ion pairs; model HFIP pairing with each reagent; add BA, TPA and DEA.
 
 ## Install

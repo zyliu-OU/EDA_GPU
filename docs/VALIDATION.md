@@ -541,3 +541,52 @@ Findings:
 
 Conclusion: adding SMD CDS is not enough; the next checks are a silanol-free surface proxy, a larger surface
 (several chains) that can bury the reagent, and placement sampling.
+
+## Silanol-free C8 patch (application), 2026-10-27
+
+Reagent⁺···patch pairs on a silanol-free three-chain C8 patch (`examples/hplc/c8x3_patch`: three tethered all-anti
+n-octanes on a 7.6 Å triangle, C1/C2 of each chain frozen, no polar site; `scripts/build_hplc_patch.py`), two
+placements per reagent. GFN2-xTB/ALPB pre-opt, then GPU M06-2X/def2-SVP, DF, C-PCM water; GKS-EDA(sol) and SMD
+CDS/buried SASA as above. Archive: `reports/hplc_patch_2026-10-27/`. All ten converged with topology preserved
+(frozen-anchor displacement ≤ 2.7e-8 Å, closure ≤ 7.3e-10 Eh). Constrained stationary points. kcal/mol;
+ΔG_rel = relative optimized C-PCM energy of the two placements; N h / r = reagent N height above the C1 anchor
+plane / lateral distance from the triangle centre (Å; chain tips at h ≈ 8.9, triangle inradius 2.2);
+CC = reagent-C···patch-C contacts within 4.5 Å; Pauli = exchange + repulsion; np = buried nonpolar SASA (Å²).
+
+| Reagent, placement | ΔE_rel | DFT evals | Wall (h) | N h / r | CC | elec | Pauli | pol | gen. corr | desolv | EDA total | dG_CDS water | EDA + CDS | dG_CDS MeCN | np |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| TEAH⁺ 0 | 1.13 | 19 | 0.44 | 5.1 / 5.8 | 19 | -3.81 | 12.43 | -1.64 | -10.55 | +0.45 | -3.12 | -1.53 | -4.66 | +1.14 | 255 |
+| TEAH⁺ 1 | 0.00 | 29 | 0.64 | 7.9 / 4.9 | 20 | -4.71 | 12.45 | -2.65 | -11.56 | +1.53 | -4.94 | -2.01 | -6.95 | +0.87 | 272 |
+| DIPEA-H⁺ 0 | 0.00 | 21 | 0.61 | 5.5 / 5.0 | 22 | -4.25 | 12.66 | -1.96 | -13.12 | +1.18 | -5.49 | -1.57 | -7.06 | +1.42 | 323 |
+| DIPEA-H⁺ 1 | 0.94 | 31 | 0.85 | 4.3 / 5.9 | 23 | -5.50 | 16.58 | -1.71 | -15.09 | +0.99 | -4.72 | -1.82 | -6.54 | +1.45 | 310 |
+| DBAA 0 | 0.00 | 85 | 2.49 | 7.0 / 1.6 | 37 | -6.38 | 21.46 | -3.02 | -21.77 | +0.86 | -8.85 | -3.09 | -11.94 | +2.42 | 404 |
+| DBAA 1 | 1.50 | 53 | 1.52 | 7.5 / 2.2 | 30 | -5.26 | 16.88 | -2.47 | -17.45 | +1.06 | -7.25 | -2.22 | -9.47 | +2.02 | 374 |
+| HAA 0 | 0.00 | 74 | 1.58 | 10.0 / 3.7 | 27 | -5.83 | 16.51 | -1.23 | -16.24 | +0.82 | -5.97 | -2.03 | -8.00 | +1.69 | 305 |
+| HAA 1 | 0.53 | 37 | 0.83 | 8.9 / 6.1 | 26 | -4.94 | 15.66 | -0.96 | -15.17 | +0.13 | -5.27 | -1.91 | -7.18 | +1.79 | 284 |
+| TBuAA 0 | 0.85 | 69 | 2.17 | 9.3 / 6.2 | 19 | -4.57 | 13.83 | -1.18 | -12.95 | +0.77 | -4.11 | -1.85 | -5.96 | +1.27 | 309 |
+| TBuAA 1 | 0.00 | 20 | 0.73 | 8.8 / 4.8 | 24 | -5.35 | 16.33 | -1.26 | -15.58 | +0.65 | -5.21 | -2.00 | -7.22 | +1.67 | 324 |
+
+Findings:
+
+- No reagent stayed polar-bound: with no silanol, every reagent binds through chain contact, and the energy is
+  dispersion-like (generalized correlation −10.6 to −21.8, electrostatics −3.8 to −6.4, polarization ≤ 3.0).
+  The patch roughly doubles the single-C8 chain contact (bridged T···S −2.2 to −3.8) to −4.9 to −8.9 (lower-energy
+  placement), still below the silanol-H-bonded reagent···C8 pairs (−10.6 to −12.7).
+- Reagent order (lower-energy placement; best-EDA placement gives the same): EDA TEAH⁺ < TBuAA < DIPEA-H⁺ < HAA <
+  DBAA, Spearman ρ = 0.3 (p = 0.62, n = 5) against the published TEA < DIPEA < DBA < HA < TBA; EDA + CDS(water)
+  TEAH⁺ < DIPEA-H⁺ < TBuAA < HAA < DBAA, ρ = 0.6 (p = 0.28); buried nonpolar SASA ρ = 0.5. TEAH⁺ is weakest in
+  every measure, as measured; TBuAA is the outlier (most retained experimentally, 4th here).
+- DBAA is strongest because both placements inserted its linear chains into the triangle (N at r = 1.6–2.2 Å,
+  h = 7.0–7.5 Å, ≈ 1.5–2 Å below the chain tips; 30–37 C···C contacts). The branched/tertiary reagents (TBuAA,
+  DIPEA-H⁺, TEAH⁺) stayed outside (r = 4.8–6.2 Å). With three chains the patch can be entered by a linear
+  dialkylammonium but not wrapped around a bulky tertiary one, which biases against TBuAA; whether a denser or
+  larger brush reverses this is not tested.
+- Placement matters as much as reagent identity: the two placements differ by up to 1.8 kcal/mol in EDA (TEAH⁺,
+  DBAA), comparable to the spread between reagents (excluding DBAA, −4.9 to −6.0). Two placements are not a
+  converged sampling.
+- SMD CDS(water) adds −1.5 to −3.1 (5–8 cal/mol/Å² of buried nonpolar area, again well below the ≈ 25 from alkane
+  transfer); in acetonitrile it is positive (+0.9 to +2.4) for every pair.
+
+Conclusion: removing the silanol gives the qualitatively right binding mode (chain contact, TEA weakest), but the
+reagent order is not reproduced (ρ = 0.3–0.6, n = 5); the three-chain patch is too small for the bulky reagents
+and placement sampling is too sparse to resolve 1 kcal/mol differences.

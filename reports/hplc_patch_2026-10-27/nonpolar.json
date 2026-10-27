@@ -1,0 +1,145 @@
+{
+  "method": "SMD CDS (Marenich, Cramer, Truhlar 2009) via PySCF/MNSOL at the complex geometry; buried SASA as in scripts/buried_sasa.py; kcal/mol and A^2",
+  "cases": {
+    "hplc_patch_cpcm_def2svp/patch_dibutylammonium_0": {
+      "group": "patch_dibutylammonium_0",
+      "optimized_energy_hartree": -1316.925133439775,
+      "splits": {
+        "c8x3_patch|dibutylammonium": {
+          "dG_cds_water": -3.0852497194696795,
+          "dG_cds_acetonitrile": 2.422236631587758,
+          "buried_total_A2": 420.22977441998876,
+          "buried_nonpolar_A2": 404.12492328013604,
+          "eda_total": -8.853687715048281,
+          "eda_plus_cds_water": -11.93893743451796
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_dipeah_0": {
+      "group": "patch_dipeah_0",
+      "optimized_energy_hartree": -1316.9159111234312,
+      "splits": {
+        "c8x3_patch|dipeah": {
+          "dG_cds_water": -1.5745075390668593,
+          "dG_cds_acetonitrile": 1.4152729476707115,
+          "buried_total_A2": 326.2926197859181,
+          "buried_nonpolar_A2": 322.93006844902607,
+          "eda_total": -5.489443930125,
+          "eda_plus_cds_water": -7.063951469191859
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_hexylammonium_0": {
+      "group": "patch_hexylammonium_0",
+      "optimized_energy_hartree": -1238.4008108787298,
+      "splits": {
+        "c8x3_patch|hexylammonium": {
+          "dG_cds_water": -2.0296197378385337,
+          "dG_cds_acetonitrile": 1.6878392187957711,
+          "buried_total_A2": 321.7041928156567,
+          "buried_nonpolar_A2": 304.97992432427145,
+          "eda_total": -5.9691567140386095,
+          "eda_plus_cds_water": -7.998776451877143
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_teah_0": {
+      "group": "patch_teah_0",
+      "optimized_energy_hartree": -1238.3823512355784,
+      "splits": {
+        "c8x3_patch|teah": {
+          "dG_cds_water": -1.5340697065786397,
+          "dG_cds_acetonitrile": 1.1369035954695796,
+          "buried_total_A2": 254.76208935541445,
+          "buried_nonpolar_A2": 254.67360116233795,
+          "eda_total": -3.122042424706344,
+          "eda_plus_cds_water": -4.656112131284983
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_tributylammonium_0": {
+      "group": "patch_tributylammonium_0",
+      "optimized_energy_hartree": -1473.9632944133673,
+      "splits": {
+        "c8x3_patch|tributylammonium": {
+          "dG_cds_water": -1.8454592522531712,
+          "dG_cds_acetonitrile": 1.2703435825350553,
+          "buried_total_A2": 312.02965823892737,
+          "buried_nonpolar_A2": 308.9325714812635,
+          "eda_total": -4.110285503912549,
+          "eda_plus_cds_water": -5.95574475616572
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_dibutylammonium_1": {
+      "group": "patch_dibutylammonium_1",
+      "optimized_energy_hartree": -1316.9227508449048,
+      "splits": {
+        "c8x3_patch|dibutylammonium": {
+          "dG_cds_water": -2.2213454065418627,
+          "dG_cds_acetonitrile": 2.016123957802412,
+          "buried_total_A2": 386.8697256302943,
+          "buried_nonpolar_A2": 373.50800847580126,
+          "eda_total": -7.24846300268568,
+          "eda_plus_cds_water": -9.469808409227543
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_dipeah_1": {
+      "group": "patch_dipeah_1",
+      "optimized_energy_hartree": -1316.9144063118165,
+      "splits": {
+        "c8x3_patch|dipeah": {
+          "dG_cds_water": -1.8165025674467934,
+          "dG_cds_acetonitrile": 1.44638510662835,
+          "buried_total_A2": 310.0308199130807,
+          "buried_nonpolar_A2": 310.0308199130809,
+          "eda_total": -4.7233551756563745,
+          "eda_plus_cds_water": -6.539857743103168
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_hexylammonium_1": {
+      "group": "patch_hexylammonium_1",
+      "optimized_energy_hartree": -1238.3999696592382,
+      "splits": {
+        "c8x3_patch|hexylammonium": {
+          "dG_cds_water": -1.9100121357777322,
+          "dG_cds_acetonitrile": 1.7872561952981663,
+          "buried_total_A2": 297.37425940962476,
+          "buried_nonpolar_A2": 283.74707767590314,
+          "eda_total": -5.269090403985584,
+          "eda_plus_cds_water": -7.179102539763316
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_teah_1": {
+      "group": "patch_teah_1",
+      "optimized_energy_hartree": -1238.3841549446292,
+      "splits": {
+        "c8x3_patch|teah": {
+          "dG_cds_water": -2.0061383212911306,
+          "dG_cds_acetonitrile": 0.8696696413380778,
+          "buried_total_A2": 275.79452857242245,
+          "buried_nonpolar_A2": 271.72407169092116,
+          "eda_total": -4.939307236234503,
+          "eda_plus_cds_water": -6.945445557525634
+        }
+      }
+    },
+    "hplc_patch_cpcm_def2svp/patch_tributylammonium_1": {
+      "group": "patch_tributylammonium_1",
+      "optimized_energy_hartree": -1473.9646500494864,
+      "splits": {
+        "c8x3_patch|tributylammonium": {
+          "dG_cds_water": -2.0048738451550765,
+          "dG_cds_acetonitrile": 1.6739704502114794,
+          "buried_total_A2": 323.8072272978475,
+          "buried_nonpolar_A2": 323.8072272978475,
+          "eda_total": -5.210136044954054,
+          "eda_plus_cds_water": -7.215009890109131
+        }
+      }
+    }
+  }
+}
