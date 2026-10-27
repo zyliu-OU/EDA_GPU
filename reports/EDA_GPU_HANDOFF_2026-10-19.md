@@ -175,3 +175,22 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
 - Conclusion: qualitative support only (base-independent ion pair → length-based ionic mode; bridged = additive;
   pairing strength ≠ reagent order). EDA does not reproduce reagent order and inverts base order (C strongest).
   Top next step: nonpolar/cavitation solvation term, silanol-free proxy.
+
+## 2026-10-26: SMD CDS non-electrostatic term (development step)
+
+- New `src/eda_gpu/cds.py` (SMD CDS via PySCF/MNSOL, CPU, geometry only) + `tests/test_cds.py`;
+  `scripts/nonpolar_hplc.py` computes dG_CDS (water, acetonitrile) + buried SASA + EDA + CDS for every converged
+  complex and three-body split. No DFT needed (~1 min total). Archive `reports/hplc_nonpolar_2026-10-26/`;
+  section in `docs/VALIDATION.md`; README "gets wrong" / next steps updated. 43 CPU tests pass (3 GPU deselected).
+- Result: SMD CDS does NOT supply the hydrophobic term. Water dG_CDS is 0 to −3 per pair; chain contact
+  (bridged T···S) only −0.7 to −1.0 (4–6 cal/mol/Å² buried nonpolar vs ≈25 alkane transfer); polar contacts get
+  more (16–30). No rank changes: bridged T···S order TEAH < DBA < DIPEA < TBA < HA, ρ = 0.8 (p 0.10) vs published,
+  same with or without CDS. Base order unchanged. Acetonitrile dG_CDS positive (+0.1 to +3).
+
+## Next (updated 2026-10-26)
+
+1. Silanol-free multi-chain surface proxy (e.g. 3–4 tethered C8 chains on an endcapped/alkane patch) that can
+   bury the reagent; re-run reagent···surface and bridged complexes on it (GPU DFT; thermal guards).
+2. Sensitivity: aug-cc-pVDZ EDA(sol) on selected pairs; vdw_scale 1.2 vs 1.4; acetonitrile ε 35.688.
+3. Placement sampling (more seeds per base/reagent, xTB-ranked).
+4. When the user provides retention data: `scripts/hplc_retention.py` (add dG_CDS / buried-SASA descriptors).

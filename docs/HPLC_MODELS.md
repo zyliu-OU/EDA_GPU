@@ -4,7 +4,8 @@ Status: stage 7.1 (residue···TEAH⁺ ion pairs) and 7.2 (pairs with a station
 complete (results in `docs/VALIDATION.md`, archive `reports/hplc_{ionpair,surface}_2026-10-19/`);
 7.3 (ternary complexes and three-body cycle) complete for one TEAH⁺ arrangement per base
 (`reports/hplc_ternary_2026-10-20/`); ion-pair reagent series complete for residue A
-(`reports/hplc_reagents_2026-10-21/`); bridged ternaries (C8 on reagent chains) running. Nothing here predicts
+(`reports/hplc_reagents_2026-10-21/`); bridged ternaries complete (`reports/hplc_bridged_2026-10-22/`); SMD CDS
+non-electrostatic terms evaluated (`reports/hplc_nonpolar_2026-10-26/`). Nothing here predicts
 retention. EDA quantities are electronic interaction descriptors of labelled small models.
 
 ## Chemical models (`scripts/build_hplc_models.py`, `examples/hplc/`)
@@ -106,3 +107,12 @@ reagent sits between phosphate and phase. One seed per reagent; three-body GKS-E
 C-PCM electrostatics have no cavitation term, so GKS-EDA(sol) omits the hydrophobic effect. Buried total
 and nonpolar SASA on association (Shrake–Rupley, 1.4 Å probe, Bondi radii) is reported beside the EDA,
 as an area; it is not added to any EDA component.
+
+## SMD CDS term (`eda_gpu.cds`, `scripts/nonpolar_hplc.py`)
+
+The SMD non-electrostatic term (cavitation, dispersion, solvent structure) depends only on geometry, so its
+association value dG_CDS = G_CDS(AB) − ΣG_CDS(fragments) is computed at each optimized complex geometry for
+water and acetonitrile, for every fragment pair and three-body split. It is reported beside, not inside, the
+EDA: SMD CDS belongs with SMD electrostatics and radii, so EDA + dG_CDS is a mixed-model sensitivity check.
+Result (2026-10-26, `docs/VALIDATION.md`): in water it adds only 4–6 cal/mol per Å² of buried nonpolar area
+for chain contact and does not change reagent or base ranks.

@@ -177,8 +177,11 @@ rank retention TEA < DIPEA < DBA < HA < TBA.
 **What the current model gets wrong:**
 
 - *Reagent order is not reproduced quantitatively.* With n = 4–5 reagents, one starting geometry each,
-  and differences of 0.3–2 kcal/mol, no correlation is established. The likely cause is that C-PCM has
-  no cavitation (hydrophobic) term.
+  and differences of 0.3–2 kcal/mol, no correlation is established (chain-contact T···S in the bridged
+  model: Spearman ρ = 0.8, p = 0.10). C-PCM has no cavitation (hydrophobic) term, but adding the SMD
+  non-electrostatic (CDS) term does not fix this: in water it adds only −0.7 to −1.0 kcal/mol to chain
+  contact (4–6 cal/mol/Å² of buried nonpolar area, vs ≈ 25 from alkane transfer) and changes no rank
+  (`reports/hplc_nonpolar_2026-10-26/`).
 - *Base order is inverted.* Both papers find T > A > G > C, with C/G-rich oligos eluting first. Here
   the direct residue···C8 contact puts C strongest (−18.9) and A/U weakest (−14.9), because these
   contacts are polar hydrogen bonds to the silanol.
@@ -186,8 +189,8 @@ rank retention TEA < DIPEA < DBA < HA < TBA.
   counter-anions, acetonitrile, reagent concentration and micelles (Maurer's 100–200 mM plateau),
   RNA secondary structure, and reagent mixtures (Maurer's best: 100 mM BA + 50 mM TPA).
 
-**Next steps:** add a nonpolar solvation term (SMD, or SASA × γ) and test whether HA/DBA > DIPEA/TEA
-and T > A > G > C emerge; use a silanol-free (endcapped or alkane/DVB-like) surface proxy; compare
+**Next steps:** use a silanol-free (endcapped or alkane/DVB-like) surface proxy with several chains
+that can bury the reagent, and test whether HA/DBA > DIPEA/TEA and T > A > G > C emerge; compare
 phosphorothioate with phosphate ion pairs; model HFIP pairing with each reagent; add BA, TPA and DEA.
 
 ## Install

@@ -1,0 +1,47 @@
+hplc_ionpair_cpcm_def2svp/residue_A_teah_17_0 residue_A|teah: cds_w -2.36 cds_acn +0.20 npSASA 109 eda -18.77
+hplc_ionpair_cpcm_def2svp/residue_A_teah_18_0 residue_A|teah: cds_w -1.63 cds_acn +0.39 npSASA 129 eda -18.20
+hplc_ionpair_cpcm_def2svp/residue_C_teah_16_0 residue_C|teah: cds_w -1.85 cds_acn +0.61 npSASA 113 eda -19.74
+hplc_ionpair_cpcm_def2svp/residue_C_teah_17_0 residue_C|teah: cds_w -2.08 cds_acn +0.35 npSASA 91 eda -19.97
+hplc_ionpair_cpcm_def2svp/residue_G_teah_14_0 residue_G|teah: cds_w -2.44 cds_acn +0.30 npSASA 121 eda -19.64
+hplc_ionpair_cpcm_def2svp/residue_U_teah_16_0 residue_U|teah: cds_w -1.71 cds_acn +0.37 npSASA 86 eda -18.18
+hplc_ionpair_cpcm_def2svp/residue_U_teah_17_0 residue_U|teah: cds_w -2.51 cds_acn +0.46 npSASA 153 eda -19.98
+hplc_surface_cpcm_def2svp/c8_teah_13_0 c8_silane_proxy|teah: cds_w -1.40 cds_acn +0.86 npSASA 153 eda -11.33
+hplc_surface_cpcm_def2svp/c8_teah_14_0 c8_silane_proxy|teah: cds_w -1.08 cds_acn +0.20 npSASA 91 eda -8.42
+hplc_surface_cpcm_def2svp/residue_A_c8_17_0 residue_A|c8_silane_proxy: cds_w -2.17 cds_acn +1.20 npSASA 129 eda -14.92
+hplc_surface_cpcm_def2svp/residue_C_c8_16_0 residue_C|c8_silane_proxy: cds_w -2.63 cds_acn +0.83 npSASA 89 eda -18.87
+hplc_surface_cpcm_def2svp/residue_G_c8_13_0 residue_G|c8_silane_proxy: cds_w -2.74 cds_acn +1.77 npSASA 149 eda -15.43
+hplc_surface_cpcm_def2svp/residue_U_c8_16_0 residue_U|c8_silane_proxy: cds_w -2.43 cds_acn +0.84 npSASA 106 eda -14.86
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_dibutylammonium_17_0 residue_A|dibutylammonium: cds_w -1.76 cds_acn +0.36 npSASA 94 eda -19.09
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_dibutylammonium_18_0 residue_A|dibutylammonium: cds_w -2.68 cds_acn +1.83 npSASA 156 eda -23.42
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_dipeah_17_0 residue_A|dipeah: cds_w -2.32 cds_acn +0.51 npSASA 129 eda -19.08
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_dipeah_18_0 residue_A|dipeah: cds_w -1.73 cds_acn +0.93 npSASA 132 eda -18.76
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_hexylammonium_17_0 residue_A|hexylammonium: cds_w -1.69 cds_acn +0.13 npSASA 99 eda -17.74
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_hexylammonium_18_0 residue_A|hexylammonium: cds_w -1.68 cds_acn +0.07 npSASA 78 eda -17.39
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_tributylammonium_17_0 residue_A|tributylammonium: cds_w -2.94 cds_acn +1.76 npSASA 197 eda -23.52
+hplc_reagents_ionpair_cpcm_def2svp/residue_A_tributylammonium_18_0 residue_A|tributylammonium: cds_w -2.46 cds_acn +1.27 npSASA 162 eda -24.35
+hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_13_0 c8_silane_proxy|dibutylammonium: cds_w -1.70 cds_acn +1.12 npSASA 181 eda -10.82
+hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_14_0 c8_silane_proxy|dibutylammonium: cds_w -0.99 cds_acn +0.29 npSASA 88 eda -8.89
+hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_contact_13_0 c8_silane_proxy|dibutylammonium: cds_w -1.09 cds_acn +1.12 npSASA 176 eda -9.38
+hplc_reagents_surface_cpcm_def2svp/c8_dibutylammonium_contact_14_0 c8_silane_proxy|dibutylammonium: cds_w -1.68 cds_acn +0.72 npSASA 183 eda -14.20
+hplc_reagents_surface_cpcm_def2svp/c8_dipeah_13_0 c8_silane_proxy|dipeah: cds_w -1.19 cds_acn +0.81 npSASA 149 eda -10.74
+hplc_reagents_surface_cpcm_def2svp/c8_dipeah_14_0 c8_silane_proxy|dipeah: cds_w -1.42 cds_acn +0.93 npSASA 164 eda -11.72
+hplc_reagents_surface_cpcm_def2svp/c8_dipeah_contact_13_0 c8_silane_proxy|dipeah: cds_w -1.54 cds_acn +1.01 npSASA 170 eda -12.08
+hplc_reagents_surface_cpcm_def2svp/c8_dipeah_contact_14_0 c8_silane_proxy|dipeah: cds_w -1.16 cds_acn +0.58 npSASA 134 eda -11.73
+hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_13_0 c8_silane_proxy|hexylammonium: cds_w -1.11 cds_acn +0.83 npSASA 138 eda -8.76
+hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_14_0 c8_silane_proxy|hexylammonium: cds_w -0.75 cds_acn +0.51 npSASA 49 eda -8.89
+hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_contact_13_0 c8_silane_proxy|hexylammonium: cds_w -1.93 cds_acn +0.47 npSASA 128 eda -12.52
+hplc_reagents_surface_cpcm_def2svp/c8_hexylammonium_contact_14_0 c8_silane_proxy|hexylammonium: cds_w -1.30 cds_acn +0.81 npSASA 136 eda -9.36
+hplc_reagents_surface_cpcm_def2svp/c8_teah_contact_13_0 c8_silane_proxy|teah: cds_w -1.09 cds_acn +0.84 npSASA 139 eda -10.74
+hplc_reagents_surface_cpcm_def2svp/c8_teah_contact_14_0 c8_silane_proxy|teah: cds_w -1.09 cds_acn +0.52 npSASA 125 eda -10.55
+hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_13_0 c8_silane_proxy|tributylammonium: cds_w -1.45 cds_acn +1.51 npSASA 223 eda -12.67
+hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_14_0 c8_silane_proxy|tributylammonium: cds_w -0.59 cds_acn +0.52 npSASA 62 eda -7.95
+hplc_reagents_surface_cpcm_def2svp/c8_tributylammonium_contact_14_0 c8_silane_proxy|tributylammonium: cds_w -1.40 cds_acn +0.98 npSASA 145 eda -9.96
+hplc_ternary_cpcm_def2svp/residue_A_teah_c8_18_0 R|T: cds_w -2.41 cds_acn +0.12 npSASA 109 eda -18.28  T|S: cds_w -0.71 cds_acn +0.47 npSASA 111 eda -2.02  R|S: cds_w -1.97 cds_acn +1.11 npSASA 117 eda -13.78  RT|S: cds_w -2.58 cds_acn +1.52 npSASA 187 eda -14.80  R|TS: cds_w -4.28 cds_acn +1.17 npSASA 184 eda -31.31  three_body: cds_w +0.10 cds_acn -0.06 npSASA -41 eda +1.00
+hplc_ternary_cpcm_def2svp/residue_C_teah_c8_17_0 R|T: cds_w -1.63 cds_acn +0.36 npSASA 80 eda -17.70  T|S: cds_w -0.94 cds_acn +0.47 npSASA 159 eda -1.15  R|S: cds_w -1.89 cds_acn +0.83 npSASA 129 eda -15.14  RT|S: cds_w -2.78 cds_acn +1.25 npSASA 231 eda -15.16  R|TS: cds_w -3.47 cds_acn +1.14 npSASA 152 eda -31.77  three_body: cds_w +0.05 cds_acn -0.05 npSASA -56 eda +1.13
+hplc_ternary_cpcm_def2svp/residue_G_teah_c8_13_0 R|T: cds_w -2.56 cds_acn +0.24 npSASA 122 eda -18.95  T|S: cds_w -0.77 cds_acn +0.43 npSASA 111 eda -2.07  R|S: cds_w -1.86 cds_acn +2.66 npSASA 182 eda -16.74  RT|S: cds_w -2.57 cds_acn +3.04 npSASA 242 eda -17.84  R|TS: cds_w -4.35 cds_acn +2.85 npSASA 254 eda -34.97  three_body: cds_w +0.06 cds_acn -0.04 npSASA -50 eda +0.97
+hplc_ternary_cpcm_def2svp/residue_U_teah_c8_16_0 R|T: cds_w -2.32 cds_acn +0.30 npSASA 132 eda -18.60  T|S: cds_w -0.04 cds_acn +0.13 npSASA 41 eda -0.33  R|S: cds_w -2.85 cds_acn +1.29 npSASA 201 eda -15.73  RT|S: cds_w -2.88 cds_acn +1.39 npSASA 214 eda -14.87  R|TS: cds_w -5.16 cds_acn +1.56 npSASA 305 eda -33.29  three_body: cds_w +0.01 cds_acn -0.03 npSASA -28 eda +1.19
+hplc_bridged_cpcm_def2svp/residue_A_dibutylammonium_c8_bridged R|T: cds_w -2.71 cds_acn +1.86 npSASA 148 eda -23.44  T|S: cds_w -0.85 cds_acn +0.70 npSASA 144 eda -2.37  R|S: cds_w +0.00 cds_acn -0.00 npSASA 0 eda +0.02  RT|S: cds_w -0.85 cds_acn +0.70 npSASA 144 eda -2.35  R|TS: cds_w -2.71 cds_acn +1.86 npSASA 148 eda -23.47  three_body: cds_w +0.00 cds_acn +0.00 npSASA 0 eda +0.01
+hplc_bridged_cpcm_def2svp/residue_A_dipeah_c8_bridged R|T: cds_w -2.17 cds_acn +0.53 npSASA 113 eda -19.99  T|S: cds_w -0.92 cds_acn +0.76 npSASA 168 eda -2.59  R|S: cds_w -1.01 cds_acn +0.14 npSASA 93 eda -1.04  RT|S: cds_w -1.89 cds_acn +0.91 npSASA 201 eda -3.92  R|TS: cds_w -3.14 cds_acn +0.68 npSASA 146 eda -21.47  three_body: cds_w +0.04 cds_acn +0.00 npSASA -60 eda -0.30
+hplc_bridged_cpcm_def2svp/residue_A_hexylammonium_c8_bridged R|T: cds_w -1.88 cds_acn +0.28 npSASA 108 eda -18.27  T|S: cds_w -1.03 cds_acn +1.32 npSASA 198 eda -3.75  R|S: cds_w -0.00 cds_acn +0.00 npSASA 44 eda -0.09  RT|S: cds_w -1.03 cds_acn +1.32 npSASA 212 eda -3.83  R|TS: cds_w -1.88 cds_acn +0.28 npSASA 122 eda -18.40  three_body: cds_w -0.00 cds_acn -0.00 npSASA -29 eda +0.01
+hplc_bridged_cpcm_def2svp/residue_A_teah_c8_bridged R|T: cds_w -2.26 cds_acn +0.59 npSASA 127 eda -19.22  T|S: cds_w -0.72 cds_acn +0.81 npSASA 171 eda -2.15  R|S: cds_w +0.00 cds_acn -0.00 npSASA 0 eda +0.02  RT|S: cds_w -0.72 cds_acn +0.81 npSASA 171 eda -2.11  R|TS: cds_w -2.26 cds_acn +0.59 npSASA 127 eda -19.30  three_body: cds_w +0.00 cds_acn +0.00 npSASA -0 eda +0.02
+hplc_bridged_cpcm_def2svp/residue_A_tributylammonium_c8_bridged R|T: cds_w -2.98 cds_acn +2.18 npSASA 190 eda -24.70  T|S: cds_w -0.98 cds_acn +1.09 npSASA 180 eda -3.17  R|S: cds_w +0.00 cds_acn +0.00 npSASA 0 eda +0.04  RT|S: cds_w -0.98 cds_acn +1.09 npSASA 180 eda -3.11  R|TS: cds_w -2.98 cds_acn +2.18 npSASA 190 eda -24.74  three_body: cds_w -0.00 cds_acn +0.00 npSASA 0 eda +0.03

@@ -493,3 +493,51 @@ reagent-dependent part of retention at this level is R···T (DBA/TBA ≈ 4–6
 plus the hydrophobic term C-PCM omits. DIPEA-H⁺ is the only case with a small direct residue–C8 contact
 (R···S −1.0, closest heavy atoms 3.2 Å). One residue, one seed per reagent; differences of ~1–2 kcal/mol are
 not established.
+
+## SMD CDS term (application), 2026-10-26
+
+C-PCM GKS-EDA(sol) has electrostatic solvation only. To test whether the missing non-electrostatic term
+explains the reagent and base orders, the SMD cavitation–dispersion–solvent-structure term (Marenich, Cramer &
+Truhlar 2009, via PySCF/MNSOL; `eda_gpu.cds`, `scripts/nonpolar_hplc.py`) was evaluated on every converged
+complex: dG_CDS = G_CDS(AB) − ΣG_CDS(fragments) at the complex geometry. It needs no SCF, so no new DFT was run.
+SMD CDS was fitted together with SMD electrostatics and SMD radii, so EDA + dG_CDS is a mixed-model sensitivity
+check, not a consistent free energy, and it is not part of the EDA closure. Archive:
+`reports/hplc_nonpolar_2026-10-26/`. Lowest-energy placement per group; kcal/mol; np = buried nonpolar SASA (Å²).
+
+| Complex | EDA total | dG_CDS water | EDA + CDS | dG_CDS acetonitrile | np | CDS per np (cal/mol/Å²) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| residue_A···TEAH⁺ | -18.77 | -2.36 | -21.13 | +0.20 | 109 | -22 |
+| residue_C···TEAH⁺ | -19.74 | -1.85 | -21.59 | +0.61 | 113 | -16 |
+| residue_G···TEAH⁺ | -19.64 | -2.44 | -22.07 | +0.30 | 121 | -20 |
+| residue_U···TEAH⁺ | -19.98 | -2.51 | -22.49 | +0.46 | 153 | -16 |
+| residue_A···C8 | -14.92 | -2.17 | -17.09 | +1.20 | 129 | -17 |
+| residue_C···C8 | -18.87 | -2.63 | -21.49 | +0.83 | 89 | -30 |
+| residue_G···C8 | -15.43 | -2.74 | -18.17 | +1.77 | 149 | -18 |
+| residue_U···C8 | -14.86 | -2.43 | -17.29 | +0.84 | 106 | -23 |
+| bridged T···S, TEAH⁺ | -2.15 | -0.72 | -2.87 | +0.81 | 171 | -4 |
+| bridged T···S, DIPEA-H⁺ | -2.59 | -0.92 | -3.50 | +0.76 | 168 | -5 |
+| bridged T···S, DBAA | -2.37 | -0.85 | -3.22 | +0.70 | 144 | -6 |
+| bridged T···S, HAA | -3.75 | -1.03 | -4.77 | +1.32 | 198 | -5 |
+| bridged T···S, TBuAA | -3.17 | -0.98 | -4.15 | +1.09 | 180 | -5 |
+| bridged R···T, TEAH⁺ / DIPEA / DBAA / HAA / TBuAA | -19.2 / -20.0 / -23.4 / -18.3 / -24.7 | -2.3 / -2.2 / -2.7 / -1.9 / -3.0 | | +0.6 / +0.5 / +1.9 / +0.3 / +2.2 | | |
+
+Findings:
+
+- dG_CDS(water) is small (0 to −3.0 kcal/mol per pair; −3.5 to −5.2 for R···(TS) in the silanol-bound
+  ternaries) and nearly additive (three-body CDS ≤ 0.1).
+- It is weak exactly where the hydrophobic effect should act. Alkyl-chain contact (bridged T···S) gains only
+  4–6 cal/mol per Å² of buried nonpolar area, against ≈ 25 cal/mol/Å² usually derived from alkane transfer free energies;
+  polar contacts (ion pairs, residue···silanol) gain 16–30. SMD CDS in water therefore does not supply the
+  missing hydrophobic driving force for reagent adsorption; its reagent spread on C8 is 0.3 kcal/mol.
+- Reagent order on C8 (bridged T···S): TEAH⁺ < DBAA < DIPEA-H⁺ < TBuAA < HAA for EDA, CDS and their sum alike,
+  Spearman ρ = 0.8 (p = 0.10, n = 5) against the published TEA < DIPEA < DBA < HA < TBA. CDS does not change the
+  rank; the chain-contact EDA term alone already gives it. Buried nonpolar SASA alone gives ρ = 0.5. A single C8
+  ligand cannot wrap the reagent like a C18 brush, so areas and contact energies of the bulky reagents are
+  likely underestimated.
+- Base order is not changed: ion pair + CDS U < G < C < A (−22.5 to −21.1, spread 1.4 kcal/mol), and
+  residue···C8 + CDS still puts C strongest; measured T > A > G > C is not reproduced.
+- In acetonitrile dG_CDS is positive for every pair (+0.1 to +3.0): the organic modifier opposes association
+  through the non-electrostatic term, qualitatively as in gradient elution.
+
+Conclusion: adding SMD CDS is not enough; the next checks are a silanol-free surface proxy, a larger surface
+(several chains) that can bury the reagent, and placement sampling.
