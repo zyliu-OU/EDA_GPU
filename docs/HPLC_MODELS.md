@@ -116,3 +116,16 @@ water and acetonitrile, for every fragment pair and three-body split. It is repo
 EDA: SMD CDS belongs with SMD electrostatics and radii, so EDA + dG_CDS is a mixed-model sensitivity check.
 Result (2026-10-26, `docs/VALIDATION.md`): in water it adds only 4–6 cal/mol per Å² of buried nonpolar area
 for chain contact and does not change reagent or base ranks.
+
+## Silanol-free three-chain patch (`scripts/build_hplc_patch.py`, `examples/hplc/patch/`)
+
+Every isolated reagent···C8-proxy pair optimized into an N–H···silanol hydrogen bond, and a single C8 ligand
+cannot wrap a reagent, so chain contact was never isolated. The patch `c8x3_patch` (78 atoms) has three all-anti
+n-octane chains standing parallel on an equilateral triangle of side 7.6 Å (one ligand per 50 Å², ≈3.3 µmol/m²
+as on C18 phases); C1 stands in for the Si–CH₂ tether, and C1 and C2 of each chain are frozen, so the chains
+are tethered but can bend and collapse in water. No polar site: an endcapped or polymeric alkyl phase, the
+kind of column (Maurer 2025) on which the published reagent order was still observed. Each reagent monomer is
+docked as a rigid body above the C2 plane, ranked by reagent-C···patch-C contacts within 4.5 Å; two placements
+per reagent ≥ 3 Å apart (101–119 atoms). Optimization and GKS-EDA(sol) as in the reagent series, then SMD CDS
+and buried SASA (`scripts/nonpolar_hplc.py`). No residue is included: the bridged ternaries were pairwise
+additive with R···S ≈ 0, so reagent···phase is the reagent-dependent term to test.
