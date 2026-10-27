@@ -199,7 +199,7 @@ next steps. README/VALIDATION updated; `scientifically_validated` left false in 
 
 - `scripts/build_hplc_patch.py` → `examples/hplc/c8x3_patch.{xyz,json}` (3 tethered n-octanes, 7.6 Å triangle, C1/C2
   frozen, no polar site) and 10 seeds `examples/hplc/patch/patch_<reagent>_{0,1}` (101–119 atoms). Model: `docs/HPLC_MODELS.md`.
-- RUNNING: `runs/queue_hplc_patch.sh` (started 18:00) → `runs/hplc_patch.log`, output `runs/hplc_patch_cpcm_def2svp/`
+- RUNNING (now as systemd unit hplc-patch; see `reports/EDA_GPU_HANDOFF_2026-10-26.md`): `runs/queue_hplc_patch.sh` (started 18:00) → `runs/hplc_patch.log`, output `runs/hplc_patch_cpcm_def2svp/`
   (xTB pre-opt → M06-2X/def2-SVP C-PCM opt → GKS-EDA(sol); then `nonpolar.json` and `analysis.json`). Order: all `_0`
   seeds, then `_1`. ~2 min per DFT step; estimated 15–30 h total. xTB on DBA_0 raised C···C contacts 21 → 28.
   Resume after reboot: re-run the same script (converged cases skipped).
