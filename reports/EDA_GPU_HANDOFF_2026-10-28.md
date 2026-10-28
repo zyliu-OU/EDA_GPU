@@ -24,3 +24,12 @@ Previous: `reports/EDA_GPU_HANDOFF_2026-10-27.md` (patch results, placement samp
    cost first (≥ 150 atoms with TBuAA).
 2. Sensitivities (handoff 10-19): aug-cc-pVDZ, vdw_scale 1.2 vs 1.4, acetonitrile ε.
 3. Bases on the patch only if the reagent order is reproduced; retention data via `scripts/hplc_retention.py`.
+
+## Later 2026-10-28 — 7-chain brush timing test (not committed, nothing running)
+
+- `scripts/build_hplc_patch.py --chains 7` added (centre + hexagon at 7.6 Å; `--chains 3` output byte-identical);
+  wrote `examples/hplc/c8x7_patch.{xyz,json}` (182 atoms). Uncommitted.
+- Timing test (scratchpad, TBuAA seed, 223 atoms, M06-2X/def2-SVP DF C-PCM, as production): setup 4.5 min, then
+  54 s per SCF cycle (vs ≈ 4 s at 101 atoms), then **CUDA out of memory at the first gradient** (16 GB card).
+  Production run as configured is not possible. Waiting on user to choose: xTB geometry + DFT EDA single point,
+  5-chain brush timing test, or a memory fix in the engine.
