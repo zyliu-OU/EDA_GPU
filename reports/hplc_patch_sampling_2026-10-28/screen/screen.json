@@ -1,0 +1,165 @@
+{
+  "cases": {
+    "patch_dibutylammonium_2": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_2",
+      "dE_xtb_kcal_mol": -7.591315269329704
+    },
+    "patch_dibutylammonium_3": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_3",
+      "dE_xtb_kcal_mol": -7.810409439123157
+    },
+    "patch_dibutylammonium_4": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_4",
+      "dE_xtb_kcal_mol": -5.680308883569994
+    },
+    "patch_dibutylammonium_5": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_5",
+      "dE_xtb_kcal_mol": -6.081114342726777
+    },
+    "patch_dibutylammonium_6": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_6",
+      "dE_xtb_kcal_mol": -5.502063692978457
+    },
+    "patch_dibutylammonium_7": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_7",
+      "dE_xtb_kcal_mol": -6.822869650514008
+    },
+    "patch_dibutylammonium_8": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_8",
+      "dE_xtb_kcal_mol": -7.922875771515486
+    },
+    "patch_dibutylammonium_9": {
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_9",
+      "dE_xtb_kcal_mol": -4.817328810644266
+    },
+    "patch_dipeah_2": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_2",
+      "dE_xtb_kcal_mol": -5.673770970908776
+    },
+    "patch_dipeah_3": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_3",
+      "dE_xtb_kcal_mol": -4.83095931918154
+    },
+    "patch_dipeah_4": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_4",
+      "dE_xtb_kcal_mol": -4.664889769586227
+    },
+    "patch_dipeah_5": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_5",
+      "dE_xtb_kcal_mol": -6.895033575753084
+    },
+    "patch_dipeah_6": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_6",
+      "dE_xtb_kcal_mol": -6.352510307706859
+    },
+    "patch_dipeah_7": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_7",
+      "dE_xtb_kcal_mol": -4.516305304624322
+    },
+    "patch_dipeah_8": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_8",
+      "dE_xtb_kcal_mol": -6.707707718793195
+    },
+    "patch_dipeah_9": {
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_9",
+      "dE_xtb_kcal_mol": -4.646141052201056
+    },
+    "patch_hexylammonium_2": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_2",
+      "dE_xtb_kcal_mol": -6.093541780053545
+    },
+    "patch_hexylammonium_3": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_3",
+      "dE_xtb_kcal_mol": -6.150615040562454
+    },
+    "patch_hexylammonium_4": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_4",
+      "dE_xtb_kcal_mol": -6.122780130935188
+    },
+    "patch_hexylammonium_5": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_5",
+      "dE_xtb_kcal_mol": -6.126258539572331
+    },
+    "patch_hexylammonium_6": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_6",
+      "dE_xtb_kcal_mol": -4.238935310148515
+    },
+    "patch_hexylammonium_7": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_7",
+      "dE_xtb_kcal_mol": -4.217045427798538
+    },
+    "patch_hexylammonium_8": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_8",
+      "dE_xtb_kcal_mol": -3.4308032393261603
+    },
+    "patch_hexylammonium_9": {
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_9",
+      "dE_xtb_kcal_mol": -4.610007169139035
+    },
+    "patch_teah_2": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_2",
+      "dE_xtb_kcal_mol": -6.45097103212759
+    },
+    "patch_teah_3": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_3",
+      "dE_xtb_kcal_mol": -6.6291946740408925
+    },
+    "patch_teah_4": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_4",
+      "dE_xtb_kcal_mol": -5.930490113676543
+    },
+    "patch_teah_5": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_5",
+      "dE_xtb_kcal_mol": -5.543864133426038
+    },
+    "patch_teah_6": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_6",
+      "dE_xtb_kcal_mol": -5.750915392387216
+    },
+    "patch_teah_7": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_7",
+      "dE_xtb_kcal_mol": -5.896150326628444
+    },
+    "patch_teah_8": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_8",
+      "dE_xtb_kcal_mol": -5.152111009840429
+    },
+    "patch_teah_9": {
+      "seed": "examples/hplc/patch_sampling/patch_teah_9",
+      "dE_xtb_kcal_mol": -5.618772025186103
+    },
+    "patch_tributylammonium_2": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_2",
+      "dE_xtb_kcal_mol": -6.989836238075236
+    },
+    "patch_tributylammonium_3": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_3",
+      "dE_xtb_kcal_mol": -9.33345960425747
+    },
+    "patch_tributylammonium_4": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_4",
+      "dE_xtb_kcal_mol": -7.255560965704939
+    },
+    "patch_tributylammonium_5": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_5",
+      "dE_xtb_kcal_mol": -10.262283598075857
+    },
+    "patch_tributylammonium_6": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_6",
+      "dE_xtb_kcal_mol": -6.886648467227435
+    },
+    "patch_tributylammonium_7": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_7",
+      "dE_xtb_kcal_mol": -6.706821572497691
+    },
+    "patch_tributylammonium_8": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_8",
+      "dE_xtb_kcal_mol": -4.678563499717828
+    },
+    "patch_tributylammonium_9": {
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_9",
+      "dE_xtb_kcal_mol": -7.32845590621053
+    }
+  },
+  "method": "GFN2-xTB/ALPB(water) pre-optimization as run_hplc_stage.py; dE = complex - fragments at the complex geometry (kcal/mol); duplicates: reagent C centroid and N both within 1.5 A"
+}

@@ -590,3 +590,73 @@ Findings:
 Conclusion: removing the silanol gives the qualitatively right binding mode (chain contact, TEA weakest), but the
 reagent order is not reproduced (ρ = 0.3–0.6, n = 5); the three-chain patch is too small for the bulky reagents
 and placement sampling is too sparse to resolve 1 kcal/mol differences.
+
+## Silanol-free C8 patch — placement sampling, 2026-10-28
+
+Three extra placements per reagent on the same patch, chosen by a GFN2-xTB/ALPB screen (lowest dE_xTB of eight new
+seeds, ranks 2–9 of `scripts/build_hplc_patch.py --keep 10`), same protocol as above; combined with placements 0/1
+(5 per reagent). Archive: `reports/hplc_patch_sampling_2026-10-28/`. All 15 new cases converged with topology
+preserved (no broken or new bonds; frozen-anchor displacement ≤ 1.6e-8 Å, closure ≤ 1.2e-9 Eh, 17–96 DFT
+evaluations, 0.6–2.3 h each, 15.7 h total); no reagent heavy atom went below 2.7 Å above the anchor plane.
+Constrained stationary points. Columns as in the previous section; ΔE_rel is now relative to the lowest of all five
+placements; * = new placement.
+
+| Reagent, placement | ΔE_rel | N h / r | CC | elec | Pauli | pol | gen. corr | desolv | EDA total | dG_CDS water | EDA + CDS | np |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| TEAH⁺ 0 | 2.07 | 5.1 / 5.8 | 19 | -3.81 | 12.43 | -1.64 | -10.55 | +0.45 | -3.12 | -1.53 | -4.66 | 255 |
+| TEAH⁺ 1 | 0.94 | 7.9 / 4.9 | 20 | -4.71 | 12.45 | -2.65 | -11.56 | +1.53 | -4.94 | -2.01 | -6.95 | 272 |
+| TEAH⁺ 2* | 0.00 | 4.7 / 5.4 | 25 | -3.73 | 14.34 | -1.84 | -14.16 | +0.07 | -5.33 | -2.01 | -7.33 | 265 |
+| TEAH⁺ 3* | 1.25 | 4.7 / 5.8 | 17 | -4.45 | 12.90 | -1.85 | -11.53 | +1.08 | -3.86 | -1.49 | -5.35 | 274 |
+| TEAH⁺ 4* | 1.97 | 10.2 / 2.2 | 15 | -2.91 | 8.83 | -1.11 | -8.09 | +0.52 | -2.76 | -1.91 | -4.67 | 260 |
+| DIPEA-H⁺ 0 | 0.00 | 5.5 / 5.0 | 22 | -4.25 | 12.66 | -1.96 | -13.12 | +1.18 | -5.49 | -1.57 | -7.06 | 323 |
+| DIPEA-H⁺ 1 | 0.94 | 4.3 / 5.9 | 23 | -5.50 | 16.58 | -1.71 | -15.09 | +0.99 | -4.72 | -1.82 | -6.54 | 310 |
+| DIPEA-H⁺ 5* | 0.92 | 4.6 / 5.9 | 21 | -4.95 | 15.60 | -1.58 | -14.36 | +0.69 | -4.60 | -1.77 | -6.38 | 317 |
+| DIPEA-H⁺ 6* | 2.99 | 11.1 / 1.2 | 14 | -3.62 | 10.10 | -1.10 | -9.45 | +0.82 | -3.25 | -1.81 | -5.06 | 303 |
+| DIPEA-H⁺ 8* | 2.10 | 10.6 / 1.5 | 16 | -3.70 | 10.41 | -1.17 | -9.90 | +0.87 | -3.49 | -1.67 | -5.16 | 284 |
+| DBAA 0 | 0.00 | 7.0 / 1.6 | 37 | -6.38 | 21.46 | -3.02 | -21.77 | +0.86 | -8.85 | -3.09 | -11.94 | 404 |
+| DBAA 1 | 1.50 | 7.5 / 2.2 | 30 | -5.26 | 16.88 | -2.47 | -17.45 | +1.06 | -7.25 | -2.22 | -9.47 | 374 |
+| DBAA 2* | 2.87 | 7.6 / 5.3 | 21 | -3.46 | 12.55 | -1.70 | -12.81 | +0.09 | -5.34 | -1.92 | -7.26 | 275 |
+| DBAA 3* | 3.53 | 9.6 / 3.8 | 19 | -4.07 | 11.49 | -1.41 | -11.57 | +0.84 | -4.73 | -1.85 | -6.58 | 266 |
+| DBAA 8* | 4.24 | 8.6 / 4.7 | 14 | -3.67 | 10.54 | -2.29 | -10.43 | +1.15 | -4.71 | -1.99 | -6.69 | 247 |
+| HAA 0 | 0.00 | 10.0 / 3.7 | 27 | -5.83 | 16.51 | -1.23 | -16.24 | +0.82 | -5.97 | -2.03 | -8.00 | 305 |
+| HAA 1 | 0.53 | 8.9 / 6.1 | 26 | -4.94 | 15.66 | -0.96 | -15.17 | +0.13 | -5.27 | -1.91 | -7.18 | 284 |
+| HAA 3* | 1.59 | 12.2 / 4.6 | 20 | -4.97 | 14.03 | -0.58 | -13.26 | +0.49 | -4.29 | -1.52 | -5.82 | 268 |
+| HAA 4* | 1.86 | 11.2 / 5.9 | 24 | -5.08 | 14.92 | -0.71 | -13.62 | +0.42 | -4.07 | -1.52 | -5.59 | 260 |
+| HAA 5* | 1.68 | 12.1 / 3.2 | 17 | -4.74 | 12.75 | -0.74 | -12.43 | +0.91 | -4.26 | -1.59 | -5.84 | 307 |
+| TBuAA 0 | 3.52 | 9.3 / 6.2 | 19 | -4.57 | 13.83 | -1.18 | -12.95 | +0.77 | -4.11 | -1.85 | -5.96 | 309 |
+| TBuAA 1 | 2.67 | 8.8 / 4.8 | 24 | -5.35 | 16.33 | -1.26 | -15.58 | +0.65 | -5.21 | -2.00 | -7.22 | 324 |
+| TBuAA 3* | 0.00 | 7.7 / 3.0 | 31 | -6.49 | 20.37 | -1.92 | -19.99 | +0.90 | -7.14 | -2.55 | -9.68 | 434 |
+| TBuAA 5* | 1.66 | 8.4 / 2.5 | 32 | -5.99 | 19.01 | -2.25 | -18.47 | +0.98 | -6.72 | -2.80 | -9.51 | 428 |
+| TBuAA 9* | 3.67 | 10.2 / 4.0 | 21 | -4.40 | 12.12 | -1.60 | -11.86 | +1.05 | -4.69 | -2.11 | -6.80 | 312 |
+
+Reagent order (least → most retained published: TEA < DIPEA < DBA < HA < TBA), n = 5:
+
+| Measure | Order (weakest → strongest) | Spearman ρ (p) | 10-27 (2 placements) |
+| --- | --- | ---: | ---: |
+| EDA, lowest-energy = best placement = Boltzmann | TEAH⁺ < DIPEA-H⁺ < HAA < TBuAA < DBAA | 0.7 (0.19) | 0.3 |
+| EDA + CDS(water), same three | DIPEA-H⁺ < TEAH⁺ < HAA < TBuAA < DBAA | 0.6 (0.28) | 0.6 |
+| EDA + CDS(water), mean of 5 | TEAH⁺ < DIPEA-H⁺ < HAA < TBuAA < DBAA | 0.7 (0.19) | — |
+| buried nonpolar SASA, lowest-energy | TEAH⁺ < HAA < DIPEA-H⁺ < DBAA < TBuAA | 0.7 (0.19) | 0.5 |
+
+Findings:
+
+- In every reagent the lowest-energy optimized placement is also the most strongly bound one in EDA and EDA + CDS,
+  and it carries 63–93 % of the 298 K Boltzmann weight (electronic C-PCM energy only), so lowest-energy, best and
+  Boltzmann-weighted give the same order. Lowest-energy placement changed for TEAH⁺ (→ 2, −5.33) and TBuAA
+  (→ 3, −7.14); DIPEA-H⁺, DBAA and HAA kept placement 0.
+- TBuAA moves from 4th to 2nd: placements 3 and 5 insert it over the triangle (N r = 2.5–3.0 Å, h = 7.7–8.4 Å;
+  31–32 C···C contacts, the largest buried area of any pair, 428–434 Å²), the same binding mode as DBAA 0/1. The
+  10-27 statement that the patch cannot bind a bulky tertiary reagent this way was a sampling artefact.
+- Insertion over the triangle (r ≤ 3 Å, h ≤ 8.5 Å, ≥ 30 contacts) gives the four strongest pairs (−6.7 to −8.9);
+  every other placement, including those sitting on the chain tips (r ≤ 2.2 Å but h ≥ 10 Å: TEAH⁺ 4, DIPEA-H⁺ 6/8),
+  is −2.8 to −6.0. TEAH⁺, DIPEA-H⁺ and HAA found no inserted placement among five.
+- The remaining disagreement is DBAA > TBuAA (−8.85 vs −7.14) and HAA below both. With TBuAA and DBAA swapped,
+  EDA would give ρ = 0.9; the gap (1.7 kcal/mol) is about one placement spread, so it is not resolved.
+- xTB screening is a weak filter: pooled over the 15 new placements dE_xTB vs EDA has ρ = 0.78, mostly from reagent
+  identity (TBuAA strongest in both); within reagents the xTB best pick was also the DFT best in 2 of 5 (DIPEA-H⁺,
+  HAA). xTB overbinds by 1.1–3.5 kcal/mol.
+
+Conclusion: five placements per reagent make the ordering stable within each reagent (lowest-energy = best), raise
+the EDA rank correlation to ρ = 0.7 (n = 5, not significant) and remove the TBuAA artefact, but DBAA is still
+strongest. Whether DBA vs TBA and HA follow the published order depends on the brush: a larger/denser patch
+(5–7 chains) that both linear and tertiary reagents can insert into is the next test.

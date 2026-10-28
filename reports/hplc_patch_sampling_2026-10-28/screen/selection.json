@@ -1,0 +1,137 @@
+{
+  "patch_dibutylammonium": {
+    "known": [
+      "patch_dibutylammonium_0",
+      "patch_dibutylammonium_1"
+    ],
+    "candidates": [
+      "patch_dibutylammonium_2",
+      "patch_dibutylammonium_3",
+      "patch_dibutylammonium_4",
+      "patch_dibutylammonium_5",
+      "patch_dibutylammonium_6",
+      "patch_dibutylammonium_7",
+      "patch_dibutylammonium_8",
+      "patch_dibutylammonium_9"
+    ],
+    "picked": [
+      "patch_dibutylammonium_8",
+      "patch_dibutylammonium_3",
+      "patch_dibutylammonium_2"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_sampling/patch_dibutylammonium_8",
+      "examples/hplc/patch_sampling/patch_dibutylammonium_3",
+      "examples/hplc/patch_sampling/patch_dibutylammonium_2"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_dipeah": {
+    "known": [
+      "patch_dipeah_0",
+      "patch_dipeah_1"
+    ],
+    "candidates": [
+      "patch_dipeah_2",
+      "patch_dipeah_3",
+      "patch_dipeah_4",
+      "patch_dipeah_5",
+      "patch_dipeah_6",
+      "patch_dipeah_7",
+      "patch_dipeah_8",
+      "patch_dipeah_9"
+    ],
+    "picked": [
+      "patch_dipeah_5",
+      "patch_dipeah_8",
+      "patch_dipeah_6"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_sampling/patch_dipeah_5",
+      "examples/hplc/patch_sampling/patch_dipeah_8",
+      "examples/hplc/patch_sampling/patch_dipeah_6"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_hexylammonium": {
+    "known": [
+      "patch_hexylammonium_0",
+      "patch_hexylammonium_1"
+    ],
+    "candidates": [
+      "patch_hexylammonium_2",
+      "patch_hexylammonium_3",
+      "patch_hexylammonium_4",
+      "patch_hexylammonium_5",
+      "patch_hexylammonium_6",
+      "patch_hexylammonium_7",
+      "patch_hexylammonium_8",
+      "patch_hexylammonium_9"
+    ],
+    "picked": [
+      "patch_hexylammonium_3",
+      "patch_hexylammonium_5",
+      "patch_hexylammonium_4"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_sampling/patch_hexylammonium_3",
+      "examples/hplc/patch_sampling/patch_hexylammonium_5",
+      "examples/hplc/patch_sampling/patch_hexylammonium_4"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_teah": {
+    "known": [
+      "patch_teah_0",
+      "patch_teah_1"
+    ],
+    "candidates": [
+      "patch_teah_2",
+      "patch_teah_3",
+      "patch_teah_4",
+      "patch_teah_5",
+      "patch_teah_6",
+      "patch_teah_7",
+      "patch_teah_8",
+      "patch_teah_9"
+    ],
+    "picked": [
+      "patch_teah_3",
+      "patch_teah_2",
+      "patch_teah_4"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_sampling/patch_teah_3",
+      "examples/hplc/patch_sampling/patch_teah_2",
+      "examples/hplc/patch_sampling/patch_teah_4"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_tributylammonium": {
+    "known": [
+      "patch_tributylammonium_0",
+      "patch_tributylammonium_1"
+    ],
+    "candidates": [
+      "patch_tributylammonium_2",
+      "patch_tributylammonium_3",
+      "patch_tributylammonium_4",
+      "patch_tributylammonium_5",
+      "patch_tributylammonium_6",
+      "patch_tributylammonium_7",
+      "patch_tributylammonium_8",
+      "patch_tributylammonium_9"
+    ],
+    "picked": [
+      "patch_tributylammonium_5",
+      "patch_tributylammonium_3",
+      "patch_tributylammonium_9"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_sampling/patch_tributylammonium_5",
+      "examples/hplc/patch_sampling/patch_tributylammonium_3",
+      "examples/hplc/patch_sampling/patch_tributylammonium_9"
+    ],
+    "duplicate_of": {}
+  }
+}

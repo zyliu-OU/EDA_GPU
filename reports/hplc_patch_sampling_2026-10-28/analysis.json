@@ -1,0 +1,778 @@
+{
+  "campaign": "runs/hplc_patch_sampling_cpcm_def2svp",
+  "optimization_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-10,
+    "conv_tol_grad": null,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": true,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 85.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "eda_settings": {
+    "backend": "gpu",
+    "xc": "m06-2x",
+    "basis": "def2-svp",
+    "auxbasis": "def2-universal-jkfit",
+    "grid_level": 3,
+    "conv_tol": 1e-09,
+    "conv_tol_grad": 1e-06,
+    "max_cycle": 200,
+    "threads": 16,
+    "density_fitting": false,
+    "dispersion": "none",
+    "cart": false,
+    "solvent": "cpcm",
+    "solvent_eps": 78.3553,
+    "solvent_lebedev_order": 29,
+    "solvent_vdw_scale": 1.2,
+    "solvent_monomer_cavity": "complex",
+    "cpu_core_limit": 0,
+    "compute_duty_cycle": 1.0,
+    "gpu_temperature_limit": 80.0,
+    "gpu_resume_temperature": 65.0,
+    "cpu_temperature_limit": 85.0,
+    "cpu_resume_temperature": 75.0,
+    "max_cooldown_seconds": 600.0
+  },
+  "selection": "lowest optimized PCM free energy among successful placements; ranges over all successful placements",
+  "groups": {
+    "patch_dibutylammonium_2": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dibutylammonium_2",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dibutylammonium_2": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -3.460678001137205,
+        "exchange": -20.52524850973587,
+        "repulsion": 33.07395439359086,
+        "polarization": -1.7029267328560078,
+        "generalized_correlation": -12.81376679728544,
+        "desolvation": 0.08804346271231323,
+        "total": -5.340622478409602
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -3.460678001137205,
+          -3.460678001137205
+        ],
+        "exchange": [
+          -20.52524850973587,
+          -20.52524850973587
+        ],
+        "repulsion": [
+          33.07395439359086,
+          33.07395439359086
+        ],
+        "polarization": [
+          -1.7029267328560078,
+          -1.7029267328560078
+        ],
+        "generalized_correlation": [
+          -12.81376679728544,
+          -12.81376679728544
+        ],
+        "desolvation": [
+          0.08804346271231323,
+          0.08804346271231323
+        ],
+        "total": [
+          -5.340622478409602,
+          -5.340622478409602
+        ]
+      }
+    },
+    "patch_dibutylammonium_3": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dibutylammonium_3",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dibutylammonium_3": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.073656498487915,
+        "exchange": -19.04118234839045,
+        "repulsion": 30.530719713022677,
+        "polarization": -1.4129507641097356,
+        "generalized_correlation": -11.573525796185107,
+        "desolvation": 0.8400595505041227,
+        "total": -4.730536356655936
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.073656498487915,
+          -4.073656498487915
+        ],
+        "exchange": [
+          -19.04118234839045,
+          -19.04118234839045
+        ],
+        "repulsion": [
+          30.530719713022677,
+          30.530719713022677
+        ],
+        "polarization": [
+          -1.4129507641097356,
+          -1.4129507641097356
+        ],
+        "generalized_correlation": [
+          -11.573525796185107,
+          -11.573525796185107
+        ],
+        "desolvation": [
+          0.8400595505041227,
+          0.8400595505041227
+        ],
+        "total": [
+          -4.730536356655936,
+          -4.730536356655936
+        ]
+      }
+    },
+    "patch_dibutylammonium_8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dibutylammonium_8",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dibutylammonium_8": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -3.6674668950248974,
+        "exchange": -16.93062416465624,
+        "repulsion": 27.46566512564973,
+        "polarization": -2.2896601571519386,
+        "generalized_correlation": -10.433004506151994,
+        "desolvation": 1.1496383906985996,
+        "total": -4.705452612577034
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -3.6674668950248974,
+          -3.6674668950248974
+        ],
+        "exchange": [
+          -16.93062416465624,
+          -16.93062416465624
+        ],
+        "repulsion": [
+          27.46566512564973,
+          27.46566512564973
+        ],
+        "polarization": [
+          -2.2896601571519386,
+          -2.2896601571519386
+        ],
+        "generalized_correlation": [
+          -10.433004506151994,
+          -10.433004506151994
+        ],
+        "desolvation": [
+          1.1496383906985996,
+          1.1496383906985996
+        ],
+        "total": [
+          -4.705452612577034,
+          -4.705452612577034
+        ]
+      }
+    },
+    "patch_dipeah_5": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dipeah_5",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dipeah_5": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.954664080511339,
+        "exchange": -25.12676016226282,
+        "repulsion": 40.731447181882054,
+        "polarization": -1.5833256621826082,
+        "generalized_correlation": -14.358990703384883,
+        "desolvation": 0.6893876131954415,
+        "total": -4.602906064004184
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.954664080511339,
+          -4.954664080511339
+        ],
+        "exchange": [
+          -25.12676016226282,
+          -25.12676016226282
+        ],
+        "repulsion": [
+          40.731447181882054,
+          40.731447181882054
+        ],
+        "polarization": [
+          -1.5833256621826082,
+          -1.5833256621826082
+        ],
+        "generalized_correlation": [
+          -14.358990703384883,
+          -14.358990703384883
+        ],
+        "desolvation": [
+          0.6893876131954415,
+          0.6893876131954415
+        ],
+        "total": [
+          -4.602906064004184,
+          -4.602906064004184
+        ]
+      }
+    },
+    "patch_dipeah_6": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dipeah_6",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dipeah_6": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -3.618946212159695,
+        "exchange": -16.45763356042998,
+        "repulsion": 26.558963356996475,
+        "polarization": -1.1047484849076523,
+        "generalized_correlation": -9.448647525410848,
+        "desolvation": 0.8160373182488465,
+        "total": -3.254975317943427
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -3.618946212159695,
+          -3.618946212159695
+        ],
+        "exchange": [
+          -16.45763356042998,
+          -16.45763356042998
+        ],
+        "repulsion": [
+          26.558963356996475,
+          26.558963356996475
+        ],
+        "polarization": [
+          -1.1047484849076523,
+          -1.1047484849076523
+        ],
+        "generalized_correlation": [
+          -9.448647525410848,
+          -9.448647525410848
+        ],
+        "desolvation": [
+          0.8160373182488465,
+          0.8160373182488465
+        ],
+        "total": [
+          -3.254975317943427,
+          -3.254975317943427
+        ]
+      }
+    },
+    "patch_dipeah_8": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_dipeah_8",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_dipeah_8": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -3.6980233999675356,
+        "exchange": -16.905952998562963,
+        "repulsion": 27.31738491582044,
+        "polarization": -1.1657280766747755,
+        "generalized_correlation": -9.903784497617394,
+        "desolvation": 0.8669396030582139,
+        "total": -3.4891647089430746
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -3.6980233999675356,
+          -3.6980233999675356
+        ],
+        "exchange": [
+          -16.905952998562963,
+          -16.905952998562963
+        ],
+        "repulsion": [
+          27.31738491582044,
+          27.31738491582044
+        ],
+        "polarization": [
+          -1.1657280766747755,
+          -1.1657280766747755
+        ],
+        "generalized_correlation": [
+          -9.903784497617394,
+          -9.903784497617394
+        ],
+        "desolvation": [
+          0.8669396030582139,
+          0.8669396030582139
+        ],
+        "total": [
+          -3.4891647089430746,
+          -3.4891647089430746
+        ]
+      }
+    },
+    "patch_hexylammonium_3": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_hexylammonium_3",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_hexylammonium_3": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.972902878815804,
+        "exchange": -24.101101479070593,
+        "repulsion": 38.13307848685379,
+        "polarization": -0.5791807322244698,
+        "generalized_correlation": -13.264613103624882,
+        "desolvation": 0.490039263985114,
+        "total": -4.294680653375298
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.972902878815804,
+          -4.972902878815804
+        ],
+        "exchange": [
+          -24.101101479070593,
+          -24.101101479070593
+        ],
+        "repulsion": [
+          38.13307848685379,
+          38.13307848685379
+        ],
+        "polarization": [
+          -0.5791807322244698,
+          -0.5791807322244698
+        ],
+        "generalized_correlation": [
+          -13.264613103624882,
+          -13.264613103624882
+        ],
+        "desolvation": [
+          0.490039263985114,
+          0.490039263985114
+        ],
+        "total": [
+          -4.294680653375298,
+          -4.294680653375298
+        ]
+      }
+    },
+    "patch_hexylammonium_4": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_hexylammonium_4",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_hexylammonium_4": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -5.079880104434084,
+        "exchange": -25.31958811645907,
+        "repulsion": 40.238426704729434,
+        "polarization": -0.7126208086965894,
+        "generalized_correlation": -13.621589950087271,
+        "desolvation": 0.42294113307158954,
+        "total": -4.072311316745038
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -5.079880104434084,
+          -5.079880104434084
+        ],
+        "exchange": [
+          -25.31958811645907,
+          -25.31958811645907
+        ],
+        "repulsion": [
+          40.238426704729434,
+          40.238426704729434
+        ],
+        "polarization": [
+          -0.7126208086965894,
+          -0.7126208086965894
+        ],
+        "generalized_correlation": [
+          -13.621589950087271,
+          -13.621589950087271
+        ],
+        "desolvation": [
+          0.42294113307158954,
+          0.42294113307158954
+        ],
+        "total": [
+          -4.072311316745038,
+          -4.072311316745038
+        ]
+      }
+    },
+    "patch_hexylammonium_5": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_hexylammonium_5",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_hexylammonium_5": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.743497390603521,
+        "exchange": -21.768031091519276,
+        "repulsion": 34.519317404550925,
+        "polarization": -0.7446726081005419,
+        "generalized_correlation": -12.431426429438915,
+        "desolvation": 0.9105995821409344,
+        "total": -4.257710766094135
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.743497390603521,
+          -4.743497390603521
+        ],
+        "exchange": [
+          -21.768031091519276,
+          -21.768031091519276
+        ],
+        "repulsion": [
+          34.519317404550925,
+          34.519317404550925
+        ],
+        "polarization": [
+          -0.7446726081005419,
+          -0.7446726081005419
+        ],
+        "generalized_correlation": [
+          -12.431426429438915,
+          -12.431426429438915
+        ],
+        "desolvation": [
+          0.9105995821409344,
+          0.9105995821409344
+        ],
+        "total": [
+          -4.257710766094135,
+          -4.257710766094135
+        ]
+      }
+    },
+    "patch_teah_2": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_teah_2",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_teah_2": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -3.7343933403176557,
+        "exchange": -23.07591817787622,
+        "repulsion": 37.41124480647902,
+        "polarization": -1.837947724967926,
+        "generalized_correlation": -14.160620518192346,
+        "desolvation": 0.07047646181066616,
+        "total": -5.327158623998246
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -3.7343933403176557,
+          -3.7343933403176557
+        ],
+        "exchange": [
+          -23.07591817787622,
+          -23.07591817787622
+        ],
+        "repulsion": [
+          37.41124480647902,
+          37.41124480647902
+        ],
+        "polarization": [
+          -1.837947724967926,
+          -1.837947724967926
+        ],
+        "generalized_correlation": [
+          -14.160620518192346,
+          -14.160620518192346
+        ],
+        "desolvation": [
+          0.07047646181066616,
+          0.07047646181066616
+        ],
+        "total": [
+          -5.327158623998246,
+          -5.327158623998246
+        ]
+      }
+    },
+    "patch_teah_3": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_teah_3",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_teah_3": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.452805872295626,
+        "exchange": -20.560056069336827,
+        "repulsion": 33.45677748911191,
+        "polarization": -1.8490204043384464,
+        "generalized_correlation": -11.528734585621313,
+        "desolvation": 1.0754769161162723,
+        "total": -3.858362645868294
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.452805872295626,
+          -4.452805872295626
+        ],
+        "exchange": [
+          -20.560056069336827,
+          -20.560056069336827
+        ],
+        "repulsion": [
+          33.45677748911191,
+          33.45677748911191
+        ],
+        "polarization": [
+          -1.8490204043384464,
+          -1.8490204043384464
+        ],
+        "generalized_correlation": [
+          -11.528734585621313,
+          -11.528734585621313
+        ],
+        "desolvation": [
+          1.0754769161162723,
+          1.0754769161162723
+        ],
+        "total": [
+          -3.858362645868294,
+          -3.858362645868294
+        ]
+      }
+    },
+    "patch_teah_4": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_teah_4",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_teah_4": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -2.9110715597717833,
+        "exchange": -14.232987317170476,
+        "repulsion": 23.062919863781797,
+        "polarization": -1.1124237463465214,
+        "generalized_correlation": -8.088525375136227,
+        "desolvation": 0.52224510368816,
+        "total": -2.759843231105351
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -2.9110715597717833,
+          -2.9110715597717833
+        ],
+        "exchange": [
+          -14.232987317170476,
+          -14.232987317170476
+        ],
+        "repulsion": [
+          23.062919863781797,
+          23.062919863781797
+        ],
+        "polarization": [
+          -1.1124237463465214,
+          -1.1124237463465214
+        ],
+        "generalized_correlation": [
+          -8.088525375136227,
+          -8.088525375136227
+        ],
+        "desolvation": [
+          0.52224510368816,
+          0.52224510368816
+        ],
+        "total": [
+          -2.759843231105351,
+          -2.759843231105351
+        ]
+      }
+    },
+    "patch_tributylammonium_3": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_tributylammonium_3",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_tributylammonium_3": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -6.4907816208408775,
+        "exchange": -33.87134110166753,
+        "repulsion": 54.24285755583778,
+        "polarization": -1.9238118489233746,
+        "generalized_correlation": -19.99389408403605,
+        "desolvation": 0.9006769027674549,
+        "total": -7.136294583275973
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -6.4907816208408775,
+          -6.4907816208408775
+        ],
+        "exchange": [
+          -33.87134110166753,
+          -33.87134110166753
+        ],
+        "repulsion": [
+          54.24285755583778,
+          54.24285755583778
+        ],
+        "polarization": [
+          -1.9238118489233746,
+          -1.9238118489233746
+        ],
+        "generalized_correlation": [
+          -19.99389408403605,
+          -19.99389408403605
+        ],
+        "desolvation": [
+          0.9006769027674549,
+          0.9006769027674549
+        ],
+        "total": [
+          -7.136294583275973,
+          -7.136294583275973
+        ]
+      }
+    },
+    "patch_tributylammonium_5": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_tributylammonium_5",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_tributylammonium_5": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -5.988693180079008,
+        "exchange": -31.27666057330841,
+        "repulsion": 50.28594111972076,
+        "polarization": -2.250965277125329,
+        "generalized_correlation": -18.470888019319283,
+        "desolvation": 0.984648191948147,
+        "total": -6.716618496205353
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -5.988693180079008,
+          -5.988693180079008
+        ],
+        "exchange": [
+          -31.27666057330841,
+          -31.27666057330841
+        ],
+        "repulsion": [
+          50.28594111972076,
+          50.28594111972076
+        ],
+        "polarization": [
+          -2.250965277125329,
+          -2.250965277125329
+        ],
+        "generalized_correlation": [
+          -18.470888019319283,
+          -18.470888019319283
+        ],
+        "desolvation": [
+          0.984648191948147,
+          0.984648191948147
+        ],
+        "total": [
+          -6.716618496205353,
+          -6.716618496205353
+        ]
+      }
+    },
+    "patch_tributylammonium_9": {
+      "placements": 1,
+      "successful": 1,
+      "failed": {},
+      "selected": "patch_tributylammonium_9",
+      "selected_relative_free_energy_kcal_mol": {
+        "patch_tributylammonium_9": 0.0
+      },
+      "components_kcal_mol": {
+        "electrostatic": -4.398921539510622,
+        "exchange": -20.054234984862497,
+        "repulsion": 32.175480587680035,
+        "polarization": -1.6013177277409556,
+        "generalized_correlation": -11.86496644893963,
+        "desolvation": 1.053284013191982,
+        "total": -4.690676485650757
+      },
+      "component_range_kcal_mol": {
+        "electrostatic": [
+          -4.398921539510622,
+          -4.398921539510622
+        ],
+        "exchange": [
+          -20.054234984862497,
+          -20.054234984862497
+        ],
+        "repulsion": [
+          32.175480587680035,
+          32.175480587680035
+        ],
+        "polarization": [
+          -1.6013177277409556,
+          -1.6013177277409556
+        ],
+        "generalized_correlation": [
+          -11.86496644893963,
+          -11.86496644893963
+        ],
+        "desolvation": [
+          1.053284013191982,
+          1.053284013191982
+        ],
+        "total": [
+          -4.690676485650757,
+          -4.690676485650757
+        ]
+      }
+    }
+  }
+}
