@@ -33,3 +33,45 @@ Previous: `reports/EDA_GPU_HANDOFF_2026-10-27.md` (patch results, placement samp
   54 s per SCF cycle (vs ≈ 4 s at 101 atoms), then **CUDA out of memory at the first gradient** (16 GB card).
   Production run as configured is not possible. Waiting on user to choose: xTB geometry + DFT EDA single point,
   5-chain brush timing test, or a memory fix in the engine.
+
+## 2026-11-09 — larger brush dropped
+
+- User: the machine (32 GB RAM, 16 GB GPU) cannot run larger systems. The 5–7-chain brush (next step 1) is dropped;
+  the 3-chain C8 patch stays the production surface model. 7-chain builder and `c8x7_patch.*` remain uncommitted.
+- Remaining: sensitivities (memory-check aug-cc-pVDZ first), bases on the 3-chain patch, retention fit.
+
+## 2026-11-09 (later) — GPU memory fix for the 7-chain brush (option B)
+
+- Correction: the 10-28 OOM was **GPU** memory (16 GB), not host RAM; the SCF fit. 7-chain brush back on the table.
+- Cause (read in gpu4pyscf 1.8.1 `df/grad/rhf.py`): the DF gradient calls `with_df.reset()` then sizes its
+  batches from `cudaMemGetInfo` (`get_avail_mem(exclude_memory_pool=True)`), which does not count the blocks cupy
+  keeps cached in its pool after the SCF.
+- Fix (uncommitted): `src/eda_gpu/engine.py` `release_gpu_cache()` + `gradient_method()`; every GPU gradient
+  (single point and optimizer scanner) first resets the DF tensor and frees cupy's device + pinned pools;
+  `make_mf` frees the pools before each new SCF (EDA too; DF tensor not reset there). 46/46 tests pass.
+- Estimate for 7-chain + TBuAA (nao 1736, naux 7949, nocc 284): fixed K-gradient buffers j3c_oo + dm_oo
+  ≈ 10.3 GB peak; rest auto-batched → ~11.5–12 GB expected.
+- Memory test running: production-settings single point (SCF + gradient) of the 7-chain TBuAA seed, scratchpad
+  `c8x7_memtest/` (`mem.log` = time, GPU MiB, GPU °C, host MiB, swap MiB every 5 s).
+- Next if it passes: commit builder + fix; seeds for all 5 reagents (`--chains 7`), xTB screen, DFT best 2–3 each.
+- Moved to systemd user unit `c8x7-memtest` (survives closing the window); files in
+  `reports/c8x7_memtest_2026-11-09/` (`run.out` ends with rc=, `mem.log`, `run.err` has `time -v` peak RSS).
+  First attempt showed host RAM 28.5 GB + 2.5 GB swap during SCF setup: host RAM is tight too.
+- **Memory test result (21:18–21:33): failed, GPU OOM again in the gradient.** SCF converged (cycle 11,
+  E = −2735.103088 Eh, ~13.7 min). At the gradient, GPU use went 8.5 → 15.3 GB, then OOM in
+  `df/grad/rhf.py _jk_energy_per_atom → int2c2e(auxmol) → apply_CT_mat_C`, i.e. after the large K-gradient
+  buffers were already allocated. So the cache-release fix works (the SCF pool was freed first) but the fixed
+  buffers (~10+ GB) plus the aux 2c2e step don't fit in 16 GB. Host peak RSS 25.7 GB (of 32). rc=1, unit gone.
+  Options: xTB geometry + DFT EDA single point only (no DFT gradient), or a 5-chain brush.
+
+## 2026-11-09 (late) — 7- and 5-chain dropped for good; 3-chain only
+
+- Size estimate (def2-SVP, gradient buffers are built in the Cartesian basis, which is why the earlier estimate was low):
+  3 / 5 / 7 chains + TBuAA = 119 / 171 / 223 atoms, naux(cart) 4937 / 7081 / 9225, nocc 152 / 218 / 284;
+  K-gradient j3c_oo 0.9 / 2.7 / 6.0 GB, and the gradient holds it twice (j3c_oo + dm_oo).
+- A CPU PCM-grid estimate (pyscf `PCM.build()` builds dense ngrid² matrices) hit host OOM at 26 GB and was
+  killed (22:03), taking the terminal with it. Don't build PCM/large matrices on CPU for 7-chain-sized systems.
+- User decision: focus on the 3-chain patch data only. No 5- or 7-chain work. 7-chain builder + `c8x7_patch.*`
+  stay uncommitted (not needed); the engine GPU-cache release fix is general and can be kept.
+- Next (3-chain): sensitivities (aug-cc-pVDZ memory check first, vdw_scale 1.2 vs 1.4, acetonitrile ε),
+  bases on the patch, retention fit (`scripts/hplc_retention.py`).

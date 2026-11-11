@@ -1,0 +1,1388 @@
+{
+  "variants": {
+    "ref": {},
+    "vdw14": {
+      "solvent_vdw_scale": 1.4
+    },
+    "acn": {
+      "solvent_eps": 35.688
+    }
+  },
+  "cases": {
+    "patch_teah_2": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_teah_2",
+      "ref": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.734393340460335,
+          "exchange": -23.07591817786498,
+          "repulsion": 37.41124480647902,
+          "polarization": -1.8379477243972095,
+          "generalized_correlation": -14.160620518121005,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.07047646179000974,
+          "total": -5.32715862328485
+        },
+        "complex_energy_hartree": -1238.2935653751592,
+        "closure_residual_hartree": -2.0830019653583776e-10,
+        "seconds": 287.4770576860001,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.8079033851563193,
+          "exchange": -22.936190965100785,
+          "repulsion": 37.250810854020465,
+          "polarization": -2.8768699277267133,
+          "generalized_correlation": -14.784813713159298,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.6304557665462076,
+          "total": -5.52451138132584
+        },
+        "complex_energy_hartree": -1238.2975263204153,
+        "closure_residual_hartree": -1.7130255547392892e-11,
+        "seconds": 265.10780304199943,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.731374697324032,
+          "exchange": -23.05470198674996,
+          "repulsion": 37.387511407272875,
+          "polarization": -1.9863026450168513,
+          "generalized_correlation": -14.194466527200646,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.24966670381764675,
+          "total": -5.3296677647215045
+        },
+        "complex_energy_hartree": -1238.29394200357,
+        "closure_residual_hartree": -3.1107949549635805e-11,
+        "seconds": 275.43546384900037,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dibutylammonium_0": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_dibutylammonium_0",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -6.406494899336875,
+          "exchange": -34.504430726871824,
+          "repulsion": 55.924586048892685,
+          "polarization": -5.091451273671255,
+          "generalized_correlation": -22.970472385189183,
+          "explicit_dispersion": 0.0,
+          "desolvation": 3.0148424207700786,
+          "total": -10.03342118193954
+        },
+        "complex_energy_hartree": -1316.8329745508945,
+        "closure_residual_hartree": -5.841077829749075e-10,
+        "seconds": 352.53339304399924,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -6.3787930453425,
+          "exchange": -34.67468746727675,
+          "repulsion": 56.12835254739683,
+          "polarization": -3.2462822060953553,
+          "generalized_correlation": -21.82889717332123,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.1311013292414718,
+          "total": -8.869206464188743
+        },
+        "complex_energy_hartree": -1316.825202476186,
+        "closure_residual_hartree": -7.15194320433099e-10,
+        "seconds": 370.831842597001,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dibutylammonium_1": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_dibutylammonium_1",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.190838767357805,
+          "exchange": -27.67969140001777,
+          "repulsion": 44.5162277940112,
+          "polarization": -4.207500055575106,
+          "generalized_correlation": -18.496725407504243,
+          "explicit_dispersion": 0.0,
+          "desolvation": 2.5330647717322528,
+          "total": -8.525463365363212
+        },
+        "complex_energy_hartree": -1316.8297395810969,
+        "closure_residual_hartree": -4.791190430508685e-10,
+        "seconds": 341.9641185169994,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.257769857141782,
+          "exchange": -27.799671954372027,
+          "repulsion": 44.6762707902292,
+          "polarization": -2.67692345419276,
+          "generalized_correlation": -17.50415279841792,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2954202561228656,
+          "total": -7.266827357773291
+        },
+        "complex_energy_hartree": -1316.82301517427,
+        "closure_residual_hartree": -5.418258619549476e-10,
+        "seconds": 347.4210871849991,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dibutylammonium_2": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_2",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.492481179008645,
+          "exchange": -20.549595995871478,
+          "repulsion": 33.087405886852636,
+          "polarization": -3.0290267011311354,
+          "generalized_correlation": -13.47673707700559,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.6620004035788212,
+          "total": -5.798434850270871
+        },
+        "complex_energy_hartree": -1316.8240758397678,
+        "closure_residual_hartree": -2.9909585919085657e-10,
+        "seconds": 295.6049240099992,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.4585977002478407,
+          "exchange": -20.515174900836325,
+          "repulsion": 33.06268485410996,
+          "polarization": -1.8678283828158957,
+          "generalized_correlation": -12.845077686838852,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.28048317861799854,
+          "total": -5.343510913494281
+        },
+        "complex_energy_hartree": -1316.8185453694905,
+        "closure_residual_hartree": -4.390106195240051e-10,
+        "seconds": 300.44587231400146,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dibutylammonium_3": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_3",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.950363821342891,
+          "exchange": -18.903231481867913,
+          "repulsion": 30.365745037598387,
+          "polarization": -2.3081754904496234,
+          "generalized_correlation": -11.94078286369396,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.4993465335602147,
+          "total": -5.237462356334875
+        },
+        "complex_energy_hartree": -1316.8229275086478,
+        "closure_residual_hartree": -4.3049403972150735e-10,
+        "seconds": 291.6207745669999,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.066338577942607,
+          "exchange": -19.028685026453843,
+          "repulsion": 30.516444720306808,
+          "polarization": -1.5467579870990018,
+          "generalized_correlation": -11.594442323095823,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.9750937075734992,
+          "total": -4.744685708122609
+        },
+        "complex_energy_hartree": -1316.8188771197028,
+        "closure_residual_hartree": -3.5284191193807324e-10,
+        "seconds": 291.8777800940006,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dibutylammonium_8": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dibutylammonium_8",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.5460477497355725,
+          "exchange": -16.9347891306299,
+          "repulsion": 27.45727651533222,
+          "polarization": -3.6908935650511387,
+          "generalized_correlation": -11.027794180348929,
+          "explicit_dispersion": 0.0,
+          "desolvation": 2.0617538325720157,
+          "total": -5.680494661470899
+        },
+        "complex_energy_hartree": -1316.8252510116054,
+        "closure_residual_hartree": -6.113208064761899e-10,
+        "seconds": 278.49870900099995,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.6628510125429243,
+          "exchange": -16.927509729576734,
+          "repulsion": 27.46189664323187,
+          "polarization": -2.4609920195958144,
+          "generalized_correlation": -10.463090280024504,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.3277816884749658,
+          "total": -4.724764982058838
+        },
+        "complex_energy_hartree": -1316.8195736070857,
+        "closure_residual_hartree": -4.3350054101942703e-10,
+        "seconds": 282.78955481499906,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dipeah_0": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_dipeah_0",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.176329043723687,
+          "exchange": -20.551861265567013,
+          "repulsion": 33.22316692596303,
+          "polarization": -3.1166625603728884,
+          "generalized_correlation": -13.984634338432322,
+          "explicit_dispersion": 0.0,
+          "desolvation": 2.1986926530626563,
+          "total": -6.4076278838183764
+        },
+        "complex_energy_hartree": -1316.8352568149571,
+        "closure_residual_hartree": -4.0596701694761705e-10,
+        "seconds": 316.89854178599944,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.243617793003733,
+          "exchange": -20.4383895449403,
+          "repulsion": 33.09943928077256,
+          "polarization": -2.108875146229284,
+          "generalized_correlation": -13.161791167912456,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.344095197761827,
+          "total": -5.509139536335416
+        },
+        "complex_energy_hartree": -1316.8308621552046,
+        "closure_residual_hartree": -5.781331524623567e-10,
+        "seconds": 328.72128790699935,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dipeah_1": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_dipeah_1",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.352954070438561,
+          "exchange": -26.485642020970484,
+          "repulsion": 43.02093247433913,
+          "polarization": -2.491663863497991,
+          "generalized_correlation": -15.575097155256334,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.572794834141647,
+          "total": -5.311629957659114
+        },
+        "complex_energy_hartree": -1316.831514177556,
+        "closure_residual_hartree": -2.4856441210863167e-10,
+        "seconds": 306.26465208600075,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.489434846600519,
+          "exchange": -26.686051124938302,
+          "repulsion": 43.266058728725596,
+          "polarization": -1.8274579988726962,
+          "generalized_correlation": -15.115319848146237,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.11246340096827,
+          "total": -4.739741797319385
+        },
+        "complex_energy_hartree": -1316.828750402416,
+        "closure_residual_hartree": -1.7283483672025923e-10,
+        "seconds": 310.08579905499937,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dipeah_5": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_5",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.835339203399988,
+          "exchange": -24.95837139702514,
+          "repulsion": 40.525021530096964,
+          "polarization": -2.529848934422755,
+          "generalized_correlation": -14.909636126724207,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.5644418571521232,
+          "total": -5.143732463047963
+        },
+        "complex_energy_hartree": -1316.831256100042,
+        "closure_residual_hartree": -3.0075237439364244e-10,
+        "seconds": 296.5900868460003,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.947462029977311,
+          "exchange": -25.104389132390118,
+          "repulsion": 40.7057726461642,
+          "polarization": -1.703875040598503,
+          "generalized_correlation": -14.388949156888794,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.8241970434445507,
+          "total": -4.614705911441009
+        },
+        "complex_energy_hartree": -1316.8281358919558,
+        "closure_residual_hartree": -3.8436874516545316e-10,
+        "seconds": 309.1887295409997,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dipeah_6": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_6",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.4992788129524732,
+          "exchange": -16.277045220600954,
+          "repulsion": 26.3473486471126,
+          "polarization": -1.7523831113415247,
+          "generalized_correlation": -9.714641228295704,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2200672014059786,
+          "total": -3.6759326783465975
+        },
+        "complex_energy_hartree": -1316.8275772329098,
+        "closure_residual_hartree": -2.448959368628323e-10,
+        "seconds": 272.9421497309995,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.6136478749696104,
+          "exchange": -16.443186148055993,
+          "repulsion": 26.542241620282233,
+          "polarization": -1.2070335762476039,
+          "generalized_correlation": -9.46324566282652,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.9163955939445038,
+          "total": -3.268476244389197
+        },
+        "complex_energy_hartree": -1316.825205551062,
+        "closure_residual_hartree": -3.1316851195617446e-10,
+        "seconds": 283.3615263259999,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_dipeah_8": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_dipeah_8",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.584339876239986,
+          "exchange": -16.79573341972083,
+          "repulsion": 27.191829795741885,
+          "polarization": -1.855902196856941,
+          "generalized_correlation": -10.266902054534022,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2824717571739277,
+          "total": -4.028576030018372
+        },
+        "complex_energy_hartree": -1316.829118223694,
+        "closure_residual_hartree": -5.670417607683831e-11,
+        "seconds": 292.94508302600025,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.6931170418847317,
+          "exchange": -16.891197046070232,
+          "repulsion": 27.300540679936923,
+          "polarization": -1.2666844719898798,
+          "generalized_correlation": -9.92332976553366,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.970305199734211,
+          "total": -3.5034826997285697
+        },
+        "complex_energy_hartree": -1316.8266050306743,
+        "closure_residual_hartree": -4.0464919262572785e-10,
+        "seconds": 310.4593334209985,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_hexylammonium_0": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_hexylammonium_0",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.709972868205099,
+          "exchange": -27.7497624233826,
+          "repulsion": 44.210509764586476,
+          "polarization": -1.989112133595683,
+          "generalized_correlation": -16.53480058920177,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.4177199750391838,
+          "total": -6.3554184309427635
+        },
+        "complex_energy_hartree": -1238.2882326150439,
+        "closure_residual_hartree": -2.48893884668977e-10,
+        "seconds": 283.5357053460002,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.8208406774070625,
+          "exchange": -27.956348810517905,
+          "repulsion": 44.460527754299186,
+          "polarization": -1.3655807432428841,
+          "generalized_correlation": -16.251927321081943,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.9512285367429254,
+          "total": -5.982941430854318
+        },
+        "complex_energy_hartree": -1238.2852088095133,
+        "closure_residual_hartree": -2.7034911115331184e-10,
+        "seconds": 288.54533385599825,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_hexylammonium_1": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_hexylammonium_1",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.938357920392576,
+          "exchange": -26.35695781613487,
+          "repulsion": 41.98529196703094,
+          "polarization": -1.6842411382630902,
+          "generalized_correlation": -15.525991559631935,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.1080090499189676,
+          "total": -5.412247574493504
+        },
+        "complex_energy_hartree": -1238.286169305938,
+        "closure_residual_hartree": -2.502288029559985e-10,
+        "seconds": 266.794380112,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.931069560823952,
+          "exchange": -26.49733433534779,
+          "repulsion": 42.15728922332531,
+          "polarization": -1.0937138552089816,
+          "generalized_correlation": -15.185266519528968,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.2778135562289116,
+          "total": -5.272281659697933
+        },
+        "complex_energy_hartree": -1238.2829950397522,
+        "closure_residual_hartree": -2.6827078059010745e-10,
+        "seconds": 277.8729853149998,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_hexylammonium_3": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_3",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.861629754073749,
+          "exchange": -23.856584418069957,
+          "repulsion": 37.83533830136413,
+          "polarization": -0.7665014571496175,
+          "generalized_correlation": -13.364756548467774,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.48359415762895663,
+          "total": -4.530539913607117
+        },
+        "complex_energy_hartree": -1238.2834375351672,
+        "closure_residual_hartree": -3.104958790078882e-10,
+        "seconds": 253.56508050400043,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.965947993702372,
+          "exchange": -24.082050048325986,
+          "repulsion": 38.110678167916966,
+          "polarization": -0.6474180218140028,
+          "generalized_correlation": -13.269569450056196,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.5515101581403786,
+          "total": -4.302797384605134
+        },
+        "complex_energy_hartree": -1238.281608933235,
+        "closure_residual_hartree": -3.1356327256926164e-10,
+        "seconds": 261.5223273749998,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_hexylammonium_4": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_4",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.006567199998967,
+          "exchange": -25.111853034363172,
+          "repulsion": 39.97764092554938,
+          "polarization": -0.8933196625379269,
+          "generalized_correlation": -13.772421618914704,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.5727785544714873,
+          "total": -4.233742224110723
+        },
+        "complex_energy_hartree": -1238.2830460782375,
+        "closure_residual_hartree": -3.001019502346658e-10,
+        "seconds": 263.6135458959998,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.0731136219826025,
+          "exchange": -25.300346363001147,
+          "repulsion": 40.2154959047669,
+          "polarization": -0.7854293500211218,
+          "generalized_correlation": -13.62915468363571,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.4930969991331999,
+          "total": -4.079451280167904
+        },
+        "complex_energy_hartree": -1238.2811091747976,
+        "closure_residual_hartree": -2.6362537847157697e-10,
+        "seconds": 271.76623694000045,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_hexylammonium_5": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_hexylammonium_5",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.628076006041974,
+          "exchange": -21.540618224664122,
+          "repulsion": 34.23109227544621,
+          "polarization": -1.076727627332704,
+          "generalized_correlation": -12.576126381520076,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.0087315455775414,
+          "total": -4.581724611830162
+        },
+        "complex_energy_hartree": -1238.2844355200978,
+        "closure_residual_hartree": -3.0803525008504806e-10,
+        "seconds": 262.516459905999,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.736117012766034,
+          "exchange": -21.7507949460894,
+          "repulsion": 34.49810414063686,
+          "polarization": -0.8354605262425454,
+          "generalized_correlation": -12.439941200571688,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.9916768039593424,
+          "total": -4.272532980236001
+        },
+        "complex_energy_hartree": -1238.2822797361605,
+        "closure_residual_hartree": -3.8112975969673e-10,
+        "seconds": 271.02772063299926,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_teah_0": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_teah_0",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.7423319073262844,
+          "exchange": -19.41391190868015,
+          "repulsion": 31.799195699622054,
+          "polarization": -2.5940910467060996,
+          "generalized_correlation": -10.965902805271202,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.4567630728810803,
+          "total": -3.460279022334217
+        },
+        "complex_energy_hartree": -1238.294325808482,
+        "closure_residual_hartree": -2.0215410595492145e-10,
+        "seconds": 254.75246797900036,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -3.80724001349722,
+          "exchange": -19.635853625022893,
+          "repulsion": 32.05852811317298,
+          "polarization": -1.779057439141124,
+          "generalized_correlation": -10.57687835802378,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.6101721135161167,
+          "total": -3.1303293481747114
+        },
+        "complex_energy_hartree": -1238.291263623781,
+        "closure_residual_hartree": -2.2179552638945665e-10,
+        "seconds": 262.73038297899984,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_teah_1": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_teah_1",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.5576418452826,
+          "exchange": -19.489740845797378,
+          "repulsion": 31.97525932212118,
+          "polarization": -3.775825109070554,
+          "generalized_correlation": -12.15871206151192,
+          "explicit_dispersion": 0.0,
+          "desolvation": 2.0027309672865368,
+          "total": -6.0039297033262535
+        },
+        "complex_energy_hartree": -1238.3001041750304,
+        "closure_residual_hartree": -2.088757534990382e-10,
+        "seconds": 243.57851427899914,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.706586686913113,
+          "exchange": -19.3903745949781,
+          "repulsion": 31.842733741860744,
+          "polarization": -2.777408628834283,
+          "generalized_correlation": -11.588442151875391,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.655976962983774,
+          "total": -4.964101527151259
+        },
+        "complex_energy_hartree": -1238.2966833288,
+        "closure_residual_hartree": -2.6994794594115135e-10,
+        "seconds": 252.6167346830007,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_teah_3": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_teah_3",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.308974132456035,
+          "exchange": -20.352962872330554,
+          "repulsion": 33.213613386732376,
+          "polarization": -2.8854338307764866,
+          "generalized_correlation": -11.997791692338463,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.7191122299837687,
+          "total": -4.612437039385634
+        },
+        "complex_energy_hartree": -1238.2967302124725,
+        "closure_residual_hartree": -2.0430008379479503e-10,
+        "seconds": 259.44208733899904,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.446910675893669,
+          "exchange": -20.53855440109378,
+          "repulsion": 33.43160420916708,
+          "polarization": -1.9918356779704676,
+          "generalized_correlation": -11.557563591302792,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2269519264539501,
+          "total": -3.8763083187350245
+        },
+        "complex_energy_hartree": -1238.2936099887884,
+        "closure_residual_hartree": -1.7226089998878535e-10,
+        "seconds": 264.4457391319993,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_teah_4": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_teah_4",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -2.788619906217631,
+          "exchange": -14.044142542129526,
+          "repulsion": 22.83999209328568,
+          "polarization": -2.0386473679857966,
+          "generalized_correlation": -8.349949832640085,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.1591636620188426,
+          "total": -3.2222040766910354
+        },
+        "complex_energy_hartree": -1238.294100224779,
+        "closure_residual_hartree": -2.91664949136905e-10,
+        "seconds": 243.17703622500085,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -2.906295806531279,
+          "exchange": -14.221052018738293,
+          "repulsion": 23.04906260818022,
+          "polarization": -1.2468913853965957,
+          "generalized_correlation": -8.104965394751048,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.6610713159194304,
+          "total": -2.7690708782067674
+        },
+        "complex_energy_hartree": -1238.2911906652398,
+        "closure_residual_hartree": -3.1376291148577096e-10,
+        "seconds": 250.57497933799823,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_tributylammonium_0": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_tributylammonium_0",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.473464806580506,
+          "exchange": -22.712663842753642,
+          "repulsion": 36.47188693007496,
+          "polarization": -1.689577020611601,
+          "generalized_correlation": -13.254271413695951,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2362914903691473,
+          "total": -4.421798905566205
+        },
+        "complex_energy_hartree": -1473.8784492839386,
+        "closure_residual_hartree": -3.8623896442269157e-10,
+        "seconds": 342.68820740199953,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.565836112991727,
+          "exchange": -22.877879864660834,
+          "repulsion": 36.7029762724289,
+          "polarization": -1.272308228327865,
+          "generalized_correlation": -12.97225725859851,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.8623224781325559,
+          "total": -4.122983023265442
+        },
+        "complex_energy_hartree": -1473.8749561944196,
+        "closure_residual_hartree": -4.928179878072037e-10,
+        "seconds": 356.1437956769987,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_tributylammonium_1": {
+      "run": "runs/hplc_patch_cpcm_def2svp",
+      "seed": "examples/hplc/patch/patch_tributylammonium_1",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.2876997016241996,
+          "exchange": -26.873949352081368,
+          "repulsion": 43.15890696850064,
+          "polarization": -1.8178795587086043,
+          "generalized_correlation": -16.01909951393323,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.2774827588513693,
+          "total": -5.562238475482417
+        },
+        "complex_energy_hartree": -1473.8801367972774,
+        "closure_residual_hartree": -1.2188982462246756e-10,
+        "seconds": 358.9090619360013,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.341703122762404,
+          "exchange": -27.01352919682569,
+          "repulsion": 43.34099110776553,
+          "polarization": -1.361812755636268,
+          "generalized_correlation": -15.602988975890003,
+          "explicit_dispersion": 0.0,
+          "desolvation": 0.7579284709958588,
+          "total": -5.221114675945632
+        },
+        "complex_energy_hartree": -1473.8764650613184,
+        "closure_residual_hartree": -3.2444555375654716e-10,
+        "seconds": 380.6059237399968,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_tributylammonium_3": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_3",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -6.391175178886978,
+          "exchange": -33.68853324390864,
+          "repulsion": 54.01756288915323,
+          "polarization": -2.7956192799696176,
+          "generalized_correlation": -20.66783584324147,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.81105345222226,
+          "total": -7.714547545848783
+        },
+        "complex_energy_hartree": -1473.886180587433,
+        "closure_residual_hartree": -5.437648178951981e-10,
+        "seconds": 401.8466621039988,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -6.483355469182523,
+          "exchange": -33.85252080880598,
+          "repulsion": 54.220288663785254,
+          "polarization": -2.0562345883458213,
+          "generalized_correlation": -20.032480048803162,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.0527782436911917,
+          "total": -7.151524408593882
+        },
+        "complex_energy_hartree": -1473.8814649288188,
+        "closure_residual_hartree": -6.389271611784153e-10,
+        "seconds": 420.9572654129988,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_tributylammonium_5": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_5",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.970214906545332,
+          "exchange": -31.30161603806572,
+          "repulsion": 50.31255203977112,
+          "polarization": -3.0767737915636473,
+          "generalized_correlation": -19.378550222014756,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.8399383259672786,
+          "total": -7.574665190803546
+        },
+        "complex_energy_hartree": -1473.884968395364,
+        "closure_residual_hartree": -9.53535389536242e-10,
+        "seconds": 404.94639316199937,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -5.982794355346637,
+          "exchange": -31.26501850054881,
+          "repulsion": 50.2720170183735,
+          "polarization": -2.3849463626312075,
+          "generalized_correlation": -18.511424873715765,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.1389937020483072,
+          "total": -6.7331741243006
+        },
+        "complex_energy_hartree": -1473.879668150612,
+        "closure_residual_hartree": -1.1991531795318977e-09,
+        "seconds": 423.369070904002,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    },
+    "patch_tributylammonium_9": {
+      "run": "runs/hplc_patch_sampling_cpcm_def2svp",
+      "seed": "examples/hplc/patch_sampling/patch_tributylammonium_9",
+      "vdw14": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.313781968027565,
+          "exchange": -20.177102368188663,
+          "repulsion": 32.32570351718872,
+          "polarization": -2.036299616483768,
+          "generalized_correlation": -12.307706122450405,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.0406101239610468,
+          "total": -5.46857675014874
+        },
+        "complex_energy_hartree": -1473.8805287000932,
+        "closure_residual_hartree": -5.038140737934071e-10,
+        "seconds": 335.90133923900066,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 78.3553,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.4 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      },
+      "acn": {
+        "eda": "success",
+        "components_kcal_mol": {
+          "electrostatic": -4.3936650826418155,
+          "exchange": -20.04435766876413,
+          "repulsion": 32.16399105523515,
+          "polarization": -1.678927751848512,
+          "generalized_correlation": -11.884489043571797,
+          "explicit_dispersion": 0.0,
+          "desolvation": 1.129762480866263,
+          "total": -4.707686396551374
+        },
+        "complex_energy_hartree": -1473.8770473635423,
+        "closure_residual_hartree": -6.148537165517887e-10,
+        "seconds": 348.9493204620012,
+        "solvent": {
+          "model": "C-PCM",
+          "eps": 35.688,
+          "lebedev_order": 29,
+          "radii": "modified Bondi x 1.2 (PySCF/GPU4PySCF table), no probe",
+          "surface_discretization": "SWIG",
+          "energy": "electrostatic solvation 0.5 q.V only; no cavitation/dispersion terms",
+          "monomer_cavity": "supermolecule cavity (complex atoms), monomer nuclei only"
+        }
+      }
+    }
+  }
+}

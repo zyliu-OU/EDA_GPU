@@ -660,3 +660,44 @@ Conclusion: five placements per reagent make the ordering stable within each rea
 the EDA rank correlation to ρ = 0.7 (n = 5, not significant) and remove the TBuAA artefact, but DBAA is still
 strongest. Whether DBA vs TBA and HA follow the published order depends on the brush: a larger/denser patch
 (5–7 chains) that both linear and tertiary reagents can insert into is the next test.
+
+## Silanol-free C8 patch — solvent-model sensitivity, 2026-11-10
+
+GKS-EDA(sol) single points on all 25 placements of the two previous sections at their C-PCM(water, Bondi × 1.2)
+optimized geometries (not re-optimized). Each variant changes one setting: cavity radii Bondi × 1.4 (`vdw14`), or
+the acetonitrile dielectric ε = 35.688 (`acn`). Archive: `reports/hplc_patch_sensitivity_2026-11-10/`. All 50 EDAs
+succeeded (closure ≤ 1.2e-9 Eh, 4–7 min each, 4.2 h in all). A reference repeat on TEAH⁺ 2 reproduces −5.33.
+Boltzmann weights come from each variant's own complex energies. EDA + CDS uses the SMD CDS term of the matching
+solvent (water for vdw14, acetonitrile for acn).
+
+Per-reagent EDA total of the lowest-energy placement (kcal/mol); EDA + CDS in parentheses:
+
+| Reagent | base (water, ×1.2) | vdw14 | acn |
+| --- | ---: | ---: | ---: |
+| TEAH⁺ | −5.33 (−7.33) | −6.00 (−8.01)† | −4.96 (−4.09)† |
+| DIPEA-H⁺ | −5.49 (−7.06) | −6.41 (−7.98) | −5.51 (−4.09) |
+| DBAA | −8.85 (−11.94) | −10.03 (−13.12) | −8.87 (−6.45) |
+| HAA | −5.97 (−8.00) | −6.36 (−8.39) | −5.98 (−4.30) |
+| TBuAA | −7.14 (−9.68) | −7.71 (−10.26) | −7.15 (−5.19) |
+| ρ EDA (lowest-energy / Boltzmann / mean) | 0.7 / 0.7 / 0.7 | 0.5 / 0.5 / 0.7 | 0.7 / 0.7 / 0.7 |
+| ρ EDA + CDS (lowest-energy / Boltzmann / mean) | 0.6 / 0.6 / 0.7 | 0.6 / 0.7 / 0.7 | 0.6 / 0.6 / 0.7 |
+
+† Under both variants, placement 1 instead of 2 becomes the lowest-energy TEAH⁺ placement (0.3–0.4 kcal/mol
+apart). The most strongly bound TEAH⁺ placement is still 2 (−6.00 vdw14, −5.33 acn).
+
+Findings:
+
+- The larger cavity (×1.4) makes every pair 0.14–1.28 kcal/mol more strongly bound (mean −0.57 ± 0.32). Most of the
+  shift is polarization (−0.88) and generalized correlation (−0.50), partly offset by desolvation (+0.76). Pauli and
+  electrostatics hardly move (< 0.1). Placement order is preserved (Spearman ρ = 0.96 over the 25 pairs). Only
+  DIPEA-H⁺ and HAA swap places, and they are 0.05 kcal/mol apart, so ρ drops to 0.5 with the lowest-energy measure.
+- The acetonitrile dielectric changes the EDA totals by −0.003 to −0.025 kcal/mol. This is expected: C-PCM scales as
+  (ε−1)/ε, which is 0.987 for water and 0.972 for ACN. Only desolvation/polarization move, and they move in opposite
+  directions. The electrostatic continuum does not distinguish the two solvents. The acetonitrile CDS term halves
+  EDA + CDS (it is repulsive for chain contact) but does not change the order.
+- DBAA > TBuAA (gap 1.7–2.3 kcal/mol) and HAA below TBuAA/DBAA persist in all variants. At fixed geometry, the
+  remaining disagreement with the published order is not a cavity-radius or dielectric artefact.
+
+Conclusion: the patch reagent ordering (ρ 0.5–0.7, n = 5) is robust to the PCM radius scale and dielectric. The
+absolute binding energies depend on the radius scale at the ~10 % level. The solvent composition enters this model
+almost only through the CDS term.

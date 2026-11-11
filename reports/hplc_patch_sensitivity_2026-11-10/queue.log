@@ -1,0 +1,103 @@
+ref patch_teah_2: GKS-EDA(sol) (101 atoms)
+ref patch_teah_2: electrostatic=-3.73  exchange=-23.08  repulsion=+37.41  polarization=-1.84  generalized_correlation=-14.16  explicit_dispersion=+0.00  desolvation=+0.07  total=-5.33
+vdw14 patch_dibutylammonium_0: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dibutylammonium_0: electrostatic=-6.41  exchange=-34.50  repulsion=+55.92  polarization=-5.09  generalized_correlation=-22.97  explicit_dispersion=+0.00  desolvation=+3.01  total=-10.03
+vdw14 patch_dibutylammonium_1: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dibutylammonium_1: electrostatic=-5.19  exchange=-27.68  repulsion=+44.52  polarization=-4.21  generalized_correlation=-18.50  explicit_dispersion=+0.00  desolvation=+2.53  total=-8.53
+vdw14 patch_dibutylammonium_2: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dibutylammonium_2: electrostatic=-3.49  exchange=-20.55  repulsion=+33.09  polarization=-3.03  generalized_correlation=-13.48  explicit_dispersion=+0.00  desolvation=+1.66  total=-5.80
+vdw14 patch_dibutylammonium_3: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dibutylammonium_3: electrostatic=-3.95  exchange=-18.90  repulsion=+30.37  polarization=-2.31  generalized_correlation=-11.94  explicit_dispersion=+0.00  desolvation=+1.50  total=-5.24
+vdw14 patch_dibutylammonium_8: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dibutylammonium_8: electrostatic=-3.55  exchange=-16.93  repulsion=+27.46  polarization=-3.69  generalized_correlation=-11.03  explicit_dispersion=+0.00  desolvation=+2.06  total=-5.68
+vdw14 patch_dipeah_0: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dipeah_0: electrostatic=-4.18  exchange=-20.55  repulsion=+33.22  polarization=-3.12  generalized_correlation=-13.98  explicit_dispersion=+0.00  desolvation=+2.20  total=-6.41
+vdw14 patch_dipeah_1: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dipeah_1: electrostatic=-5.35  exchange=-26.49  repulsion=+43.02  polarization=-2.49  generalized_correlation=-15.58  explicit_dispersion=+0.00  desolvation=+1.57  total=-5.31
+vdw14 patch_dipeah_5: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dipeah_5: electrostatic=-4.84  exchange=-24.96  repulsion=+40.53  polarization=-2.53  generalized_correlation=-14.91  explicit_dispersion=+0.00  desolvation=+1.56  total=-5.14
+vdw14 patch_dipeah_6: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dipeah_6: electrostatic=-3.50  exchange=-16.28  repulsion=+26.35  polarization=-1.75  generalized_correlation=-9.71  explicit_dispersion=+0.00  desolvation=+1.22  total=-3.68
+vdw14 patch_dipeah_8: GKS-EDA(sol) (107 atoms)
+vdw14 patch_dipeah_8: electrostatic=-3.58  exchange=-16.80  repulsion=+27.19  polarization=-1.86  generalized_correlation=-10.27  explicit_dispersion=+0.00  desolvation=+1.28  total=-4.03
+vdw14 patch_hexylammonium_0: GKS-EDA(sol) (101 atoms)
+vdw14 patch_hexylammonium_0: electrostatic=-5.71  exchange=-27.75  repulsion=+44.21  polarization=-1.99  generalized_correlation=-16.53  explicit_dispersion=+0.00  desolvation=+1.42  total=-6.36
+vdw14 patch_hexylammonium_1: GKS-EDA(sol) (101 atoms)
+vdw14 patch_hexylammonium_1: electrostatic=-4.94  exchange=-26.36  repulsion=+41.99  polarization=-1.68  generalized_correlation=-15.53  explicit_dispersion=+0.00  desolvation=+1.11  total=-5.41
+vdw14 patch_hexylammonium_3: GKS-EDA(sol) (101 atoms)
+vdw14 patch_hexylammonium_3: electrostatic=-4.86  exchange=-23.86  repulsion=+37.84  polarization=-0.77  generalized_correlation=-13.36  explicit_dispersion=+0.00  desolvation=+0.48  total=-4.53
+vdw14 patch_hexylammonium_4: GKS-EDA(sol) (101 atoms)
+vdw14 patch_hexylammonium_4: electrostatic=-5.01  exchange=-25.11  repulsion=+39.98  polarization=-0.89  generalized_correlation=-13.77  explicit_dispersion=+0.00  desolvation=+0.57  total=-4.23
+vdw14 patch_hexylammonium_5: GKS-EDA(sol) (101 atoms)
+vdw14 patch_hexylammonium_5: electrostatic=-4.63  exchange=-21.54  repulsion=+34.23  polarization=-1.08  generalized_correlation=-12.58  explicit_dispersion=+0.00  desolvation=+1.01  total=-4.58
+vdw14 patch_teah_0: GKS-EDA(sol) (101 atoms)
+vdw14 patch_teah_0: electrostatic=-3.74  exchange=-19.41  repulsion=+31.80  polarization=-2.59  generalized_correlation=-10.97  explicit_dispersion=+0.00  desolvation=+1.46  total=-3.46
+vdw14 patch_teah_1: GKS-EDA(sol) (101 atoms)
+vdw14 patch_teah_1: electrostatic=-4.56  exchange=-19.49  repulsion=+31.98  polarization=-3.78  generalized_correlation=-12.16  explicit_dispersion=+0.00  desolvation=+2.00  total=-6.00
+vdw14 patch_teah_2: GKS-EDA(sol) (101 atoms)
+vdw14 patch_teah_2: electrostatic=-3.81  exchange=-22.94  repulsion=+37.25  polarization=-2.88  generalized_correlation=-14.78  explicit_dispersion=+0.00  desolvation=+1.63  total=-5.52
+vdw14 patch_teah_3: GKS-EDA(sol) (101 atoms)
+vdw14 patch_teah_3: electrostatic=-4.31  exchange=-20.35  repulsion=+33.21  polarization=-2.89  generalized_correlation=-12.00  explicit_dispersion=+0.00  desolvation=+1.72  total=-4.61
+vdw14 patch_teah_4: GKS-EDA(sol) (101 atoms)
+vdw14 patch_teah_4: electrostatic=-2.79  exchange=-14.04  repulsion=+22.84  polarization=-2.04  generalized_correlation=-8.35  explicit_dispersion=+0.00  desolvation=+1.16  total=-3.22
+vdw14 patch_tributylammonium_0: GKS-EDA(sol) (119 atoms)
+vdw14 patch_tributylammonium_0: electrostatic=-4.47  exchange=-22.71  repulsion=+36.47  polarization=-1.69  generalized_correlation=-13.25  explicit_dispersion=+0.00  desolvation=+1.24  total=-4.42
+vdw14 patch_tributylammonium_1: GKS-EDA(sol) (119 atoms)
+vdw14 patch_tributylammonium_1: electrostatic=-5.29  exchange=-26.87  repulsion=+43.16  polarization=-1.82  generalized_correlation=-16.02  explicit_dispersion=+0.00  desolvation=+1.28  total=-5.56
+vdw14 patch_tributylammonium_3: GKS-EDA(sol) (119 atoms)
+vdw14 patch_tributylammonium_3: electrostatic=-6.39  exchange=-33.69  repulsion=+54.02  polarization=-2.80  generalized_correlation=-20.67  explicit_dispersion=+0.00  desolvation=+1.81  total=-7.71
+vdw14 patch_tributylammonium_5: GKS-EDA(sol) (119 atoms)
+vdw14 patch_tributylammonium_5: electrostatic=-5.97  exchange=-31.30  repulsion=+50.31  polarization=-3.08  generalized_correlation=-19.38  explicit_dispersion=+0.00  desolvation=+1.84  total=-7.57
+vdw14 patch_tributylammonium_9: GKS-EDA(sol) (119 atoms)
+vdw14 patch_tributylammonium_9: electrostatic=-4.31  exchange=-20.18  repulsion=+32.33  polarization=-2.04  generalized_correlation=-12.31  explicit_dispersion=+0.00  desolvation=+1.04  total=-5.47
+acn patch_dibutylammonium_0: GKS-EDA(sol) (107 atoms)
+acn patch_dibutylammonium_0: electrostatic=-6.38  exchange=-34.67  repulsion=+56.13  polarization=-3.25  generalized_correlation=-21.83  explicit_dispersion=+0.00  desolvation=+1.13  total=-8.87
+acn patch_dibutylammonium_1: GKS-EDA(sol) (107 atoms)
+acn patch_dibutylammonium_1: electrostatic=-5.26  exchange=-27.80  repulsion=+44.68  polarization=-2.68  generalized_correlation=-17.50  explicit_dispersion=+0.00  desolvation=+1.30  total=-7.27
+acn patch_dibutylammonium_2: GKS-EDA(sol) (107 atoms)
+acn patch_dibutylammonium_2: electrostatic=-3.46  exchange=-20.52  repulsion=+33.06  polarization=-1.87  generalized_correlation=-12.85  explicit_dispersion=+0.00  desolvation=+0.28  total=-5.34
+acn patch_dibutylammonium_3: GKS-EDA(sol) (107 atoms)
+acn patch_dibutylammonium_3: electrostatic=-4.07  exchange=-19.03  repulsion=+30.52  polarization=-1.55  generalized_correlation=-11.59  explicit_dispersion=+0.00  desolvation=+0.98  total=-4.74
+acn patch_dibutylammonium_8: GKS-EDA(sol) (107 atoms)
+acn patch_dibutylammonium_8: electrostatic=-3.66  exchange=-16.93  repulsion=+27.46  polarization=-2.46  generalized_correlation=-10.46  explicit_dispersion=+0.00  desolvation=+1.33  total=-4.72
+acn patch_dipeah_0: GKS-EDA(sol) (107 atoms)
+acn patch_dipeah_0: electrostatic=-4.24  exchange=-20.44  repulsion=+33.10  polarization=-2.11  generalized_correlation=-13.16  explicit_dispersion=+0.00  desolvation=+1.34  total=-5.51
+acn patch_dipeah_1: GKS-EDA(sol) (107 atoms)
+acn patch_dipeah_1: electrostatic=-5.49  exchange=-26.69  repulsion=+43.27  polarization=-1.83  generalized_correlation=-15.12  explicit_dispersion=+0.00  desolvation=+1.11  total=-4.74
+acn patch_dipeah_5: GKS-EDA(sol) (107 atoms)
+acn patch_dipeah_5: electrostatic=-4.95  exchange=-25.10  repulsion=+40.71  polarization=-1.70  generalized_correlation=-14.39  explicit_dispersion=+0.00  desolvation=+0.82  total=-4.61
+acn patch_dipeah_6: GKS-EDA(sol) (107 atoms)
+acn patch_dipeah_6: electrostatic=-3.61  exchange=-16.44  repulsion=+26.54  polarization=-1.21  generalized_correlation=-9.46  explicit_dispersion=+0.00  desolvation=+0.92  total=-3.27
+acn patch_dipeah_8: GKS-EDA(sol) (107 atoms)
+acn patch_dipeah_8: electrostatic=-3.69  exchange=-16.89  repulsion=+27.30  polarization=-1.27  generalized_correlation=-9.92  explicit_dispersion=+0.00  desolvation=+0.97  total=-3.50
+acn patch_hexylammonium_0: GKS-EDA(sol) (101 atoms)
+acn patch_hexylammonium_0: electrostatic=-5.82  exchange=-27.96  repulsion=+44.46  polarization=-1.37  generalized_correlation=-16.25  explicit_dispersion=+0.00  desolvation=+0.95  total=-5.98
+acn patch_hexylammonium_1: GKS-EDA(sol) (101 atoms)
+acn patch_hexylammonium_1: electrostatic=-4.93  exchange=-26.50  repulsion=+42.16  polarization=-1.09  generalized_correlation=-15.19  explicit_dispersion=+0.00  desolvation=+0.28  total=-5.27
+acn patch_hexylammonium_3: GKS-EDA(sol) (101 atoms)
+acn patch_hexylammonium_3: electrostatic=-4.97  exchange=-24.08  repulsion=+38.11  polarization=-0.65  generalized_correlation=-13.27  explicit_dispersion=+0.00  desolvation=+0.55  total=-4.30
+acn patch_hexylammonium_4: GKS-EDA(sol) (101 atoms)
+acn patch_hexylammonium_4: electrostatic=-5.07  exchange=-25.30  repulsion=+40.22  polarization=-0.79  generalized_correlation=-13.63  explicit_dispersion=+0.00  desolvation=+0.49  total=-4.08
+acn patch_hexylammonium_5: GKS-EDA(sol) (101 atoms)
+acn patch_hexylammonium_5: electrostatic=-4.74  exchange=-21.75  repulsion=+34.50  polarization=-0.84  generalized_correlation=-12.44  explicit_dispersion=+0.00  desolvation=+0.99  total=-4.27
+acn patch_teah_0: GKS-EDA(sol) (101 atoms)
+acn patch_teah_0: electrostatic=-3.81  exchange=-19.64  repulsion=+32.06  polarization=-1.78  generalized_correlation=-10.58  explicit_dispersion=+0.00  desolvation=+0.61  total=-3.13
+acn patch_teah_1: GKS-EDA(sol) (101 atoms)
+acn patch_teah_1: electrostatic=-4.71  exchange=-19.39  repulsion=+31.84  polarization=-2.78  generalized_correlation=-11.59  explicit_dispersion=+0.00  desolvation=+1.66  total=-4.96
+acn patch_teah_2: GKS-EDA(sol) (101 atoms)
+acn patch_teah_2: electrostatic=-3.73  exchange=-23.05  repulsion=+37.39  polarization=-1.99  generalized_correlation=-14.19  explicit_dispersion=+0.00  desolvation=+0.25  total=-5.33
+acn patch_teah_3: GKS-EDA(sol) (101 atoms)
+acn patch_teah_3: electrostatic=-4.45  exchange=-20.54  repulsion=+33.43  polarization=-1.99  generalized_correlation=-11.56  explicit_dispersion=+0.00  desolvation=+1.23  total=-3.88
+acn patch_teah_4: GKS-EDA(sol) (101 atoms)
+acn patch_teah_4: electrostatic=-2.91  exchange=-14.22  repulsion=+23.05  polarization=-1.25  generalized_correlation=-8.10  explicit_dispersion=+0.00  desolvation=+0.66  total=-2.77
+acn patch_tributylammonium_0: GKS-EDA(sol) (119 atoms)
+acn patch_tributylammonium_0: electrostatic=-4.57  exchange=-22.88  repulsion=+36.70  polarization=-1.27  generalized_correlation=-12.97  explicit_dispersion=+0.00  desolvation=+0.86  total=-4.12
+acn patch_tributylammonium_1: GKS-EDA(sol) (119 atoms)
+acn patch_tributylammonium_1: electrostatic=-5.34  exchange=-27.01  repulsion=+43.34  polarization=-1.36  generalized_correlation=-15.60  explicit_dispersion=+0.00  desolvation=+0.76  total=-5.22
+acn patch_tributylammonium_3: GKS-EDA(sol) (119 atoms)
+acn patch_tributylammonium_3: electrostatic=-6.48  exchange=-33.85  repulsion=+54.22  polarization=-2.06  generalized_correlation=-20.03  explicit_dispersion=+0.00  desolvation=+1.05  total=-7.15
+acn patch_tributylammonium_5: GKS-EDA(sol) (119 atoms)
+acn patch_tributylammonium_5: electrostatic=-5.98  exchange=-31.27  repulsion=+50.27  polarization=-2.38  generalized_correlation=-18.51  explicit_dispersion=+0.00  desolvation=+1.14  total=-6.73
+acn patch_tributylammonium_9: GKS-EDA(sol) (119 atoms)
+acn patch_tributylammonium_9: electrostatic=-4.39  exchange=-20.04  repulsion=+32.16  polarization=-1.68  generalized_correlation=-11.88  explicit_dispersion=+0.00  desolvation=+1.13  total=-4.71
+2026-11-10T02:28:01-08:00 queue done

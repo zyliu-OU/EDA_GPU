@@ -90,6 +90,7 @@ def make_mf(symbols, coords, metadata, settings,progress=None,label="SCF",cavity
             if cp.cuda.runtime.getDeviceCount() < 1:
                 raise RuntimeError("no CUDA devices")
             cp.zeros(1).sum().get()
+            release_gpu_cache()  # previous SCFs' cached blocks would otherwise shrink this one's DF batches
             from gpu4pyscf.dft import rks, uks
             mf = uks.UKS(mol) if metadata["spin"] else rks.RKS(mol)
         except Exception as e:
@@ -130,6 +131,34 @@ def host_array(a):
     return np.asarray(a.get() if hasattr(a, "get") else a)
 
 
+def release_gpu_cache(mf=None):
+    """Drop the SCF DF tensor and return cupy's cached blocks to the device.
+    gpu4pyscf's DF gradient sizes its batches from cudaMemGetInfo, which does not
+    count memory parked in cupy's pool, so a large SCF leaves it thinking the card is full."""
+    try:
+        import cupy as cp
+    except ImportError:
+        return
+    if mf is not None and getattr(mf, "with_df", None) is not None:
+        mf.with_df.reset()
+    cp.get_default_memory_pool().free_all_blocks()
+    cp.get_default_pinned_memory_pool().free_all_blocks()
+
+
+def gradient_method(mf, scanner=False):
+    """Nuclear gradient whose kernel first releases the GPU cache left by the SCF."""
+    g = mf.nuc_grad_method()
+    if scanner:
+        g = g.as_scanner()
+    if mf._eda_pacer.settings.backend == "gpu":
+        kernel = g.kernel
+        def kernel_after_release(*args, **kwargs):
+            release_gpu_cache(g.base)
+            return kernel(*args, **kwargs)
+        g.kernel = kernel_after_release
+    return g
+
+
 def singlepoint(symbols, coords, metadata, settings,out=None):
     start = time.perf_counter()
     from .progress import ProgressWriter
@@ -143,7 +172,7 @@ def singlepoint(symbols, coords, metadata, settings,out=None):
     if not mf.converged:
         raise RuntimeError("SCF did not converge; no successful result produced")
     if progress:progress.update("analytic gradient")
-    grad = host_array(mf._eda_pacer.run(mf.nuc_grad_method().kernel))
+    grad = host_array(mf._eda_pacer.run(gradient_method(mf).kernel))
     if not np.isfinite(energy) or not np.isfinite(grad).all():
         raise RuntimeError("nonfinite energy or gradient")
     return {"energy_hartree": energy, "gradient_hartree_per_bohr": grad.tolist(), "scf_converged": True, "backend_used": settings.backend, "settings": asdict(settings), "compute_limits": mf._eda_pacer.report(), "seconds": time.perf_counter() - start}
@@ -168,7 +197,7 @@ def optimize(symbols, coords, metadata, settings, out, maxsteps=100, constraints
     progress.current.update(information(metadata))
     progress.update("optimization starting")
     mf = make_mf(symbols, coords, metadata, settings,progress=progress,label="optimization SCF")
-    scanner = mf.nuc_grad_method().as_scanner()
+    scanner = gradient_method(mf, scanner=True)
     frames = []
     def energy_gradient(mol):
         energy, gradient = mf._eda_pacer.run(scanner,mol)

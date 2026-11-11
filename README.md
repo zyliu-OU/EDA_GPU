@@ -187,7 +187,10 @@ rank retention TEA < DIPEA < DBA < HA < TBA.
   most strongly bound in every reagent) the order is TEAH⁺ < DIPEA-H⁺ < HAA < TBuAA < DBAA (ρ = 0.7,
   p = 0.19; 0.6 with CDS) against the published TEA < DIPEA < DBA < HA < TBA: TBuAA and DBAA both bind by
   inserting over the chain triangle, but DBAA is still 1.7 kcal/mol stronger and HAA ranks too low
-  (`reports/hplc_patch_2026-10-27/`, `reports/hplc_patch_sampling_2026-10-28/`).
+  (`reports/hplc_patch_2026-10-27/`, `reports/hplc_patch_sampling_2026-10-28/`). This order is robust to the
+  solvent model at fixed geometry. Bondi × 1.4 radii bind every pair 0.6 kcal/mol more strongly on average
+  (ρ 0.5–0.7), and an acetonitrile dielectric changes the EDA by < 0.03 kcal/mol
+  (`reports/hplc_patch_sensitivity_2026-11-10/`).
 - *Base order is inverted.* Both papers find T > A > G > C, with C/G-rich oligos eluting first. Here
   the direct residue···C8 contact puts C strongest (−18.9) and A/U weakest (−14.9), because these
   contacts are polar hydrogen bonds to the silanol.
