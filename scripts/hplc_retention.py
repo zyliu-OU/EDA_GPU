@@ -23,7 +23,10 @@ REAGENT_MODELS = {'teaa': 'teah', 'tea': 'teah', 'teah': 'teah', 'tea/hfip': 'te
                   'haa': 'hexylammonium', 'hexylammonium': 'hexylammonium',
                   'dbaa': 'dibutylammonium', 'dibutylammonium': 'dibutylammonium',
                   'tbuaa': 'tributylammonium', 'tbaa': 'tributylammonium', 'tributylammonium': 'tributylammonium',
-                  'dipea': 'dipeah', 'dipea/hfip': 'dipeah', 'dipeah': 'dipeah'}
+                  'dipea': 'dipeah', 'dipea/hfip': 'dipeah', 'dipeah': 'dipeah',
+                  'deaa': 'diethylammonium', 'dea': 'diethylammonium', 'diethylammonium': 'diethylammonium',
+                  'baa': 'butylammonium', 'ba': 'butylammonium', 'butylammonium': 'butylammonium',
+                  'tpaa': 'tripropylammonium', 'tpa': 'tripropylammonium', 'tripropylammonium': 'tripropylammonium'}
 BASES = 'ACGU'
 TERMS = ['electrostatic', 'exchange', 'repulsion', 'polarization', 'generalized_correlation', 'desolvation', 'total']
 MIN_FIT = 4

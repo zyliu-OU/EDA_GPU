@@ -24,6 +24,9 @@ REAGENTS = {  # name: (identity, SMILES of the cation, buffer it represents)
     'dibutylammonium': ('dibutylammonium (DBA+)', 'CCCC[NH2+]CCCC', 'dibutylammonium acetate (DBAA)'),
     'tributylammonium': ('tributylammonium (TBA+)', 'CCCC[NH+](CCCC)CCCC', 'tributylammonium acetate (TBuAA)'),
     'dipeah': ('N,N-diisopropylethylammonium (DIPEA-H+)', 'CC[NH+](C(C)C)C(C)C', 'DIPEA/HFIP or DIPEA acetate'),
+    'diethylammonium': ('diethylammonium (DEA+)', 'CC[NH2+]CC', 'diethylammonium acetate (DEAA)'),
+    'butylammonium': ('butylammonium (BA+)', 'CCCC[NH3+]', 'butylammonium acetate (BAA)'),
+    'tripropylammonium': ('tripropylammonium (TPA+)', 'CCC[NH+](CCC)CCC', 'tripropylammonium acetate (TPAA)'),
 }
 PHOSPHATE_O = {'A': (17, 18), 'C': (16, 17), 'G': (13, 14), 'U': (16, 17)}  # as in build_hplc_ternary.py
 SILANOL_O = (13, 14)  # c8_silane_proxy, as in the TEAH+ surface seeds

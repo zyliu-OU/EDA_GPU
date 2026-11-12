@@ -1,0 +1,215 @@
+{
+  "method": "SMD CDS (Marenich, Cramer, Truhlar 2009) via PySCF/MNSOL at the complex geometry; buried SASA as in scripts/buried_sasa.py; kcal/mol and A^2",
+  "cases": {
+    "hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_0": {
+      "group": "patch_diethylammonium_0",
+      "optimized_energy_hartree": -1159.8694249017362,
+      "splits": {
+        "c8x3_patch|diethylammonium": {
+          "dG_cds_water": -2.4112820231241923,
+          "dG_cds_acetonitrile": 1.3512188957866558,
+          "buried_total_A2": 350.79089019830565,
+          "buried_nonpolar_A2": 326.1911725231465,
+          "eda_total": -5.578130193732865,
+          "eda_plus_cds_water": -7.989412216857057
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_1": {
+      "group": "patch_diethylammonium_1",
+      "optimized_energy_hartree": -1159.8673604583687,
+      "splits": {
+        "c8x3_patch|diethylammonium": {
+          "dG_cds_water": -2.2605432571194566,
+          "dG_cds_acetonitrile": 1.3377302812120249,
+          "buried_total_A2": 294.055166771107,
+          "buried_nonpolar_A2": 278.7467093689394,
+          "eda_total": -5.912892297732063,
+          "eda_plus_cds_water": -8.173435554851519
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_butylammonium_0": {
+      "group": "patch_butylammonium_0",
+      "optimized_energy_hartree": -1159.8738312432515,
+      "splits": {
+        "c8x3_patch|butylammonium": {
+          "dG_cds_water": -2.3984158879823045,
+          "dG_cds_acetonitrile": 1.1067727899602424,
+          "buried_total_A2": 314.2009896364099,
+          "buried_nonpolar_A2": 239.6044284006191,
+          "eda_total": -6.435517709441034,
+          "eda_plus_cds_water": -8.83393359742334
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_butylammonium_1": {
+      "group": "patch_butylammonium_1",
+      "optimized_energy_hartree": -1159.8721515628104,
+      "splits": {
+        "c8x3_patch|butylammonium": {
+          "dG_cds_water": -1.4476646161107016,
+          "dG_cds_acetonitrile": 1.4672143794758608,
+          "buried_total_A2": 306.77743892090064,
+          "buried_nonpolar_A2": 292.7078162217987,
+          "eda_total": -4.317629014856546,
+          "eda_plus_cds_water": -5.765293630967248
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_0": {
+      "group": "patch_tripropylammonium_0",
+      "optimized_energy_hartree": -1356.1758483343856,
+      "splits": {
+        "c8x3_patch|tripropylammonium": {
+          "dG_cds_water": -1.948743636981133,
+          "dG_cds_acetonitrile": 1.7060222845395678,
+          "buried_total_A2": 332.00272623320575,
+          "buried_nonpolar_A2": 330.49842695091183,
+          "eda_total": -5.477911799968143,
+          "eda_plus_cds_water": -7.426655436949276
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_1": {
+      "group": "patch_tripropylammonium_1",
+      "optimized_energy_hartree": -1356.1748376556689,
+      "splits": {
+        "c8x3_patch|tripropylammonium": {
+          "dG_cds_water": -2.210727082889205,
+          "dG_cds_acetonitrile": 1.230735269546475,
+          "buried_total_A2": 344.35991913671364,
+          "buried_nonpolar_A2": 340.9088796067449,
+          "eda_total": -5.817262344828508,
+          "eda_plus_cds_water": -8.027989427717714
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_6": {
+      "group": "patch_diethylammonium_6",
+      "optimized_energy_hartree": -1159.869999720101,
+      "splits": {
+        "c8x3_patch|diethylammonium": {
+          "dG_cds_water": -2.479200421071374,
+          "dG_cds_acetonitrile": 1.5181956744647982,
+          "buried_total_A2": 369.23806046079676,
+          "buried_nonpolar_A2": 346.9390358056164,
+          "eda_total": -6.620304265582372,
+          "eda_plus_cds_water": -9.099504686653745
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_butylammonium_4": {
+      "group": "patch_butylammonium_4",
+      "optimized_energy_hartree": -1159.8724564426384,
+      "splits": {
+        "c8x3_patch|butylammonium": {
+          "dG_cds_water": -1.9102738267721797,
+          "dG_cds_acetonitrile": 1.2024586615240755,
+          "buried_total_A2": 314.02823476538595,
+          "buried_nonpolar_A2": 259.1655550581962,
+          "eda_total": -5.015854429336644,
+          "eda_plus_cds_water": -6.926128256108823
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_5": {
+      "group": "patch_tripropylammonium_5",
+      "optimized_energy_hartree": -1356.173731078799,
+      "splits": {
+        "c8x3_patch|tripropylammonium": {
+          "dG_cds_water": -2.1679321338383772,
+          "dG_cds_acetonitrile": 1.0646351187911431,
+          "buried_total_A2": 321.8413756948639,
+          "buried_nonpolar_A2": 317.9478951995145,
+          "eda_total": -5.16118020913125,
+          "eda_plus_cds_water": -7.329112342969627
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_3": {
+      "group": "patch_diethylammonium_3",
+      "optimized_energy_hartree": -1159.869858220331,
+      "splits": {
+        "c8x3_patch|diethylammonium": {
+          "dG_cds_water": -2.4445670872797685,
+          "dG_cds_acetonitrile": 1.2516582432852479,
+          "buried_total_A2": 345.9699853716784,
+          "buried_nonpolar_A2": 317.9192281665505,
+          "eda_total": -6.47681374453609,
+          "eda_plus_cds_water": -8.921380831815858
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_butylammonium_7": {
+      "group": "patch_butylammonium_7",
+      "optimized_energy_hartree": -1159.871494982191,
+      "splits": {
+        "c8x3_patch|butylammonium": {
+          "dG_cds_water": -1.7693535432271705,
+          "dG_cds_acetonitrile": 0.8935911810819412,
+          "buried_total_A2": 255.38101583309526,
+          "buried_nonpolar_A2": 213.75291695269811,
+          "eda_total": -4.299921509564752,
+          "eda_plus_cds_water": -6.069275052791922
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_3": {
+      "group": "patch_tripropylammonium_3",
+      "optimized_energy_hartree": -1356.1739463032363,
+      "splits": {
+        "c8x3_patch|tripropylammonium": {
+          "dG_cds_water": -1.9455707060353848,
+          "dG_cds_acetonitrile": 1.2981894328158141,
+          "buried_total_A2": 285.95771170647913,
+          "buried_nonpolar_A2": 285.95771170647913,
+          "eda_total": -4.543315794338723,
+          "eda_plus_cds_water": -6.488886500374107
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_4": {
+      "group": "patch_diethylammonium_4",
+      "optimized_energy_hartree": -1159.865554219638,
+      "splits": {
+        "c8x3_patch|diethylammonium": {
+          "dG_cds_water": -1.5084959751953342,
+          "dG_cds_acetonitrile": 1.1049210608616793,
+          "buried_total_A2": 232.89411739224556,
+          "buried_nonpolar_A2": 220.5057703615896,
+          "eda_total": -4.245625111517793,
+          "eda_plus_cds_water": -5.754121086713127
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_butylammonium_6": {
+      "group": "patch_butylammonium_6",
+      "optimized_energy_hartree": -1159.870592479942,
+      "splits": {
+        "c8x3_patch|butylammonium": {
+          "dG_cds_water": -1.286050457846084,
+          "dG_cds_acetonitrile": 1.5078891919426765,
+          "buried_total_A2": 243.41897638054706,
+          "buried_nonpolar_A2": 224.12855028995432,
+          "eda_total": -4.332786090936857,
+          "eda_plus_cds_water": -5.618836548782941
+        }
+      }
+    },
+    "hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_8": {
+      "group": "patch_tripropylammonium_8",
+      "optimized_energy_hartree": -1356.1722077874892,
+      "splits": {
+        "c8x3_patch|tripropylammonium": {
+          "dG_cds_water": -1.8821221015870506,
+          "dG_cds_acetonitrile": 0.7233834276416982,
+          "buried_total_A2": 269.44432262196597,
+          "buried_nonpolar_A2": 268.1169997258246,
+          "eda_total": -3.261199218965737,
+          "eda_plus_cds_water": -5.143321320552788
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Silanol-free three-chain alkyl patch and reagent-on-patch seeds for the HPLC model study (optional rdkit==2026.9.1).
+"""Silanol-free alkyl patches and reagent-on-patch seeds for the HPLC model study (optional rdkit==2026.9.1).
 
 Patch: three all-anti n-octane chains standing parallel to +z on an equilateral triangle of side 7.6 A (one
 ligand per 50 A^2, i.e. ~3.3 umol/m^2 as on a C18 phase), each chain turned by 120 deg. C1 stands in for the
@@ -12,6 +12,10 @@ within 6 A of the patch axis and 3-12 A above the C1 plane; fixed RNG seed). Rej
 3.0 A, H...H closer than 2.0 A, any reagent atom below the C2 plane (the support surface). Ranked by the number
 of reagent-C...patch-C pairs within 4.5 A (ties: clearance); kept: the best and the best whose carbon centroid
 lies >= 3 A from every placement already kept. Seeds only.
+
+--chains 7: a larger brush at the same grafting density, a centre chain plus a hexagon of six at 7.6 A (chain i
+turned by 60i deg), i.e. six triangular hollows each like the three-chain patch and surrounded by a second shell.
+Written as c8x7_patch; reagents are placed as above (centroid within 6 A of the centre chain axis).
 """
 import argparse
 import json
@@ -46,30 +50,42 @@ def octane():
     return mol, x @ (np.eye(3) + k + k @ k / (1 + c)).T
 
 
-def patch():
+def sites(chains):
+    """(rotation angle, xy position) of every chain."""
+    if chains == 3:
+        return [(2 * np.pi * i / 3, SIDE / np.sqrt(3) * np.array([np.cos(2 * np.pi * i / 3), np.sin(2 * np.pi * i / 3)]))
+                for i in range(3)]
+    if chains == 7:
+        return [(0.0, np.zeros(2))] + [(np.pi * i / 3, SIDE * np.array([np.cos(np.pi * i / 3), np.sin(np.pi * i / 3)]))
+                                        for i in range(6)]
+    raise ValueError('chains must be 3 or 7')
+
+
+def patch(chains=3):
     mol, x = octane()
     n, symbols, coords, bond_list, frozen = mol.GetNumAtoms(), [], [], [], []
-    for i in range(3):
-        a = 2 * np.pi * i / 3
+    words = {3: 'three', 7: 'seven'}[chains]
+    layout = f'triangle side {SIDE} A' if chains == 3 else f'centre chain + hexagon, spacing {SIDE} A'
+    for i, (a, xy) in enumerate(sites(chains)):
         rz = np.array([[np.cos(a), -np.sin(a), 0], [np.sin(a), np.cos(a), 0], [0, 0, 1]])
-        coords.append(x @ rz.T + SIDE / np.sqrt(3) * np.array([np.cos(a), np.sin(a), 0]))
+        coords.append(x @ rz.T + [xy[0], xy[1], 0])
         symbols += [atom.GetSymbol() for atom in mol.GetAtoms()]
         bond_list += [[p + i * n, q + i * n, o] for p, q, o in bonds(mol)]
         frozen += [i * n, i * n + 1]
-    meta = {'identity': f'silanol-free C8 patch: three tethered all-anti n-octane chains, triangle side {SIDE} A',
+    meta = {'identity': f'silanol-free C8 patch: {words} tethered all-anti n-octane chains, {layout}',
             'protonation': 'neutral alkane; no polar site', 'stereochemistry': 'no stereocenters', 'charge': 0, 'spin': 0,
             'bonds': bond_list, 'frozen_atoms': frozen,
             'frozen_atoms_note': 'C1 and C2 of each chain: tethers on the support surface (C1 stands in for Si-CH2)',
-            'fragments': [{'name': 'c8x3_patch', 'atoms': list(range(len(symbols))), 'charge': 0, 'spin': 0}],
+            'fragments': [{'name': f'c8x{chains}_patch', 'atoms': list(range(len(symbols))), 'charge': 0, 'spin': 0}],
             'geometry_provenance': 'RDKit ETKDG + MMFF94 all-anti octane, placed by construction; not quantum-optimized'}
     return symbols, np.vstack(coords), meta
 
 
-def dock(ps, pc, gs, gc, trials, keep, rng):
+def dock(ps, pc, gs, gc, trials, keep, rng, chain_atoms):
     p_carbon = [i for i, s in enumerate(ps) if s == 'C']
     g_carbon = [i for i, s in enumerate(gs) if s == 'C']
     heavy_p, heavy_g = np.array([s != 'H' for s in ps]), np.array([s != 'H' for s in gs])
-    floor = pc[[i for i in range(len(ps)) if i % (len(ps) // 3) == 1], 2].max()  # C2 plane
+    floor = pc[[i for i in range(len(ps)) if i % chain_atoms == 1], 2].max()  # C2 plane
     centre = gc[g_carbon].mean(axis=0)
     found = []
     for _ in range(trials):
@@ -93,16 +109,19 @@ def main():
     p.add_argument('--reagents', nargs='+', default=REAGENTS)
     p.add_argument('--trials', type=int, default=50000)
     p.add_argument('--keep', type=int, default=2)
+    p.add_argument('--chains', type=int, choices=[3, 7], default=3)
     p.add_argument('--output', default='examples/hplc/patch')
     a = p.parse_args()
-    ps, pc, pm = patch()
-    (OUT / 'c8x3_patch.xyz').write_text(xyz_text(ps, pc, 'c8x3_patch; constructed seed; angstrom'))
-    (OUT / 'c8x3_patch.json').write_text(json.dumps(pm, indent=2) + '\n')
-    print(f'c8x3_patch: {len(ps)} atoms')
+    ps, pc, pm = patch(a.chains)
+    name = f'c8x{a.chains}_patch'
+    (OUT / f'{name}.xyz').write_text(xyz_text(ps, pc, f'{name}; constructed seed; angstrom'))
+    (OUT / f'{name}.json').write_text(json.dumps(pm, indent=2) + '\n')
+    print(f'{name}: {len(ps)} atoms')
     out = Path(a.output); out.mkdir(parents=True, exist_ok=True)
     for reagent in a.reagents:
         gs, gc, gm = load(OUT / f'{reagent}.xyz', OUT / f'{reagent}.json')
-        kept = dock(ps, pc, gs, np.asarray(gc, float), a.trials, a.keep, np.random.default_rng(SEED))
+        kept = dock(ps, pc, gs, np.asarray(gc, float), a.trials, a.keep, np.random.default_rng(SEED),
+                     len(ps) // a.chains)
         if not kept: raise RuntimeError(f'{reagent}: no acceptable placement')
         for n, ((contacts, clearance), g) in enumerate(kept):
             stem = out / f'patch_{reagent}_{n}'

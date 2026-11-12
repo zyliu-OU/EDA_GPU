@@ -1,0 +1,83 @@
+{
+  "patch_diethylammonium": {
+    "known": [
+      "patch_diethylammonium_0",
+      "patch_diethylammonium_1"
+    ],
+    "candidates": [
+      "patch_diethylammonium_2",
+      "patch_diethylammonium_3",
+      "patch_diethylammonium_4",
+      "patch_diethylammonium_5",
+      "patch_diethylammonium_6",
+      "patch_diethylammonium_7",
+      "patch_diethylammonium_8",
+      "patch_diethylammonium_9"
+    ],
+    "picked": [
+      "patch_diethylammonium_6",
+      "patch_diethylammonium_3",
+      "patch_diethylammonium_4"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_extended/patch_diethylammonium_6",
+      "examples/hplc/patch_extended/patch_diethylammonium_3",
+      "examples/hplc/patch_extended/patch_diethylammonium_4"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_butylammonium": {
+    "known": [
+      "patch_butylammonium_0",
+      "patch_butylammonium_1"
+    ],
+    "candidates": [
+      "patch_butylammonium_2",
+      "patch_butylammonium_3",
+      "patch_butylammonium_4",
+      "patch_butylammonium_5",
+      "patch_butylammonium_6",
+      "patch_butylammonium_7",
+      "patch_butylammonium_8",
+      "patch_butylammonium_9"
+    ],
+    "picked": [
+      "patch_butylammonium_4",
+      "patch_butylammonium_7",
+      "patch_butylammonium_6"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_extended/patch_butylammonium_4",
+      "examples/hplc/patch_extended/patch_butylammonium_7",
+      "examples/hplc/patch_extended/patch_butylammonium_6"
+    ],
+    "duplicate_of": {}
+  },
+  "patch_tripropylammonium": {
+    "known": [
+      "patch_tripropylammonium_0",
+      "patch_tripropylammonium_1"
+    ],
+    "candidates": [
+      "patch_tripropylammonium_2",
+      "patch_tripropylammonium_3",
+      "patch_tripropylammonium_4",
+      "patch_tripropylammonium_5",
+      "patch_tripropylammonium_6",
+      "patch_tripropylammonium_7",
+      "patch_tripropylammonium_8",
+      "patch_tripropylammonium_9"
+    ],
+    "picked": [
+      "patch_tripropylammonium_5",
+      "patch_tripropylammonium_3",
+      "patch_tripropylammonium_8"
+    ],
+    "picked_seeds": [
+      "examples/hplc/patch_extended/patch_tripropylammonium_5",
+      "examples/hplc/patch_extended/patch_tripropylammonium_3",
+      "examples/hplc/patch_extended/patch_tripropylammonium_8"
+    ],
+    "duplicate_of": {}
+  }
+}

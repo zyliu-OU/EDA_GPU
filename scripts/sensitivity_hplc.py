@@ -3,7 +3,7 @@
 
 For every case directory (<run>/<case>/optimization/optimized.xyz plus the seed metadata named in
 <run>/summary.json) the EDA is repeated with the run's own recorded eda_settings, changing only the
-fields of each variant (e.g. solvent_vdw_scale=1.4, or solvent_eps=35.688). Geometries are NOT
+fields of each variant (e.g. solvent_vdw_scale=1.4, solvent_eps=35.688, or basis aug-cc-pVDZ). Geometries are NOT
 re-optimized: this isolates the response of the EDA terms to the solvent model at fixed structure.
 Resumable; GPU/CPU temperature guards come from the recorded settings.
 """
@@ -17,7 +17,8 @@ from eda_gpu.gks import decompose
 from eda_gpu.model import load
 
 KCAL = 627.509474
-VARIANTS = {'vdw14': dict(solvent_vdw_scale=1.4), 'acn': dict(solvent_eps=35.688), 'ref': {}}
+VARIANTS = {'vdw14': dict(solvent_vdw_scale=1.4), 'acn': dict(solvent_eps=35.688), 'ref': {},
+            'augdz': dict(basis='aug-cc-pvdz', auxbasis='aug-cc-pvdz-jkfit')}  # EDA is direct-integral; auxbasis unused
 
 
 def write(path, obj):

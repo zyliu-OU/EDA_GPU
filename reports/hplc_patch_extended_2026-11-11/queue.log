@@ -1,0 +1,121 @@
+2026-11-10T23:11:58-08:00 start
+patch_diethylammonium_0: GFN2-xTB pre-optimization
+patch_diethylammonium_0: optimizing (95 atoms)
+patch_diethylammonium_0: GKS-EDA(sol)
+patch_diethylammonium_0: electrostatic=-4.82  exchange=-18.83  repulsion=+30.79  polarization=-2.61  generalized_correlation=-11.99  explicit_dispersion=+0.00  desolvation=+1.89  total=-5.58
+patch_diethylammonium_1: GFN2-xTB pre-optimization
+patch_diethylammonium_1: optimizing (95 atoms)
+patch_diethylammonium_1: GKS-EDA(sol)
+patch_diethylammonium_1: electrostatic=-3.85  exchange=-21.46  repulsion=+35.07  polarization=-2.63  generalized_correlation=-13.66  explicit_dispersion=+0.00  desolvation=+0.61  total=-5.91
+patch_butylammonium_0: GFN2-xTB pre-optimization
+patch_butylammonium_0: optimizing (95 atoms)
+patch_butylammonium_0: GKS-EDA(sol)
+patch_butylammonium_0: electrostatic=-6.19  exchange=-19.20  repulsion=+31.59  polarization=-3.66  generalized_correlation=-12.23  explicit_dispersion=+0.00  desolvation=+3.26  total=-6.44
+patch_butylammonium_1: GFN2-xTB pre-optimization
+patch_butylammonium_1: optimizing (95 atoms)
+patch_butylammonium_1: GKS-EDA(sol)
+patch_butylammonium_1: electrostatic=-4.05  exchange=-20.02  repulsion=+32.03  polarization=-1.27  generalized_correlation=-11.60  explicit_dispersion=+0.00  desolvation=+0.58  total=-4.32
+patch_tripropylammonium_0: GFN2-xTB pre-optimization
+patch_tripropylammonium_0: optimizing (110 atoms)
+patch_tripropylammonium_0: GKS-EDA(sol)
+patch_tripropylammonium_0: electrostatic=-5.62  exchange=-26.89  repulsion=+43.39  polarization=-1.92  generalized_correlation=-15.56  explicit_dispersion=+0.00  desolvation=+1.12  total=-5.48
+patch_tripropylammonium_1: GFN2-xTB pre-optimization
+patch_tripropylammonium_1: optimizing (110 atoms)
+patch_tripropylammonium_1: GKS-EDA(sol)
+patch_tripropylammonium_1: electrostatic=-5.47  exchange=-23.84  repulsion=+38.83  polarization=-2.47  generalized_correlation=-14.24  explicit_dispersion=+0.00  desolvation=+1.39  total=-5.82
+patch_diethylammonium_2: -4.110473903720917
+patch_diethylammonium_3: -7.87168255402827
+patch_diethylammonium_4: -6.4131570871926575
+patch_diethylammonium_5: -5.800817889426375
+patch_diethylammonium_6: -9.221009299092687
+patch_diethylammonium_7: -5.479399904435453
+patch_diethylammonium_8: -5.356320474206534
+patch_diethylammonium_9: -5.893010020092656
+patch_butylammonium_2: -5.179898705033432
+patch_butylammonium_3: -5.279927361649332
+patch_butylammonium_4: -6.121433161146302
+patch_butylammonium_5: -4.012754353321145
+patch_butylammonium_6: -5.373607545703792
+patch_butylammonium_7: -5.419934080831738
+patch_butylammonium_8: -5.054810381638927
+patch_butylammonium_9: -4.495892825556806
+patch_tripropylammonium_2: -5.7844359953205915
+patch_tripropylammonium_3: -6.761305398841867
+patch_tripropylammonium_4: -5.549649421254187
+patch_tripropylammonium_5: -8.116901600477137
+patch_tripropylammonium_6: -5.372428172391927
+patch_tripropylammonium_7: -5.058711397822904
+patch_tripropylammonium_8: -5.848188917839776
+patch_tripropylammonium_9: -3.8804915992820805
+patch_diethylammonium: picked ['patch_diethylammonium_6', 'patch_diethylammonium_3', 'patch_diethylammonium_4']; duplicates {}
+patch_butylammonium: picked ['patch_butylammonium_4', 'patch_butylammonium_7', 'patch_butylammonium_6']; duplicates {}
+patch_tripropylammonium: picked ['patch_tripropylammonium_5', 'patch_tripropylammonium_3', 'patch_tripropylammonium_8']; duplicates {}
+patch_diethylammonium_6: GFN2-xTB pre-optimization
+patch_diethylammonium_6: optimizing (95 atoms)
+patch_diethylammonium_6: GKS-EDA(sol)
+patch_diethylammonium_6: electrostatic=-5.43  exchange=-21.74  repulsion=+35.51  polarization=-2.72  generalized_correlation=-14.14  explicit_dispersion=+0.00  desolvation=+1.89  total=-6.62
+patch_butylammonium_4: GFN2-xTB pre-optimization
+patch_butylammonium_4: optimizing (95 atoms)
+patch_butylammonium_4: GKS-EDA(sol)
+patch_butylammonium_4: electrostatic=-4.95  exchange=-19.86  repulsion=+32.06  polarization=-2.13  generalized_correlation=-11.79  explicit_dispersion=+0.00  desolvation=+1.67  total=-5.02
+patch_tripropylammonium_5: GFN2-xTB pre-optimization
+patch_tripropylammonium_5: optimizing (110 atoms)
+patch_tripropylammonium_5: GKS-EDA(sol)
+patch_tripropylammonium_5: electrostatic=-5.29  exchange=-22.07  repulsion=+36.02  polarization=-2.32  generalized_correlation=-12.92  explicit_dispersion=+0.00  desolvation=+1.42  total=-5.16
+patch_diethylammonium_3: GFN2-xTB pre-optimization
+patch_diethylammonium_3: optimizing (95 atoms)
+patch_diethylammonium_3: GKS-EDA(sol)
+patch_diethylammonium_3: electrostatic=-5.76  exchange=-21.45  repulsion=+35.18  polarization=-3.20  generalized_correlation=-13.86  explicit_dispersion=+0.00  desolvation=+2.61  total=-6.48
+patch_butylammonium_7: GFN2-xTB pre-optimization
+patch_butylammonium_7: optimizing (95 atoms)
+patch_butylammonium_7: GKS-EDA(sol)
+patch_butylammonium_7: electrostatic=-3.36  exchange=-16.55  repulsion=+26.74  polarization=-1.46  generalized_correlation=-10.20  explicit_dispersion=+0.00  desolvation=+0.53  total=-4.30
+patch_tripropylammonium_3: GFN2-xTB pre-optimization
+patch_tripropylammonium_3: optimizing (110 atoms)
+patch_tripropylammonium_3: GKS-EDA(sol)
+patch_tripropylammonium_3: electrostatic=-4.28  exchange=-22.25  repulsion=+35.74  polarization=-1.05  generalized_correlation=-13.10  explicit_dispersion=+0.00  desolvation=+0.40  total=-4.54
+patch_diethylammonium_4: GFN2-xTB pre-optimization
+patch_diethylammonium_4: optimizing (95 atoms)
+patch_diethylammonium_4: GKS-EDA(sol)
+patch_diethylammonium_4: electrostatic=-2.34  exchange=-15.50  repulsion=+25.06  polarization=-1.72  generalized_correlation=-9.85  explicit_dispersion=+0.00  desolvation=+0.11  total=-4.25
+patch_butylammonium_6: GFN2-xTB pre-optimization
+patch_butylammonium_6: optimizing (95 atoms)
+patch_butylammonium_6: GKS-EDA(sol)
+patch_butylammonium_6: electrostatic=-3.59  exchange=-21.28  repulsion=+34.21  polarization=-1.48  generalized_correlation=-12.15  explicit_dispersion=+0.00  desolvation=-0.05  total=-4.33
+patch_tripropylammonium_8: GFN2-xTB pre-optimization
+patch_tripropylammonium_8: optimizing (110 atoms)
+patch_tripropylammonium_8: GKS-EDA(sol)
+patch_tripropylammonium_8: electrostatic=-4.05  exchange=-19.23  repulsion=+31.01  polarization=-1.23  generalized_correlation=-10.37  explicit_dispersion=+0.00  desolvation=+0.61  total=-3.26
+hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_0 c8x3_patch|diethylammonium: cds_w -2.41 cds_acn +1.35 npSASA 326 eda -5.58
+hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_1 c8x3_patch|diethylammonium: cds_w -2.26 cds_acn +1.34 npSASA 279 eda -5.91
+hplc_patch_extended_cpcm_def2svp/patch_butylammonium_0 c8x3_patch|butylammonium: cds_w -2.40 cds_acn +1.11 npSASA 240 eda -6.44
+hplc_patch_extended_cpcm_def2svp/patch_butylammonium_1 c8x3_patch|butylammonium: cds_w -1.45 cds_acn +1.47 npSASA 293 eda -4.32
+hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_0 c8x3_patch|tripropylammonium: cds_w -1.95 cds_acn +1.71 npSASA 330 eda -5.48
+hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_1 c8x3_patch|tripropylammonium: cds_w -2.21 cds_acn +1.23 npSASA 341 eda -5.82
+hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_6 c8x3_patch|diethylammonium: cds_w -2.48 cds_acn +1.52 npSASA 347 eda -6.62
+hplc_patch_extended_cpcm_def2svp/patch_butylammonium_4 c8x3_patch|butylammonium: cds_w -1.91 cds_acn +1.20 npSASA 259 eda -5.02
+hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_5 c8x3_patch|tripropylammonium: cds_w -2.17 cds_acn +1.06 npSASA 318 eda -5.16
+hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_3 c8x3_patch|diethylammonium: cds_w -2.44 cds_acn +1.25 npSASA 318 eda -6.48
+hplc_patch_extended_cpcm_def2svp/patch_butylammonium_7 c8x3_patch|butylammonium: cds_w -1.77 cds_acn +0.89 npSASA 214 eda -4.30
+hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_3 c8x3_patch|tripropylammonium: cds_w -1.95 cds_acn +1.30 npSASA 286 eda -4.54
+hplc_patch_extended_cpcm_def2svp/patch_diethylammonium_4 c8x3_patch|diethylammonium: cds_w -1.51 cds_acn +1.10 npSASA 221 eda -4.25
+hplc_patch_extended_cpcm_def2svp/patch_butylammonium_6 c8x3_patch|butylammonium: cds_w -1.29 cds_acn +1.51 npSASA 224 eda -4.33
+hplc_patch_extended_cpcm_def2svp/patch_tripropylammonium_8 c8x3_patch|tripropylammonium: cds_w -1.88 cds_acn +0.72 npSASA 268 eda -3.26
+| Group | n | electrostatic | exchange | repulsion | polarization | generalized_correlation | desolvation | total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| patch_butylammonium_0 | 1/1 | -6.19 | -19.20 | 31.59 | -3.66 | -12.23 | 3.26 | -6.44 |
+| patch_butylammonium_1 | 1/1 | -4.05 | -20.02 | 32.03 | -1.27 | -11.60 | 0.58 | -4.32 |
+| patch_butylammonium_4 | 1/1 | -4.95 | -19.86 | 32.06 | -2.13 | -11.79 | 1.67 | -5.02 |
+| patch_butylammonium_6 | 1/1 | -3.59 | -21.28 | 34.21 | -1.48 | -12.15 | -0.05 | -4.33 |
+| patch_butylammonium_7 | 1/1 | -3.36 | -16.55 | 26.74 | -1.46 | -10.20 | 0.53 | -4.30 |
+| patch_diethylammonium_0 | 1/1 | -4.82 | -18.83 | 30.79 | -2.61 | -11.99 | 1.89 | -5.58 |
+| patch_diethylammonium_1 | 1/1 | -3.85 | -21.46 | 35.07 | -2.63 | -13.66 | 0.61 | -5.91 |
+| patch_diethylammonium_3 | 1/1 | -5.76 | -21.45 | 35.18 | -3.20 | -13.86 | 2.61 | -6.48 |
+| patch_diethylammonium_4 | 1/1 | -2.34 | -15.50 | 25.06 | -1.72 | -9.85 | 0.11 | -4.25 |
+| patch_diethylammonium_6 | 1/1 | -5.43 | -21.74 | 35.51 | -2.72 | -14.14 | 1.89 | -6.62 |
+| patch_tripropylammonium_0 | 1/1 | -5.62 | -26.89 | 43.39 | -1.92 | -15.56 | 1.12 | -5.48 |
+| patch_tripropylammonium_1 | 1/1 | -5.47 | -23.84 | 38.83 | -2.47 | -14.24 | 1.39 | -5.82 |
+| patch_tripropylammonium_3 | 1/1 | -4.28 | -22.25 | 35.74 | -1.05 | -13.10 | 0.40 | -4.54 |
+| patch_tripropylammonium_5 | 1/1 | -5.29 | -22.07 | 36.02 | -2.32 | -12.92 | 1.42 | -5.16 |
+| patch_tripropylammonium_8 | 1/1 | -4.05 | -19.23 | 31.01 | -1.23 | -10.37 | 0.61 | -3.26 |
+2026-11-11T16:22:34-08:00 queue done

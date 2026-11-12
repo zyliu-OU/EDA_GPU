@@ -1,0 +1,132 @@
+{
+  "identity": "butylammonium (BA+)",
+  "protonation": "protonated amine, 3 N-H donor(s)",
+  "stereochemistry": "no stereocenters",
+  "ion_pair_buffer": "butylammonium acetate (BAA)",
+  "conformer_selection": {
+    "criterion": "lowest MMFF94 ETKDG conformer, C-C chain dihedrals set anti and re-minimized",
+    "chain_dihedrals_deg": [
+      -179.9999975007606,
+      179.99999917430367
+    ],
+    "mmff94_kcal_mol": -2.073182033561306,
+    "embedded": 200
+  },
+  "donor_h": [
+    14,
+    15,
+    16
+  ],
+  "charge": 1,
+  "spin": 0,
+  "bonds": [
+    [
+      0,
+      1,
+      1.0
+    ],
+    [
+      1,
+      2,
+      1.0
+    ],
+    [
+      2,
+      3,
+      1.0
+    ],
+    [
+      3,
+      4,
+      1.0
+    ],
+    [
+      0,
+      5,
+      1.0
+    ],
+    [
+      0,
+      6,
+      1.0
+    ],
+    [
+      0,
+      7,
+      1.0
+    ],
+    [
+      1,
+      8,
+      1.0
+    ],
+    [
+      1,
+      9,
+      1.0
+    ],
+    [
+      2,
+      10,
+      1.0
+    ],
+    [
+      2,
+      11,
+      1.0
+    ],
+    [
+      3,
+      12,
+      1.0
+    ],
+    [
+      3,
+      13,
+      1.0
+    ],
+    [
+      4,
+      14,
+      1.0
+    ],
+    [
+      4,
+      15,
+      1.0
+    ],
+    [
+      4,
+      16,
+      1.0
+    ]
+  ],
+  "fragments": [
+    {
+      "name": "butylammonium",
+      "atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "charge": 1,
+      "spin": 0
+    }
+  ],
+  "smiles": "CCCC[NH3+]",
+  "geometry_provenance": "RDKit ETKDG + MMFF94 seed (rdkit 2026.9.1); not quantum-optimized"
+}

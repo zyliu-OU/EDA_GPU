@@ -1,0 +1,101 @@
+{
+  "cases": {
+    "patch_diethylammonium_2": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_2",
+      "dE_xtb_kcal_mol": -4.110473903720917
+    },
+    "patch_diethylammonium_3": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_3",
+      "dE_xtb_kcal_mol": -7.87168255402827
+    },
+    "patch_diethylammonium_4": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_4",
+      "dE_xtb_kcal_mol": -6.4131570871926575
+    },
+    "patch_diethylammonium_5": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_5",
+      "dE_xtb_kcal_mol": -5.800817889426375
+    },
+    "patch_diethylammonium_6": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_6",
+      "dE_xtb_kcal_mol": -9.221009299092687
+    },
+    "patch_diethylammonium_7": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_7",
+      "dE_xtb_kcal_mol": -5.479399904435453
+    },
+    "patch_diethylammonium_8": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_8",
+      "dE_xtb_kcal_mol": -5.356320474206534
+    },
+    "patch_diethylammonium_9": {
+      "seed": "examples/hplc/patch_extended/patch_diethylammonium_9",
+      "dE_xtb_kcal_mol": -5.893010020092656
+    },
+    "patch_butylammonium_2": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_2",
+      "dE_xtb_kcal_mol": -5.179898705033432
+    },
+    "patch_butylammonium_3": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_3",
+      "dE_xtb_kcal_mol": -5.279927361649332
+    },
+    "patch_butylammonium_4": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_4",
+      "dE_xtb_kcal_mol": -6.121433161146302
+    },
+    "patch_butylammonium_5": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_5",
+      "dE_xtb_kcal_mol": -4.012754353321145
+    },
+    "patch_butylammonium_6": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_6",
+      "dE_xtb_kcal_mol": -5.373607545703792
+    },
+    "patch_butylammonium_7": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_7",
+      "dE_xtb_kcal_mol": -5.419934080831738
+    },
+    "patch_butylammonium_8": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_8",
+      "dE_xtb_kcal_mol": -5.054810381638927
+    },
+    "patch_butylammonium_9": {
+      "seed": "examples/hplc/patch_extended/patch_butylammonium_9",
+      "dE_xtb_kcal_mol": -4.495892825556806
+    },
+    "patch_tripropylammonium_2": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_2",
+      "dE_xtb_kcal_mol": -5.7844359953205915
+    },
+    "patch_tripropylammonium_3": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_3",
+      "dE_xtb_kcal_mol": -6.761305398841867
+    },
+    "patch_tripropylammonium_4": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_4",
+      "dE_xtb_kcal_mol": -5.549649421254187
+    },
+    "patch_tripropylammonium_5": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_5",
+      "dE_xtb_kcal_mol": -8.116901600477137
+    },
+    "patch_tripropylammonium_6": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_6",
+      "dE_xtb_kcal_mol": -5.372428172391927
+    },
+    "patch_tripropylammonium_7": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_7",
+      "dE_xtb_kcal_mol": -5.058711397822904
+    },
+    "patch_tripropylammonium_8": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_8",
+      "dE_xtb_kcal_mol": -5.848188917839776
+    },
+    "patch_tripropylammonium_9": {
+      "seed": "examples/hplc/patch_extended/patch_tripropylammonium_9",
+      "dE_xtb_kcal_mol": -3.8804915992820805
+    }
+  },
+  "method": "GFN2-xTB/ALPB(water) pre-optimization as run_hplc_stage.py; dE = complex - fragments at the complex geometry (kcal/mol); duplicates: reagent C centroid and N both within 1.5 A"
+}

@@ -1,0 +1,11 @@
+augdz patch_teah_2: GKS-EDA(sol) (101 atoms)
+augdz patch_teah_2: electrostatic=-3.14  exchange=-23.56  repulsion=+38.12  polarization=-0.72  generalized_correlation=-18.07  explicit_dispersion=+0.00  desolvation=-0.23  total=-7.60
+augdz patch_hexylammonium_0: GKS-EDA(sol) (101 atoms)
+augdz patch_hexylammonium_0: electrostatic=-5.59  exchange=-28.48  repulsion=+45.25  polarization=+0.17  generalized_correlation=-20.42  explicit_dispersion=+0.00  desolvation=+0.77  total=-8.30
+augdz patch_dipeah_0: GKS-EDA(sol) (107 atoms)
+augdz patch_dipeah_0: electrostatic=-3.77  exchange=-20.92  repulsion=+33.84  polarization=-1.13  generalized_correlation=-16.53  explicit_dispersion=+0.00  desolvation=+1.16  total=-7.35
+augdz patch_dibutylammonium_0: GKS-EDA(sol) (107 atoms)
+augdz patch_dibutylammonium_0: electrostatic=-5.67  exchange=-35.52  repulsion=+57.40  polarization=-1.43  generalized_correlation=-27.92  explicit_dispersion=+0.00  desolvation=+0.95  total=-12.19
+augdz patch_tributylammonium_3: GKS-EDA(sol) (119 atoms)
+augdz patch_tributylammonium_3: electrostatic=-6.00  exchange=-34.57  repulsion=+55.29  polarization=-0.33  generalized_correlation=-25.16  explicit_dispersion=+0.00  desolvation=+0.71  total=-10.06
+2026-11-10T23:07:33-08:00 queue done

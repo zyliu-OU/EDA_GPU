@@ -1,0 +1,850 @@
+{
+ "published_order_least_to_most_retained": [
+  "diethylammonium",
+  "teah",
+  "dipeah",
+  "butylammonium",
+  "tripropylammonium",
+  "dibutylammonium",
+  "hexylammonium",
+  "tributylammonium"
+ ],
+ "source": "Donegan Table 4, 100 mM acetate, 20T %ACN; TBA placed last",
+ "kT_kcal_mol": 0.592484902415,
+ "reagents": {
+  "diethylammonium": {
+   "placements": [
+    "patch_diethylammonium_0",
+    "patch_diethylammonium_1",
+    "patch_diethylammonium_3",
+    "patch_diethylammonium_4",
+    "patch_diethylammonium_6"
+   ],
+   "lowest_energy": "patch_diethylammonium_6",
+   "weights": {
+    "patch_diethylammonium_0": 0.2198,
+    "patch_diethylammonium_1": 0.0247,
+    "patch_diethylammonium_3": 0.3478,
+    "patch_diethylammonium_4": 0.0036,
+    "patch_diethylammonium_6": 0.404
+   },
+   "tot": {
+    "lowest_energy": -6.620304008442991,
+    "best": -6.620304008442991,
+    "boltzmann": -6.315203150816593,
+    "mean": -5.76675291338073
+   },
+   "epc": {
+    "lowest_energy": -9.099504686653745,
+    "best": -9.099504686653745,
+    "boltzmann": -8.758493380821648,
+    "mean": -7.987570875378262
+   },
+   "np": {
+    "lowest_energy": 346.9390358056164,
+    "best": 346.9390358056164,
+    "boltzmann": 330.1408030433446,
+    "mean": 298.0603832451685
+   },
+   "elec": {
+    "lowest_energy": -5.427976922675005,
+    "best": -5.758756293485514,
+    "boltzmann": -5.359879770495218,
+    "mean": -4.43929042435268
+   },
+   "pauli": {
+    "lowest_energy": 13.768312885718444,
+    "best": 9.560239737924924,
+    "boltzmann": 13.338179313256681,
+    "mean": 12.52541026243119
+   },
+   "pol": {
+    "lowest_energy": -2.7168572297084963,
+    "best": -3.195141832572538,
+    "boltzmann": -2.85456310296025,
+    "mean": -2.574575791260374
+   },
+   "gc": {
+    "lowest_energy": -14.138248785234332,
+    "best": -14.138248785234332,
+    "boltzmann": -13.54444213725565,
+    "mean": -12.701779465078783
+   },
+   "des": {
+    "lowest_energy": 1.8944660434563976,
+    "best": 0.10627144244496903,
+    "boltzmann": 2.105502546637844,
+    "mean": 1.423482504879918
+   }
+  },
+  "teah": {
+   "placements": [
+    "patch_teah_0",
+    "patch_teah_1",
+    "patch_teah_2",
+    "patch_teah_3",
+    "patch_teah_4"
+   ],
+   "lowest_energy": "patch_teah_2",
+   "weights": {
+    "patch_teah_0": 0.0218,
+    "patch_teah_1": 0.1469,
+    "patch_teah_2": 0.7191,
+    "patch_teah_3": 0.0866,
+    "patch_teah_4": 0.0257
+   },
+   "tot": {
+    "lowest_energy": -5.327158493064461,
+    "best": -5.327158493064461,
+    "boltzmann": -5.029156856715192,
+    "mean": -4.001342664239297
+   },
+   "epc": {
+    "lowest_energy": -7.332218309141515,
+    "best": -7.332218309141515,
+    "boltzmann": -6.977304160830214,
+    "mean": -5.791007560002766
+   },
+   "np": {
+    "lowest_energy": 264.74737980546183,
+    "best": 274.4255795736203,
+    "boltzmann": 266.2652055543987,
+    "mean": 265.08036244680324
+   },
+   "elec": {
+    "lowest_energy": -3.7343933403176557,
+    "best": -4.71242086023356,
+    "boltzmann": -3.920896026662378,
+    "mean": -3.924800697013205
+   },
+   "pauli": {
+    "lowest_energy": 14.3353266286028,
+    "best": 8.829932546611321,
+    "boltzmann": 13.751516410423289,
+    "mean": 12.188354475305015
+   },
+   "pol": {
+    "lowest_energy": -1.837947724967926,
+    "best": -2.647210927155172,
+    "boltzmann": -1.9348309602376537,
+    "mean": -1.8167048616394148
+   },
+   "gc": {
+    "lowest_energy": -14.160620518192346,
+    "best": -14.160620518192346,
+    "boltzmann": -13.316210180233252,
+    "mean": -11.1774491758442
+   },
+   "des": {
+    "lowest_energy": 0.07047646181066616,
+    "best": 0.07047646181066616,
+    "boltzmann": 0.39126389999480177,
+    "mean": 0.7292575949525067
+   }
+  },
+  "dipeah": {
+   "placements": [
+    "patch_dipeah_0",
+    "patch_dipeah_1",
+    "patch_dipeah_5",
+    "patch_dipeah_6",
+    "patch_dipeah_8"
+   ],
+   "lowest_energy": "patch_dipeah_0",
+   "weights": {
+    "patch_dipeah_0": 0.689,
+    "patch_dipeah_1": 0.14,
+    "patch_dipeah_5": 0.1468,
+    "patch_dipeah_6": 0.0044,
+    "patch_dipeah_8": 0.0197
+   },
+   "tot": {
+    "lowest_energy": -5.489443550016068,
+    "best": -5.489443550016068,
+    "boltzmann": -5.202669324699429,
+    "mean": -4.311968798509369
+   },
+   "epc": {
+    "lowest_energy": -7.063951469191859,
+    "best": -7.063951469191859,
+    "boltzmann": -6.843316055402626,
+    "mean": -6.040647374790391
+   },
+   "np": {
+    "lowest_energy": 322.93006844902607,
+    "best": 322.93006844902607,
+    "boltzmann": 319.381500947098,
+    "mean": 307.4383252954607
+   },
+   "elec": {
+    "lowest_energy": -4.250909222884674,
+    "best": -5.498558080539875,
+    "boltzmann": -4.515187779229625,
+    "mean": -4.404220199212624
+   },
+   "pauli": {
+    "lowest_energy": 12.663194754413844,
+    "best": 10.101329796566496,
+    "boltzmann": 13.588230534678381,
+    "mean": 13.07299271747639
+   },
+   "pol": {
+    "lowest_energy": -1.9616827061488222,
+    "best": -1.9616827061488222,
+    "boltzmann": -1.8517008826790196,
+    "mean": -1.5055327608623732
+   },
+   "gc": {
+    "lowest_energy": -13.12280709375767,
+    "best": -15.08710195439485,
+    "boltzmann": -13.499511327054442,
+    "mean": -12.384266354913128
+   },
+   "des": {
+    "lowest_energy": 1.182760718361255,
+    "best": 0.6893876131954415,
+    "boltzmann": 1.0755001295852746,
+    "mean": 0.9090577990023678
+   }
+  },
+  "butylammonium": {
+   "placements": [
+    "patch_butylammonium_0",
+    "patch_butylammonium_1",
+    "patch_butylammonium_4",
+    "patch_butylammonium_6",
+    "patch_butylammonium_7"
+   ],
+   "lowest_energy": "patch_butylammonium_0",
+   "weights": {
+    "patch_butylammonium_0": 0.6585,
+    "patch_butylammonium_1": 0.1112,
+    "patch_butylammonium_4": 0.1535,
+    "patch_butylammonium_6": 0.0213,
+    "patch_butylammonium_7": 0.0555
+   },
+   "tot": {
+    "lowest_energy": -6.435517309413939,
+    "best": -6.435517309413939,
+    "boltzmann": -5.818842611017594,
+    "mean": -4.880341479888178
+   },
+   "epc": {
+    "lowest_energy": -8.83393359742334,
+    "best": -8.83393359742334,
+    "boltzmann": -7.978016467662381,
+    "mean": -6.642693417214855
+   },
+   "np": {
+    "lowest_energy": 239.6044284006191,
+    "best": 292.7078162217987,
+    "boltzmann": 246.7473330870086,
+    "mean": 245.8718533846533
+   },
+   "elec": {
+    "lowest_energy": -6.186433462213953,
+    "best": -6.186433462213953,
+    "boltzmann": -5.546990383010249,
+    "mean": -4.427127896326989
+   },
+   "pauli": {
+    "lowest_energy": 12.386186389633522,
+    "best": 10.19232391133367,
+    "boltzmann": 12.204260574409492,
+    "mean": 11.942057054280326
+   },
+   "pol": {
+    "lowest_energy": -3.6589730795334496,
+    "best": -3.6589730795334496,
+    "boltzmann": -2.9897310575479383,
+    "mean": -1.9982179032378913
+   },
+   "gc": {
+    "lowest_energy": -12.231524267764067,
+    "best": -12.231524267764067,
+    "boltzmann": -11.978855421777439,
+    "mean": -11.59380791803353
+   },
+   "des": {
+    "lowest_energy": 3.2552271104640096,
+    "best": -0.04897766965179656,
+    "boltzmann": 2.492473676908538,
+    "mean": 1.1967551834299086
+   }
+  },
+  "tripropylammonium": {
+   "placements": [
+    "patch_tripropylammonium_0",
+    "patch_tripropylammonium_1",
+    "patch_tripropylammonium_3",
+    "patch_tripropylammonium_5",
+    "patch_tripropylammonium_8"
+   ],
+   "lowest_energy": "patch_tripropylammonium_0",
+   "weights": {
+    "patch_tripropylammonium_0": 0.6236,
+    "patch_tripropylammonium_1": 0.2138,
+    "patch_tripropylammonium_3": 0.0832,
+    "patch_tripropylammonium_5": 0.0662,
+    "patch_tripropylammonium_8": 0.0132
+   },
+   "tot": {
+    "lowest_energy": -5.477911543315562,
+    "best": -5.817261961114779,
+    "boltzmann": -5.422502989118907,
+    "mean": -4.852173592699641
+   },
+   "epc": {
+    "lowest_energy": -7.426655436949276,
+    "best": -8.027989427717714,
+    "boltzmann": -7.440633818341055,
+    "mean": -6.883193005712703
+   },
+   "np": {
+    "lowest_energy": 330.49842695091183,
+    "best": 340.9088796067449,
+    "boltzmann": 327.3650604979579,
+    "mean": 308.685982637895
+   },
+   "elec": {
+    "lowest_energy": -5.6185211049232855,
+    "best": -5.6185211049232855,
+    "boltzmann": -5.433787386328937,
+    "mean": -4.942653590216713
+   },
+   "pauli": {
+    "lowest_energy": 16.499696262385275,
+    "best": 11.78622614738352,
+    "boltzmann": 15.694067055284712,
+    "mean": 14.140502275680593
+   },
+   "pol": {
+    "lowest_energy": -1.9165306609788162,
+    "best": -2.474523685975965,
+    "boltzmann": -1.9813067393051926,
+    "mean": -1.797444315559554
+   },
+   "gc": {
+    "lowest_energy": -15.561532758567862,
+    "best": -15.561532758567862,
+    "boltzmann": -14.830835644723166,
+    "mean": -13.238438340836291
+   },
+   "des": {
+    "lowest_energy": 1.118976718769128,
+    "best": 0.4002366019093623,
+    "boltzmann": 1.1293597259536752,
+    "mean": 0.9858603782323241
+   }
+  },
+  "dibutylammonium": {
+   "placements": [
+    "patch_dibutylammonium_0",
+    "patch_dibutylammonium_1",
+    "patch_dibutylammonium_2",
+    "patch_dibutylammonium_3",
+    "patch_dibutylammonium_8"
+   ],
+   "lowest_energy": "patch_dibutylammonium_0",
+   "weights": {
+    "patch_dibutylammonium_0": 0.9162,
+    "patch_dibutylammonium_1": 0.0735,
+    "patch_dibutylammonium_2": 0.0072,
+    "patch_dibutylammonium_3": 0.0024,
+    "patch_dibutylammonium_8": 0.0007
+   },
+   "tot": {
+    "lowest_energy": -8.853687260608545,
+    "best": -8.853687260608545,
+    "boltzmann": -8.697554382758609,
+    "mean": -6.1757520920145925
+   },
+   "epc": {
+    "lowest_energy": -11.93893743451796,
+    "best": -11.93893743451796,
+    "boltzmann": -11.70719100295257,
+    "mean": -8.388954023418284
+   },
+   "np": {
+    "lowest_energy": 404.12492328013604,
+    "best": 404.12492328013604,
+    "boltzmann": 400.502563151481,
+    "mean": 313.1951367535313
+   },
+   "elec": {
+    "lowest_energy": -6.381109739449071,
+    "best": -6.381109739449071,
+    "boltzmann": -6.270354055232099,
+    "mean": -4.569071375829084
+   },
+   "pauli": {
+    "lowest_energy": 21.45628619071193,
+    "best": 10.535040960993488,
+    "boltzmann": 21.02405578564684,
+    "mean": 14.581815477039228
+   },
+   "pol": {
+    "lowest_energy": -3.0154818688910794,
+    "best": -3.0154818688910794,
+    "boltzmann": -2.9616300794740757,
+    "mean": -2.178360545868943
+   },
+   "gc": {
+    "lowest_energy": -21.771289732009617,
+    "best": -21.771289732009617,
+    "boltzmann": -21.356927396939614,
+    "mean": -14.809152580208565
+   },
+   "des": {
+    "lowest_energy": 0.8579078890292944,
+    "best": 0.08804346271231323,
+    "boltzmann": 0.8673013632403382,
+    "mean": 0.7990169328527705
+   }
+  },
+  "hexylammonium": {
+   "placements": [
+    "patch_hexylammonium_0",
+    "patch_hexylammonium_1",
+    "patch_hexylammonium_3",
+    "patch_hexylammonium_4",
+    "patch_hexylammonium_5"
+   ],
+   "lowest_energy": "patch_hexylammonium_0",
+   "weights": {
+    "patch_hexylammonium_0": 0.6329,
+    "patch_hexylammonium_1": 0.2596,
+    "patch_hexylammonium_3": 0.0432,
+    "patch_hexylammonium_4": 0.0274,
+    "patch_hexylammonium_5": 0.0369
+   },
+   "tot": {
+    "lowest_energy": -5.969156541441266,
+    "best": -5.969156541441266,
+    "boltzmann": -5.599933965011743,
+    "mean": -4.772589778892379
+   },
+   "epc": {
+    "lowest_energy": -7.998776451877143,
+    "best": -7.998776451877143,
+    "boltzmann": -7.546290828948141,
+    "mean": -6.486280605677898
+   },
+   "np": {
+    "lowest_energy": 304.97992432427145,
+    "best": 306.74628479375247,
+    "boltzmann": 296.68416866176307,
+    "mean": 284.5766413960224
+   },
+   "elec": {
+    "lowest_energy": -5.830048883548855,
+    "best": -5.830048883548855,
+    "boltzmann": -5.500494498552564,
+    "mean": -5.112664540025136
+   },
+   "pauli": {
+    "lowest_energy": 16.507097123464607,
+    "best": 12.751286313031649,
+    "boltzmann": 15.998790693359737,
+    "mean": 14.774375008675372
+   },
+   "pol": {
+    "lowest_energy": -1.2275940688489428,
+    "best": -1.2275940688489428,
+    "boltzmann": -1.0974060695347934,
+    "mean": -0.8442214127916209
+   },
+   "gc": {
+    "lowest_energy": -16.235812889261762,
+    "best": -16.235812889261762,
+    "boltzmann": -15.618207409374522,
+    "mean": -14.14430474452465
+   },
+   "des": {
+    "lowest_energy": 0.817202176753687,
+    "best": 0.1303473929169643,
+    "boltzmann": 0.6173833190904031,
+    "mean": 0.5542259097736578
+   }
+  },
+  "tributylammonium": {
+   "placements": [
+    "patch_tributylammonium_0",
+    "patch_tributylammonium_1",
+    "patch_tributylammonium_3",
+    "patch_tributylammonium_5",
+    "patch_tributylammonium_9"
+   ],
+   "lowest_energy": "patch_tributylammonium_3",
+   "weights": {
+    "patch_tributylammonium_0": 0.0024,
+    "patch_tributylammonium_1": 0.0102,
+    "patch_tributylammonium_3": 0.9293,
+    "patch_tributylammonium_5": 0.0562,
+    "patch_tributylammonium_9": 0.0019
+   },
+   "tot": {
+    "lowest_energy": -7.1362941968625995,
+    "best": -7.1362941968625995,
+    "boltzmann": -7.08099996683621,
+    "mean": -5.572801810481778
+   },
+   "epc": {
+    "lowest_energy": -9.681562077119413,
+    "best": -9.681562077119413,
+    "boltzmann": -9.632351856265606,
+    "mean": -7.833750105052921
+   },
+   "np": {
+    "lowest_energy": 433.5273507244706,
+    "best": 433.5273507244706,
+    "boltzmann": 431.5653144766696,
+    "mean": 361.21275730744696
+   },
+   "elec": {
+    "lowest_energy": -6.4907816208408775,
+    "best": -6.4907816208408775,
+    "boltzmann": -6.442256862466199,
+    "mean": -5.359821144120368
+   },
+   "pauli": {
+    "lowest_energy": 20.371516454170248,
+    "best": 12.121245602817538,
+    "boltzmann": 20.222087307759075,
+    "mean": 16.332117180033794
+   },
+   "pol": {
+    "lowest_energy": -1.9238118489233746,
+    "best": -2.250965277125329,
+    "boltzmann": -1.933015078750283,
+    "mean": -1.644424737452797
+   },
+   "gc": {
+    "lowest_energy": -19.99389408403605,
+    "best": -19.99389408403605,
+    "boltzmann": -19.830606277047,
+    "mean": -15.771826632463519
+   },
+   "des": {
+    "lowest_energy": 0.9006769027674549,
+    "best": 0.6503628859832269,
+    "boltzmann": 0.9027909436681948,
+    "mean": 0.8711535235211135
+   }
+  }
+ },
+ "spearman": {
+  "tot/lowest_energy": {
+   "rho": 0.4,
+   "p": 0.32,
+   "order": [
+    "teah",
+    "tripropylammonium",
+    "dipeah",
+    "hexylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "tot/best": {
+   "rho": 0.45,
+   "p": 0.26,
+   "order": [
+    "teah",
+    "dipeah",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "tot/boltzmann": {
+   "rho": 0.45,
+   "p": 0.26,
+   "order": [
+    "teah",
+    "dipeah",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "tot/mean": {
+   "rho": 0.24,
+   "p": 0.57,
+   "order": [
+    "teah",
+    "dipeah",
+    "hexylammonium",
+    "tripropylammonium",
+    "butylammonium",
+    "tributylammonium",
+    "diethylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "epc/lowest_energy": {
+   "rho": 0.43,
+   "p": 0.289,
+   "order": [
+    "dipeah",
+    "teah",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "epc/best": {
+   "rho": 0.38,
+   "p": 0.352,
+   "order": [
+    "dipeah",
+    "teah",
+    "hexylammonium",
+    "tripropylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "epc/boltzmann": {
+   "rho": 0.43,
+   "p": 0.289,
+   "order": [
+    "dipeah",
+    "teah",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "diethylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "epc/mean": {
+   "rho": 0.26,
+   "p": 0.531,
+   "order": [
+    "teah",
+    "dipeah",
+    "hexylammonium",
+    "butylammonium",
+    "tripropylammonium",
+    "tributylammonium",
+    "diethylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "np/lowest_energy": {
+   "rho": 0.38,
+   "p": 0.352,
+   "order": [
+    "butylammonium",
+    "teah",
+    "hexylammonium",
+    "dipeah",
+    "tripropylammonium",
+    "diethylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "np/best": {
+   "rho": 0.43,
+   "p": 0.289,
+   "order": [
+    "teah",
+    "butylammonium",
+    "hexylammonium",
+    "dipeah",
+    "tripropylammonium",
+    "diethylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "np/boltzmann": {
+   "rho": 0.38,
+   "p": 0.352,
+   "order": [
+    "butylammonium",
+    "teah",
+    "hexylammonium",
+    "dipeah",
+    "tripropylammonium",
+    "diethylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "np/mean": {
+   "rho": 0.52,
+   "p": 0.183,
+   "order": [
+    "butylammonium",
+    "teah",
+    "hexylammonium",
+    "diethylammonium",
+    "dipeah",
+    "tripropylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "gc/lowest_energy": {
+   "rho": 0.71,
+   "p": 0.047,
+   "order": [
+    "butylammonium",
+    "dipeah",
+    "diethylammonium",
+    "teah",
+    "tripropylammonium",
+    "hexylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "gc/best": {
+   "rho": 0.79,
+   "p": 0.021,
+   "order": [
+    "butylammonium",
+    "diethylammonium",
+    "teah",
+    "dipeah",
+    "tripropylammonium",
+    "hexylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "gc/boltzmann": {
+   "rho": 0.71,
+   "p": 0.047,
+   "order": [
+    "butylammonium",
+    "teah",
+    "dipeah",
+    "diethylammonium",
+    "tripropylammonium",
+    "hexylammonium",
+    "tributylammonium",
+    "dibutylammonium"
+   ]
+  },
+  "gc/mean": {
+   "rho": 0.81,
+   "p": 0.015,
+   "order": [
+    "teah",
+    "butylammonium",
+    "dipeah",
+    "diethylammonium",
+    "tripropylammonium",
+    "hexylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "elec/lowest_energy": {
+   "rho": 0.81,
+   "p": 0.015,
+   "order": [
+    "teah",
+    "dipeah",
+    "diethylammonium",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "elec/best": {
+   "rho": 0.71,
+   "p": 0.047,
+   "order": [
+    "teah",
+    "dipeah",
+    "tripropylammonium",
+    "diethylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "elec/boltzmann": {
+   "rho": 0.81,
+   "p": 0.015,
+   "order": [
+    "teah",
+    "dipeah",
+    "diethylammonium",
+    "tripropylammonium",
+    "hexylammonium",
+    "butylammonium",
+    "dibutylammonium",
+    "tributylammonium"
+   ]
+  },
+  "elec/mean": {
+   "rho": 0.83,
+   "p": 0.01,
+   "order": [
+    "teah",
+    "dipeah",
+    "butylammonium",
+    "diethylammonium",
+    "dibutylammonium",
+    "tripropylammonium",
+    "hexylammonium",
+    "tributylammonium"
+   ]
+  },
+  "n7_noTBA:tot/best": {
+   "rho": 0.25,
+   "p": 0.589
+  },
+  "n7_noTBA:tot/boltzmann": {
+   "rho": 0.25,
+   "p": 0.589
+  },
+  "n7_noTBA:epc/best": {
+   "rho": 0.14,
+   "p": 0.76
+  },
+  "n7_noTBA:epc/boltzmann": {
+   "rho": 0.21,
+   "p": 0.645
+  },
+  "n5_original:tot/best": {
+   "rho": 0.7,
+   "p": 0.188
+  },
+  "n5_original:tot/boltzmann": {
+   "rho": 0.7,
+   "p": 0.188
+  },
+  "n5_original:epc/best": {
+   "rho": 0.6,
+   "p": 0.285
+  },
+  "n5_original:epc/boltzmann": {
+   "rho": 0.6,
+   "p": 0.285
+  }
+ }
+}
