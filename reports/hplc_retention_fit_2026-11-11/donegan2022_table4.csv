@@ -1,0 +1,11 @@
+# Donegan, Gilar et al. 2022, J Chromatogr A 1666:462860. Table 4 (100 mM alkylammonium acetate, pH 8; % ACN at elution of dT20/dT60)
+# and Table 1 (logP; logD for the fully ionized amine, Chemaxon). TBAA: no value in Table 4 (not eluted); used only as the most retained in rank tests.
+reagent,model,pct_acn_20T,pct_acn_60T,logP,logD,n_carbon
+DEAA,diethylammonium,10.17,10.89,0.521,-2.721,4
+TEAA,teah,11.92,13.79,1.261,-2.241,6
+DIPEAA,dipeah,14.96,16.90,2.094,-1.408,8
+BAA,butylammonium,16.29,19.79,0.698,-2.335,4
+TPAA,tripropylammonium,27.18,36.89,2.828,-0.673,9
+DBAA,dibutylammonium,32.89,40.75,2.455,-0.787,8
+HAA,hexylammonium,35.26,42.41,1.588,-1.446,6
+TBAA,tributylammonium,,,4.162,0.661,12

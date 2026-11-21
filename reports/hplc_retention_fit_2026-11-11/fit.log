@@ -1,0 +1,84 @@
+== pct_acn_20T: n 7, LOO RMSE of group mean 11.16 %ACN
+  baseline/logD                    r +0.77  LOO  7.54  rho +0.61  rho(+TBA) +0.74
+  off_centre/tot/boltzmann         r +0.74  LOO  8.08  rho +0.75  rho(+TBA) +0.83
+  off_centre/epc/boltzmann         r +0.75  LOO  8.10  rho +0.82  rho(+TBA) +0.88
+  all/elec/boltzmann               r +0.65  LOO  8.96  rho +0.71  rho(+TBA) +0.81
+  off_centre/tot/best              r +0.70  LOO  8.98  rho +0.75  rho(+TBA) +0.83
+  off_centre/epc/best              r +0.71  LOO  8.99  rho +0.61  rho(+TBA) +0.74
+  off_centre/gc/lowest_energy      r +0.64  LOO  9.07  rho +0.57  rho(+TBA) +0.71
+  off_centre/gc/boltzmann          r +0.63  LOO  9.24  rho +0.61  rho(+TBA) +0.74
+  baseline/logP                    r +0.62  LOO  9.32  rho +0.61  rho(+TBA) +0.74
+  off_centre/pauli/lowest_energy   r -0.62  LOO  9.40  rho -0.57  rho(+TBA) -0.71
+  all/pauli/lowest_energy          r -0.78  LOO  9.46  rho -0.64  rho(+TBA) -0.71
+  all/elec/lowest_energy           r +0.61  LOO  9.59  rho +0.71  rho(+TBA) +0.81
+  off_centre/pol/lowest_energy     r -0.60  LOO  9.73  rho -0.39  rho(+TBA) -0.14
+  off_centre/pauli/boltzmann       r -0.58  LOO  9.83  rho -0.57  rho(+TBA) -0.71
+  off_centre/elec/boltzmann        r +0.58  LOO  9.89  rho +0.61  rho(+TBA) +0.74
+  off_centre/elec/lowest_energy    r +0.56  LOO 10.41  rho +0.64  rho(+TBA) +0.76
+  baseline/n_carbon                r +0.49  LOO 10.48  rho +0.42  rho(+TBA) +0.62
+  all/np/boltzmann                 r +0.45  LOO 10.81  rho +0.07  rho(+TBA) +0.38
+  off_centre/pol/boltzmann         r -0.57  LOO 10.92  rho -0.54  rho(+TBA) -0.24
+  off_centre/np/best               r +0.44  LOO 11.07  rho +0.54  rho(+TBA) +0.69
+  off_centre/np/boltzmann          r +0.46  LOO 11.19  rho +0.54  rho(+TBA) +0.69
+  all/np/best                      r +0.44  LOO 11.25  rho +0.14  rho(+TBA) +0.43
+  all/gc/lowest_energy             r +0.73  LOO 11.79  rho +0.64  rho(+TBA) +0.71
+  all/pauli/boltzmann              r -0.77  LOO 11.93  rho -0.71  rho(+TBA) -0.76
+  all/des/boltzmann                r +0.43  LOO 12.08  rho +0.25  rho(+TBA) +0.29
+  all/tot/best                     r +0.43  LOO 12.24  rho +0.25  rho(+TBA) +0.45
+  all/epc/best                     r +0.41  LOO 12.37  rho +0.14  rho(+TBA) +0.38
+  all/des/lowest_energy            r +0.27  LOO 12.45  rho +0.32  rho(+TBA) +0.33
+  all/pol/lowest_energy            r -0.27  LOO 12.72  rho -0.18  rho(+TBA) -0.21
+  all/tot/boltzmann                r +0.43  LOO 13.10  rho +0.25  rho(+TBA) +0.45
+  off_centre/des/lowest_energy     r -0.04  LOO 13.18  rho -0.14  rho(+TBA) -0.14
+  off_centre/des/boltzmann         r -0.10  LOO 13.19  rho -0.29  rho(+TBA) -0.24
+  all/pol/boltzmann                r -0.32  LOO 13.68  rho -0.14  rho(+TBA) -0.29
+  all/epc/boltzmann                r +0.40  LOO 13.75  rho +0.21  rho(+TBA) +0.43
+  all/gc/boltzmann                 r +0.72  LOO 14.68  rho +0.64  rho(+TBA) +0.71
+  selection check: {'n_perm': 2000, 'best_single': 7.54, 'p_select_single': 0.329, 'best_logD_plus': 3.738, 'p_select_logD_plus': 0.025, 'p_logD_alone': 0.048}
+  logD + X (LOO): off_centre/pol/boltzmann 3.74, all/elec/lowest_energy 6.86, all/elec/boltzmann 7.09, off_centre/pol/lowest_energy 7.44, off_centre/np/best 8.10, off_centre/des/boltzmann 8.32
+== pct_acn_60T: n 7, LOO RMSE of group mean 14.65 %ACN
+  baseline/logD                    r +0.81  LOO  8.97  rho +0.61  rho(+TBA) +0.74
+  off_centre/epc/boltzmann         r +0.77  LOO 10.16  rho +0.82  rho(+TBA) +0.88
+  off_centre/tot/boltzmann         r +0.75  LOO 10.30  rho +0.75  rho(+TBA) +0.83
+  off_centre/epc/best              r +0.74  LOO 11.33  rho +0.61  rho(+TBA) +0.74
+  off_centre/tot/best              r +0.71  LOO 11.38  rho +0.75  rho(+TBA) +0.83
+  off_centre/gc/lowest_energy      r +0.66  LOO 11.43  rho +0.57  rho(+TBA) +0.71
+  baseline/logP                    r +0.67  LOO 11.54  rho +0.61  rho(+TBA) +0.74
+  off_centre/pauli/lowest_energy   r -0.65  LOO 11.66  rho -0.57  rho(+TBA) -0.71
+  all/elec/boltzmann               r +0.65  LOO 11.71  rho +0.71  rho(+TBA) +0.81
+  off_centre/gc/boltzmann          r +0.64  LOO 11.77  rho +0.61  rho(+TBA) +0.74
+  off_centre/pauli/boltzmann       r -0.60  LOO 12.43  rho -0.57  rho(+TBA) -0.71
+  all/elec/lowest_energy           r +0.61  LOO 12.46  rho +0.71  rho(+TBA) +0.81
+  off_centre/elec/boltzmann        r +0.61  LOO 12.48  rho +0.61  rho(+TBA) +0.74
+  all/pauli/lowest_energy          r -0.78  LOO 12.91  rho -0.64  rho(+TBA) -0.71
+  off_centre/elec/lowest_energy    r +0.59  LOO 13.14  rho +0.64  rho(+TBA) +0.76
+  off_centre/pol/lowest_energy     r -0.53  LOO 13.34  rho -0.39  rho(+TBA) -0.14
+  baseline/n_carbon                r +0.54  LOO 13.45  rho +0.42  rho(+TBA) +0.62
+  all/np/boltzmann                 r +0.45  LOO 14.08  rho +0.07  rho(+TBA) +0.38
+  off_centre/np/best               r +0.48  LOO 14.14  rho +0.54  rho(+TBA) +0.69
+  all/np/best                      r +0.45  LOO 14.45  rho +0.14  rho(+TBA) +0.43
+  off_centre/np/boltzmann          r +0.49  LOO 14.54  rho +0.54  rho(+TBA) +0.69
+  off_centre/pol/boltzmann         r -0.49  LOO 15.63  rho -0.54  rho(+TBA) -0.24
+  all/gc/lowest_energy             r +0.72  LOO 15.84  rho +0.64  rho(+TBA) +0.71
+  all/des/boltzmann                r +0.41  LOO 15.87  rho +0.25  rho(+TBA) +0.29
+  all/epc/best                     r +0.40  LOO 16.09  rho +0.14  rho(+TBA) +0.38
+  all/pauli/boltzmann              r -0.77  LOO 16.18  rho -0.71  rho(+TBA) -0.76
+  all/tot/best                     r +0.42  LOO 16.23  rho +0.25  rho(+TBA) +0.45
+  all/des/lowest_energy            r +0.26  LOO 16.30  rho +0.32  rho(+TBA) +0.33
+  all/pol/lowest_energy            r -0.25  LOO 16.42  rho -0.18  rho(+TBA) -0.21
+  off_centre/des/lowest_energy     r -0.07  LOO 17.35  rho -0.14  rho(+TBA) -0.14
+  off_centre/des/boltzmann         r -0.16  LOO 17.36  rho -0.29  rho(+TBA) -0.24
+  all/pol/boltzmann                r -0.30  LOO 17.51  rho -0.14  rho(+TBA) -0.29
+  all/tot/boltzmann                r +0.41  LOO 17.60  rho +0.25  rho(+TBA) +0.45
+  all/epc/boltzmann                r +0.39  LOO 18.14  rho +0.21  rho(+TBA) +0.43
+  all/gc/boltzmann                 r +0.71  LOO 19.40  rho +0.64  rho(+TBA) +0.71
+  selection check: {'n_perm': 2000, 'best_single': 8.97, 'p_select_single': 0.226, 'best_logD_plus': 5.706, 'p_select_logD_plus': 0.047, 'p_logD_alone': 0.042}
+  logD + X (LOO): off_centre/pol/boltzmann 5.71, all/elec/lowest_energy 8.22, all/elec/boltzmann 8.70, off_centre/pol/lowest_energy 9.63, all/des/lowest_energy 9.75, off_centre/np/best 9.78
+DEAA off-centre placements 1 of 5
+TEAA off-centre placements 5 of 5
+DIPEAA off-centre placements 5 of 5
+BAA off-centre placements 4 of 5
+TPAA off-centre placements 5 of 5
+DBAA off-centre placements 3 of 5
+HAA off-centre placements 5 of 5
+TBAA off-centre placements 5 of 5

@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EDA_GPU Progress Report</title>
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  :root { --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --rule:#d9d8d3; --tint:#f4f3ef;
+          --blue:#2a78d6; --good:#0ca30c; --warn:#b77a00; --crit:#d03b3b; }
+  html { background:#fff; }
+  body { font-family: "DejaVu Serif", Georgia, serif; font-size: 10pt; line-height: 1.45; color: var(--ink);
+         background:#fff; margin:0; }
+  h1 { font-family: "DejaVu Sans", sans-serif; font-size: 19pt; line-height:1.2; margin: 0 0 6pt; }
+  h2 { font-family: "DejaVu Sans", sans-serif; font-size: 12.5pt; margin: 16pt 0 5pt; border-bottom: 1px solid var(--rule);
+       padding-bottom: 2pt; break-after: avoid; }
+  h3 { font-family: "DejaVu Sans", sans-serif; font-size: 10.5pt; margin: 11pt 0 3pt; break-after: avoid; }
+  p { margin: 0 0 6pt; text-align: justify; hyphens: auto; }
+  .meta { font-family: "DejaVu Sans", sans-serif; color: var(--ink2); font-size: 9pt; margin-bottom: 10pt; }
+  .abstract { background: var(--tint); border-left: 3px solid var(--blue); padding: 8pt 11pt; margin: 8pt 0 10pt; }
+  .abstract p { margin-bottom: 4pt; }
+  .kw { font-family: "DejaVu Sans", sans-serif; font-size: 8.5pt; color: var(--ink2); }
+  figure { margin: 8pt 0 10pt; break-inside: avoid; }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 8.6pt; color: var(--ink2); line-height: 1.38; margin-top: 4pt; text-align: justify; }
+  figcaption b { color: var(--ink); }
+  table { border-collapse: collapse; width: 100%; font-family: "DejaVu Sans", sans-serif; font-size: 8.1pt;
+          margin: 4pt 0 4pt; break-inside: avoid; }
+  th { text-align: left; border-bottom: 1.2px solid var(--ink); padding: 3pt 4pt; font-weight: bold; vertical-align: bottom; }
+  td { border-bottom: 1px solid var(--rule); padding: 2.6pt 4pt; vertical-align: top; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.hl td { background: #fdf1ee; }
+  .tcap { font-family: "DejaVu Sans", sans-serif; font-size: 8.6pt; color: var(--ink2); margin: 8pt 0 2pt; break-after: avoid; }
+  .tcap b { color: var(--ink); }
+  .tnote { font-size: 7.8pt; color: var(--ink2); margin: 0 0 8pt; font-family: "DejaVu Sans", sans-serif; }
+  .tag { display:inline-block; font-family: "DejaVu Sans", sans-serif; font-size: 7.3pt; font-weight: bold;
+         padding: 0.5pt 5pt; border-radius: 3pt; white-space: nowrap; }
+  .done { color: #0a6b0a; background: #e3f4e3; }
+  .part { color: #7a5200; background: #fbefd2; }
+  .open { color: #9c2424; background: #fae1e1; }
+  .no   { color: #52514e; background: #ecebe7; }
+  .box { border: 1px solid var(--rule); border-radius: 4pt; padding: 7pt 10pt; margin: 8pt 0; break-inside: avoid; }
+  .box.crit { border-left: 3px solid var(--crit); }
+  .box.good { border-left: 3px solid var(--good); }
+  .box h4 { font-family: "DejaVu Sans", sans-serif; margin: 0 0 3pt; font-size: 9.5pt; }
+  ul, ol { margin: 2pt 0 6pt 16pt; padding: 0; }
+  li { margin-bottom: 2.5pt; }
+  code { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; background: var(--tint); padding: 0 2pt; border-radius: 2pt; }
+  .refs li { font-size: 8.4pt; margin-bottom: 3pt; }
+  .pb { break-before: page; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; }
+  .small { font-size: 8.6pt; }
+</style>
+</head>
+<body>
+
+<h1>GPU-accelerated GKS-EDA for ion-pair reversed-phase HPLC of RNA: progress report</h1>
+<div class="meta">EDA_GPU project · Zongyuan Liu · status as of 11 November 2026 (commit <code>34b9e72</code> plus uncommitted
+work of 11 Nov) · prepared from the project handoffs, <code>docs/VALIDATION.md</code> and the archives under <code>reports/</code></div>
+
+<div class="abstract">
+<p><b>Abstract.</b> EDA_GPU is a PySCF/GPU4PySCF implementation of the generalized Kohn–Sham energy decomposition
+analysis (GKS-EDA) with an experimental implicit-solvent extension, GKS-EDA(sol). The aim is to explain, at the level of
+interaction-energy components, how alkylammonium ion-pair reagents and RNA nucleobases control retention in IP-RP HPLC.
+The <b>method layer is validated</b>: energies and gradients agree with Psi4 to the quadrature level (21/21 checks), and
+gas-phase EDA reproduces the published tryptamine–water benchmark to ≤ 0.20 kcal/mol per component in both charge states.
+On the application side, 40 reagent placements (8 reagents × 5) on a silanol-free three-chain C8 patch were optimized at
+M06-2X/def2-SVP in C-PCM water and decomposed. Binding is dispersion-dominated (generalized correlation −12 to −21 kcal/mol),
+and the reagent ranking is numerically robust: it does not change with the basis set (aug-cc-pVDZ, ρ = 0.9) or the cavity
+radii and dielectric. However, agreement with the published retention order falls from ρ = 0.7 (n = 5) to
+<b>ρ = 0.45 (n = 8, not significant)</b>, and no EDA descriptor predicts % acetonitrile at elution better than the
+reagents' logD (LOO RMSE 7.5 vs 8.1–13.1 % ACN). The main failure has been traced to the <b>model surface</b>: small
+reagents (DEA⁺, BA⁺) sink into the open central hollow of the three-chain patch. Larger brushes that would close
+this hollow exceed the 16 GB GPU memory. The base order (measured T &gt; A &gt; G &gt; C) is not reproduced either. This
+report summarizes the methods, data and figures, and lists the open issues and the decisions that are needed.</p>
+<p class="kw"><b>Keywords:</b> GKS-EDA, GPU4PySCF, implicit solvation, IP-RP HPLC, oligonucleotides, alkylammonium reagents, C8 stationary phase</p>
+</div>
+
+<h2>1  Introduction and aims</h2>
+<p>In ion-pair reversed-phase chromatography of oligonucleotides, a lipophilic alkylammonium cation pairs with the
+phosphodiester backbone and adsorbs on the alkyl-bonded phase. Retention and selectivity depend strongly on the reagent:
+Donegan, Nguyen and Gilar (2022) rank 13 alkylamines by the % acetonitrile needed to elute dT<sub>20</sub>/dT<sub>60</sub>,
+and Maurer et al. (2025) find the same order for 200–6000 nt RNA on a silanol-free polymeric column. The project asks whether
+an energy decomposition can explain these trends, and which terms (electrostatics, Pauli repulsion, polarization,
+dispersion-like generalized correlation, desolvation) drive them. Three aims were set:</p>
+<ol>
+<li><b>Method:</b> a faithful CPU/GPU implementation of GKS-EDA (Su <i>et al.</i> 2014; review 2020), validated against
+independent software and published component values, with a PCM extension for solution.</li>
+<li><b>Models:</b> chemically sensible but hardware-feasible models of the residue, the reagent and the stationary phase
+(≤ ~120 atoms on a 16 GB GPU / 32 GB RAM workstation).</li>
+<li><b>Application:</b> compare EDA descriptors with the published reagent and base retention orders and, where possible,
+fit them to retention data.</li>
+</ol>
+
+<h2>2  Methods</h2>
+<figure>
+<img src="fig/f1_workflow.png" alt="Workflow">
+<figcaption><b>Figure 1.</b> Computational workflow used for every HPLC case. Patch placements: placements 0/1 plus the best
+three of an eight-seed GFN2-xTB screen per reagent (5 per reagent). DFT: M06-2X/def2-SVP, density fitting
+(def2-universal-jkfit), grid 3, C-PCM water (Bondi × 1.2), frozen anchors; then direct-integral GKS-EDA(sol) at the
+optimized geometry. Every case is checked for convergence, bond-topology changes, frozen-anchor drift and EDA closure
+(≤ 1.2 × 10<sup>−9</sup> E<sub>h</sub>).</figcaption>
+</figure>
+<h3>2.1  Software and hardware</h3>
+<p>Electronic structure uses PySCF 2.14.0 (CPU) and GPU4PySCF 1.8.1 (GPU), with geomeTRIC 1.1.1 for optimization and
+GFN2-xTB/ALPB for seed refinement. All runs used an AMD Ryzen 9 5950X (16 cores), an NVIDIA RTX 4080 SUPER (16 GB) and
+30 GB of usable RAM under Ubuntu 26.04. Every production run has thermal guards (GPU cooldown 75 → 65 °C, CPU 85 → 75 °C)
+and 50 % workload pacing. Settings, versions, hardware and timings are written to each result JSON.</p>
+
+<h3>2.2  GKS-EDA and GKS-EDA(sol)</h3>
+<p>The total interaction energy is split as ΔE = ΔE<sup>ele</sup> + ΔE<sup>ex</sup> + ΔE<sup>rep</sup> + ΔE<sup>pol</sup> +
+ΔE<sup>gc</sup> (+ ΔE<sup>disp</sup>, zero for the functionals used). It uses the Su–Li orbital intermediates on KS
+orbitals with ghost-basis (counterpoise) fragment references. In GKS-EDA(sol) every reference SCF carries a C-PCM (or
+IEF-PCM) reaction field. The gas-phase-form terms are evaluated at the SCRF densities, and a desolvation term
+ΔG<sup>desol</sup> collects the change in electrostatic solvation energy. Two conventions in the solvent extension (the
+monomer cavity and the treatment of the reaction field in the intermediates) are documented interpretations, pending the
+original derivation (<code>docs/GKS_EDA_SOL_SPEC.md</code>). For three-body analysis,
+ΔE<sub>3</sub> = ΔE((RT)|S) − ΔE(T|S) − ΔE(R|S).</p>
+
+<h3>2.3  Molecular models</h3>
+<ul>
+<li><b>RNA residue (R):</b> a capped nucleotide (A, C, G, U) with one −1 phosphodiester.</li>
+<li><b>Ion-pair reagents (T):</b> protonated DEA, TEA, DIPEA, BA, TPA, DBA, HA and TBA (Donegan's acetate salts).</li>
+<li><b>Stationary phase (S):</b> (i) a single octyldimethylsilyl–O–Si(OH)<sub>3</sub> proxy with a silanol; (ii) a
+<b>silanol-free three-chain C8 patch</b>: three tethered all-anti n-octanes on a 7.6 Å triangle, with C1/C2 frozen
+(78 atoms; 101–119 atoms with a reagent). A 5- and 7-chain brush was built but cannot be run (Section 3.2).</li>
+</ul>
+
+<h3>2.4  Computational protocol</h3>
+<p>The protocol applied to every HPLC case is summarized in Figure 1.</p>
+
+<h3>2.5  Analysis</h3>
+<p>For each reagent we report the lowest-energy, most strongly bound and 298 K Boltzmann-weighted (C-PCM electronic energy)
+values over its placements. The SMD CDS (cavitation–dispersion–solvent-structure) term and the buried nonpolar SASA are added
+as non-electrostatic descriptors. Rankings are compared with the published order by Spearman ρ. The retention fit
+(<code>scripts/fit_patch_retention.py</code>) regresses % ACN at elution (Donegan Table 4, 100 mM acetate, n = 7; TBA did not
+elute) on single descriptors. It reports leave-one-out (LOO) RMSE and uses a 2000-shuffle permutation test that repeats the
+whole descriptor search.</p>
+
+<h2>3  Results</h2>
+<h3>3.1  Method validation</h3>
+<p class="tcap"><b>Table 1.</b> Validation evidence for the method layer.</p>
+<table>
+<tr><th>Check</th><th>Scope</th><th>Result</th><th>Status</th></tr>
+<tr><td>CPU vs GPU, energies/gradients</td><td>water, water dimer (B3LYP/def2-SVP)</td><td>ΔE ≤ 9.2e-12 E<sub>h</sub>; ΔG ≤ 7.4e-7 E<sub>h</sub>/bohr</td><td><span class="tag done">pass</span></td></tr>
+<tr><td>Independent program (Psi4 1.11)</td><td>HF, B3LYP, PBE0, M06-2X; RKS/UKS; exact and DF; up to 425 bf</td><td>21/21 within preset tolerances (HF 3e-13 E<sub>h</sub>)</td><td><span class="tag done">pass</span></td></tr>
+<tr><td>Published GKS-EDA benchmark</td><td>tryptamine–water, neutral and radical cation, M06-2X/aug-cc-pVDZ</td><td>totals ≤ 0.012, components ≤ 0.20 kcal/mol (Fig. 2)</td><td><span class="tag done">accepted 10-19</span></td></tr>
+<tr><td>CPU vs GPU, full EDA</td><td>water and CO<sub>2</sub> dimers; tryptamine–water</td><td>max component difference 1.8e-8 E<sub>h</sub></td><td><span class="tag done">pass</span></td></tr>
+<tr><td>GKS-EDA(sol) internal</td><td>vacuum limit, dielectric screening, CPU/GPU, PCM gradients</td><td>1.6e-9 E<sub>h</sub>; ratio 0.988 vs 0.987; ≤ 9.6e-9 E<sub>h</sub>; 3.8e-6 E<sub>h</sub>/bohr</td><td><span class="tag done">pass</span></td></tr>
+<tr><td>GKS-EDA(sol) external</td><td>XEDA II BH<sub>3</sub>–NH<sub>3</sub> C-PCM example</td><td>differences up to 12 mE<sub>h</sub>; depends on unknown cavity radii</td><td><span class="tag open">unresolved</span></td></tr>
+<tr><td>Matched-settings XEDA run</td><td>5 cases, inputs prepared</td><td>not run (deferred by decision 10-19)</td><td><span class="tag no">deferred</span></td></tr>
+</table>
+
+<figure>
+<img src="fig/f2_validation.png" alt="Tryptamine benchmark">
+<figcaption><b>Figure 2.</b> Gas-phase GKS-EDA benchmark against Liu <i>et al.</i>, PCCP 2017, Table 3 (M06-2X/aug-cc-pVDZ,
+counterpoise; reconstructed geometries). (a) Components; (b) deviations. The offsets have opposite signs in the two charge
+states, which points to geometry reconstruction rather than a convention error. Grid (≤ 0.0015) and backend
+(≤ 7 × 10<sup>−6</sup> kcal/mol) effects are excluded.</figcaption>
+</figure>
+
+<h3>3.2  Performance and hardware limits</h3>
+<p>From about 250 basis functions the GPU is 3–7× faster than 16 CPU threads (Fig. 3a). For tiny systems the GPU EDA is
+slower because fixed per-SCF overheads dominate. A three-chain patch case (101–119 atoms) takes 0.4–2.5 h to optimize
+and 4–7 min per def2-SVP EDA, or 43–78 min with aug-cc-pVDZ (peak 7.8 GB GPU). The limiting resource is <b>GPU memory in the
+density-fitted gradient</b>. GPU4PySCF's K-gradient keeps two fixed Cartesian-basis buffers (j3c<sub>oo</sub> + dm<sub>oo</sub>)
+that grow steeply with system size (Fig. 3b). A 7-chain brush + TBA (223 atoms) converged the SCF (13.7 min) but ran out of
+memory in the first gradient at 15.3 GB, even after a fix that releases CuPy's cached memory pool before each gradient.
+A CPU estimate of the PCM matrices also exhausted host RAM (26 GB). Following the user's decision of 9 Nov, the three-chain
+patch is the production surface.</p>
+<figure>
+<img src="fig/f3_scaling_memory.png" alt="Scaling and memory">
+<figcaption><b>Figure 3.</b> (a) Median CPU/GPU wall times (3 repetitions after warm-up; energy + gradient with density
+fitting, EDA with direct integrals). (b) Estimated fixed DF K-gradient buffers for C8 brushes + TBA at def2-SVP, against the
+16 GB card. The marker is the measured peak before the out-of-memory error of the 7-chain test (9 Nov).</figcaption>
+</figure>
+
+<h3>3.3  First-generation models: silanol-bearing C8 proxy</h3>
+<p>Ion pairs, residue/reagent adsorption on the single C8 proxy, silanol-bound ternaries and bridged ternaries were computed
+first (Fig. 4, Table 2). The ion-pair energy per phosphate barely depends on the base (−18.8 to −20.0 kcal/mol for TEAH⁺),
+consistent with charge-counting, length-based separation in the ionic mode. In bridged complexes the residue never touches
+the ligand (R···S ≈ 0) and the energies are pairwise additive (|ΔE<sub>3</sub>| ≤ 0.3). Silanol-bound ternaries show a small
+anti-cooperative three-body term (+1.0 to +1.2). One finding redirected the work: <b>every isolated reagent···C8 pair
+optimized into an N–H···silanol hydrogen bond</b> (1.75–2.04 Å), which gives most of the −10.6 to −12.7 kcal/mol; chain-only
+contact gives just −2 to −4. Because Maurer's column has no silanols but shows the same reagent order, the silanol-free patch
+was introduced.</p>
+<figure>
+<img src="fig/hplc_structures.png" alt="Structures">
+<figcaption><b>Figure 4.</b> Optimized first-generation model systems (M06-2X/def2-SVP, C-PCM water; 2-D projections).
+Blue: RNA residue; orange: reagent; green: C8 proxy; dashed: inter-fragment H-bonds.</figcaption>
+</figure>
+<p class="tcap"><b>Table 2.</b> Pair and three-body GKS-EDA(sol) totals at the ternary geometries (kcal/mol; R residue A, T reagent, S C8 proxy).</p>
+<table>
+<tr><th>Arrangement / reagent</th><th class="n">R···T</th><th class="n">T···S</th><th class="n">R···S</th><th class="n">ΔE<sub>3</sub></th></tr>
+<tr><td>Silanol-bound (direct), TEAH⁺, bases A/C/G/U</td><td class="n">−17.7 to −19.0</td><td class="n">−0.3 to −2.1</td><td class="n">−13.8 to −16.7</td><td class="n">+0.97 to +1.19</td></tr>
+<tr><td>Bridged (ionic), TEAH⁺</td><td class="n">−19.2</td><td class="n">−2.1</td><td class="n">0.0</td><td class="n">+0.02</td></tr>
+<tr><td>Bridged, DIPEA-H⁺</td><td class="n">−20.0</td><td class="n">−2.6</td><td class="n">−1.0</td><td class="n">−0.30</td></tr>
+<tr><td>Bridged, dibutylammonium</td><td class="n">−23.4</td><td class="n">−2.4</td><td class="n">0.0</td><td class="n">+0.01</td></tr>
+<tr><td>Bridged, hexylammonium</td><td class="n">−18.3</td><td class="n">−3.7</td><td class="n">−0.1</td><td class="n">+0.01</td></tr>
+<tr><td>Bridged, tributylammonium</td><td class="n">−24.7</td><td class="n">−3.2</td><td class="n">0.0</td><td class="n">+0.03</td></tr>
+</table>
+<p class="tnote">Residue···C8 direct contact: C −18.9, G −15.4, A −14.9, U −14.9 kcal/mol, polar H-bonds to the silanol. This is the inverse
+of the measured T &gt; A &gt; G &gt; C retention order. Adding SMD CDS changes no rank (−0.7 to −1.0 kcal/mol on chain contact,
+4–6 cal mol<sup>−1</sup> Å<sup>−2</sup> vs ≈ 25 from alkane transfer).</p>
+<figure>
+<img src="fig/hplc_pair_diagram.png" alt="Pair diagram" style="width:82%;margin:auto">
+<figcaption><b>Figure 5.</b> Pair interactions in the two adsorption modes (residue A, TEAH⁺). Line width ∝ |ΔE|.</figcaption>
+</figure>
+
+<h3>3.4  Silanol-free three-chain C8 patch: eight reagents</h3>
+<p>Without a silanol, all 40 placements bind through chain contact. The decomposition (Fig. 6, Table 3) is dominated by
+generalized correlation (−12 to −21 kcal/mol, dispersion-like), opposed by Pauli repulsion (+12 to +21). Electrostatics
+(−3.9 to −6.4) and polarization (−1.1 to −3.0) are small, and desolvation is mildly repulsive. TEA⁺ is the weakest binder,
+and DBA⁺ and TBA⁺ the strongest, as expected. The EDA total, however, places the least-retained reagent, DEA⁺, <b>third</b>.</p>
+<figure>
+<img src="fig/f4_patch_components.png" alt="Patch EDA components">
+<figcaption><b>Figure 6.</b> Boltzmann-weighted GKS-EDA(sol) components for each reagent on the three-chain patch, ordered by
+published retention. Diamonds: EDA total. If EDA explained retention, the diamonds would fall monotonically from left
+to right. DEA⁺ (left) and HA⁺ (second from right) break this pattern.</figcaption>
+</figure>
+
+<p class="tcap"><b>Table 3.</b> Reagent descriptors on the patch (Boltzmann over 5 placements, kcal/mol; np in Å<sup>2</sup>) and published data.</p>
+<table>
+<tr><th>Reagent</th><th class="n">EDA total</th><th class="n">EDA + CDS</th><th class="n">elec</th><th class="n">Pauli</th><th class="n">pol</th><th class="n">gen. corr.</th><th class="n">desolv</th><th class="n">buried np</th><th class="n">hollow / 5</th><th class="n">EDA, hollow excl.</th><th class="n">% ACN dT20</th><th class="n">logD</th></tr>
+<tr class="hl"><td>DEA⁺</td><td class="n">−6.32</td><td class="n">−8.76</td><td class="n">−5.36</td><td class="n">13.34</td><td class="n">−2.85</td><td class="n">−13.54</td><td class="n">2.11</td><td class="n">330</td><td class="n">4</td><td class="n">−4.25</td><td class="n">10.2</td><td class="n">−2.72</td></tr>
+<tr><td>TEA⁺</td><td class="n">−5.03</td><td class="n">−6.98</td><td class="n">−3.92</td><td class="n">13.75</td><td class="n">−1.93</td><td class="n">−13.32</td><td class="n">0.39</td><td class="n">266</td><td class="n">0</td><td class="n">−5.03</td><td class="n">11.9</td><td class="n">−2.24</td></tr>
+<tr><td>DIPEA-H⁺</td><td class="n">−5.20</td><td class="n">−6.84</td><td class="n">−4.52</td><td class="n">13.59</td><td class="n">−1.85</td><td class="n">−13.50</td><td class="n">1.08</td><td class="n">319</td><td class="n">0</td><td class="n">−5.20</td><td class="n">15.0</td><td class="n">−1.41</td></tr>
+<tr class="hl"><td>BA⁺</td><td class="n">−5.82</td><td class="n">−7.98</td><td class="n">−5.55</td><td class="n">12.20</td><td class="n">−2.99</td><td class="n">−11.98</td><td class="n">2.49</td><td class="n">247</td><td class="n">1</td><td class="n">−4.63</td><td class="n">16.3</td><td class="n">−2.34</td></tr>
+<tr><td>TPA⁺</td><td class="n">−5.42</td><td class="n">−7.44</td><td class="n">−5.43</td><td class="n">15.69</td><td class="n">−1.98</td><td class="n">−14.83</td><td class="n">1.13</td><td class="n">327</td><td class="n">0</td><td class="n">−5.42</td><td class="n">27.2</td><td class="n">−0.67</td></tr>
+<tr class="hl"><td>DBA⁺</td><td class="n">−8.70</td><td class="n">−11.71</td><td class="n">−6.27</td><td class="n">21.02</td><td class="n">−2.96</td><td class="n">−21.36</td><td class="n">0.87</td><td class="n">401</td><td class="n">2</td><td class="n">−5.16</td><td class="n">32.9</td><td class="n">−0.79</td></tr>
+<tr><td>HA⁺</td><td class="n">−5.60</td><td class="n">−7.55</td><td class="n">−5.50</td><td class="n">16.00</td><td class="n">−1.10</td><td class="n">−15.62</td><td class="n">0.62</td><td class="n">297</td><td class="n">0</td><td class="n">−5.60</td><td class="n">35.3</td><td class="n">−1.45</td></tr>
+<tr><td>TBA⁺</td><td class="n">−7.08</td><td class="n">−9.63</td><td class="n">−6.44</td><td class="n">20.22</td><td class="n">−1.93</td><td class="n">−19.83</td><td class="n">0.90</td><td class="n">432</td><td class="n">0</td><td class="n">−7.08</td><td class="n">n.e.</td><td class="n">0.66</td></tr>
+</table>
+<p class="tnote">Rows ordered by published retention (Donegan 2022 Table 4, 100 mM acetate). Shaded rows have placements in the patch
+hollow (N lateral r &lt; 2.5 Å and height h &lt; 8 Å). n.e. = not eluted (most retained). Spearman ρ vs published order (n = 8):
+EDA total 0.45 (p 0.26), EDA + CDS 0.43, buried np 0.38–0.52, electrostatic 0.71–0.83, generalized correlation 0.71–0.81.
+The component p-values (0.01–0.05) are not corrected for the 20 metric/aggregate combinations tested.</p>
+
+<h3>3.5  Robustness of the ranking: basis set and solvent model</h3>
+<p>Single points at aug-cc-pVDZ (lowest-energy placement of the original five reagents) bind every pair 1.9–3.3 kcal/mol
+more strongly, almost entirely through generalized correlation, and leave the order unchanged (ρ(SVP, aDZ) = 0.9; only TEA/DIPEA
+swap, 0.25 kcal/mol apart; Fig. 7a). Larger cavities (Bondi × 1.4) shift binding by −0.57 ± 0.32 kcal/mol with placement order
+preserved (ρ = 0.96 over 25 pairs). The acetonitrile dielectric changes totals by &lt; 0.03 kcal/mol, because C-PCM scales as
+(ε−1)/ε. <b>The disagreement with experiment is therefore not a basis-set or continuum-parameter artefact.</b></p>
+<figure>
+<img src="fig/f8_basis_rho.png" alt="Basis check and rho history">
+<figcaption><b>Figure 7.</b> (a) def2-SVP vs aug-cc-pVDZ EDA totals at fixed geometry. (b) Spearman ρ between EDA total and the
+published reagent order across the project's stages. The dotted line marks two-sided p = 0.05 for n = 8. *Post hoc: hollow
+placements removed after the failure mode was identified (TBA included as the most retained), so this value is not an
+independent test.</figcaption>
+</figure>
+
+<h3>3.6  Failure mode: the open hollow of the three-chain patch</h3>
+<p>Mapping the reagent nitrogen of all 40 optimized placements onto the anchor plane (Fig. 8a) shows that the strongest binders
+sit inside the chain triangle. Four of five DEA⁺ placements, the best BA⁺ placement and two DBA⁺ placements insert into the
+central hollow (r 1.2–1.8 Å, h &lt; 8 Å; Fig. 9a). They gain contact with all three chains at once, while the bulky TEA⁺ and
+DIPEA-H⁺ cannot enter (Fig. 9c). In a real, densely grafted C8/C18 phase such a cavity does not exist. The small reagents are
+thus over-bound by an artefact of the model, and the per-reagent result depends on which placements were sampled (Fig. 8b).</p>
+<figure>
+<img src="fig/f5_hollow.png" alt="Hollow map">
+<figcaption><b>Figure 8.</b> (a) Top view of the reagent N position for all 40 placements, coloured by EDA total. Squares are the
+three chain anchors and the dashed circle is the hollow cut-off. (b) EDA total per placement, grouped by reagent (filled:
+hollow; open: outside; bar: Boltzmann value).</figcaption>
+</figure>
+<figure>
+<img src="fig/f6_structures.png" alt="Side views">
+<figcaption><b>Figure 9.</b> Side views of representative optimized placements: (a) DEA⁺ sunk into the hollow, 5.3 Å above the
+anchor plane; (b) DBA⁺ chains inserted between the three octyl chains (strongest pair, −8.85 kcal/mol); (c) TEA⁺ on the outside
+of the patch.</figcaption>
+</figure>
+
+<h3>3.7  Quantitative retention fit</h3>
+<p>Fitting % ACN at elution of dT<sub>20</sub> (n = 7) gives the results in Fig. 10 and Table 4. The reagents' logD alone gives
+LOO RMSE 7.5 % ACN (r = 0.77; mean-only model 11.2). The EDA total over all placements does worse than the mean
+(13.1). Removing the hollow placements brings it close to logD (8.1, r = 0.74), but not past it. In the permutation test, a
+shuffled target produces an equally good best single descriptor a third of the time (p<sub>select</sub> = 0.33). The only
+two-term model that beats logD (logD + off-centre polarization, LOO 3.7) rests on HA⁺ alone and has no physical reading; it is
+treated as spurious. dT<sub>60</sub> gives the same picture (logD 9.0 vs mean 14.7).</p>
+<figure>
+<img src="fig/f7_retention_fit.png" alt="Retention fit">
+<figcaption><b>Figure 10.</b> % ACN at elution (dT<sub>20</sub>, Donegan 2022) against (a) logD, (b) Boltzmann EDA total over all
+placements, (c) EDA total with hollow placements excluded. Dashed: least-squares lines. The logD residuals that EDA would need
+to explain are HA⁺ (+11.9, more retained) and DIPEA-H⁺ (−8.8, less retained). EDA reproduces neither.</figcaption>
+</figure>
+<p class="tcap"><b>Table 4.</b> Single-descriptor fits to % ACN (dT<sub>20</sub>, n = 7).</p>
+<table>
+<tr><th>Descriptor</th><th class="n">Pearson r</th><th class="n">LOO RMSE (% ACN)</th><th class="n">Spearman ρ (n 7)</th><th class="n">ρ with TBA (n 8)</th></tr>
+<tr><td>mean only (reference)</td><td class="n">—</td><td class="n">11.2</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><td><b>logD (baseline)</b></td><td class="n">0.77</td><td class="n"><b>7.5</b></td><td class="n">0.61</td><td class="n">0.74</td></tr>
+<tr><td>EDA total, Boltzmann, hollow excluded</td><td class="n">0.74</td><td class="n">8.1</td><td class="n">0.75</td><td class="n">0.83</td></tr>
+<tr><td>EDA + CDS, Boltzmann, hollow excluded</td><td class="n">0.75</td><td class="n">8.1</td><td class="n">0.82</td><td class="n">0.88</td></tr>
+<tr><td>electrostatic, Boltzmann, all placements</td><td class="n">0.65</td><td class="n">9.0</td><td class="n">0.71</td><td class="n">0.81</td></tr>
+<tr class="hl"><td>EDA total, Boltzmann, all placements</td><td class="n">0.43</td><td class="n">13.1</td><td class="n">0.25</td><td class="n">0.45</td></tr>
+</table>
+
+<h2>4  Discussion</h2>
+<div class="box good"><h4>What the EDA supports (qualitative)</h4>
+<ol class="small">
+<li><b>Length-based separation in the ionic mode.</b> The phosphate–reagent pairing energy is nearly base-independent, so each
+charge contributes about the same binding, as in the on/off, length-based elution seen with hydrophobic reagents.</li>
+<li><b>Mixed-mode retention picture.</b> In the bridged mode the oligonucleotide is held at arm's length (R···S ≈ 0, additive
+energies). Only direct surface contact can discriminate sequence, consistent with weak reagents keeping sequence selectivity.</li>
+<li><b>Pairing strength does not set the reagent order</b> (HA⁺ pairs weakest but is among the most retained). Reagent
+hydrophobicity does, as both papers argue.</li>
+<li><b>Chain contact on a silanol-free surface is dispersion-driven.</b> Generalized correlation carries the binding, and it
+is the component that tracks retention best (ρ 0.71–0.81, uncorrected).</li>
+</ol></div>
+<div class="box crit"><h4>What the current model gets wrong</h4>
+<ol class="small">
+<li><b>Reagent order:</b> ρ = 0.45 (n = 8), and no gain over logD. The DEA⁺ outlier comes from the open hollow of the 3-chain patch.</li>
+<li><b>Branching vs linearity:</b> HA⁺ (linear, primary) is retained more than logD predicts, and DIPEA-H⁺ (branched) less. The
+patch is too small to show the chain-packing differences that may explain this.</li>
+<li><b>Base order inverted:</b> measured T &gt; A &gt; G &gt; C; the silanol C8 model gives C strongest through polar H-bonds. Bases have
+not yet been computed on the silanol-free patch.</li>
+<li><b>Missing physics:</b> no hydrophobic (cavitation) term in C-PCM. SMD CDS is ~5× too weak for chain burial. The model also
+lacks HFIP, counter-anions, explicit acetonitrile, reagent concentration and micelles, RNA secondary structure and reagent
+mixtures.</li>
+</ol></div>
+<p>Taken together, the numerics are sound (convergence, basis and solvent tests), and the weak point is the <b>surface model</b>.
+EDA on the 3-chain patch mostly measures reagent size and hydrophobicity, which logD already captures. The question that remains
+is whether a surface without an artificial cavity lets the dispersion and electrostatic components explain the logD residuals
+(HA⁺ up, DIPEA-H⁺ down).</p>
+
+<h2 class="pb">5  Progress overview</h2>
+<p class="tcap"><b>Table 5.</b> Status of the work packages.</p>
+<table>
+<tr><th>Work package</th><th>Dates</th><th>Outcome</th><th>Status</th></tr>
+<tr><td>CPU/GPU optimizer, constraints, result schema, CI</td><td>10-11</td><td>9 scientific checks, 46 tests pass</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Gas-phase GKS-EDA (6 terms, RKS/UKS)</td><td>10-11 – 10-19</td><td>published benchmark ≤ 0.20 kcal/mol</td><td><span class="tag done">validated</span></td></tr>
+<tr><td>Psi4 cross-check; CPU/GPU scaling</td><td>10-18</td><td>21/21 pass; GPU 3–7× from ~250 bf</td><td><span class="tag done">done</span></td></tr>
+<tr><td>GKS-EDA(sol) C-PCM/IEF-PCM</td><td>10-18</td><td>internal checks pass; no external reference</td><td><span class="tag part">experimental</span></td></tr>
+<tr><td>Ion pairs, residue/reagent on silanol C8 (stages 7.1–7.2)</td><td>10-19</td><td>base-independent pairing; polar C8 contacts</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Silanol-bound and bridged ternaries, three-body EDA</td><td>10-20 – 10-22</td><td>ΔE<sub>3</sub> +1.0 vs ≈ 0; two adsorption modes</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Reagent series on silanol C8; SMD CDS term</td><td>10-21 – 10-26</td><td>N–H···silanol artefact; CDS too weak</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Silanol-free 3-chain patch, 5 reagents × 5 placements</td><td>10-27 – 10-28</td><td>chain-contact binding; ρ 0.7 (n 5)</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Larger brush (5/7 chains)</td><td>10-28 – 11-09</td><td>GPU OOM in DF gradient even after cache fix</td><td><span class="tag open">blocked</span></td></tr>
+<tr><td>Solvent sensitivity (radii, ε) — step 1</td><td>11-10</td><td>order robust</td><td><span class="tag done">done</span></td></tr>
+<tr><td>aug-cc-pVDZ basis check — step 2</td><td>11-11</td><td>order robust, ρ 0.9</td><td><span class="tag done">done</span></td></tr>
+<tr><td>DEA⁺, BA⁺, TPA⁺ on patch — step 3</td><td>11-11</td><td>ρ falls to 0.45; hollow artefact found</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Retention fit — step 5</td><td>11-11</td><td>no EDA descriptor beats logD</td><td><span class="tag done">done</span></td></tr>
+<tr><td>Bases A/C/G/U on the patch — step 4</td><td>—</td><td>20 cases, ~1–2 days</td><td><span class="tag no">not started</span></td></tr>
+<tr><td>Commit of 11-11 archives, fit script, docs</td><td>—</td><td>files in working tree, not committed</td><td><span class="tag part">pending</span></td></tr>
+</table>
+
+<h2>6  Open issues and decisions needed</h2>
+<p class="tcap"><b>Table 6.</b> Issues, ranked by how much they limit the scientific conclusions.</p>
+<table>
+<tr><th style="width:3%">#</th><th style="width:20%">Issue</th><th style="width:30%">Evidence</th><th style="width:47%">Options (recommended first)</th></tr>
+<tr><td>1</td><td><b>Open central hollow</b> in the 3-chain patch over-binds small reagents</td><td>DEA⁺ 4/5 placements in hollow, 3rd strongest; total ρ 0.45; fit 13.1 → 8.1 % ACN without hollow</td>
+<td>(0) Minutes-long check: do the chains splay apart in the inserted placements? (a) If yes, restrain/freeze the outer
+chain carbons (no extra atoms) and rerun the 7 inserted placements (DEA 4, BA 1, DBA 2; ~10 h). (b) A 4th chain/stub: full octane
+≈ 145 atoms exceeds the size limit. (c) Re-sample off-centre only (r ≥ 2.5 Å; 10–15 h; post hoc).</td></tr>
+<tr><td>2</td><td><b>GPU memory</b> blocks larger, more realistic brushes</td><td>7-chain + TBA: 15.3 GB peak, OOM in DF K-gradient; host RAM 25.7/32 GB</td>
+<td>xTB (or frozen-patch) geometries with a DFT EDA single point only (EDA fits: aug-cc-pVDZ EDA peaked at 7.8 GB); a
+memory-batched K-gradient in GPU4PySCF; or periodic/QM-MM surface models on other hardware. User decision (11-09): 3-chain
+only.</td></tr>
+<tr><td>3</td><td><b>No hydrophobic term</b> in the solvent model</td><td>C-PCM has none; SMD CDS 4–8 vs ≈ 25 cal mol<sup>−1</sup> Å<sup>−2</sup>; acetonitrile ε changes &lt; 0.03 kcal/mol</td>
+<td>Report buried nonpolar SASA × literature γ as a bracketed term; consider explicit-solvent free-energy sampling (MD) for the
+hydrophobic part, with EDA kept for the enthalpic components.</td></tr>
+<tr><td>4</td><td><b>Base order not reproduced</b></td><td>Silanol C8: C &gt; G ≈ A ≈ U vs measured T &gt; A &gt; G &gt; C</td>
+<td>Step 4: bases A/C/G/U on the silanol-free patch (20 cases, 1–2 days), after deciding on issue 1.</td></tr>
+<tr><td>5</td><td><b>Statistics</b>: small n, multiple comparisons</td><td>n = 7–8; 20 descriptor combinations; p<sub>select</sub> 0.33</td>
+<td>Pre-register the descriptor before new runs; add Maurer 2025 reagents (BA/TPA mixtures) as a second data set.</td></tr>
+<tr><td>6</td><td><b>GKS-EDA(sol) not externally validated</b></td><td>XEDA II BH<sub>3</sub>–NH<sub>3</sub>: up to 12 mE<sub>h</sub>; radius-sensitive</td>
+<td>Matched XEDA run (kit ready) if access becomes available; meanwhile report cavity-radius sensitivity (done for the patch).</td></tr>
+<tr><td>7</td><td><b>Sampling</b>: constrained stationary points, 5 placements, no Hessians</td><td>placement spread (up to 4 kcal/mol) ≥ reagent spread; xTB picks the DFT best in 2/5</td>
+<td>More placements per reagent only after issue 1. No vibrational/entropy terms at this size.</td></tr>
+<tr><td>8</td><td><b>Housekeeping</b></td><td>11-11 archives, <code>fit_patch_retention.py</code>, Donegan CSV, README/VALIDATION edits uncommitted; 7-chain files deliberately uncommitted</td>
+<td>Commit and push on approval; keep or discard the 7-chain builder and <code>c8x7_patch.*</code>.</td></tr>
+</table>
+
+<div class="box"><h4>Decision requested from the project owner</h4>
+<p class="small" style="margin:0">Before step 4, choose how to handle the hollow: <b>(1a)</b> restrain the outer chains and rerun the
+inserted placements (recommended, ~10 h, after the quick splay check); <b>(2)</b> re-sample off-centre only; or <b>(3)</b> accept the
+current patch and move directly to bases A/C/G/U. Also confirm whether to commit and push the 11-11 work.</p></div>
+
+<h2>7  Planned next steps</h2>
+<ol>
+<li>Geometry check (minutes): chain splay and tip-to-tip distances in the 7 inserted placements vs the outside placements.</li>
+<li>If the chains splay: restrained-patch re-optimization of the inserted placements; recompute the n = 8 ranking and the retention
+fit with the same, now pre-registered, descriptor (Boltzmann EDA total and EDA + CDS).</li>
+<li>Step 4: bases A/C/G/U on the patch (residue placed on the chain surface, then with a bridging reagent), to test T &gt; A &gt; G &gt; C.</li>
+<li>Write up: README and VALIDATION sections for 11-11 (partly done), and commit archives and scripts.</li>
+<li>Later, if hardware allows: EDA-only single points on xTB-optimized 5/7-chain brushes; phosphorothioate vs phosphate ion pairs;
+HFIP pairing.</li>
+</ol>
+
+<h2>8  Data and reproducibility</h2>
+<p class="small">All values in this report come from archived files: <code>reports/psi4_crosscheck*_2026-10-18/</code>,
+<code>reports/tryptamine_*_gpu_*</code>, <code>reports/benchmark_scaling_2026-10-18.json</code>, <code>reports/hplc_ionpair_2026-10-19/</code>,
+<code>hplc_surface_2026-10-19/</code>, <code>hplc_ternary_2026-10-20/</code>, <code>hplc_reagents_2026-10-21/</code>,
+<code>hplc_bridged_2026-10-22/</code>, <code>hplc_nonpolar_2026-10-26/</code>, <code>hplc_patch_2026-10-27/</code>,
+<code>hplc_patch_sampling_2026-10-28/</code>, <code>hplc_patch_sensitivity_2026-11-10/</code>, <code>hplc_patch_augdz_2026-11-11/</code>,
+<code>hplc_patch_extended_2026-11-11/</code> (<code>cases.json</code>, <code>ranking8.json</code>), <code>hplc_retention_fit_2026-11-11/</code>
+(<code>fit.json</code>) and <code>c8x7_memtest_2026-11-09/</code>. Retention data: <code>examples/hplc/donegan2022_table4.csv</code>.
+Figures 1–3 and 6–10 were generated for this report from those files; Figures 4–5 are from <code>scripts/plot_hplc_figures.py</code>.
+Placement geometries (Figs. 8–9) are the archived <code>optimized.xyz</code> files.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>Su, P.; Jiang, Z.; Chen, Z.; Wu, W. Energy decomposition scheme based on the generalized Kohn–Sham scheme. <i>J. Phys. Chem. A</i> <b>2014</b>, 118, 2531–2542.</li>
+<li>Su, P.; Tang, Z.; Wu, W. Generalized Kohn–Sham energy decomposition analysis and its applications. <i>WIREs Comput. Mol. Sci.</i> <b>2020</b>, 10, e1460.</li>
+<li>Su, P.; Li, H. Energy decomposition analysis of covalent bonds and intermolecular interactions. <i>J. Chem. Phys.</i> <b>2009</b>, 131, 014102.</li>
+<li>Tang, Z. <i>et al.</i> XEDA, a fast and multipurpose energy decomposition analysis program. <i>J. Comput. Chem.</i> <b>2021</b>, 42, 2341–2351.</li>
+<li>Liu, Z.; Trindle, C. O.; Gu, Q.; Wu, W.; Su, P. Unravelling hydrogen bonding interactions of tryptamine–water dimer from neutral to cation. <i>Phys. Chem. Chem. Phys.</i> <b>2017</b>, 19, 25260–25269.</li>
+<li>Donegan, M.; Nguyen, J. M.; Gilar, M. Effect of ion-pairing reagent hydrophobicity on liquid chromatography and mass spectrometry analysis of oligonucleotides. <i>J. Chromatogr. A</i> <b>2022</b>, 1666, 462860.</li>
+<li>Maurer, J.; Malburet, C.; François-Heude, M.; Guillarme, D. Evaluation of ion pairing reversed-phase liquid chromatography for the separation of large RNA molecules. <i>J. Chromatogr. A</i> <b>2025</b>, 1740, 465574.</li>
+<li>Sun, Q. <i>et al.</i> Recent developments in the PySCF program package. <i>J. Chem. Phys.</i> <b>2020</b>, 153, 024109.</li>
+<li>Li, R.; Sun, Q.; Zhang, X.; Chan, G. K.-L. Introducing GPU acceleration into the Python-based simulations of chemistry framework. arXiv:2407.09700 (2024); Wu, X. <i>et al.</i> arXiv:2404.09452 (2024).</li>
+<li>Wang, L.-P.; Song, C. Geometry optimization made simple with translation and rotation coordinates. <i>J. Chem. Phys.</i> <b>2016</b>, 144, 214108.</li>
+<li>Bannwarth, C.; Ehlert, S.; Grimme, S. GFN2-xTB. <i>J. Chem. Theory Comput.</i> <b>2019</b>, 15, 1652–1671.</li>
+<li>Marenich, A. V.; Cramer, C. J.; Truhlar, D. G. Universal solvation model based on solute electron density (SMD). <i>J. Phys. Chem. B</i> <b>2009</b>, 113, 6378–6396.</li>
+<li>Zhao, Y.; Truhlar, D. G. The M06 suite of density functionals. <i>Theor. Chem. Acc.</i> <b>2008</b>, 120, 215–241.</li>
+<li>Smith, D. G. A. <i>et al.</i> Psi4 1.4: open-source software for high-throughput quantum chemistry. <i>J. Chem. Phys.</i> <b>2020</b>, 152, 184108.</li>
+</ol>
+
+</body>
+</html>

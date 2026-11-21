@@ -701,3 +701,28 @@ Findings:
 Conclusion: the patch reagent ordering (ρ 0.5–0.7, n = 5) is robust to the PCM radius scale and dielectric. The
 absolute binding energies depend on the radius scale at the ~10 % level. The solvent composition enters this model
 almost only through the CDS term.
+
+## Silanol-free C8 patch — basis set, three more reagents, retention fit, 2026-11-11
+
+**aug-cc-pVDZ** (`reports/hplc_patch_augdz_2026-11-11/`): GKS-EDA(sol) single points at the def2-SVP geometries of
+the lowest-energy placement per reagent (direct integrals, 43–78 min, ≤ 7.8 GB GPU, closure ≤ 5e-9). Every pair is
+1.9–3.3 kcal/mol more bound (TEAH⁺ −7.60, DIPEA-H⁺ −7.35, HAA −8.30, TBuAA −10.06, DBAA −12.19), almost all from
+generalized correlation (−3.4 to −6.2; polarization +0.8 to +1.6). ρ(SVP, aDZ) = 0.9; only TEAH⁺/DIPEA-H⁺ swap
+(0.25 apart). The def2-SVP ranking is basis-robust.
+
+**DEA⁺, BA⁺, TPA⁺** (`reports/hplc_patch_extended_2026-11-11/`): same protocol as 10-28, 5 placements each, 15/15
+clean. Boltzmann EDA: DEA −6.32, BA −5.82, TPA −5.42 (TEAH⁺ −5.03 … DBAA −8.70). n = 8 Spearman against Donegan
+Table 4: EDA total 0.45 (p 0.26), EDA + CDS 0.43; electrostatic and generalized correlation 0.7–0.8 (uncorrected,
+20 combinations). DEA⁺, the least retained, binds third strongest: 4/5 of its placements sit in the central hollow
+of the patch (r < 2.5 Å, h < 8 Å), as do the best BA⁺ and two DBAA placements; the bulky TEAH⁺/DIPEA-H⁺ cannot.
+
+**Retention fit** (`reports/hplc_retention_fit_2026-11-11/`, `scripts/fit_patch_retention.py`): % ACN at elution
+(dT20, dT60) for 7 reagents, logD/logP/carbon count as baselines, LOO RMSE and a permutation test of the whole
+descriptor search. dT20: logD LOO 7.5 % ACN (r 0.77) vs 11.2 for the mean; EDA total over all placements 13.1
+(r 0.43); excluding centre-hollow placements 8.1 (r 0.74, ρ 0.75, 0.83 with TBA). No EDA descriptor beats logD
+(p_select 0.33 for the best single fit). The one two-term fit that does (logD + off-centre polarization, LOO 3.7)
+rests on HAA alone and is treated as spurious.
+
+Conclusion: on this patch, the EDA reagent order is mostly a size/hydrophobicity proxy and adds nothing over logD;
+its main failure (DEA⁺) is the open central hollow of the three-chain model. The residuals that logD leaves (HAA
+more, DIPEA less retained) are the part EDA would have to explain, and the 3-chain patch does not.

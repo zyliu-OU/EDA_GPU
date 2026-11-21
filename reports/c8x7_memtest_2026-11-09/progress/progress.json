@@ -1,0 +1,48 @@
+{
+  "research_acknowledgement": "If EDA_GPU has benefited your research, please support us by citing this project and the GKS-EDA publications below.",
+  "project_reference": "https://github.com/zyliu-OU/EDA_GPU",
+  "method_references": [
+    {
+      "authors": "Peifeng Su, Zhen Jiang, Zuochang Chen, Wei Wu",
+      "year": 2014,
+      "title": "Energy Decomposition Scheme Based on the Generalized Kohn\u2013Sham Scheme",
+      "journal": "Journal of Physical Chemistry A",
+      "volume": "118",
+      "pages": "2531\u20132542",
+      "doi": "10.1021/jp500405s",
+      "url": "https://doi.org/10.1021/jp500405s"
+    },
+    {
+      "authors": "Peifeng Su, Zhen Tang, Wei Wu",
+      "year": 2020,
+      "title": "Generalized Kohn-Sham energy decomposition analysis and its applications",
+      "journal": "WIREs Computational Molecular Science",
+      "article": "e1460",
+      "doi": "10.1002/wcms.1460",
+      "url": "https://doi.org/10.1002/wcms.1460"
+    },
+    {
+      "authors": "P. Su, H. Li",
+      "year": 2009,
+      "title": "Energy decomposition analysis of covalent bonds and intermolecular interactions",
+      "journal": "Journal of Chemical Physics",
+      "volume": "131",
+      "article": "014102",
+      "doi": "10.1063/1.3159673",
+      "url": "https://doi.org/10.1063/1.3159673"
+    }
+  ],
+  "schema_version": 1,
+  "pid": 16235,
+  "status": "running",
+  "timestamp": "2026-11-10T05:32:04.162077+00:00",
+  "sequence": 27,
+  "elapsed_seconds": 824.915456426,
+  "stage": "analytic gradient",
+  "gpu_temperature_c": 58.0,
+  "cpu_temperature_c": 75.0,
+  "scf_cycle": 11,
+  "energy_hartree": -2735.103088012249,
+  "orbital_gradient_norm": 1.146937777489008e-06,
+  "density_change_norm": 1.390637214762454e-05
+}

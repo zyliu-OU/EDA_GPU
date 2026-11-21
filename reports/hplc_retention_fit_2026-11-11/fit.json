@@ -1,0 +1,953 @@
+{
+ "data": "examples/hplc/donegan2022_table4.csv",
+ "cases": "reports/hplc_patch_extended_2026-11-11/cases.json",
+ "pocket_cut": {
+  "r_lt": 2.5,
+  "h_lt": 8.0
+ },
+ "reagents": {
+  "DEAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_diethylammonium_0",
+     "patch_diethylammonium_1",
+     "patch_diethylammonium_3",
+     "patch_diethylammonium_4",
+     "patch_diethylammonium_6"
+    ],
+    "tot/boltzmann": -6.315203150816593,
+    "tot/best": -6.620304008442991,
+    "epc/boltzmann": -8.758493380821648,
+    "epc/best": -9.099504686653745,
+    "np/boltzmann": -330.1408030433446,
+    "np/best": -346.9390358056164,
+    "elec/boltzmann": -5.359879770495218,
+    "elec/lowest_energy": -5.427976922675005,
+    "pauli/boltzmann": 13.338179313256681,
+    "pauli/lowest_energy": 13.768312885718444,
+    "pol/boltzmann": -2.85456310296025,
+    "pol/lowest_energy": -2.7168572297084963,
+    "gc/boltzmann": -13.54444213725565,
+    "gc/lowest_energy": -14.138248785234332,
+    "des/boltzmann": 2.105502546637844,
+    "des/lowest_energy": 1.8944660434563976
+   },
+   "off_centre": {
+    "n_placements": 1,
+    "placements": [
+     "patch_diethylammonium_4"
+    ],
+    "tot/boltzmann": -4.245625050260527,
+    "tot/best": -4.245625050260527,
+    "epc/boltzmann": -5.754121086713127,
+    "epc/best": -5.754121086713127,
+    "np/boltzmann": -220.5057703615896,
+    "np/best": -220.5057703615896,
+    "elec/boltzmann": -2.3377298179293935,
+    "elec/lowest_energy": -2.3377298179293935,
+    "pauli/boltzmann": 9.560239737924924,
+    "pauli/lowest_energy": 9.560239737924924,
+    "pol/boltzmann": -1.722005324857196,
+    "pol/lowest_energy": -1.722005324857196,
+    "gc/boltzmann": -9.85240108784383,
+    "gc/lowest_energy": -9.85240108784383,
+    "des/boltzmann": 0.10627144244496903,
+    "des/lowest_energy": 0.10627144244496903
+   }
+  },
+  "TEAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_teah_0",
+     "patch_teah_1",
+     "patch_teah_2",
+     "patch_teah_3",
+     "patch_teah_4"
+    ],
+    "tot/boltzmann": -5.029156856715192,
+    "tot/best": -5.327158493064461,
+    "epc/boltzmann": -6.977304160830214,
+    "epc/best": -7.332218309141515,
+    "np/boltzmann": -266.2652055543987,
+    "np/best": -274.4255795736203,
+    "elec/boltzmann": -3.920896026662378,
+    "elec/lowest_energy": -3.7343933403176557,
+    "pauli/boltzmann": 13.751516410423289,
+    "pauli/lowest_energy": 14.3353266286028,
+    "pol/boltzmann": -1.9348309602376537,
+    "pol/lowest_energy": -1.837947724967926,
+    "gc/boltzmann": -13.316210180233252,
+    "gc/lowest_energy": -14.160620518192346,
+    "des/boltzmann": 0.39126389999480177,
+    "des/lowest_energy": 0.07047646181066616
+   },
+   "off_centre": {
+    "n_placements": 5,
+    "placements": [
+     "patch_teah_0",
+     "patch_teah_1",
+     "patch_teah_2",
+     "patch_teah_3",
+     "patch_teah_4"
+    ],
+    "tot/boltzmann": -5.029156856715192,
+    "tot/best": -5.327158493064461,
+    "epc/boltzmann": -6.977304160830214,
+    "epc/best": -7.332218309141515,
+    "np/boltzmann": -266.2652055543987,
+    "np/best": -274.4255795736203,
+    "elec/boltzmann": -3.920896026662378,
+    "elec/lowest_energy": -3.7343933403176557,
+    "pauli/boltzmann": 13.751516410423289,
+    "pauli/lowest_energy": 14.3353266286028,
+    "pol/boltzmann": -1.9348309602376537,
+    "pol/lowest_energy": -1.837947724967926,
+    "gc/boltzmann": -13.316210180233252,
+    "gc/lowest_energy": -14.160620518192346,
+    "des/boltzmann": 0.39126389999480177,
+    "des/lowest_energy": 0.07047646181066616
+   }
+  },
+  "DIPEAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_dipeah_0",
+     "patch_dipeah_1",
+     "patch_dipeah_5",
+     "patch_dipeah_6",
+     "patch_dipeah_8"
+    ],
+    "tot/boltzmann": -5.202669324699429,
+    "tot/best": -5.489443550016068,
+    "epc/boltzmann": -6.843316055402626,
+    "epc/best": -7.063951469191859,
+    "np/boltzmann": -319.381500947098,
+    "np/best": -322.93006844902607,
+    "elec/boltzmann": -4.515187779229625,
+    "elec/lowest_energy": -4.250909222884674,
+    "pauli/boltzmann": 13.588230534678381,
+    "pauli/lowest_energy": 12.663194754413844,
+    "pol/boltzmann": -1.8517008826790196,
+    "pol/lowest_energy": -1.9616827061488222,
+    "gc/boltzmann": -13.499511327054442,
+    "gc/lowest_energy": -13.12280709375767,
+    "des/boltzmann": 1.0755001295852746,
+    "des/lowest_energy": 1.182760718361255
+   },
+   "off_centre": {
+    "n_placements": 5,
+    "placements": [
+     "patch_dipeah_0",
+     "patch_dipeah_1",
+     "patch_dipeah_5",
+     "patch_dipeah_6",
+     "patch_dipeah_8"
+    ],
+    "tot/boltzmann": -5.202669324699429,
+    "tot/best": -5.489443550016068,
+    "epc/boltzmann": -6.843316055402626,
+    "epc/best": -7.063951469191859,
+    "np/boltzmann": -319.381500947098,
+    "np/best": -322.93006844902607,
+    "elec/boltzmann": -4.515187779229625,
+    "elec/lowest_energy": -4.250909222884674,
+    "pauli/boltzmann": 13.588230534678381,
+    "pauli/lowest_energy": 12.663194754413844,
+    "pol/boltzmann": -1.8517008826790196,
+    "pol/lowest_energy": -1.9616827061488222,
+    "gc/boltzmann": -13.499511327054442,
+    "gc/lowest_energy": -13.12280709375767,
+    "des/boltzmann": 1.0755001295852746,
+    "des/lowest_energy": 1.182760718361255
+   }
+  },
+  "BAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_butylammonium_0",
+     "patch_butylammonium_1",
+     "patch_butylammonium_4",
+     "patch_butylammonium_6",
+     "patch_butylammonium_7"
+    ],
+    "tot/boltzmann": -5.818842611017594,
+    "tot/best": -6.435517309413939,
+    "epc/boltzmann": -7.978016467662381,
+    "epc/best": -8.83393359742334,
+    "np/boltzmann": -246.7473330870086,
+    "np/best": -292.7078162217987,
+    "elec/boltzmann": -5.546990383010249,
+    "elec/lowest_energy": -6.186433462213953,
+    "pauli/boltzmann": 12.204260574409492,
+    "pauli/lowest_energy": 12.386186389633522,
+    "pol/boltzmann": -2.9897310575479383,
+    "pol/lowest_energy": -3.6589730795334496,
+    "gc/boltzmann": -11.978855421777439,
+    "gc/lowest_energy": -12.231524267764067,
+    "des/boltzmann": 2.492473676908538,
+    "des/lowest_energy": 3.2552271104640096
+   },
+   "off_centre": {
+    "n_placements": 4,
+    "placements": [
+     "patch_butylammonium_1",
+     "patch_butylammonium_4",
+     "patch_butylammonium_6",
+     "patch_butylammonium_7"
+    ],
+    "tot/boltzmann": -4.629630878252476,
+    "tot/best": -5.015854117661976,
+    "epc/boltzmann": -6.327443328155722,
+    "epc/best": -6.926128256108823,
+    "np/boltzmann": -260.52189864185783,
+    "np/best": -292.7078162217987,
+    "elec/boltzmann": -4.3138715049340135,
+    "elec/lowest_energy": -4.952338498992758,
+    "pauli/boltzmann": 11.8534300400615,
+    "pauli/lowest_energy": 12.193449894913453,
+    "pol/boltzmann": -1.6991471132507683,
+    "pol/lowest_energy": -2.130540224171641,
+    "gc/boltzmann": -11.491602163401655,
+    "gc/lowest_energy": -11.791437885312265,
+    "des/boltzmann": 1.0215598632724578,
+    "des/lowest_energy": 1.6650125959012347
+   }
+  },
+  "TPAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_tripropylammonium_0",
+     "patch_tripropylammonium_1",
+     "patch_tripropylammonium_3",
+     "patch_tripropylammonium_5",
+     "patch_tripropylammonium_8"
+    ],
+    "tot/boltzmann": -5.422502989118907,
+    "tot/best": -5.817261961114779,
+    "epc/boltzmann": -7.440633818341055,
+    "epc/best": -8.027989427717714,
+    "np/boltzmann": -327.3650604979579,
+    "np/best": -340.9088796067449,
+    "elec/boltzmann": -5.433787386328937,
+    "elec/lowest_energy": -5.6185211049232855,
+    "pauli/boltzmann": 15.694067055284712,
+    "pauli/lowest_energy": 16.499696262385275,
+    "pol/boltzmann": -1.9813067393051926,
+    "pol/lowest_energy": -1.9165306609788162,
+    "gc/boltzmann": -14.830835644723166,
+    "gc/lowest_energy": -15.561532758567862,
+    "des/boltzmann": 1.1293597259536752,
+    "des/lowest_energy": 1.118976718769128
+   },
+   "off_centre": {
+    "n_placements": 5,
+    "placements": [
+     "patch_tripropylammonium_0",
+     "patch_tripropylammonium_1",
+     "patch_tripropylammonium_3",
+     "patch_tripropylammonium_5",
+     "patch_tripropylammonium_8"
+    ],
+    "tot/boltzmann": -5.422502989118907,
+    "tot/best": -5.817261961114779,
+    "epc/boltzmann": -7.440633818341055,
+    "epc/best": -8.027989427717714,
+    "np/boltzmann": -327.3650604979579,
+    "np/best": -340.9088796067449,
+    "elec/boltzmann": -5.433787386328937,
+    "elec/lowest_energy": -5.6185211049232855,
+    "pauli/boltzmann": 15.694067055284712,
+    "pauli/lowest_energy": 16.499696262385275,
+    "pol/boltzmann": -1.9813067393051926,
+    "pol/lowest_energy": -1.9165306609788162,
+    "gc/boltzmann": -14.830835644723166,
+    "gc/lowest_energy": -15.561532758567862,
+    "des/boltzmann": 1.1293597259536752,
+    "des/lowest_energy": 1.118976718769128
+   }
+  },
+  "DBAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_dibutylammonium_0",
+     "patch_dibutylammonium_1",
+     "patch_dibutylammonium_2",
+     "patch_dibutylammonium_3",
+     "patch_dibutylammonium_8"
+    ],
+    "tot/boltzmann": -8.697554382758609,
+    "tot/best": -8.853687260608545,
+    "epc/boltzmann": -11.70719100295257,
+    "epc/best": -11.93893743451796,
+    "np/boltzmann": -400.502563151481,
+    "np/best": -404.12492328013604,
+    "elec/boltzmann": -6.270354055232099,
+    "elec/lowest_energy": -6.381109739449071,
+    "pauli/boltzmann": 21.02405578564684,
+    "pauli/lowest_energy": 21.45628619071193,
+    "pol/boltzmann": -2.9616300794740757,
+    "pol/lowest_energy": -3.0154818688910794,
+    "gc/boltzmann": -21.356927396939614,
+    "gc/lowest_energy": -21.771289732009617,
+    "des/boltzmann": 0.8673013632403382,
+    "des/lowest_energy": 0.8579078890292944
+   },
+   "off_centre": {
+    "n_placements": 3,
+    "placements": [
+     "patch_dibutylammonium_2",
+     "patch_dibutylammonium_3",
+     "patch_dibutylammonium_8"
+    ],
+    "tot/boltzmann": -5.156459155887205,
+    "tot/best": -5.340622184711351,
+    "epc/boltzmann": -7.066188667960977,
+    "epc/best": -7.262220107022952,
+    "np/boltzmann": -271.24922698697327,
+    "np/best": -275.4717299272661,
+    "elec/boltzmann": -3.616011445652311,
+    "elec/lowest_energy": -3.460678001137205,
+    "pauli/boltzmann": 12.166259389511843,
+    "pauli/lowest_energy": 12.54870588385499,
+    "pol/boltzmann": -1.6765784874280847,
+    "pol/lowest_energy": -1.7029267328560078,
+    "gc/boltzmann": -12.364365244929026,
+    "gc/lowest_energy": -12.81376679728544,
+    "des/boltzmann": 0.33423663261037173,
+    "des/lowest_energy": 0.08804346271231323
+   }
+  },
+  "HAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_hexylammonium_0",
+     "patch_hexylammonium_1",
+     "patch_hexylammonium_3",
+     "patch_hexylammonium_4",
+     "patch_hexylammonium_5"
+    ],
+    "tot/boltzmann": -5.599933965011743,
+    "tot/best": -5.969156541441266,
+    "epc/boltzmann": -7.546290828948141,
+    "epc/best": -7.998776451877143,
+    "np/boltzmann": -296.68416866176307,
+    "np/best": -306.74628479375247,
+    "elec/boltzmann": -5.500494498552564,
+    "elec/lowest_energy": -5.830048883548855,
+    "pauli/boltzmann": 15.998790693359737,
+    "pauli/lowest_energy": 16.507097123464607,
+    "pol/boltzmann": -1.0974060695347934,
+    "pol/lowest_energy": -1.2275940688489428,
+    "gc/boltzmann": -15.618207409374522,
+    "gc/lowest_energy": -16.235812889261762,
+    "des/boltzmann": 0.6173833190904031,
+    "des/lowest_energy": 0.817202176753687
+   },
+   "off_centre": {
+    "n_placements": 5,
+    "placements": [
+     "patch_hexylammonium_0",
+     "patch_hexylammonium_1",
+     "patch_hexylammonium_3",
+     "patch_hexylammonium_4",
+     "patch_hexylammonium_5"
+    ],
+    "tot/boltzmann": -5.599933965011743,
+    "tot/best": -5.969156541441266,
+    "epc/boltzmann": -7.546290828948141,
+    "epc/best": -7.998776451877143,
+    "np/boltzmann": -296.68416866176307,
+    "np/best": -306.74628479375247,
+    "elec/boltzmann": -5.500494498552564,
+    "elec/lowest_energy": -5.830048883548855,
+    "pauli/boltzmann": 15.998790693359737,
+    "pauli/lowest_energy": 16.507097123464607,
+    "pol/boltzmann": -1.0974060695347934,
+    "pol/lowest_energy": -1.2275940688489428,
+    "gc/boltzmann": -15.618207409374522,
+    "gc/lowest_energy": -16.235812889261762,
+    "des/boltzmann": 0.6173833190904031,
+    "des/lowest_energy": 0.817202176753687
+   }
+  },
+  "TBAA": {
+   "all": {
+    "n_placements": 5,
+    "placements": [
+     "patch_tributylammonium_0",
+     "patch_tributylammonium_1",
+     "patch_tributylammonium_3",
+     "patch_tributylammonium_5",
+     "patch_tributylammonium_9"
+    ],
+    "tot/boltzmann": -7.08099996683621,
+    "tot/best": -7.1362941968625995,
+    "epc/boltzmann": -9.632351856265606,
+    "epc/best": -9.681562077119413,
+    "np/boltzmann": -431.5653144766696,
+    "np/best": -433.5273507244706,
+    "elec/boltzmann": -6.442256862466199,
+    "elec/lowest_energy": -6.4907816208408775,
+    "pauli/boltzmann": 20.222087307759075,
+    "pauli/lowest_energy": 20.371516454170248,
+    "pol/boltzmann": -1.933015078750283,
+    "pol/lowest_energy": -1.9238118489233746,
+    "gc/boltzmann": -19.830606277047,
+    "gc/lowest_energy": -19.99389408403605,
+    "des/boltzmann": 0.9027909436681948,
+    "des/lowest_energy": 0.9006769027674549
+   },
+   "off_centre": {
+    "n_placements": 5,
+    "placements": [
+     "patch_tributylammonium_0",
+     "patch_tributylammonium_1",
+     "patch_tributylammonium_3",
+     "patch_tributylammonium_5",
+     "patch_tributylammonium_9"
+    ],
+    "tot/boltzmann": -7.08099996683621,
+    "tot/best": -7.1362941968625995,
+    "epc/boltzmann": -9.632351856265606,
+    "epc/best": -9.681562077119413,
+    "np/boltzmann": -431.5653144766696,
+    "np/best": -433.5273507244706,
+    "elec/boltzmann": -6.442256862466199,
+    "elec/lowest_energy": -6.4907816208408775,
+    "pauli/boltzmann": 20.222087307759075,
+    "pauli/lowest_energy": 20.371516454170248,
+    "pol/boltzmann": -1.933015078750283,
+    "pol/lowest_energy": -1.9238118489233746,
+    "gc/boltzmann": -19.830606277047,
+    "gc/lowest_energy": -19.99389408403605,
+    "des/boltzmann": 0.9027909436681948,
+    "des/lowest_energy": 0.9006769027674549
+   }
+  }
+ },
+ "fits": {
+  "pct_acn_20T": {
+   "selection_check": {
+    "n_perm": 2000,
+    "best_single": 7.5400025353261775,
+    "p_select_single": 0.3285,
+    "best_logD_plus": 3.737984991935135,
+    "p_select_logD_plus": 0.0245,
+    "p_logD_alone": 0.048
+   },
+   "n": 7,
+   "loo_rmse_group_mean": 11.163435851027227,
+   "single": {
+    "baseline/logD": {
+     "pearson_r": 0.7726554889012941,
+     "loo_rmse": 7.5400025353261775,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/tot/boltzmann": {
+     "pearson_r": 0.7409850158640116,
+     "loo_rmse": 8.082686548210427,
+     "spearman_numeric": 0.7500000000000002,
+     "spearman_with_rank_only": 0.8333333333333335
+    },
+    "off_centre/epc/boltzmann": {
+     "pearson_r": 0.7532817220342397,
+     "loo_rmse": 8.098837551075587,
+     "spearman_numeric": 0.8214285714285715,
+     "spearman_with_rank_only": 0.880952380952381
+    },
+    "all/elec/boltzmann": {
+     "pearson_r": 0.6468764538794556,
+     "loo_rmse": 8.956411850288148,
+     "spearman_numeric": 0.7142857142857144,
+     "spearman_with_rank_only": 0.8095238095238096
+    },
+    "off_centre/tot/best": {
+     "pearson_r": 0.6957972674896854,
+     "loo_rmse": 8.983315974261679,
+     "spearman_numeric": 0.7500000000000002,
+     "spearman_with_rank_only": 0.8333333333333335
+    },
+    "off_centre/epc/best": {
+     "pearson_r": 0.711257771385004,
+     "loo_rmse": 8.98867179336175,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/gc/lowest_energy": {
+     "pearson_r": 0.6443171323545864,
+     "loo_rmse": 9.06612308191006,
+     "spearman_numeric": 0.5714285714285715,
+     "spearman_with_rank_only": 0.7142857142857144
+    },
+    "off_centre/gc/boltzmann": {
+     "pearson_r": 0.6273417966901588,
+     "loo_rmse": 9.242515324020195,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "baseline/logP": {
+     "pearson_r": 0.6201655517108722,
+     "loo_rmse": 9.32287079462508,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/pauli/lowest_energy": {
+     "pearson_r": -0.6215500113327157,
+     "loo_rmse": 9.404610316098857,
+     "spearman_numeric": -0.5714285714285715,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "all/pauli/lowest_energy": {
+     "pearson_r": -0.7820991561642677,
+     "loo_rmse": 9.45632373607453,
+     "spearman_numeric": -0.642857142857143,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "all/elec/lowest_energy": {
+     "pearson_r": 0.6070102831537081,
+     "loo_rmse": 9.593356970020217,
+     "spearman_numeric": 0.7142857142857144,
+     "spearman_with_rank_only": 0.8095238095238096
+    },
+    "off_centre/pol/lowest_energy": {
+     "pearson_r": -0.5971824336735759,
+     "loo_rmse": 9.731648904191193,
+     "spearman_numeric": -0.39285714285714296,
+     "spearman_with_rank_only": -0.14285714285714288
+    },
+    "off_centre/pauli/boltzmann": {
+     "pearson_r": -0.5808813921666718,
+     "loo_rmse": 9.832292847471805,
+     "spearman_numeric": -0.5714285714285715,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "off_centre/elec/boltzmann": {
+     "pearson_r": 0.5802836302652343,
+     "loo_rmse": 9.89364500307239,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/elec/lowest_energy": {
+     "pearson_r": 0.5620015952354863,
+     "loo_rmse": 10.405372976769383,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7619047619047621
+    },
+    "baseline/n_carbon": {
+     "pearson_r": 0.49158452337070213,
+     "loo_rmse": 10.484668806921938,
+     "spearman_numeric": 0.42217828147325265,
+     "spearman_with_rank_only": 0.6182840223353118
+    },
+    "all/np/boltzmann": {
+     "pearson_r": 0.4541137281945783,
+     "loo_rmse": 10.813634821640933,
+     "spearman_numeric": 0.07142857142857144,
+     "spearman_with_rank_only": 0.38095238095238104
+    },
+    "off_centre/pol/boltzmann": {
+     "pearson_r": -0.5708890104214214,
+     "loo_rmse": 10.921931856349296,
+     "spearman_numeric": -0.5357142857142858,
+     "spearman_with_rank_only": -0.2380952380952381
+    },
+    "off_centre/np/best": {
+     "pearson_r": 0.4363606849818311,
+     "loo_rmse": 11.071817823898382,
+     "spearman_numeric": 0.5357142857142858,
+     "spearman_with_rank_only": 0.6904761904761906
+    },
+    "off_centre/np/boltzmann": {
+     "pearson_r": 0.4560293942839267,
+     "loo_rmse": 11.185348553662543,
+     "spearman_numeric": 0.5357142857142858,
+     "spearman_with_rank_only": 0.6904761904761906
+    },
+    "all/np/best": {
+     "pearson_r": 0.43941505863000807,
+     "loo_rmse": 11.247456186696125,
+     "spearman_numeric": 0.14285714285714288,
+     "spearman_with_rank_only": 0.4285714285714286
+    },
+    "all/gc/lowest_energy": {
+     "pearson_r": 0.7284831027794297,
+     "loo_rmse": 11.789224397985329,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7142857142857144
+    },
+    "all/pauli/boltzmann": {
+     "pearson_r": -0.7737363122804523,
+     "loo_rmse": 11.92957671275505,
+     "spearman_numeric": -0.7142857142857144,
+     "spearman_with_rank_only": -0.7619047619047621
+    },
+    "all/des/boltzmann": {
+     "pearson_r": 0.42791112670658643,
+     "loo_rmse": 12.08107902606238,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.28571428571428575
+    },
+    "all/tot/best": {
+     "pearson_r": 0.43443847362760735,
+     "loo_rmse": 12.23629164526262,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.4523809523809524
+    },
+    "all/epc/best": {
+     "pearson_r": 0.4118641458803799,
+     "loo_rmse": 12.37164594091435,
+     "spearman_numeric": 0.14285714285714288,
+     "spearman_with_rank_only": 0.38095238095238104
+    },
+    "all/des/lowest_energy": {
+     "pearson_r": 0.2714420096090681,
+     "loo_rmse": 12.447340214864406,
+     "spearman_numeric": 0.3214285714285715,
+     "spearman_with_rank_only": 0.3333333333333334
+    },
+    "all/pol/lowest_energy": {
+     "pearson_r": -0.26929461434413043,
+     "loo_rmse": 12.724686033633278,
+     "spearman_numeric": -0.1785714285714286,
+     "spearman_with_rank_only": -0.2142857142857143
+    },
+    "all/tot/boltzmann": {
+     "pearson_r": 0.43427421345384853,
+     "loo_rmse": 13.104907984765605,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.4523809523809524
+    },
+    "off_centre/des/lowest_energy": {
+     "pearson_r": -0.041037026339486686,
+     "loo_rmse": 13.179986246851072,
+     "spearman_numeric": -0.14285714285714288,
+     "spearman_with_rank_only": -0.14285714285714288
+    },
+    "off_centre/des/boltzmann": {
+     "pearson_r": -0.10340100714761725,
+     "loo_rmse": 13.187497957106654,
+     "spearman_numeric": -0.28571428571428575,
+     "spearman_with_rank_only": -0.2380952380952381
+    },
+    "all/pol/boltzmann": {
+     "pearson_r": -0.3238319653143097,
+     "loo_rmse": 13.67577575833857,
+     "spearman_numeric": -0.14285714285714288,
+     "spearman_with_rank_only": -0.28571428571428575
+    },
+    "all/epc/boltzmann": {
+     "pearson_r": 0.40253428556406656,
+     "loo_rmse": 13.749830953343823,
+     "spearman_numeric": 0.21428571428571433,
+     "spearman_with_rank_only": 0.4285714285714286
+    },
+    "all/gc/boltzmann": {
+     "pearson_r": 0.7211873694995161,
+     "loo_rmse": 14.68022908949058,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7142857142857144
+    }
+   },
+   "logD_plus": {
+    "off_centre/pol/boltzmann": 3.737984991935135,
+    "all/elec/lowest_energy": 6.863901889079104,
+    "all/elec/boltzmann": 7.085881702598416,
+    "off_centre/pol/lowest_energy": 7.444218145227964,
+    "off_centre/np/best": 8.099871684925779,
+    "off_centre/des/boltzmann": 8.316911627411969,
+    "all/pauli/lowest_energy": 8.4326288857151,
+    "off_centre/np/boltzmann": 8.434980914593028,
+    "all/des/lowest_energy": 8.437707354856597,
+    "all/np/boltzmann": 8.485203757637828,
+    "off_centre/des/lowest_energy": 8.546190624066828,
+    "all/np/best": 8.635521342218313,
+    "all/epc/best": 9.224379547265684,
+    "all/epc/boltzmann": 9.754199809564629,
+    "all/gc/lowest_energy": 9.756886055364983,
+    "all/des/boltzmann": 9.786342690845753,
+    "all/tot/best": 9.8052666090158,
+    "off_centre/epc/best": 10.025190691436707,
+    "all/pol/lowest_energy": 10.097523763981714,
+    "all/tot/boltzmann": 10.272975072361952,
+    "off_centre/epc/boltzmann": 10.277596288505771,
+    "off_centre/tot/best": 10.434528170274136,
+    "off_centre/pauli/lowest_energy": 10.487195093298096,
+    "off_centre/elec/lowest_energy": 10.568534022905583,
+    "off_centre/gc/lowest_energy": 10.586073405039803,
+    "all/pauli/boltzmann": 10.690369300613803,
+    "off_centre/tot/boltzmann": 10.894208460352697,
+    "off_centre/pauli/boltzmann": 11.103548758283939,
+    "off_centre/elec/boltzmann": 11.307178423536616,
+    "off_centre/gc/boltzmann": 11.316572195393364,
+    "all/pol/boltzmann": 11.695640360451707,
+    "all/gc/boltzmann": 11.77135069828913
+   }
+  },
+  "pct_acn_60T": {
+   "selection_check": {
+    "n_perm": 2000,
+    "best_single": 8.970497299175241,
+    "p_select_single": 0.226,
+    "best_logD_plus": 5.705620919093086,
+    "p_select_logD_plus": 0.047,
+    "p_logD_alone": 0.042
+   },
+   "n": 7,
+   "loo_rmse_group_mean": 14.652601778827162,
+   "single": {
+    "baseline/logD": {
+     "pearson_r": 0.809065068369417,
+     "loo_rmse": 8.970497299175241,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/epc/boltzmann": {
+     "pearson_r": 0.7692652892904059,
+     "loo_rmse": 10.161658377404933,
+     "spearman_numeric": 0.8214285714285715,
+     "spearman_with_rank_only": 0.880952380952381
+    },
+    "off_centre/tot/boltzmann": {
+     "pearson_r": 0.7464912306192625,
+     "loo_rmse": 10.301055978996999,
+     "spearman_numeric": 0.7500000000000002,
+     "spearman_with_rank_only": 0.8333333333333335
+    },
+    "off_centre/epc/best": {
+     "pearson_r": 0.7403082521992368,
+     "loo_rmse": 11.33133554842756,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/tot/best": {
+     "pearson_r": 0.7092191390856919,
+     "loo_rmse": 11.377608744667643,
+     "spearman_numeric": 0.7500000000000002,
+     "spearman_with_rank_only": 0.8333333333333335
+    },
+    "off_centre/gc/lowest_energy": {
+     "pearson_r": 0.6621524620089818,
+     "loo_rmse": 11.427941850986517,
+     "spearman_numeric": 0.5714285714285715,
+     "spearman_with_rank_only": 0.7142857142857144
+    },
+    "baseline/logP": {
+     "pearson_r": 0.6668506651943483,
+     "loo_rmse": 11.535704970595638,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/pauli/lowest_energy": {
+     "pearson_r": -0.6531460822637245,
+     "loo_rmse": 11.663125156843272,
+     "spearman_numeric": -0.5714285714285715,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "all/elec/boltzmann": {
+     "pearson_r": 0.6488240280858624,
+     "loo_rmse": 11.710362158302312,
+     "spearman_numeric": 0.7142857142857144,
+     "spearman_with_rank_only": 0.8095238095238096
+    },
+    "off_centre/gc/boltzmann": {
+     "pearson_r": 0.638362322572424,
+     "loo_rmse": 11.772650628992105,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "off_centre/pauli/boltzmann": {
+     "pearson_r": -0.603290450842612,
+     "loo_rmse": 12.425374064466869,
+     "spearman_numeric": -0.5714285714285715,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "all/elec/lowest_energy": {
+     "pearson_r": 0.612150869396672,
+     "loo_rmse": 12.463759225141725,
+     "spearman_numeric": 0.7142857142857144,
+     "spearman_with_rank_only": 0.8095238095238096
+    },
+    "off_centre/elec/boltzmann": {
+     "pearson_r": 0.607166240277211,
+     "loo_rmse": 12.478684810698347,
+     "spearman_numeric": 0.6071428571428572,
+     "spearman_with_rank_only": 0.7380952380952381
+    },
+    "all/pauli/lowest_energy": {
+     "pearson_r": -0.783293884798156,
+     "loo_rmse": 12.910106985639809,
+     "spearman_numeric": -0.642857142857143,
+     "spearman_with_rank_only": -0.7142857142857144
+    },
+    "off_centre/elec/lowest_energy": {
+     "pearson_r": 0.58997073337525,
+     "loo_rmse": 13.137092230289731,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7619047619047621
+    },
+    "off_centre/pol/lowest_energy": {
+     "pearson_r": -0.5307953354083209,
+     "loo_rmse": 13.338474979900527,
+     "spearman_numeric": -0.39285714285714296,
+     "spearman_with_rank_only": -0.14285714285714288
+    },
+    "baseline/n_carbon": {
+     "pearson_r": 0.5367730230415553,
+     "loo_rmse": 13.450323752772343,
+     "spearman_numeric": 0.42217828147325265,
+     "spearman_with_rank_only": 0.6182840223353118
+    },
+    "all/np/boltzmann": {
+     "pearson_r": 0.45257997070375283,
+     "loo_rmse": 14.077894913029029,
+     "spearman_numeric": 0.07142857142857144,
+     "spearman_with_rank_only": 0.38095238095238104
+    },
+    "off_centre/np/best": {
+     "pearson_r": 0.48167826698538846,
+     "loo_rmse": 14.140344681573291,
+     "spearman_numeric": 0.5357142857142858,
+     "spearman_with_rank_only": 0.6904761904761906
+    },
+    "all/np/best": {
+     "pearson_r": 0.4458926253642202,
+     "loo_rmse": 14.454642072967374,
+     "spearman_numeric": 0.14285714285714288,
+     "spearman_with_rank_only": 0.4285714285714286
+    },
+    "off_centre/np/boltzmann": {
+     "pearson_r": 0.4934634151355698,
+     "loo_rmse": 14.536684107449387,
+     "spearman_numeric": 0.5357142857142858,
+     "spearman_with_rank_only": 0.6904761904761906
+    },
+    "off_centre/pol/boltzmann": {
+     "pearson_r": -0.4895487238160471,
+     "loo_rmse": 15.63455117375131,
+     "spearman_numeric": -0.5357142857142858,
+     "spearman_with_rank_only": -0.2380952380952381
+    },
+    "all/gc/lowest_energy": {
+     "pearson_r": 0.7171222866770395,
+     "loo_rmse": 15.843126689902821,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7142857142857144
+    },
+    "all/des/boltzmann": {
+     "pearson_r": 0.41081117754696617,
+     "loo_rmse": 15.870440368743472,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.28571428571428575
+    },
+    "all/epc/best": {
+     "pearson_r": 0.4020682866464613,
+     "loo_rmse": 16.09295542269949,
+     "spearman_numeric": 0.14285714285714288,
+     "spearman_with_rank_only": 0.38095238095238104
+    },
+    "all/pauli/boltzmann": {
+     "pearson_r": -0.7665813666845599,
+     "loo_rmse": 16.18146873720236,
+     "spearman_numeric": -0.7142857142857144,
+     "spearman_with_rank_only": -0.7619047619047621
+    },
+    "all/tot/best": {
+     "pearson_r": 0.4173932810239525,
+     "loo_rmse": 16.226587405477275,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.4523809523809524
+    },
+    "all/des/lowest_energy": {
+     "pearson_r": 0.2600735911874124,
+     "loo_rmse": 16.30361629679267,
+     "spearman_numeric": 0.3214285714285715,
+     "spearman_with_rank_only": 0.3333333333333334
+    },
+    "all/pol/lowest_energy": {
+     "pearson_r": -0.2543800310282566,
+     "loo_rmse": 16.424059933070023,
+     "spearman_numeric": -0.1785714285714286,
+     "spearman_with_rank_only": -0.2142857142857143
+    },
+    "off_centre/des/lowest_energy": {
+     "pearson_r": -0.0716336855273602,
+     "loo_rmse": 17.354883842927364,
+     "spearman_numeric": -0.14285714285714288,
+     "spearman_with_rank_only": -0.14285714285714288
+    },
+    "off_centre/des/boltzmann": {
+     "pearson_r": -0.1567123283715744,
+     "loo_rmse": 17.362873461135933,
+     "spearman_numeric": -0.28571428571428575,
+     "spearman_with_rank_only": -0.2380952380952381
+    },
+    "all/pol/boltzmann": {
+     "pearson_r": -0.30205827247456146,
+     "loo_rmse": 17.507276092868636,
+     "spearman_numeric": -0.14285714285714288,
+     "spearman_with_rank_only": -0.28571428571428575
+    },
+    "all/tot/boltzmann": {
+     "pearson_r": 0.4145660939579038,
+     "loo_rmse": 17.603575598254622,
+     "spearman_numeric": 0.25,
+     "spearman_with_rank_only": 0.4523809523809524
+    },
+    "all/epc/boltzmann": {
+     "pearson_r": 0.3864023293904424,
+     "loo_rmse": 18.144832565354353,
+     "spearman_numeric": 0.21428571428571433,
+     "spearman_with_rank_only": 0.4285714285714286
+    },
+    "all/gc/boltzmann": {
+     "pearson_r": 0.7050890038775395,
+     "loo_rmse": 19.40336876415195,
+     "spearman_numeric": 0.642857142857143,
+     "spearman_with_rank_only": 0.7142857142857144
+    }
+   },
+   "logD_plus": {
+    "off_centre/pol/boltzmann": 5.705620919093086,
+    "all/elec/lowest_energy": 8.216256789939967,
+    "all/elec/boltzmann": 8.702990472904338,
+    "off_centre/pol/lowest_energy": 9.633213950428631,
+    "all/des/lowest_energy": 9.747950424725154,
+    "off_centre/np/best": 9.784315103321811,
+    "all/np/boltzmann": 10.042333963716919,
+    "all/np/best": 10.065923026701366,
+    "off_centre/des/boltzmann": 10.356513979078485,
+    "off_centre/des/lowest_energy": 10.438696877454502,
+    "all/des/boltzmann": 11.067362933197531,
+    "all/pauli/lowest_energy": 11.233226720151361,
+    "off_centre/np/boltzmann": 11.268129140281546,
+    "all/pol/lowest_energy": 11.898128973982454,
+    "off_centre/epc/best": 11.929817651072444,
+    "off_centre/epc/boltzmann": 12.031126513995803,
+    "off_centre/tot/best": 12.10294785458036,
+    "off_centre/pauli/lowest_energy": 12.145924714814116,
+    "off_centre/gc/lowest_energy": 12.199736185718464,
+    "off_centre/elec/lowest_energy": 12.266951184781226,
+    "all/gc/lowest_energy": 12.532085088738357,
+    "off_centre/pauli/boltzmann": 12.715820846961979,
+    "off_centre/tot/boltzmann": 12.765528260748265,
+    "all/epc/best": 12.814244086838517,
+    "off_centre/gc/boltzmann": 12.947263331212575,
+    "off_centre/elec/boltzmann": 13.073417979186136,
+    "all/tot/best": 13.282061159130494,
+    "all/epc/boltzmann": 13.477104732943964,
+    "all/pauli/boltzmann": 13.48825886863491,
+    "all/pol/boltzmann": 13.584709267519456,
+    "all/tot/boltzmann": 13.736533655530101,
+    "all/gc/boltzmann": 14.240228335210032
+   }
+  }
+ }
+}

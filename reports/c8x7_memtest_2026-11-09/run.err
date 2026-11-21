@@ -1,0 +1,88 @@
+Traceback (most recent call last):
+  File "/home/zyliu/Documents/EDA_GPU/reports/c8x7_memtest_2026-11-09/run.py", line 10, in <module>
+    r = singlepoint(symbols, coords, meta, st, out=S/'progress')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/src/eda_gpu/engine.py", line 175, in singlepoint
+    grad = host_array(mf._eda_pacer.run(gradient_method(mf).kernel))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/src/eda_gpu/runtime.py", line 84, in run
+    result=function(*args,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/src/eda_gpu/engine.py", line 157, in kernel_after_release
+    return kernel(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/solvent/grad/pcm.py", line 816, in kernel
+    self.de_solute = super().kernel(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/grad/rhf.py", line 521, in kernel
+    de = self.grad_elec(mo_energy, mo_coeff, mo_occ)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/grad/rhf.py", line 322, in grad_elec
+    e2_grad = mf_grad.energy_ee(mol, dm0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/df/grad/rks.py", line 61, in energy_ee
+    exc1 += ks_grad.jk_energy_per_atom(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/df/grad/rhf.py", line 359, in jk_energy_per_atom
+    return _jk_energy_per_atom(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/df/grad/rhf.py", line 121, in _jk_energy_per_atom
+    j2c = int2c2e(auxmol)
+          ^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/df/int3c2e_bdiv.py", line 656, in int2c2e
+    return int2c2e(mol, omega=omega)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/pbc/df/int2c2e.py", line 46, in int2c2e
+    return opt.int2c2e(kpts, omega=omega)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/pbc/df/int2c2e.py", line 213, in int2c2e
+    out = cell.apply_CT_mat_C(out)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/gto/mole.py", line 928, in apply_CT_mat_C
+    return self.mat_dot_C(mat, out=out)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/gto/mole.py", line 776, in mat_dot_C
+    out = ndarray((counts, nrow, nao), buffer=out)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/lib/cupy_helper.py", line 882, in ndarray
+    return cupy.empty(shape, dtype)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/cupy/_creation/basic.py", line 34, in empty
+    return cupy.ndarray(shape, dtype, order=order)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "cupy/_core/core.pyx", line 176, in cupy._core.core.ndarray.__new__
+  File "cupy/_core/core.pyx", line 282, in cupy._core.core._ndarray_base._init
+  File "cupy/cuda/memory.pyx", line 904, in cupy.cuda.memory.alloc
+  File "/home/zyliu/Documents/EDA_GPU/.env/lib/python3.12/site-packages/gpu4pyscf/lib/cupy_helper.py", line 1223, in malloc
+    return cuda_malloc(size)
+           ^^^^^^^^^^^^^^^^^
+  File "cupy/cuda/memory.pyx", line 769, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 770, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 119, in cupy.cuda.memory.Memory.__init__
+  File "cupy_backends/cuda/api/runtime.pyx", line 519, in cupy_backends.cuda.api.runtime.malloc
+  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status
+cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorMemoryAllocation: out of memory
+Command exited with non-zero status 1
+	Command being timed: ".env/bin/python reports/c8x7_memtest_2026-11-09/run.py reports/c8x7_memtest_2026-11-09"
+	User time (seconds): 845.43
+	System time (seconds): 82.96
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 15:20.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 25672832
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 45822
+	Minor (reclaiming a frame) page faults: 6471709
+	Voluntary context switches: 129701
+	Involuntary context switches: 13671
+	Swaps: 0
+	File system inputs: 2515128
+	File system outputs: 336
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
