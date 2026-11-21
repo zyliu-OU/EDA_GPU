@@ -55,3 +55,22 @@ A > G > C (T is not modelled).
 - The retention times were read off a figure (±0.03 min). U and G are 0.12 min apart and not baseline-resolved on
   shorter columns.
 - U stands in for RNA; T (the DNA base in "T > A > G > C") has an extra methyl that the model does not include.
+
+## Hollow check (added 2026-11-20)
+`check_base_hollow.py` produces `hollow.json` and `hollow.log`. It uses the frame and thresholds of the reagent check
+(reports/hplc_patch_extended_2026-11-11), with the base-ring centroid as the guest position. A placement counts as
+inserted if r < 2.5 Å and h < 8 Å.
+
+| Subset | C | U | G | A | ρ |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| All (Boltzmann) | −8.25 (5) | −9.64 (5) | −10.61 (5) | −11.52 (5) | −1.00 |
+| Inserted only | −9.17 (4) | −9.72 (4) | −10.63 (4) | −11.52 (3) | −1.00 |
+| Off-centre only | −7.50 (1) | −9.11 (1) | −8.65 (1) | −7.01 (2) | +0.40 |
+
+- 15/20 placements put the base ring inside the patch's central hollow.
+- The inserted placements carry the Boltzmann weight: A 1.00, G 0.99, U 0.88, C 0.45.
+- Inserted placements average −9.14 kcal/mol, against −7.70 off-centre.
+- The base order comes from the inserted geometries. The off-centre sample, 1–2 placements per base, is too small to
+  confirm it on the flat chain surface.
+- The hollow is the same 3-chain feature that made DEA⁺ an outlier in the reagent series. So the result shows that
+  purines bind more strongly when enclosed by alkyl chains; it does not show that the model predicts base retention.

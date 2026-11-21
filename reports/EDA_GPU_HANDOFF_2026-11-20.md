@@ -33,6 +33,11 @@ one placement keeps ρ = −1 in 19/20 cases. The bootstrap gives the exact orde
 swap (ρ −0.8). The base inversion seen with the silanol proxy is gone on the patch. Purines put more ring atoms on the
 chains.
 
+Hollow check (also 2026-11-20, `check_base_hollow.py`): 15/20 base placements have the ring inside the patch's central
+hollow (r < 2.5 Å, h < 8 Å), and those carry nearly all the Boltzmann weight. The 5 off-centre placements alone give
+ρ +0.4. So the order depends on the hollow, the same artefact as DEA⁺. The VALIDATION.md section and the README were
+updated with this caveat.
+
 ## Next
-Do not start another run without asking (memory `no-new-runs-after-bases`). Open options (off-centre re-sampling for
-DEA/BA/DBA, 4-chain memory test).
+Do not start another run without asking (memory `no-new-runs-after-bases`). Open options: off-centre re-sampling of the bases
+(tests the hollow dependence) and of DEA/BA/DBA. The 4-chain test is dropped (memory `hardware-size-limit`).

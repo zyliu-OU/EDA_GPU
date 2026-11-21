@@ -15,7 +15,9 @@ optimization).
   then decomposed. Results are compared with published retention data.
 - **Bases.** On a silanol-free three-chain C8 patch, the Boltzmann-averaged EDA total ranks the four RNA bases
   C < U < G < A. This matches the nucleotide retention order measured on C18 (Spearman ρ = −1, n = 4). Purines put more
-  ring atoms in contact with the alkyl chains.
+  ring atoms in contact with the alkyl chains. Most of this binding (15 of 20 placements) happens with the base slotted
+  into the open central hollow of the 3-chain model. Off-centre placements alone (1–2 per base) do not reproduce the
+  order.
 - **Reagents.** The reagent series is reproduced only partly (ρ 0.45–0.7). No EDA descriptor predicts the published
   elution % acetonitrile better than the reagents' logD.
 
@@ -30,7 +32,7 @@ external validation of the solvated decomposition.
 | 2 | The GPU is 3–7× faster than the CPU from ~250 basis functions; the 16 GB GPU limits models to the 3-chain patch | [§3.4](#34-performance-and-hardware-limits) |
 | 3 | The ion-pair energy per phosphate is almost base-independent; the reagent holds the residue "at arm's length" | [§4.2](#42-ion-pairs-and-ternary-complexes) |
 | 4 | Reagent order on the C8 patch: ρ = 0.7 (n = 5), 0.45 (n = 8); logD explains elution better than any EDA descriptor | [§4.3–4.4](#43-reagents-on-the-c8-patch) |
-| 5 | Base order on the C8 patch, C < U < G < A, matches measured NTP retention; the silanol model inverted it | [§4.5](#45-rna-bases-on-the-c8-patch-vs-nucleotide-retention) |
+| 5 | Base order on the C8 patch, C < U < G < A, matches measured NTP retention (the silanol model inverted it), but only through bases inserted into the patch's central hollow | [§4.5](#45-rna-bases-on-the-c8-patch-vs-nucleotide-retention) |
 
 ## Contents
 
@@ -303,6 +305,10 @@ average (298 K); small dots: individual placements.
   - Adding CDS swaps U and G.
   - The U/G and G/A gaps (~1 kcal/mol) are smaller than the spread between placements (4–5 kcal/mol). A > G > U > C is
     therefore the most likely order, not a firm result.
+- **Hollow dependence.** 15 of the 20 placements put the base ring inside the patch's central hollow (r < 2.5 Å,
+  h < 8 Å). These placements carry nearly all the Boltzmann weight (A 1.00, G 0.99, U 0.88, C 0.45) and alone give
+  ρ = −1. The 5 off-centre placements (1–2 per base) give C −7.50, U −9.11, G −8.65, A −7.01 (ρ +0.4). The order
+  therefore depends on the base being enclosed by chains. The same model feature made DEA⁺ an outlier in §4.3.
 - **Selection.** The EDA total was the headline descriptor in the earlier reagent work, so it was not chosen after
   seeing these data. Among the 4 headline descriptors, a shuffled order matches perfectly 8 % of the time. Among all 40
   energy descriptors examined, it does 67 % of the time.
@@ -315,6 +321,9 @@ Archive: `reports/hplc_patch_bases_2026-11-20/`.
   - The base comparison pairs a −1 capped monophosphate on a bare 3-chain C8 patch with −4 triphosphates ion-paired
     on C18. It tests only whether base–chain contact alone can rank the bases.
   - The model uses U, while T (in "T > A > G > C") has an extra methyl.
+- **The central hollow.** The 3-chain patch's open hollow drives both the DEA⁺ reagent outlier and the base order.
+  Whether a real C18 phase offers comparable enclosing sites (for example, at lower ligand density) is not known from
+  these models.
 - **Statistics.** With n = 4 bases and 5–8 reagents, no correlation is statistically established. Gaps between
   neighbouring species are often smaller than the spread between placements.
 - **Patch size.** The 3-chain patch has an open central hollow that small reagents fall into. It also cannot represent
@@ -331,13 +340,14 @@ Archive: `reports/hplc_patch_bases_2026-11-20/`.
 GKS-EDA is implemented on CPU and GPU and reproduces published gas-phase components to ≤ 0.2 kcal/mol. For HPLC, the
 decomposition gives a consistent molecular picture: retention through the reagent is length-based and
 base-independent, and direct base contact with a hydrophobic phase discriminates purines from pyrimidines. On a
-silanol-free C8 patch the base order matches measured nucleotide retention. The reagent order matches only partly and
-is no better than logD.
+silanol-free C8 patch the base order matches measured nucleotide retention, but only for bases enclosed in the
+patch's central hollow. The reagent order matches only partly and is no better than logD.
 
 Open directions:
 1. Compare with retention data measured at different base ratios (the user's own data; template in
    `examples/hplc/retention_template.csv`).
-2. More placements per base to tighten the U/G and G/A gaps.
+2. More off-centre placements per base (on the flat chain surface), to test whether the base order survives without
+   the hollow.
 3. Re-sample DEA/BA/DBA away from the patch's central hollow.
 4. Phosphorothioate vs phosphate ion pairs, and HFIP pairing with each reagent.
 5. External validation of GKS-EDA(sol) against XEDA with matched cavities.

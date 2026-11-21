@@ -726,3 +726,42 @@ rests on HAA alone and is treated as spurious.
 Conclusion: on this patch, the EDA reagent order is mostly a size/hydrophobicity proxy and adds nothing over logD;
 its main failure (DEA⁺) is the open central hollow of the three-chain model. The residuals that logD leaves (HAA
 more, DIPEA less retained) are the part EDA would have to explain, and the 3-chain patch does not.
+
+## Silanol-free C8 patch — RNA bases A/C/G/U vs nucleotide retention, 2026-11-20
+
+**Campaign** (`runs/hplc_patch_bases_cpcm_def2svp/`, archive `reports/hplc_patch_bases_2026-11-20/`). Capped residues
+(5′-O-methylphosphodiester, 3′-O-methyl; −1) were placed on the 3-chain patch with the same protocol as the reagents.
+Each base has 5 placements: seeds 0/1 plus the best 3 of an xTB screen of 2–9. The level of theory is M06-2X/def2-SVP,
+C-PCM, then GKS-EDA(sol). All 20 cases are clean: optimization and EDA converged, topology preserved,
+|closure| ≤ 5.7e-10 Eh. The queue ran from 2026-11-18 23:24 to 2026-11-20 08:19, about 2.8 h per DFT case.
+`scripts/analyze_hplc.py` now groups single-index placement names per guest. This change was checked to leave all
+other campaigns unchanged.
+
+**Target data** (`examples/hplc/maurer2025_fig9_ntp.csv`). Maurer 2025 Fig. 9 shows NTPs on BEH C18 with 100 mM BA
++ 50 mM TPA at 1 % ACN and 65 °C. Peak apex times, read off the figure (±0.03 min): CTP 1.50, UTP 1.87, GTP 1.99,
+ATP 2.82 min. The same paper states the order T > A > G > C in its text.
+
+**Result** (`scripts/compare_base_retention.py`). Boltzmann (298 K) EDA totals are C −8.25, U −9.64, G −10.61,
+A −11.52 kcal/mol, which matches the measured order exactly. Spearman ρ = −1, with exact one-sided p = 1/24.
+- Other descriptors give ρ = −0.8: EDA total at the lowest-energy placement, and EDA + CDS (U and G swap).
+- Dropping any one placement keeps ρ = −1 in 19/20 cases. A within-base bootstrap gives the exact order in 49 % of
+  resamples.
+- Purines put more base-ring atoms in contact with the chains: 55–64 contacts, against 34–40 for C/U.
+- For a shuffled order, at least one of the 4 headline descriptors matches perfectly 8 % of the time, and at least one
+  of all 40 energy descriptors 67 % of the time.
+
+**Hollow check** (`check_base_hollow.py`, `hollow.json`). This uses the frame and thresholds of the 11-11 reagent
+check, with the base-ring heavy-atom centroid in place of the reagent N. A placement counts as inserted if
+r < 2.5 Å and h < 8 Å.
+- **15/20 placements have the base ring inside the central hollow.** These are A 3/5, C 4/5, G 4/5, U 4/5.
+- **The hollow carries most of the Boltzmann weight:** A 1.00, G 0.99, U 0.88, C 0.45.
+- **Inserted placements give the full order.** Their Boltzmann values are C −9.17, U −9.72, G −10.63, A −11.52,
+  ρ −1.
+- **Off-centre placements do not.** With only 1–2 per base they give C −7.50, U −9.11, G −8.65, A −7.01, ρ +0.4.
+- **Inserted placements bind more strongly on average:** −9.14 against −7.70 kcal/mol.
+
+Conclusion: the base order C < U < G < A is reproduced, but it comes from bases slotted into the patch's open
+central hollow. That geometry is specific to the 3-chain model, and the same feature caused the DEA⁺ failure in the
+reagent series. Off-centre sampling (1–2 placements per base) is too thin to confirm or refute the order on the flat
+chain surface. The result therefore shows that purines bind more strongly where they can be enclosed by alkyl chains,
+not that the full model predicts base retention.
