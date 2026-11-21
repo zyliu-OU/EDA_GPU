@@ -1,52 +1,106 @@
-# EDA_GPU
+# EDA_GPU: GPU-accelerated GKS-EDA and its application to ion-pair reversed-phase HPLC of RNA
 
-**Status: under active development — an early research prototype.**
+**Research report — last updated 2026-11-20. Status: early research prototype under active development.**
 
-EDA_GPU is a GPU-assisted computational chemistry project for reproducible molecular
-structure preparation, electronic-energy calculations, analytic gradients, and geometry
-optimization. Its long-term goal is a faithful implementation of the original generalized
-Kohn–Sham energy decomposition analysis (GKS-EDA), beginning with a validated CPU
-reference and then accelerating the expensive operations on NVIDIA GPUs.
+## Abstract
 
-The working foundation uses **PySCF** for CPU calculations, **GPU4PySCF** for GPU
-calculations, and **geomeTRIC** for optimization. Current validation covers small,
-restricted closed-shell and small unrestricted gas-phase systems. APIs, supported methods, and installation
-requirements may change as development proceeds.
+EDA_GPU is an independent implementation of generalized Kohn–Sham energy decomposition analysis (GKS-EDA) and its
+implicit-solvent extension GKS-EDA(sol). It is built on PySCF (CPU), GPU4PySCF (GPU) and geomeTRIC (geometry
+optimization).
+- **Validation.** The gas-phase decomposition reproduces the published tryptamine–water benchmark (Liu et al. 2017) to
+  ≤ 0.20 kcal/mol per component. CPU and GPU results agree to 1.8 × 10⁻⁸ Eh per component, and energies and gradients
+  agree with Psi4.
+- **Application.** The method is applied to ion-pair reversed-phase (IP-RP) HPLC of RNA. Capped nucleotide residues,
+  alkylammonium ion-pair reagents and C8 stationary-phase models were optimized at M06-2X/def2-SVP in C-PCM water,
+  then decomposed. Results are compared with published retention data.
+- **Bases.** On a silanol-free three-chain C8 patch, the Boltzmann-averaged EDA total ranks the four RNA bases
+  C < U < G < A. This matches the nucleotide retention order measured on C18 (Spearman ρ = −1, n = 4). Purines put more
+  ring atoms in contact with the alkyl chains.
+- **Reagents.** The reagent series is reproduced only partly (ρ 0.45–0.7). No EDA descriptor predicts the published
+  elution % acetonitrile better than the reagents' logD.
 
-See [scientific references, research papers, and websites](#scientific-references-research-papers-and-websites)
-for method attribution, benchmark sources, and software documentation.
+All application results are exploratory. They come from small models with 5 placements per complex and have no
+external validation of the solvated decomposition.
 
-## What works today
+## Key findings
 
-| Capability | Current status |
+| # | Finding | Evidence |
+| --- | --- | --- |
+| 1 | Gas-phase GKS-EDA matches published values to ≤ 0.20 kcal/mol per component (neutral and radical cation) | [§3.2](#32-published-benchmark-tryptaminewater) |
+| 2 | The GPU is 3–7× faster than the CPU from ~250 basis functions; the 16 GB GPU limits models to the 3-chain patch | [§3.4](#34-performance-and-hardware-limits) |
+| 3 | The ion-pair energy per phosphate is almost base-independent; the reagent holds the residue "at arm's length" | [§4.2](#42-ion-pairs-and-ternary-complexes) |
+| 4 | Reagent order on the C8 patch: ρ = 0.7 (n = 5), 0.45 (n = 8); logD explains elution better than any EDA descriptor | [§4.3–4.4](#43-reagents-on-the-c8-patch) |
+| 5 | Base order on the C8 patch, C < U < G < A, matches measured NTP retention; the silanol model inverted it | [§4.5](#45-rna-bases-on-the-c8-patch-vs-nucleotide-retention) |
+
+## Contents
+
+1. [Introduction and aims](#1-introduction-and-aims)
+2. [Methods](#2-methods)
+3. [Validation](#3-validation)
+4. [Application: IP-RP HPLC of RNA](#4-application-ip-rp-hplc-of-rna)
+5. [Discussion and limitations](#5-discussion-and-limitations)
+6. [Conclusions and next steps](#6-conclusions-and-next-steps)
+7. [Reproducing the results](#7-reproducing-the-results)
+8. [Appendix: implementation notes](#8-appendix-implementation-notes)
+9. [References](#scientific-references-research-papers-and-websites)
+
+## 1. Introduction and aims
+
+GKS-EDA (Su, Jiang, Chen & Wu 2014; review Su, Tang & Wu 2020) splits an interaction energy into electrostatic,
+exchange, repulsion, polarization, generalized correlation and dispersion terms on a Kohn–Sham footing. A solvent
+extension adds a desolvation term. The reference implementation is the XEDA program.
+
+This project has two aims:
+
+1. **Method.** Build a faithful, documented, CPU-validated implementation of the original GKS-EDA definitions (no
+   ALMO-EDA substitution), then accelerate the expensive steps on NVIDIA GPUs.
+2. **Application.** Use the decomposition to explain IP-RP HPLC retention of RNA: why some alkylammonium ion-pair
+   reagents retain RNA more strongly than others, and how base composition shifts retention.
+
+The project does not claim to be a port of GAMESS or XEDA. It also does not predict retention times.
+
+## 2. Methods
+
+### 2.1 Implementation
+
+| Capability | Status |
 | --- | --- |
-| Explicit CPU/GPU backend selection | Implemented and tested; unavailable GPU requests fail clearly |
-| XYZ plus identity, protonation, charge, spin, and fragment metadata | Implemented with input consistency checks |
+| Explicit CPU/GPU backend selection | Implemented and tested; a GPU request on a machine without a GPU fails clearly (no silent CPU fallback) |
+| XYZ plus identity, protonation, charge, spin and fragment metadata | Implemented with consistency checks |
 | DFT single points and analytic nuclear gradients | Tested with density-fitted B3LYP/def2-SVP |
-| Water and hydrogen-bonded water-dimer optimization | Convergence demonstrated on CPU and GPU |
-| Frozen-atom optimization | Tested on CPU and GPU; external freeze/set constraints also accepted |
-| Machine-readable calculation results | Settings, units, convergence, versions, hardware, timing, and chemical metadata |
-| Optimized structures and trajectories | XYZ outputs and evaluated-geometry trajectories |
-| Scientific validation and CPU CI | CPU/GPU agreement, finite differences, constraints, and explicit failure handling |
-| Independent cross-program check | HF/DFT energies and analytic gradients (RKS, UKS, exact and density-fitted) agree with Psi4 1.11 on CPU and GPU (21/21 within preset tolerances, up to 425 basis functions); optimized minima agree for water and water dimer; not an EDA validation |
-| Published tryptamine–water benchmark | Neutral and radical-cation totals within 0.012 kcal/mol of Liu et al. 2017 Table 3, components within 0.20 kcal/mol, H-bond geometry within 0.05 Å; reconstructed geometry. Accepted by the project owner (2026-10-19) as the external component benchmark |
-| Matched XEDA comparison | GAMESS-XEDA inputs and EDA_GPU values prepared (`reports/xeda_matched_2026-10-18/`); not run — deferred by project decision 2026-10-19 (kit kept for anyone with XEDA access) |
-| Experimental GKS-EDA(sol) | C-PCM/IEF-PCM on CPU and GPU; vacuum-limit, screening and CPU/GPU checks pass; documented interpretations; external validation pending |
-| CPU/GPU scaling benchmark | GPU 3–7× faster than CPU from ~250 basis functions on this host; slower for tiny systems ([benchmark](reports/benchmark_scaling_2026-10-18.json)) |
-| CPU EDA preparation | Counterpoise fragment references, frozen electrostatics, generalized correlation; independent algebra checks passed, published component validation unresolved |
-| Complete experimental GKS-EDA | Six gas-phase terms on CPU/GPU; independent mathematical tests and component-wise CPU/GPU agreement passed; external matched-settings validation pending |
+| Geometry optimization (geomeTRIC), frozen atoms and constraints | Tested on CPU and GPU (water, water dimer) |
+| Machine-readable results | Settings, units, convergence, versions, hardware, timing, chemical metadata, XYZ trajectories |
+| Complete gas-phase GKS-EDA (six terms) | Restricted and unrestricted, CPU and GPU; matches the published benchmark |
+| GKS-EDA(sol) with C-PCM / IEF-PCM | CPU and GPU; internal checks pass; external validation pending |
+| Three-body decomposition, SMD-CDS nonpolar term, buried SASA | Analysis scripts for the HPLC study |
+| Thermal and workload guards | GPU/CPU temperature cooldowns and duty-cycle pacing, recorded in each result |
 
-The CLI provides `inspect`, `singlepoint`, `optimize`, `validate`, and experimental
-`eda-prepare` and `eda` commands.
-This project implements an independently useful optimization foundation; it does not
-claim a GAMESS port or a validated EDA decomposition.
+The CLI provides `inspect`, `singlepoint`, `optimize`, `validate`, `eda-prepare`, `eda`, `monitor` and `status`.
 
-## Validation evidence
+### 2.2 Energy decomposition
 
-### Test computer and software environment
+`eda` computes electrostatic, exchange, repulsion, polarization (including charge transfer), generalized correlation
+and explicit dispersion terms. It uses the Su–Li orbital intermediates on KS orbitals, counterpoise (ghost-basis)
+fragment references and direct integrals. Explicit dispersion is zero for the supported functionals, which carry no
+dispersion correction. Pauli = exchange + repulsion.
 
-The local tests and neutral tryptamine–water benchmark were run on the following
-computer. These are the recorded test specifications, not minimum requirements.
+GKS-EDA(sol) (review Eqs. 12–13) runs every reference SCF in a PCM reaction field. It evaluates the gas-phase-form
+terms at the SCRF densities. ΔG_desol is the change in electrostatic solvation energy. Monomers sit in the supermolecule
+cavity. Two definitions are documented interpretations pending the original derivation
+([specification](docs/GKS_EDA_SOL_SPEC.md)). See also [methods](docs/METHODS.md) and the
+[GKS-EDA source gate](docs/GKS_EDA_SPEC.md).
+
+### 2.3 Computational setup for the HPLC study
+
+- **Level of theory.** M06-2X/def2-SVP with C-PCM water (ε 78.36, Bondi × 1.2 radii). Optimizations are
+  density-fitted (def2-universal-jkfit) on the GPU. GKS-EDA(sol) uses direct integrals.
+- **Seeds and sampling.** Seeds are refined with GFN2-xTB/ALPB. Each complex has 5 placements: the two top-ranked docked seeds
+  plus the best 3 of an xTB screen of 8 more.
+- **Placement weighting.** Placements are weighted by a Boltzmann factor of the optimized C-PCM energy (298 K).
+- **Nonpolar term.** The SMD-CDS term (Marenich, Cramer & Truhlar 2009) is evaluated at the complex geometry.
+- Models and their limits are described in [HPLC models](docs/HPLC_MODELS.md).
+
+### 2.4 Test computer and software
 
 | Item | Test environment |
 | --- | --- |
@@ -60,76 +114,102 @@ computer. These are the recorded test specifications, not minimum requirements.
 | CuPy / cuTensor | 14.2.0 / 2.8.1 |
 | geomeTRIC | 1.1.1 |
 
-The archived neutral EDA run used 16 physical cores/compute threads, 50% workload
-pacing, and CPU/GPU thermal cooldown thresholds of 85°C/75°C. Earlier small-system
-timings used their own recorded settings and are not directly comparable with this
-paced run. GPU power limits and temporary CPU frequency limits are shared hardware
-settings; no fixed frequency or power setting is claimed for all tests.
-Exact per-run hardware, versions, and calculation settings are saved in result JSON.
+These are the recorded test specifications, not minimum requirements. Exact per-run hardware, versions and settings
+are saved in each result JSON.
 
-On the development host (RTX 4080 SUPER, Ryzen 9 5950X, Ubuntu 26.04), **37 local
-tests passed in the latest full suite, including actual GPU tests**. Separately,
-nine optimization-foundation scientific checks passed with actual GPU execution. Water and
-water-dimer CPU/GPU single-point energies differed by at most **9.21e-12 hartree**;
-maximum gradient differences were **7.35e-7 hartree/bohr**. Water finite-difference
-gradients agreed within **3.59e-6 hartree/bohr**, and frozen oxygen displacement was
-below **1.79e-11 angstrom**. Both molecules converged on both backends.
+## 3. Validation
 
-These results apply to the recorded settings and small benchmark cases. Optimization
-convergence establishes a stationary-point result; a vibrational analysis has not
-established a minimum. GitHub CPU CI also passed; its GPU test was explicitly skipped
-because that runner has no GPU. Warmed, repeated timing measurements are provided
-without extrapolating them to larger systems.
+### 3.1 Numerical consistency
 
-See [validation details](docs/VALIDATION.md),
-[full scientific results](reports/validation_2026-10-11/result.json), and
-[benchmark measurements](reports/benchmark_2026-10-11.json).
+- **Test suite.** 37 local tests pass in the latest full suite, including real GPU tests. GitHub CPU CI also passes;
+  its GPU test is skipped because the runner has no GPU.
+- **CPU/GPU agreement.** Water and water-dimer single-point energies differ by at most 9.21 × 10⁻¹² Eh, and gradients
+  by 7.35 × 10⁻⁷ Eh/bohr. Finite-difference gradients agree within 3.59 × 10⁻⁶ Eh/bohr. Frozen-atom displacement is
+  below 1.8 × 10⁻¹¹ Å.
+- **Cross-program check (not an EDA validation).** HF/DFT energies and analytic gradients (RKS, UKS, exact and
+  density-fitted) agree with Psi4 1.11 in 21/21 cases within preset tolerances, up to 425 basis functions. Optimized
+  minima agree for water and the water dimer.
+- **GKS-EDA, CPU vs GPU.** The largest per-component difference is 1.82 × 10⁻⁸ Eh (water and CO₂ dimers). Independent
+  integral, PBE0 and determinant-energy checks pass.
 
-## Development roadmap
+Details: [validation](docs/VALIDATION.md), [scientific results](reports/validation_2026-10-11/result.json).
 
-1. Extend the structure-preparation and optimization foundation with additional
-   carefully validated molecules, installation paths, and supported settings.
-2. Secure the original GKS-EDA derivation, supporting material, and trustworthy
-   individual component reference calculations under identical settings.
-3. Specify every intermediate state and component convention, including orbital
-   normalization, exchange/correlation, fragment reference geometry, and BSSE policy
-   (experimental closed-shell specification now implemented).
-4. Validate the implemented experimental CPU GKS-EDA against external matched-settings
-   outputs, component by component.
-5. Extend the implemented GPU component path after external validation; improve
-   performance beyond the current small-system direct-integral measurements.
-6. Nucleotide/RNA–ion-pair reagent–stationary-phase models: first results and a comparison with
-   published retention data are in the [HPLC application study](#hplc-application-study-experimental);
-   a nonpolar solvation term and placement sampling are needed before retention trends can be interpreted.
+### 3.2 Published benchmark: tryptamine–water
 
-Complete restricted/unrestricted gas-phase EDA reproduces published GKS-EDA values to ≤0.20 kcal/mol
-per component (see the benchmark row above); GKS-EDA(sol) and the HPLC study remain experimental. Total-energy closure alone will not count
-as component validation, and ALMO-EDA or other decompositions will not be substituted
-for the original GKS-EDA definitions. The exact current blockers are documented in
-[the GKS-EDA source gate](docs/GKS_EDA_SPEC.md).
+![Tryptamine–water GKS-EDA components vs Liu et al. 2017](docs/figures/validation_tryptamine.png)
 
-## HPLC application study (experimental)
+**Figure 1.** M06-2X/aug-cc-pVDZ counterpoise GKS-EDA of the tryptamine–water dimer, neutral and radical cation
+(one electron removed, not protonated), compared with Liu et al. 2017, Table 3. Panel b shows each deviation. All lie
+inside ±0.2 kcal/mol.
 
-An application of GKS-EDA(sol) to ion-pair reversed-phase (IP-RP) HPLC of RNA: how a capped RNA
-residue (nucleotide with a −1 phosphodiester), an alkylammonium ion-pair reagent and a C8
-stationary-phase proxy (octyldimethylsilyl–O–Si(OH)₃) interact. All structures were optimized on
-the GPU at M06-2X/def2-SVP in C-PCM water (frozen silane anchor), then decomposed with three-body
-GKS-EDA(sol). This is exploratory work: one starting geometry per case, constrained stationary points, no
-cavitation term in the solvent model. Full tables: [validation](docs/VALIDATION.md); models and
-limits: [HPLC models](docs/HPLC_MODELS.md); figures: `scripts/plot_hplc_figures.py`.
+Neutral dimer, GPU (kcal/mol):
+
+| Component | EDA_GPU | Paper |
+|---|---:|---:|
+| Electrostatic | −17.279 | −17.34 |
+| Pauli | 19.535 | 19.69 |
+| Polarization | −7.048 | −7.07 |
+| Generalized correlation | −5.489 | −5.54 |
+| Total | −10.282 | −10.27 |
+
+- **Agreement.** Totals agree within 0.012 kcal/mol, components within 0.20 kcal/mol, and H-bond geometry within
+  0.05 Å. The project owner accepted this on 2026-10-19 as the external component benchmark.
+- **Caveat: reconstructed geometry.** The SI has no Cartesian coordinates, so the geometry was rebuilt from the SI
+  bonding pattern.
+- **Caveat: settings.** The paper does not specify its grid settings.
+- **Not shown.** Agreement tighter than ~0.2 kcal/mol is not demonstrated. A matched-settings XEDA comparison was
+  prepared (`reports/xeda_matched_2026-10-18/`) but deferred.
+
+### 3.3 Solvated decomposition
+
+Internal checks pass:
+- vacuum limit, 1.6 × 10⁻⁹ Eh
+- dielectric screening at separation
+- CPU/GPU agreement for C-PCM and IEF-PCM, ≤ 9.6 × 10⁻⁹ Eh
+- PCM analytic gradients against finite differences
+
+No external validation exists: the XEDA II BH₃–NH₃ example differs strongly and depends on unknown cavity radii.
+Solvated results therefore report `scientifically_validated: false`.
+
+### 3.4 Performance and hardware limits
+
+![CPU vs GPU timing and patch memory](docs/figures/performance_scaling_memory.png)
+
+**Figure 2.** (a) Median wall time for energy + gradient and for complete GKS-EDA. The GPU is 3–7× faster than the CPU
+from ~250 basis functions and slower for tiny systems. (b) Fixed density-fitting K-gradient buffers for C8 patches
+with tributylammonium. The 7-chain patch ran out of the 16 GB of GPU memory (observed peak 15.3 GB), so all HPLC
+results use the 3-chain patch.
+
+GPU4PySCF direct J/K uses CPU/GPU hybrid internals, so the workflow is not all-GPU.
+[Benchmark data](reports/benchmark_scaling_2026-10-18.json).
+
+## 4. Application: IP-RP HPLC of RNA
+
+### 4.1 Model systems
 
 ![Optimized model systems](docs/figures/hplc_structures.png)
 
-**Model systems compared** (archives under `reports/`):
+**Figure 3.** Optimized model systems: capped RNA residue (5′-O-methylphosphodiester, 3′-O-methyl nucleoside; −1),
+alkylammonium reagents, and C8 stationary-phase models.
 
-| System | What it models | Cases | Archive |
+| System | What it models | Cases | Archive (`reports/`) |
 | --- | --- | --- | --- |
-| Ion pair (residue···reagent) | phosphate–ammonium salt bridge in solution | 4 bases × TEAH⁺; residue A × 5 reagents | `hplc_ionpair_2026-10-19/`, `hplc_reagents_2026-10-21/` |
-| Residue···C8 / reagent···C8 | direct adsorption on the proxy | 4 bases; 5 reagents (17 placements) | `hplc_surface_2026-10-19/`, `hplc_reagents_2026-10-21/` |
-| Silanol-bound ternary | residue on a silanol, reagent on the phosphate ("direct" mode) | 4 bases × TEAH⁺ | `hplc_ternary_2026-10-20/` |
-| Bridged ternary | reagent chains on C8, residue held only by the reagent ("ionic" mode) | residue A × 5 reagents | `hplc_bridged_2026-10-22/` |
+| Ion pair (residue···reagent) | Phosphate–ammonium salt bridge in solution | 4 bases × TEAH⁺; residue A × 5 reagents | `hplc_ionpair_2026-10-19/`, `hplc_reagents_2026-10-21/` |
+| Residue / reagent on a silanol C8 proxy | Direct adsorption on octyldimethylsilyl–O–Si(OH)₃ | 4 bases; 5 reagents (17 placements) | `hplc_surface_2026-10-19/`, `hplc_reagents_2026-10-21/` |
+| Silanol-bound ternary | Residue on a silanol, reagent on the phosphate ("direct" mode) | 4 bases × TEAH⁺ | `hplc_ternary_2026-10-20/` |
+| Bridged ternary | Reagent chains on C8, residue held only by the reagent ("ionic" mode) | Residue A × 5 reagents | `hplc_bridged_2026-10-22/` |
+| Silanol-free 3-chain C8 patch | Three tethered n-octane chains (hydrophobic phase, no polar sites) | 8 reagents × 5 placements; 4 bases × 5 placements | `hplc_patch_*` |
 
-**Bridged ternaries, residue A** (kcal/mol; R = residue, T = reagent, S = C8 proxy; ΔE₃ = three-body term):
+**Reference data.**
+- Donegan, Nguyen & Gilar 2022 ([ref. 35](#hplc-retention-literature-comparison-data)): 13 alkylamines, oligo-dT on
+  C18, % ACN at elution (Table 4).
+- Maurer et al. 2025 ([ref. 36](#hplc-retention-literature-comparison-data)): 13 alkylamines, 200–6000 nt RNA on a
+  polymeric column. Its Fig. 9 shows NTP retention on BEH C18 with butylamine/tripropylamine.
+- Both papers rank TEA < DIPEA < DBA < HA < TBA.
+
+### 4.2 Ion pairs and ternary complexes
+
+Bridged ternaries with residue A (kcal/mol; R = residue, T = reagent, S = C8 proxy; ΔE₃ = three-body term):
 
 | Reagent | R···T | T···S | R···S | ΔE₃ |
 | --- | ---: | ---: | ---: | ---: |
@@ -139,118 +219,266 @@ limits: [HPLC models](docs/HPLC_MODELS.md); figures: `scripts/plot_hplc_figures.
 | hexylammonium | −18.3 | −3.7 | −0.1 | +0.01 |
 | tributylammonium | −24.7 | −3.2 | 0.0 | +0.03 |
 
-For comparison, the silanol-bound TEAH⁺ ternaries give R···S −13.8 to −16.7 and ΔE₃ +1.0 to +1.2 for all four bases.
+The silanol-bound TEAH⁺ ternaries give R···S −13.8 to −16.7 and ΔE₃ +1.0 to +1.2 for all four bases.
 
 ![Pair interactions in the two adsorption modes](docs/figures/hplc_pair_diagram.png)
 
-### Comparison with published IP-RP retention data
+**Figure 4.** Pair interactions in the direct (silanol-bound) and ionic (bridged) adsorption modes.
 
-Reference data: Donegan, Nguyen & Gilar 2022 (13 alkylamines, oligo-dT on C18;
-[ref. 35](#hplc-retention-literature-comparison-data)) and Maurer et al. 2025 (13 alkylamines, 200–6000 nt RNA on a
-polymeric DNAPac RP column; [ref. 36](#hplc-retention-literature-comparison-data)). For the five reagents modelled here, both
-rank retention TEA < DIPEA < DBA < HA < TBA.
+- **Length-based separation in the ionic mode.** The ion-pair energy per phosphate barely depends on the base (TEAH⁺:
+  A −18.8, C −19.7, G −19.6, U −20.0 kcal/mol). Each phosphate contributes about the same binding, so the column
+  effectively counts charges. This matches length-based separation with hydrophobic reagents and the on-off elution of
+  long RNA.
+- **Mixed-mode picture.** In the bridged complex the residue never touches the ligand (R···S ≈ 0) and energies are
+  pairwise additive (ΔE₃ ≈ 0). Only direct contact can discriminate sequences. This is consistent with Donegan's
+  finding that weak reagents keep sequence selectivity and strong ones suppress it.
+- **Pairing strength does not set the reagent ranking.** Dibutyl- and tributylammonium pair 4–6 kcal/mol more
+  strongly than TEAH⁺. Hexylammonium pairs most weakly yet is among the most retained (ρ = 0.4).
+- **The silanol proxy is dominated by H-bonds.** Every isolated reagent···C8 pair optimized into an N–H···silanol
+  H-bond (−10.6 to −12.7 kcal/mol, against −2 to −4 for chain contact). Maurer's silanol-free column shows the same
+  reagent order, so retention must come from hydrophobic contact. This motivated the silanol-free patch.
 
-![EDA descriptors vs published retention](docs/figures/hplc_eda_vs_experiment.png)
+### 4.3 Reagents on the C8 patch
 
-**What the EDA supports (qualitative):**
+![Reagent–patch decomposition](docs/figures/hplc_patch_reagent_components.png)
 
-1. *Length-based separation in the ionic mode.* The ion-pair energy per phosphate barely depends on the
-   base (TEAH⁺: A −18.8, C −19.7, G −19.6, U −20.0 kcal/mol). Each phosphate contributes about the same
-   binding, so when retention runs through the reagent the column effectively counts charges.
-   This matches both papers: hydrophobic reagents give length-based separation, and RNA shows on-off
-   elution across 200–6000 nt.
-2. *A molecular picture of mixed-mode retention.* In the bridged complex the residue never touches the
-   ligand (R···S ≈ 0) and the energies are pairwise additive (ΔE₃ ≈ 0): the oligonucleotide is held at
-   arm's length by the reagent. Only the direct arrangement puts the nucleobase in contact with the
-   surface, and only that can discriminate sequences. This is consistent with Donegan's finding that
-   weak reagents keep sequence, modification and phosphorothioate-diastereomer selectivity, and strong
-   ones suppress it.
-3. *Pairing strength does not set the reagent ranking.* Dibutyl- and tributylammonium pair 4–6
-   kcal/mol more strongly than TEAH⁺, but hexylammonium pairs weakest and is among the most retained
-   (rank correlation 0.4). This supports choosing reagents by hydrophobicity (retention, boiling
-   point, logD), as both papers do.
-4. *The reagent's N–H is contested.* Every isolated reagent···C8 pair optimized into an N–H···silanol
-   hydrogen bond (1.75–2.04 Å). That bond gives most of the −10.6 to −12.7 kcal/mol, while chain-only
-   contact gives just −2 to −4. Maurer's column has no silanols, yet it shows the same reagent order,
-   so the measured order comes from hydrophobic adsorption, not from polar surface sites.
+**Figure 5.** GKS-EDA(sol) components of reagent⁺···C8-patch binding (Boltzmann over 5 placements), ordered by
+published retention. Binding is dispersion-like: generalized correlation dominates and electrostatics are small.
 
-**What the current model gets wrong:**
+- **Order.** Every reagent binds by chain contact (about −5 to −9 kcal/mol). For the original five reagents the order
+  is TEAH⁺ < DIPEA-H⁺ < HAA < TBuAA < DBAA. Against the published TEA < DIPEA < DBA < HA < TBA this gives ρ = 0.7
+  (p = 0.19), and 0.6 with CDS. DBAA binds too strongly and HAA too weakly
+  (`reports/hplc_patch_2026-10-27/`, `reports/hplc_patch_sampling_2026-10-28/`).
+- **Robustness.**
+  - Solvent radii (Bondi × 1.4): ρ 0.5–0.7.
+  - An acetonitrile dielectric changes the EDA by < 0.03 kcal/mol.
+  - aug-cc-pVDZ: ρ 0.9 vs def2-SVP.
+  - Archives: `reports/hplc_patch_sensitivity_2026-11-10/`, `reports/hplc_patch_augdz_2026-11-11/`.
+- **Larger set.** Adding DEA⁺, BA⁺ and TPA⁺ (n = 8) lowers ρ to 0.45. Small DEA⁺ inserts into the open central hollow
+  of the 3-chain patch (`reports/hplc_patch_extended_2026-11-11/`).
 
-- *Reagent order is not reproduced quantitatively.* With n = 4–5 reagents, one starting geometry each,
-  and differences of 0.3–2 kcal/mol, no correlation is established (chain-contact T···S in the bridged
-  model: Spearman ρ = 0.8, p = 0.10). C-PCM has no cavitation (hydrophobic) term, but adding the SMD
-  non-electrostatic (CDS) term does not fix this: in water it adds only −0.7 to −1.0 kcal/mol to chain
-  contact (4–6 cal/mol/Å² of buried nonpolar area, vs ≈ 25 from alkane transfer) and changes no rank
-  (`reports/hplc_nonpolar_2026-10-26/`).
-  On a silanol-free three-chain C8 patch every reagent binds by chain contact (−4.9 to −8.9 kcal/mol,
-  dispersion-like) and TEAH⁺ is weakest. With five placements per reagent (xTB-screened; lowest-energy =
-  most strongly bound in every reagent) the order is TEAH⁺ < DIPEA-H⁺ < HAA < TBuAA < DBAA (ρ = 0.7,
-  p = 0.19; 0.6 with CDS) against the published TEA < DIPEA < DBA < HA < TBA: TBuAA and DBAA both bind by
-  inserting over the chain triangle, but DBAA is still 1.7 kcal/mol stronger and HAA ranks too low
-  (`reports/hplc_patch_2026-10-27/`, `reports/hplc_patch_sampling_2026-10-28/`). This order is robust to the
-  solvent model at fixed geometry. Bondi × 1.4 radii bind every pair 0.6 kcal/mol more strongly on average
-  (ρ 0.5–0.7), and an acetonitrile dielectric changes the EDA by < 0.03 kcal/mol
-  (`reports/hplc_patch_sensitivity_2026-11-10/`).
-- *Base order is inverted.* Both papers find T > A > G > C, with C/G-rich oligos eluting first. Here
-  the direct residue···C8 contact puts C strongest (−18.9) and A/U weakest (−14.9), because these
-  contacts are polar hydrogen bonds to the silanol.
-- *Not modelled:* HFIP (Donegan: tertiary amines gain the most apparent hydrophobicity with it),
-  counter-anions, acetonitrile, reagent concentration and micelles (Maurer's 100–200 mM plateau),
-  RNA secondary structure, and reagent mixtures (Maurer's best: 100 mM BA + 50 mM TPA).
+### 4.4 Reagent retention fit
 
-**Next steps:** use a larger/denser brush (≥ 5–7 chains) that linear and tertiary reagents can both
-insert into, then test whether HA/DBA/TBA > DIPEA/TEA (and TBA > DBA) and
-T > A > G > C emerge; compare
-phosphorothioate with phosphate ion pairs; model HFIP pairing with each reagent; add BA, TPA and DEA.
+![logD and EDA vs % ACN at elution](docs/figures/hplc_reagent_retention_fit.png)
 
-## Install
+**Figure 6.** % ACN at elution of dT20 (Donegan 2022) against (a) the reagents' logD, (b) the EDA total over all
+placements, and (c) the EDA total excluding hollow-inserted placements. LOO RMSE: mean-only model 11.2 % ACN.
 
-Use Python 3.12 in an isolated environment; do not upgrade system Python/drivers.
-CPU: `python -m pip install -r requirements-cpu-lock.txt -e '.[test]'`.
-The actual host GPU installation and exact pins are in `requirements-gpu-lock.txt`
-after verified local execution. Install with `python -m pip install -r requirements-gpu-lock.txt -e '.[test]'`. CUDA wheel names depend on driver/runtime compatibility.
-CUDA 12 runtimes can coexist with the host CUDA 13 toolkit. Source
-`scripts/gpu-env.sh` before GPU execution; it exposes the environment's NVIDIA
-wheel libraries without modifying the system loader. The script targets the verified
-Python 3.12 `.env` layout. Exact host installation:
+Results:
+- No EDA descriptor beats logD (LOO RMSE 7.5 % ACN).
+- Excluding hollow placements turns the EDA total from no fit (r 0.43, LOO 13.1) into one about as good as logD
+  (r 0.74, LOO 8.1, ρ 0.75–0.83).
+- A permutation check over the whole descriptor search finds an equally good fit for a third of shuffled targets.
+- dT60 gives the same picture.
+- Archive: `reports/hplc_retention_fit_2026-11-11/`.
+
+### 4.5 RNA bases on the C8 patch vs nucleotide retention
+
+The capped residues A, C, G and U were placed on the silanol-free patch with the same protocol (5 placements each).
+All 20 optimizations and decompositions succeeded, with topology preserved and closure ≤ 5.7 × 10⁻¹⁰ Eh. The target
+data are NTP retention times on C18 with 100 mM BA + 50 mM TPA, read off Maurer 2025 Fig. 9 (±0.03 min):
+**CTP 1.50 < UTP 1.87 < GTP 1.99 < ATP 2.82 min**. The same paper states the nucleotide hydrophobicity order
+T > A > G > C.
+
+![Base binding vs nucleotide retention](docs/figures/hplc_base_vs_retention.png)
+
+**Figure 7.** GKS-EDA(sol) total for each base on the C8 patch against NTP retention time. Large dots: Boltzmann
+average (298 K); small dots: individual placements.
+
+| Descriptor (kcal/mol) | C | U | G | A | ρ vs t_R |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| EDA total, Boltzmann | −8.25 | −9.64 | −10.61 | −11.52 | **−1.00** |
+| EDA total, lowest-energy placement | −7.50 | −10.83 | −10.61 | −11.58 | −0.80 |
+| EDA + CDS(water), Boltzmann | −12.10 | −14.35 | −13.84 | −15.87 | −0.80 |
+| Base-ring / backbone contacts with chains, best placement | 34 / 36 | 38 / 41 | 61 / 30 | 55 / 25 | |
+
+- **The order is reproduced.** The Boltzmann EDA total gives exactly the measured order (exact permutation p = 1/24,
+  one-sided). With the silanol proxy, C bound most strongly (−18.9) because of polar H-bonds. On the hydrophobic patch
+  C is the weakest binder.
+- **Mechanism.** No single component sets the order. Purines lay more ring atoms flat on the chains, gaining
+  generalized correlation (dispersion-like) energy. A also pays the least Pauli repulsion and desolvation.
+- **Robustness.**
+  - Dropping any one placement keeps ρ = −1 in 19 of 20 cases.
+  - A within-base placement bootstrap gives the exact order in 49 % of resamples.
+  - Adding CDS swaps U and G.
+  - The U/G and G/A gaps (~1 kcal/mol) are smaller than the spread between placements (4–5 kcal/mol). A > G > U > C is
+    therefore the most likely order, not a firm result.
+- **Selection.** The EDA total was the headline descriptor in the earlier reagent work, so it was not chosen after
+  seeing these data. Among the 4 headline descriptors, a shuffled order matches perfectly 8 % of the time. Among all 40
+  energy descriptors examined, it does 67 % of the time.
+
+Archive: `reports/hplc_patch_bases_2026-11-20/`.
+
+## 5. Discussion and limitations
+
+- **Model versus experiment.**
+  - The base comparison pairs a −1 capped monophosphate on a bare 3-chain C8 patch with −4 triphosphates ion-paired
+    on C18. It tests only whether base–chain contact alone can rank the bases.
+  - The model uses U, while T (in "T > A > G > C") has an extra methyl.
+- **Statistics.** With n = 4 bases and 5–8 reagents, no correlation is statistically established. Gaps between
+  neighbouring species are often smaller than the spread between placements.
+- **Patch size.** The 3-chain patch has an open central hollow that small reagents fall into. It also cannot represent
+  chain packing, which probably explains why linear amines (HA) are more retained, and branched ones (DIPEA) less, than
+  logD predicts. Larger brushes exceed the 16 GB GPU (§3.4).
+- **Solvent model.** C-PCM has no cavitation term. The SMD-CDS term in water adds only 4–6 cal mol⁻¹ Å⁻² of buried
+  nonpolar area, against ≈ 25 from alkane transfer, and changes no reagent rank (`reports/hplc_nonpolar_2026-10-26/`).
+- **Not modelled.** HFIP, counter-anions, explicit acetonitrile, reagent concentration and micelles (Maurer's
+  100–200 mM plateau), RNA secondary structure, and reagent mixtures.
+- **Validation of the solvated decomposition** is internal only (§3.3).
+
+## 6. Conclusions and next steps
+
+GKS-EDA is implemented on CPU and GPU and reproduces published gas-phase components to ≤ 0.2 kcal/mol. For HPLC, the
+decomposition gives a consistent molecular picture: retention through the reagent is length-based and
+base-independent, and direct base contact with a hydrophobic phase discriminates purines from pyrimidines. On a
+silanol-free C8 patch the base order matches measured nucleotide retention. The reagent order matches only partly and
+is no better than logD.
+
+Open directions:
+1. Compare with retention data measured at different base ratios (the user's own data; template in
+   `examples/hplc/retention_template.csv`).
+2. More placements per base to tighten the U/G and G/A gaps.
+3. Re-sample DEA/BA/DBA away from the patch's central hollow.
+4. Phosphorothioate vs phosphate ion pairs, and HFIP pairing with each reagent.
+5. External validation of GKS-EDA(sol) against XEDA with matched cavities.
+
+## 7. Reproducing the results
+
+### Install
+
+Use Python 3.12 in an isolated environment; do not upgrade system Python or drivers.
 
 ```bash
+# CPU only
+python -m pip install -r requirements-cpu-lock.txt -e '.[test]'
+# GPU host (exact pins verified on the test computer)
 /home/zyliu/anaconda3/bin/conda create -p "$PWD/.env" python=3.12 pip -y
 .env/bin/python -m pip install -r requirements-gpu-lock.txt -e '.[test]'
-source scripts/gpu-env.sh
+source scripts/gpu-env.sh   # exposes the environment's NVIDIA wheel libraries without touching the system loader
 ```
 
-The optimization foundation passed nine scientific checks with actual GPU execution.
-Experimental CPU EDA preparation adds independent electrostatic and correlation checks;
-a validated full GKS-EDA release remains unavailable. See the recorded evidence.
+CUDA wheel names depend on driver/runtime compatibility. CUDA 12 runtimes can coexist with a host CUDA 13 toolkit.
+
+### Basic usage
 
 ```bash
-source scripts/gpu-env.sh # GPU wheel library paths
+source scripts/gpu-env.sh
 .env/bin/eda-gpu inspect
 .env/bin/eda-gpu singlepoint examples/water.xyz --metadata examples/water.json --backend cpu --output runs/water_sp
 .env/bin/eda-gpu optimize examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu --output runs/dimer_gpu
-.env/bin/eda-gpu optimize examples/water.xyz --metadata examples/water_frozen.json --backend cpu --output runs/frozen
+.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu --output runs/gks_dimer_gpu
+.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu \
+  --xc pbe0 --solvent cpcm --output runs/gks_sol_dimer
 .env/bin/eda-gpu validate --gpu --output runs/validation
 .env/bin/python -m pytest -q
 ```
 
-Output directories must be new, preserving existing work. Failed calculations write
-`result.json` with an error and return nonzero. GPU failures never fall back to CPU.
-`validate --gpu` requires GPU execution; without it GPU validation is explicitly absent.
+- Output directories must be new, so existing work is never overwritten.
+- A failed calculation still writes `result.json` with the error and returns nonzero.
+- GPU failures never fall back to the CPU.
 
-JSON metadata requires identity, protonation, integer charge and spin (Nalpha-Nbeta,
-not multiplicity), and a complete fragment partition with charges/spins. Atom indices
-are zero based; geomeTRIC constraint files use one based indices. Bonds,
-stereochemistry, and other provided chemical metadata are preserved in results.
-XYZ alone cannot establish protonation or stereochemistry. No conformer generation
-or HPLC retention prediction is implemented.
+**Input metadata.** JSON metadata requires identity, protonation, integer charge, spin (Nα − Nβ, not multiplicity) and
+a complete fragment partition with charges and spins. Atom indices are zero-based; geomeTRIC constraint files are
+one-based.
 
-Results record energies in hartree, gradients in hartree/bohr, angstrom coordinates,
-SCF/optimization status, method settings, runtime versions/hardware, constraints,
-initial/final XYZ and evaluation trajectories. Convergence does not establish a minimum.
+**Results.** Energies are recorded in hartree, gradients in hartree/bohr and coordinates in ångström. Convergence
+establishes a stationary point, not a minimum; no vibrational analysis is performed.
 
-See [methods](docs/METHODS.md), [validation](docs/VALIDATION.md),
-[GKS-EDA source gate](docs/GKS_EDA_SPEC.md), and the dated report under `reports/`.
+### HPLC pipeline (bases example)
+
+```bash
+runs/queue_hplc_patch_bases.full.sh   # xTB pre-opt + DFT opt + GKS-EDA(sol), xTB screen, nonpolar term, analysis
+.env/bin/python scripts/analyze_hplc.py runs/hplc_patch_bases_cpcm_def2svp --output runs/hplc_patch_bases_cpcm_def2svp/analysis.json
+.env/bin/python scripts/compare_base_retention.py runs/hplc_patch_bases_cpcm_def2svp \
+  --data examples/hplc/maurer2025_fig9_ntp.csv --seeds examples/hplc/patch_bases --output reports/hplc_patch_bases_2026-11-20/base_retention.json
+.env/bin/python scripts/fit_patch_retention.py --cases <cases.json> --data examples/hplc/donegan2022_table4.csv --output fit.json
+```
+
+### Monitoring
+
+```bash
+.env/bin/eda-gpu monitor runs/my-calculation   # live SCF cycles, optimization steps, cooldowns, EDA components
+.env/bin/eda-gpu status runs/my-calculation    # one snapshot; --json for machine-readable output
+```
+
+For older running jobs, add `--log /path/to/calculation.log`. New calculations write atomic `progress.json` snapshots
+and an `events.jsonl` history next to their results.
+
+### Computing limits
+
+**Defaults.** Molecular CLI commands use 16 compute threads and 50 % workload pacing. GPU cooldown runs from 75 °C down
+to 65 °C, and CPU cooldown from 85 °C down to 75 °C.
+
+**Options.** `--threads`, `--cpu-core-limit`, `--compute-duty-cycle`, `--gpu-temperature-limit` and
+`--cpu-temperature-limit` are configurable; a temperature limit of 0 disables that guard. Checks happen at SCF cycles
+and workload boundaries, so a long kernel cannot be interrupted. Pacing is an average target, not a watt cap.
+
+**Hardware settings.** GPU power and clocks are never changed automatically, because `nvidia-smi -pl` affects the
+shared GPU. The developer's original power limit was 320 W. An optional temporary CPU frequency cap saves the original
+limits and restores them automatically:
+
+```bash
+sudo /usr/bin/python3 scripts/cpu_frequency_cap.py apply --max-mhz 3000 --minutes 60
+sudo /usr/bin/python3 scripts/cpu_frequency_cap.py restore
+```
+
+## 8. Appendix: implementation notes
+
+### A. Experimental CPU EDA preparation (`eda-prepare`)
+
+- **What it computes.** Frozen electrostatics and generalized correlation with direct integrals and ghost-basis
+  counterpoise references. It supports two closed-shell fragments with B3LYP/PBE0, on the CPU only.
+- **What it reports.** Exchange, repulsion and polarization stay null, and a successful run reports
+  `full_eda_available: false`. Use `eda` for the complete calculation.
+- **XEDA II CO₂ example.** The partial calculation differs from the official example beyond printed rounding. The
+  example's settings are not fully specified, and Cartesian functions explain most of the gap.
+- **Links.** [Comparison evidence](reports/eda_preparation_2026-10-11/co2_reference_comparison.json),
+  [source audit](docs/EDA_SOURCE_AUDIT_2026-10-11.md).
+
+```bash
+.env/bin/eda-gpu eda-prepare examples/co2_dimer_xeda_ii.xyz --metadata examples/co2_dimer_xeda_ii.json --backend cpu --basis '6-31g*' --output runs/eda_co2
+```
+
+### B. Complete GKS-EDA result flags
+
+- **Gas-phase results** state `all_components_computed: true` and `scientifically_validated: true`. The second flag
+  reflects the published-benchmark agreement.
+- **`full_eda_available`** stays false. It is reserved for a matched-settings XEDA comparison, which has not been run.
+- **Solvated results** state `scientifically_validated: false`.
+- **Tiny-system timings.** For tiny systems the GPU is slower: median complete EDA takes 24.43 s on GPU vs 3.15 s on
+  CPU for the water dimer ([timings](reports/gks_eda_gpu_2026-10-11/result.json)).
+
+```bash
+.env/bin/python scripts/validate_gks.py --gpu --repeats 3 --output runs/gks_checks
+.env/bin/python scripts/validate_gks_sol.py --gpu --output runs/gks_sol_validation
+```
+
+### C. Tryptamine–water benchmark details
+
+- **Method.** Liu et al., PCCP 2017: neutral M06-2X and radical-cation U-M06-2X with aug-cc-pVDZ and counterpoise
+  EDA. The cation is made by removing one electron. Fragment spins must add up to the complex spin; broken-symmetry
+  coupling is out of scope. ⟨S²⟩ is recorded for unrestricted SCFs.
+- **Geometry.** `examples/tryptamine_water/constructed_bridge.xyz` is a labelled approximate seed, rebuilt from the SI
+  bonding pattern (optional RDKit 2026.9.1).
+- **Not claimed.** No ZPE/deformation-corrected D0 and no Hessian certification are claimed.
+- **Settings.** SCF thresholds were 10⁻⁹ Eh with an orbital gradient of 10⁻⁶. The closure residual was
+  8.45 × 10⁻¹¹ Eh.
+- **Archive.** [Archived results](reports/tryptamine_neutral_gpu_2026-10-11/paper_comparison.json).
+
+```bash
+.env/bin/python scripts/compare_tryptamine.py --xyz examples/tryptamine_water/constructed_bridge.xyz \
+  --metadata examples/tryptamine_water/neutral.json --case A_H2O --opt-density-fitting --output runs/tryptamine_comparison
+```
+
+### D. Research attribution
+
+Calculation output, monitoring and JSON results carry this acknowledgement: "If EDA_GPU has benefited your research,
+please support us by citing this project and the GKS-EDA publications below." Method attribution includes Peifeng Su
+et al., [original GKS-EDA, 2014](https://doi.org/10.1021/jp500405s),
+[Su, Tang and Wu review, 2020](https://doi.org/10.1002/wcms.1460), and
+[Su and Li orbital derivation, 2009](https://doi.org/10.1063/1.3159673). Tryptamine runs also cite
+[Liu et al., 2017](https://doi.org/10.1039/C7CP03491A).
+
 ## Scientific references, research papers, and websites
 
 If EDA_GPU has benefited your research, please cite
@@ -457,7 +685,7 @@ Official software websites and implementation documentation:
     and systematic testing of four M06-class functionals and 12 other functionals.”
     *Theoretical Chemistry Accounts* **120**, 215–241.
     [DOI: 10.1007/s00214-007-0310-x](https://doi.org/10.1007/s00214-007-0310-x).
-    M06-2X functional used for the tryptamine–water benchmark.
+    M06-2X functional used for the tryptamine–water benchmark and the HPLC study.
 
 ### Orbital and auxiliary basis sets
 
@@ -465,7 +693,7 @@ Official software websites and implementation documentation:
     triple zeta valence and quadruple zeta valence quality for H to Rn: Design and
     assessment of accuracy.” *Physical Chemistry Chemical Physics* **7**, 3297–3305.
     [DOI: 10.1039/B508541A](https://doi.org/10.1039/B508541A).
-    def2-SVP basis used in the optimization-foundation validation.
+    def2-SVP basis used in the optimization-foundation validation and the HPLC study.
 29. **Weigend, F. (2002).** “A fully direct RI-HF algorithm: Implementation,
     optimised auxiliary basis sets, demonstration of accuracy and efficiency.”
     *Physical Chemistry Chemical Physics* **4**, 4285–4291.
@@ -512,12 +740,18 @@ reported with each result because these choices affect comparison with published
     Chromatography A* **1666**, 462860.
     [DOI: 10.1016/j.chroma.2022.462860](https://doi.org/10.1016/j.chroma.2022.462860).
     Source of the % acetonitrile at elution and the reagent hydrophobicity order used in the
-    [HPLC comparison](#comparison-with-published-ip-rp-retention-data).
+    reagent comparison ([§4.4](#44-reagent-retention-fit)).
 36. **Maurer, J.; Malburet, C.; François-Heude, M.; Guillarme, D. (2025).** “Evaluation of ion pairing
     reversed-phase liquid chromatography for the separation of large RNA molecules.” *Journal of
     Chromatography A* **1740**, 465574.
     [DOI: 10.1016/j.chroma.2024.465574](https://doi.org/10.1016/j.chroma.2024.465574).
-    Reagent classification and large-RNA retention on a silanol-free polymeric column.
+    Reagent classification and large-RNA retention on a silanol-free polymeric column; Fig. 9 NTP
+    retention times used in the base comparison ([§4.5](#45-rna-bases-on-the-c8-patch-vs-nucleotide-retention)).
+37. **Marenich, A. V.; Cramer, C. J.; Truhlar, D. G. (2009).** “Universal solvation model based on solute
+    electron density and on a continuum model of the solvent defined by the bulk dielectric constant and
+    atomic surface tensions.” *Journal of Physical Chemistry B* **113**, 6378–6396.
+    [DOI: 10.1021/jp810292n](https://doi.org/10.1021/jp810292n).
+    SMD-CDS nonpolar term evaluated for the HPLC complexes.
 
 ### Project terms
 
@@ -525,196 +759,3 @@ This repository is public for development visibility. No project license has bee
 assigned yet. Published literature and manuals are linked; full-text papers are
 not redistributed in this repository. Software projects retain their own licenses
 and citation guidance.
-
-## Experimental CPU EDA preparation
-
-The supplied 2020 review was read completely. Its unambiguous definitions now support
-frozen electrostatics and generalized correlation, using direct integrals and ghost-basis
-counterpoise references at the complex geometry. Exactly two closed-shell, all-electron
-fragments and B3LYP/PBE0 are supported by this older CPU-only command.
-Use `eda` below for the complete experimental CPU/GPU component calculation.
-
-```bash
-.env/bin/eda-gpu eda-prepare examples/water_dimer.xyz --metadata examples/water_dimer.json --backend cpu --output runs/eda_dimer
-.env/bin/eda-gpu eda-prepare examples/co2_dimer_xeda_ii.xyz --metadata examples/co2_dimer_xeda_ii.json --backend cpu --basis '6-31g*' --output runs/eda_co2
-```
-
-A successful preparation reports `full_eda_available: false`. Exchange, repulsion,
-polarization, and total closure remain null until their intermediate-state conventions
-and component references are established. Saved densities support further development.
-The official XEDA II CO₂ example differs from our partial calculation beyond printed
-rounding; its settings are not fully specified, so it is an exploratory comparison. See
-[comparison evidence](reports/eda_preparation_2026-10-11/co2_reference_comparison.json),
-[mathematical specification](docs/GKS_EDA_SPEC.md), and
-[source audit](docs/EDA_SOURCE_AUDIT_2026-10-11.md). Papers remain local.
-
-## Complete experimental CPU/GPU GKS-EDA
-
-`eda` now computes electrostatic, exchange, repulsion, polarization (including charge
-transfer), generalized correlation, and explicit dispersion (zero for the supported
-non-dispersion-corrected methods). Exactly two all-electron fragments with additive spins,
-B3LYP/B3LYP5/PBE0, counterpoise references and direct integrals are supported. It
-uses the explicit Su–Li orbital intermediates on KS orbitals, as specified in the
-supplied review; no ALMO-EDA substitution is made.
-
-```bash
-source scripts/gpu-env.sh
-.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu --output runs/gks_dimer_gpu
-.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend cpu --output runs/gks_dimer_cpu
-.env/bin/eda-gpu eda examples/co2_dimer_xeda_ii.xyz --metadata examples/co2_dimer_xeda_ii.json --backend gpu --basis '6-31g*' --cart --output runs/gks_co2_gpu
-.env/bin/python scripts/validate_gks.py --gpu --repeats 3 --output runs/gks_checks
-```
-
-All terms, intermediate energies, condition checks and reference densities are saved.
-Gas-phase results state `all_components_computed: true`, `scientifically_validated: true`
-(published-benchmark agreement, ≤0.20 kcal/mol per component) and `full_eda_available: false`
-(reserved for a matched-settings XEDA comparison, not performed). Solvated results state
-`scientifically_validated: false`. A successful process means the calculation converged and its
-internal checks passed; it does not imply agreement with XEDA tighter than ~0.2 kcal/mol.
-
-**28 local tests passed**, including actual GPU EDA, independent integral/PBE0
-checks and a many-electron determinant energy check. Repeated CPU/GPU comparisons
-on water and CO₂ dimers have a maximum individual-component difference of
-**1.82e-8 hartree**. Cartesian functions explain most of the earlier CO₂ reference
-discrepancy, but residual component differences remain beyond printed rounding.
-
-GPU4PySCF direct J/K has CPU/GPU hybrid internals; this is not an all-GPU workflow.
-For these tiny cases, measured complete EDA GPU medians were slower than CPU
-(24.43 versus 3.15 seconds for water dimer; 29.47 versus 9.19 for CO₂). These
-measurements do not establish larger-system throughput or speedup. See
-[GPU EDA validation and timings](reports/gks_eda_gpu_2026-10-11/result.json),
-[methods](docs/GKS_EDA_SPEC.md), and [validation details](docs/VALIDATION.md).
-
-## Experimental GKS-EDA(sol)
-
-`eda --solvent cpcm|iefpcm [--solvent-eps E]` adds the solvent extension of the review
-(Eqs. 12–13): all reference SCFs use a PCM reaction field, the six gas-phase-form terms are
-evaluated with the gas-phase functional at the SCRF densities, and ΔG_desol is the change in
-electrostatic solvation energy. Monomers sit in the supermolecule cavity with only their own
-nuclei. Two definitions are documented interpretations pending the original derivation
-([specification](docs/GKS_EDA_SOL_SPEC.md)). `singlepoint` and `optimize` accept the same
-flags (PCM analytic gradients pass finite-difference checks).
-
-```bash
-.env/bin/eda-gpu eda examples/water_dimer.xyz --metadata examples/water_dimer.json --backend gpu \
-  --xc pbe0 --solvent cpcm --output runs/gks_sol_dimer
-.env/bin/python scripts/validate_gks_sol.py --gpu --output runs/gks_sol_validation
-```
-
-Validated internally: vacuum limit (1.6e-9 Eh), dielectric screening at separation, CPU/GPU
-agreement for C-PCM and IEF-PCM (≤9.6e-9 Eh). Not externally validated: the XEDA II BH₃–NH₃
-example differs strongly and depends on unknown cavity radii, to which desolvation is very
-sensitive. See [validation](docs/VALIDATION.md).
-
-Component-level external agreement is established only to the published-table level
-(≤0.20 kcal/mol on reconstructed geometries, Liu et al. 2017); the project owner accepted
-this on 2026-10-19 and deferred a matched-settings XEDA run. Tighter agreement than
-~0.2 kcal/mol per component is therefore not demonstrated. Gas-phase results report
-`scientifically_validated: true` on this basis; `full_eda_available` stays false. Open-shell, solvent and double-hybrid validation remain deferred; the RNA/HPLC application is exploratory ([HPLC application study](#hplc-application-study-experimental)).
-
-
-### Tryptamine–water paper benchmark (under development)
-
-The benchmark follows Liu et al., PCCP 2017, DOI
-[10.1039/C7CP03491A](https://doi.org/10.1039/C7CP03491A): neutral M06-2X and
-radical-cation U-M06-2X with aug-cc-pVDZ and counterpoise EDA. The cation is
-created by removing one electron, **not** by protonation. Restricted and unrestricted
-CPU/GPU optimization and complete experimental EDA are supported. Open-shell
-fragment spins must add to the complex spin; broken-symmetry/antiferromagnetic
-coupling is outside the implemented scope. S² is recorded for unrestricted SCFs.
-
-Published Table 3 data are attributed in `references/tryptamine_water_2017.json`.
-The supplied four-page SI contains molecular figures and charges, but no full
-Cartesian coordinates. `examples/tryptamine_water/constructed_bridge.xyz` is an
-explicitly labelled approximate seed constructed from the SI bonding pattern,
-not the paper's original geometry. Optional seed generation requires
-`rdkit==2026.9.1`; ordinary calculations do not require RDKit.
-
-```bash
-source scripts/gpu-env.sh
-.env/bin/python scripts/compare_tryptamine.py \
-  --xyz examples/tryptamine_water/constructed_bridge.xyz \
-  --metadata examples/tryptamine_water/neutral.json \
-  --case A_H2O --opt-density-fitting --output runs/tryptamine_comparison
-```
-
-This runs CPU/GPU density-fitted optimization (aug-cc-pVDZ-JKFIT) sequentially from identical input, then direct
-counterpoise EDA on the same GPU-optimized geometry. Outputs include coordinates,
-trajectories, settings, spin diagnostics, aligned geometry RMSD, all EDA terms,
-backend differences and differences from the paper. Pauli is exchange plus
-repulsion, matching Table 3. Paper agreement remains exploratory until original
-coordinates and numerical settings are matched. No ZPE/deformation-corrected D0,
-minimum/Hessian certification, intra-EDA or individual-H-bond decomposition is
-claimed. A separate H⁺–H₂O starting conformer is required to study that isomer.
-
-### Live calculation progress and research attribution
-
-```bash
-.env/bin/eda-gpu monitor runs/my-calculation
-.env/bin/eda-gpu status runs/my-calculation
-```
-
-`monitor` follows SCF cycles, optimization evaluations, energies, gradient norms,
-temperature cooldowns and final EDA components. Ctrl+C exits the viewer while the
-calculation continues. `status` prints one snapshot; `--json` gives machine-readable
-output. For older running jobs, add `--log /path/to/calculation.log`. New calculations
-record atomic `progress.json` snapshots and an `events.jsonl` history beside results.
-
-Calculation output, monitoring and JSON results carry this acknowledgement:
-“If EDA_GPU has benefited your research, please support us by citing this project
-and the GKS-EDA publications below.” Method attribution includes Peifeng Su et al.,
-[original GKS-EDA, 2014](https://doi.org/10.1021/jp500405s),
-[Su, Tang and Wu review, 2020](https://doi.org/10.1002/wcms.1460), and
-[Su and Li orbital derivation, 2009](https://doi.org/10.1063/1.3159673).
-Tryptamine runs additionally cite [Liu et al., 2017](https://doi.org/10.1039/C7CP03491A).
-
-### Computing limits
-
-Molecular CLI commands default to 16 physical cores/compute threads, 50% workload
-pacing, GPU cooldown at 75°C until 65°C and CPU cooldown at 85°C until 75°C.
-These settings affect this calculation process. `--threads`, `--cpu-core-limit`,
-`--compute-duty-cycle`, `--gpu-temperature-limit` and `--cpu-temperature-limit`
-are configurable; temperature limit 0 disables that sensor guard. Library Settings
-retain unpaced defaults for explicitly controlled benchmarks. CPU sensor availability
-and actual pacing/temperature statistics are reported. Software checks occur at SCF
-cycles and workload boundaries; long kernels cannot be interrupted by these controls.
-Pacing is an average workload target, not a fixed instantaneous utilization or watt cap.
-
-GPU power/clocks are never changed automatically. `nvidia-smi -pl` changes the shared
-GPU and affects other projects. The developer's original RTX 4080 SUPER power limit
-was 320 W; restoring it is an explicit administrator action.
-
-For an optional **temporary system-wide CPU frequency cap**:
-
-```bash
-sudo /usr/bin/python3 scripts/cpu_frequency_cap.py apply --max-mhz 3000 --minutes 60
-sudo /usr/bin/python3 scripts/cpu_frequency_cap.py restore
-```
-
-The helper saves the original limits, applies the ceiling across CPU policies and
-starts an automatic restore timer. Manual restore can end it early; later manual
-policy changes are preserved. This hardware setting affects other CPU applications
-while active and is not installed as a boot service. Neither this helper nor process
-pacing modifies firmware or Windows configuration.
-
-### Completed exploratory neutral tryptamine–water benchmark
-
-GPU M06-2X/aug-cc-pVDZ direct counterpoise GKS-EDA at the GPU
-density-fitted optimized geometry converged with all six components.
-Values below are kcal/mol, compared with PCCP Table 3:
-
-| Component | GPU | Paper |
-|---|---:|---:|
-| Electrostatic | -17.279 | -17.34 |
-| Pauli | 19.535 | 19.69 |
-| Polarization | -7.048 | -7.07 |
-| Generalized correlation | -5.489 | -5.54 |
-| Total | -10.282 | -10.27 |
-
-This is encouraging exploratory agreement, not a verified reproduction.
-The maximum component difference is 0.155 kcal/mol. Original Cartesian
-coordinates are unavailable; the seed was reconstructed. Paper grid settings
-are unspecified. CPU comparison and cation calculations remain pending.
-SCF thresholds were 1e-9 Eh and orbital-gradient 1e-6; an earlier 1e-12 Eh
-attempt did not converge and was excluded. Energy closure residual was
-8.45e-11 Eh. See [archived results](reports/tryptamine_neutral_gpu_2026-10-11/paper_comparison.json).
