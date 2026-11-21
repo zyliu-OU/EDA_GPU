@@ -344,8 +344,9 @@ silanol-free C8 patch the base order matches measured nucleotide retention, but 
 patch's central hollow. The reagent order matches only partly and is no better than logD.
 
 Open directions:
-1. Compare with retention data measured at different base ratios (the user's own data; template in
-   `examples/hplc/retention_template.csv`).
+1. Compare with published base-composition retention data only (no proprietary data are used). The best candidate
+   found so far is Sturm et al. 2007 (72 DNA oligonucleotides, TEAA, silanol-free PS-DVB monolith, 30–80 °C, with
+   G→A and G→C exchanges at fixed length); see `reports/literature_search_2026-11-20.md`.
 2. More off-centre placements per base (on the flat chain surface), to test whether the base order survives without
    the hollow.
 3. Re-sample DEA/BA/DBA away from the patch's central hollow.
