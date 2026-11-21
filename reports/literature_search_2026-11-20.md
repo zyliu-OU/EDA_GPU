@@ -25,3 +25,15 @@ Constraint (2026-11-20): only published data are used; no proprietary or company
    the shift). Fit per-base contributions from the composition where the design allows.
 3. Shen 2018: if coordinates and radii are present, reproduce 2–3 complexes (e.g. ClF···NH₃, Br₂···pyridine) in gas
    and water as the external GKS-EDA(sol) validation.
+
+## Update (same day, after manual downloads)
+- Sturm 2007 SI was obtained. Table A.1 is in `examples/hplc/sturm2007_tableS1.csv`, and the fit and comparison are in
+  `reports/literature_comparison_2026-11-20/`. At 80 °C the order is T > A > C ≈ G.
+- Gilar 2002 PDF was obtained. Its homo-oligomer coefficients (Eqs. 2–5) are recorded in the comparison README. G was
+  derived, not measured.
+- Shen 2018: the main text is available; the ESI was not included in the download. Main-text Table 3 (gas) and
+  Table 7 (ε 78.36) give GKS-EDA components, but only at **ωB97X-D**/aug-cc-pVDZ(-pp), CPCM, UFF radii × 1.1. The
+  M06-2X results are only in the ESI (Tables S3, S5–S11), and there are no Cartesian coordinates, only bond
+  distances/angles (Table 2). Reproducing the main-text tables needs range-separated hybrid support in `eda` (not
+  implemented; the engine excludes range separation) plus the -D2 term, or else the ESI M06-2X tables.
+- Rahal 2025 (arXiv): main text only, with no public data. Not usable.

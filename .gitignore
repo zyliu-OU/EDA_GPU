@@ -13,3 +13,4 @@ dist/
 /.psi4-env/
 timer.dat
 /.xtb-env/
+*.zip

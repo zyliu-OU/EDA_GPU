@@ -50,3 +50,9 @@ Do not start another run without asking (memory `no-new-runs-after-bases`). Open
   - Sturm 2007 NAR: 72 DNA oligos, TEAA, PS-DVB, Table S1, with G→A / G→C swaps.
   - Shen/Su/Wu 2018 PCCP: solvated GKS-EDA of halogen bonds, as an external GKS-EDA(sol) check.
   Both SIs block automated download, so the user needs to download them manually.
+- The user downloaded the Sturm SI, the Gilar 2002 paper and the Shen 2018 paper (no ESI), plus the Rahal paper.
+  Comparison: `reports/literature_comparison_2026-11-20/`. Sturm at 80 °C gives T > A > C ≈ G, in agreement with
+  Gilar. The EDA agrees on A > C and A > G, but puts G above C by 2.4 kcal/mol (the oligos show no G/C gap). T was not
+  modelled.
+- Shen 2018 main-text tables are ωB97X-D only; reproducing them needs range-separated hybrid support in `eda`. The
+  M06-2X tables are only in the ESI, which was not downloaded.

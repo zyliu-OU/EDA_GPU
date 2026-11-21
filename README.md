@@ -313,6 +313,12 @@ average (298 K); small dots: individual placements.
   seeing these data. Among the 4 headline descriptors, a shuffled order matches perfectly 8 % of the time. Among all 40
   energy descriptors examined, it does 67 % of the time.
 
+**Published oligonucleotide data.** Sturm et al. 2007 (72 DNA oligonucleotides, TEAA, PS-DVB, 80 °C) fits a
+per-base model with LOO RMSE 0.18 min. One base in a 24-mer shifts retention by T +0.36 > A +0.22 > C 0 ≈ G −0.02 min.
+This agrees with Gilar et al. 2002 (T > A > G ≈ C on C18). The EDA agrees that A binds more strongly than C and G, but
+it puts G 2.4 kcal/mol above C, where the oligonucleotide data show no G/C difference (the NTP data do show G > C). T
+was not modelled (`reports/literature_comparison_2026-11-20/`).
+
 Archive: `reports/hplc_patch_bases_2026-11-20/`.
 
 ## 5. Discussion and limitations
@@ -344,14 +350,16 @@ silanol-free C8 patch the base order matches measured nucleotide retention, but 
 patch's central hollow. The reagent order matches only partly and is no better than logD.
 
 Open directions:
-1. Compare with published base-composition retention data only (no proprietary data are used). The best candidate
-   found so far is Sturm et al. 2007 (72 DNA oligonucleotides, TEAA, silanol-free PS-DVB monolith, 30–80 °C, with
-   G→A and G→C exchanges at fixed length); see `reports/literature_search_2026-11-20.md`.
+1. Published data only (no proprietary data). Sturm 2007 and Gilar 2002 give the order T > A > C ≈ G for DNA
+   oligonucleotides. A deoxythymidine residue would test the strongest trend (T > A), which the model cannot yet address
+   (`reports/literature_comparison_2026-11-20/`).
 2. More off-centre placements per base (on the flat chain surface), to test whether the base order survives without
    the hollow.
 3. Re-sample DEA/BA/DBA away from the patch's central hollow.
 4. Phosphorothioate vs phosphate ion pairs, and HFIP pairing with each reagent.
-5. External validation of GKS-EDA(sol) against XEDA with matched cavities.
+5. External validation of GKS-EDA(sol): Shen, Su & Wu 2018 report gas and water GKS-EDA for small halogen-bond
+   complexes, but at ωB97X-D, which needs range-separated hybrid support in `eda`; a matched XEDA run remains the
+   alternative.
 
 ## 7. Reproducing the results
 
@@ -763,6 +771,17 @@ reported with each result because these choices affect comparison with published
     atomic surface tensions.” *Journal of Physical Chemistry B* **113**, 6378–6396.
     [DOI: 10.1021/jp810292n](https://doi.org/10.1021/jp810292n).
     SMD-CDS nonpolar term evaluated for the HPLC complexes.
+38. **Sturm, M.; Quinten, S.; Huber, C. G.; Kohlbacher, O. (2007).** “A statistical learning approach to the modeling
+    of chromatographic retention of oligonucleotides incorporating sequence and secondary structure data.” *Nucleic
+    Acids Research* **35**, 4195–4202. [DOI: 10.1093/nar/gkm338](https://doi.org/10.1093/nar/gkm338).
+    Supplementary Table A.1 retention times used for per-base contributions.
+39. **Gilar, M.; Fountain, K. J.; Budman, Y.; Neue, U. D.; Yardley, K. R.; Rainville, P. D.; Russell, R. J., II; Gebler, J. C.
+    (2002).** “Ion-pair reversed-phase high-performance liquid chromatography analysis of oligonucleotides: retention
+    prediction.” *Journal of Chromatography A* **958**, 167–182.
+    [DOI: 10.1016/S0021-9673(02)00306-0](https://doi.org/10.1016/S0021-9673(02)00306-0). Homo-oligonucleotide retention coefficients.
+40. **Shen, D.; Su, P.; Wu, W. (2018).** “What kind of neutral halogen bonds can be modulated by solvent effects?”
+    *Physical Chemistry Chemical Physics* **20**, 26126–26139. [DOI: 10.1039/C8CP05358H](https://doi.org/10.1039/C8CP05358H).
+    Candidate external GKS-EDA(sol) benchmark.
 
 ### Project terms
 
