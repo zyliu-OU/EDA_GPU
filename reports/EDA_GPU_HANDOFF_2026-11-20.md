@@ -41,3 +41,12 @@ updated with this caveat.
 ## Next
 Do not start another run without asking (memory `no-new-runs-after-bases`). Open options: off-centre re-sampling of the bases
 (tests the hollow dependence) and of DEA/BA/DBA. The 4-chain test is dropped (memory `hardware-size-limit`).
+
+## Later 2026-11-20
+- The user will not use own/company retention data; comparisons use published data only (memory `literature-data-only`).
+  README §6 updated.
+- Paper direction discussed: software/method paper first, with HPLC as the demonstration chapter.
+- Literature search: `reports/literature_search_2026-11-20.md`. Best leads:
+  - Sturm 2007 NAR: 72 DNA oligos, TEAA, PS-DVB, Table S1, with G→A / G→C swaps.
+  - Shen/Su/Wu 2018 PCCP: solvated GKS-EDA of halogen bonds, as an external GKS-EDA(sol) check.
+  Both SIs block automated download, so the user needs to download them manually.
