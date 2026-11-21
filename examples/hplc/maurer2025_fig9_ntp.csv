@@ -1,0 +1,8 @@
+# Maurer, Guillarme et al. 2025, J Chromatogr A 1740:465574, Fig. 9 (100 mm trace): NTP retention on Waters Acquity BEH C18 300 A
+# 2.1x100 mm, isocratic 1% ACN, 65 C, 0.4 mL/min, 100 mM butylamine + 50 mM tripropylamine (acetate). Peak apex times read off the
+# figure by eye (~ +/-0.03 min); not tabulated in the paper. Same paper, text: relative nucleotide hydrophobicity T > A > G > C (ref. 35).
+base,model,ntp,retention_time_min,literature_hydrophobicity_rank
+C,residue_C,CTP,1.50,1
+U,residue_U,UTP,1.87,
+G,residue_G,GTP,1.99,2
+A,residue_A,ATP,2.82,3

@@ -1,0 +1,926 @@
+{
+ "campaign": "runs/hplc_patch_bases_cpcm_def2svp",
+ "data": "examples/hplc/maurer2025_fig9_ntp.csv",
+ "retention_order_low_to_high": "CUGA",
+ "note": "expected sign for energies: negative rho (stronger binding = more retained); for buried SASA / contacts: positive",
+ "bases": {
+  "C": {
+   "model": "residue_C",
+   "retention_time_min": 1.5,
+   "n_placements": 5,
+   "selected": "patch_residue_C_1",
+   "weights": {
+    "patch_residue_C_0": 0.025173390543847013,
+    "patch_residue_C_1": 0.5548304050547332,
+    "patch_residue_C_2": 0.0010587853905161889,
+    "patch_residue_C_4": 0.409193375719881,
+    "patch_residue_C_9": 0.009744043291022433
+   },
+   "relative_energy_kcal_mol": {
+    "patch_residue_C_0": 1.832481733515772,
+    "patch_residue_C_1": 0.0,
+    "patch_residue_C_2": 3.7098679736036755,
+    "patch_residue_C_4": 0.18039663032584977,
+    "patch_residue_C_9": 2.3948277300042835
+   },
+   "placements": {
+    "patch_residue_C_0": {
+     "electrostatic": -10.177677896506585,
+     "exchange": -44.570861332094516,
+     "repulsion": 70.22268964006095,
+     "polarization": -1.7483640672402698,
+     "generalized_correlation": -23.106362563827147,
+     "desolvation": 2.3403240773165277,
+     "total": -7.040252167249694,
+     "pauli": 25.651828307966433,
+     "eda_plus_cds": -9.228480497354298,
+     "cds_water": -2.1882283301046037,
+     "buried_np_A2": 280.53794078026135,
+     "base_contacts": 43,
+     "backbone_contacts": 13
+    },
+    "patch_residue_C_1": {
+     "electrostatic": -14.8782604224626,
+     "exchange": -64.39260196229456,
+     "repulsion": 101.98281497839487,
+     "polarization": -3.2145986581157744,
+     "generalized_correlation": -30.952752359035678,
+     "desolvation": 3.9535883987236415,
+     "total": -7.501809968004826,
+     "pauli": 37.59021301610031,
+     "eda_plus_cds": -11.638015828519814,
+     "cds_water": -4.136205860514988,
+     "buried_np_A2": 435.54831109858594,
+     "base_contacts": 34,
+     "backbone_contacts": 36
+    },
+    "patch_residue_C_2": {
+     "electrostatic": -11.675244882034178,
+     "exchange": -49.18918028708693,
+     "repulsion": 78.29415320098003,
+     "polarization": -1.563768123432653,
+     "generalized_correlation": -25.331757788024095,
+     "desolvation": 1.749206002971696,
+     "total": -7.71659168642341,
+     "pauli": 29.104972913893107,
+     "eda_plus_cds": -10.141246875513318,
+     "cds_water": -2.4246551890899077,
+     "buried_np_A2": 301.8635953116045,
+     "base_contacts": 44,
+     "backbone_contacts": 14
+    },
+    "patch_residue_C_4": {
+     "electrostatic": -11.231312972535877,
+     "exchange": -50.482796232224665,
+     "repulsion": 79.20768707499893,
+     "polarization": -0.7715353191577295,
+     "generalized_correlation": -28.016349749796166,
+     "desolvation": 1.9561370142358296,
+     "total": -9.338170125917015,
+     "pauli": 28.724890842774265,
+     "eda_plus_cds": -12.923088909765871,
+     "cds_water": -3.584918783848856,
+     "buried_np_A2": 339.66808140827095,
+     "base_contacts": 47,
+     "backbone_contacts": 27
+    },
+    "patch_residue_C_9": {
+     "electrostatic": -12.150579481626394,
+     "exchange": -50.54618528854764,
+     "repulsion": 80.31960546725693,
+     "polarization": -0.9030872866749157,
+     "generalized_correlation": -27.25799621895721,
+     "desolvation": 2.65993831933144,
+     "total": -7.8783043007582965,
+     "pauli": 29.773420178709294,
+     "eda_plus_cds": -11.238188747816848,
+     "cds_water": -3.359884447058551,
+     "buried_np_A2": 289.5143872894247,
+     "base_contacts": 43,
+     "backbone_contacts": 22
+    }
+   },
+   "descriptors": {
+    "electrostatic/best": -14.8782604224626,
+    "electrostatic/boltzmann": -13.23765413741319,
+    "electrostatic/min": -14.8782604224626,
+    "electrostatic/mean": -12.022615131033126,
+    "exchange/best": -64.39260196229456,
+    "exchange/boltzmann": -58.05080393760656,
+    "exchange/min": -64.39260196229456,
+    "exchange/mean": -51.83632502044967,
+    "repulsion/best": 101.98281497839487,
+    "repulsion/boltzmann": 91.62770500997898,
+    "repulsion/min": 70.22268964006095,
+    "repulsion/mean": 82.00539007233836,
+    "polarization/best": -3.2145986581157744,
+    "polarization/boltzmann": -2.15373188524169,
+    "polarization/min": -3.2145986581157744,
+    "polarization/mean": -1.6402706909242686,
+    "generalized_correlation/best": -30.952752359035678,
+    "generalized_correlation/boltzmann": -29.5117223375036,
+    "generalized_correlation/min": -30.952752359035678,
+    "generalized_correlation/mean": -26.93304373592806,
+    "desolvation/best": 3.9535883987236415,
+    "desolvation/boltzmann": 3.0806938408027222,
+    "desolvation/min": 1.749206002971696,
+    "desolvation/mean": 2.5318387625158274,
+    "total/best": -7.501809968004826,
+    "total/boltzmann": -8.245513390104225,
+    "total/min": -9.338170125917015,
+    "total/mean": -7.895025649670648,
+    "pauli/best": 37.59021301610031,
+    "pauli/boltzmann": 33.576901072372436,
+    "pauli/min": 25.651828307966433,
+    "pauli/mean": 30.169065051888687,
+    "eda_plus_cds/best": -11.638015828519814,
+    "eda_plus_cds/boltzmann": -12.097722357277295,
+    "eda_plus_cds/min": -12.923088909765871,
+    "eda_plus_cds/mean": -11.03380417179403,
+    "cds_water/best": -4.136205860514988,
+    "cds_water/boltzmann": -3.8522089671730684,
+    "cds_water/min": -4.136205860514988,
+    "cds_water/mean": -3.1387785221233813,
+    "buried_np_A2/best": 435.54831109858594,
+    "buried_np_A2/boltzmann": 390.8481153568739,
+    "buried_np_A2/min": 280.53794078026135,
+    "buried_np_A2/mean": 329.42646317762944,
+    "base_contacts/best": 34,
+    "base_contacts/boltzmann": 39.64435864277744,
+    "base_contacts/min": 34.0,
+    "base_contacts/mean": 42.2,
+    "backbone_contacts/best": 36,
+    "backbone_contacts/boltzmann": 31.57856175134692,
+    "backbone_contacts/min": 13.0,
+    "backbone_contacts/mean": 22.4
+   }
+  },
+  "U": {
+   "model": "residue_U",
+   "retention_time_min": 1.87,
+   "n_placements": 5,
+   "selected": "patch_residue_U_4",
+   "weights": {
+    "patch_residue_U_0": 0.01966928124877712,
+    "patch_residue_U_1": 0.3406330698680801,
+    "patch_residue_U_2": 0.005490386749254742,
+    "patch_residue_U_4": 0.5105983554135003,
+    "patch_residue_U_5": 0.1236089067203878
+   },
+   "relative_energy_kcal_mol": {
+    "patch_residue_U_0": 1.9294420109838266,
+    "patch_residue_U_1": 0.23982451458435633,
+    "patch_residue_U_2": 2.68548793537839,
+    "patch_residue_U_4": 0.0,
+    "patch_residue_U_5": 0.8404165379486078
+   },
+   "placements": {
+    "patch_residue_U_0": {
+     "electrostatic": -14.363284681405439,
+     "exchange": -61.129944778735805,
+     "repulsion": 97.23322510830671,
+     "polarization": -2.0835140748599237,
+     "generalized_correlation": -31.587043753711477,
+     "desolvation": 3.063108516079132,
+     "total": -8.867453532300345,
+     "pauli": 36.10328032957091,
+     "eda_plus_cds": -13.705380105735014,
+     "cds_water": -4.837926573434668,
+     "buried_np_A2": 419.5617932820189,
+     "base_contacts": 43,
+     "backbone_contacts": 33
+    },
+    "patch_residue_U_1": {
+     "electrostatic": -14.348825453399808,
+     "exchange": -55.862207461661505,
+     "repulsion": 87.7914529221084,
+     "polarization": -2.4426332058804667,
+     "generalized_correlation": -27.995838890129612,
+     "desolvation": 4.7371208921251275,
+     "total": -8.120930982198969,
+     "pauli": 31.9292454604469,
+     "eda_plus_cds": -12.731219398568035,
+     "cds_water": -4.610288416369066,
+     "buried_np_A2": 349.9777412998011,
+     "base_contacts": 40,
+     "backbone_contacts": 34
+    },
+    "patch_residue_U_2": {
+     "electrostatic": -13.490742320119884,
+     "exchange": -54.065685936991414,
+     "repulsion": 86.13821022656649,
+     "polarization": -1.932670216026532,
+     "generalized_correlation": -27.585690703562395,
+     "desolvation": 2.74793166119855,
+     "total": -8.188647267225612,
+     "pauli": 32.07252428957507,
+     "eda_plus_cds": -11.938528243269765,
+     "cds_water": -3.749880976044153,
+     "buried_np_A2": 333.2960152089339,
+     "base_contacts": 50,
+     "backbone_contacts": 19
+    },
+    "patch_residue_U_4": {
+     "electrostatic": -15.167075903326499,
+     "exchange": -64.32017975686848,
+     "repulsion": 101.46368523532507,
+     "polarization": -0.59595781645823,
+     "generalized_correlation": -35.61665922834085,
+     "desolvation": 3.407765139207797,
+     "total": -10.82842197328512,
+     "pauli": 37.14350547845659,
+     "eda_plus_cds": -15.717622734616782,
+     "cds_water": -4.8892007613316615,
+     "buried_np_A2": 370.69877014502265,
+     "base_contacts": 38,
+     "backbone_contacts": 41
+    },
+    "patch_residue_U_5": {
+     "electrostatic": -13.192341310507084,
+     "exchange": -57.9513587992882,
+     "repulsion": 92.27933830662889,
+     "polarization": -1.5426043560521157,
+     "generalized_correlation": -31.103118325519116,
+     "desolvation": 2.404413682101033,
+     "total": -9.105670761001726,
+     "pauli": 34.327979507340686,
+     "eda_plus_cds": -13.356072766726271,
+     "cds_water": -4.2504020057245455,
+     "buried_np_A2": 371.8552689406248,
+     "base_contacts": 42,
+     "backbone_contacts": 31
+    }
+   },
+   "descriptors": {
+    "electrostatic/best": -15.167075903326499,
+    "electrostatic/boltzmann": -14.619244241263864,
+    "electrostatic/min": -15.167075903326499,
+    "electrostatic/mean": -14.112453933751743,
+    "exchange/best": -64.32017975686848,
+    "exchange/boltzmann": -60.53282092740503,
+    "exchange/min": -64.32017975686848,
+    "exchange/mean": -58.66587534670907,
+    "repulsion/best": 101.46368523532507,
+    "repulsion/boltzmann": 95.50385079276344,
+    "repulsion/min": 86.13821022656649,
+    "repulsion/mean": 92.98118235978711,
+    "polarization/best": -0.59595781645823,
+    "polarization/boltzmann": -1.3786086976828333,
+    "polarization/min": -2.4426332058804667,
+    "polarization/mean": -1.7194759338554537,
+    "generalized_correlation/best": -35.61665922834085,
+    "generalized_correlation/boltzmann": -32.33948918192027,
+    "generalized_correlation/min": -35.61665922834085,
+    "generalized_correlation/mean": -30.777670180252688,
+    "desolvation/best": 3.407765139207797,
+    "desolvation/boltzmann": 3.726162604562597,
+    "desolvation/min": 2.404413682101033,
+    "desolvation/mean": 3.272067978142328,
+    "total/best": -10.82842197328512,
+    "total/boltzmann": -9.640149387596828,
+    "total/min": -10.82842197328512,
+    "total/mean": -9.022224903202355,
+    "pauli/best": 37.14350547845659,
+    "pauli/boltzmann": 34.971029865358425,
+    "pauli/min": 31.9292454604469,
+    "pauli/mean": 34.315307013078026,
+    "eda_plus_cds/best": -15.717622734616782,
+    "eda_plus_cds/boltzmann": -14.348118332169982,
+    "eda_plus_cds/min": -15.717622734616782,
+    "eda_plus_cds/mean": -13.489764649783172,
+    "cds_water/best": -4.8892007613316615,
+    "cds_water/boltzmann": -4.707968944573153,
+    "cds_water/min": -4.8892007613316615,
+    "cds_water/mean": -4.467539746580819,
+    "buried_np_A2/best": 370.69877014502265,
+    "buried_np_A2/boltzmann": 364.539200985058,
+    "buried_np_A2/min": 333.2960152089339,
+    "buried_np_A2/mean": 369.0779177752803,
+    "base_contacts/best": 38,
+    "base_contacts/boltzmann": 39.33993281385266,
+    "base_contacts/min": 38.0,
+    "base_contacts/mean": 42.6,
+    "backbone_contacts/best": 41,
+    "backbone_contacts/boltzmann": 37.10133668524574,
+    "backbone_contacts/min": 19.0,
+    "backbone_contacts/mean": 31.6
+   }
+  },
+  "G": {
+   "model": "residue_G",
+   "retention_time_min": 1.99,
+   "n_placements": 5,
+   "selected": "patch_residue_G_2",
+   "weights": {
+    "patch_residue_G_0": 0.4693459386046509,
+    "patch_residue_G_1": 5.916421452950207e-05,
+    "patch_residue_G_2": 0.5222839484908298,
+    "patch_residue_G_8": 0.0005219318621403067,
+    "patch_residue_G_9": 0.007789016827849347
+   },
+   "relative_energy_kcal_mol": {
+    "patch_residue_G_0": 0.06331963003508728,
+    "patch_residue_G_1": 5.38311033914699,
+    "patch_residue_G_2": 0.0,
+    "patch_residue_G_8": 4.093140257856914,
+    "patch_residue_G_9": 2.4916933375830816
+   },
+   "placements": {
+    "patch_residue_G_0": {
+     "electrostatic": -14.947090532160358,
+     "exchange": -60.57849501823786,
+     "repulsion": 95.79937888436,
+     "polarization": -2.7222903792772457,
+     "generalized_correlation": -31.73318588502085,
+     "desolvation": 3.532729039454507,
+     "total": -10.648954110223446,
+     "pauli": 35.220883866122136,
+     "eda_plus_cds": -13.373921834562452,
+     "cds_water": -2.724967724339006,
+     "buried_np_A2": 321.57146052604264,
+     "base_contacts": 68,
+     "backbone_contacts": 17
+    },
+    "patch_residue_G_1": {
+     "electrostatic": -11.85257114382808,
+     "exchange": -46.182458564375494,
+     "repulsion": 74.32956400145045,
+     "polarization": -1.616548975427166,
+     "generalized_correlation": -25.016093301004688,
+     "desolvation": 1.5545901083640175,
+     "total": -8.783517971115112,
+     "pauli": 28.147105437074956,
+     "eda_plus_cds": -10.281030535352299,
+     "cds_water": -1.4975125642371871,
+     "buried_np_A2": 282.2306047220766,
+     "base_contacts": 57,
+     "backbone_contacts": 9
+    },
+    "patch_residue_G_2": {
+     "electrostatic": -18.365295785419562,
+     "exchange": -75.37141617531059,
+     "repulsion": 119.04350697220396,
+     "polarization": -3.3609640311930393,
+     "generalized_correlation": -37.64649771377197,
+     "desolvation": 5.094441776775867,
+     "total": -10.606225107479187,
+     "pauli": 43.67209079689337,
+     "eda_plus_cds": -14.294928725838858,
+     "cds_water": -3.6887036183596713,
+     "buried_np_A2": 409.58082252187023,
+     "base_contacts": 61,
+     "backbone_contacts": 30
+    },
+    "patch_residue_G_8": {
+     "electrostatic": -12.838227997625218,
+     "exchange": -53.10776594464869,
+     "repulsion": 83.79219627219162,
+     "polarization": -2.2585179903133024,
+     "generalized_correlation": -27.417984410121758,
+     "desolvation": 2.958970399288019,
+     "total": -8.871329648433708,
+     "pauli": 30.684430327542927,
+     "eda_plus_cds": -10.955272837074272,
+     "cds_water": -2.083943188640564,
+     "buried_np_A2": 288.18025760920034,
+     "base_contacts": 58,
+     "backbone_contacts": 10
+    },
+    "patch_residue_G_9": {
+     "electrostatic": -12.024983741083329,
+     "exchange": -51.85469904350603,
+     "repulsion": 81.40021146562405,
+     "polarization": -1.5917049549818516,
+     "generalized_correlation": -27.81558588946764,
+     "desolvation": 3.240142297062942,
+     "total": -8.646619847780944,
+     "pauli": 29.545512422118023,
+     "eda_plus_cds": -11.766651659383463,
+     "cds_water": -3.1200318116025194,
+     "buried_np_A2": 321.64175366166717,
+     "base_contacts": 56,
+     "backbone_contacts": 18
+    }
+   },
+   "descriptors": {
+    "electrostatic/best": -18.365295785419562,
+    "electrostatic/boltzmann": -16.708320162257593,
+    "electrostatic/min": -18.365295785419562,
+    "electrostatic/mean": -14.005633840023311,
+    "exchange/best": -75.37141617531059,
+    "exchange/boltzmann": -68.23189955449136,
+    "exchange/min": -75.37141617531059,
+    "exchange/mean": -57.41896694921572,
+    "repulsion/best": 119.04350697220396,
+    "repulsion/boltzmann": 107.81972134806071,
+    "repulsion/min": 74.32956400145045,
+    "repulsion/mean": 90.87297151916601,
+    "polarization/best": -3.3609640311930393,
+    "polarization/boltzmann": -3.0467457491935135,
+    "polarization/min": -3.3609640311930393,
+    "polarization/mean": -2.310005266238521,
+    "generalized_correlation/best": -37.64649771377197,
+    "generalized_correlation/boltzmann": -34.788449830660404,
+    "generalized_correlation/min": -37.64649771377197,
+    "generalized_correlation/mean": -29.925869439877385,
+    "desolvation/best": 5.094441776775867,
+    "desolvation/boltzmann": 4.345691073299466,
+    "desolvation/min": 1.5545901083640175,
+    "desolvation/mean": 3.27617472418907,
+    "total/best": -10.606225107479187,
+    "total/boltzmann": -10.610003056780501,
+    "total/min": -10.648954110223446,
+    "total/mean": -9.511329337006478,
+    "pauli/best": 43.67209079689337,
+    "pauli/boltzmann": 39.58782179356935,
+    "pauli/min": 28.147105437074956,
+    "pauli/mean": 33.45400456995028,
+    "eda_plus_cds/best": -14.294928725838858,
+    "eda_plus_cds/boltzmann": -13.84098453742472,
+    "eda_plus_cds/min": -14.294928725838858,
+    "eda_plus_cds/mean": -12.13436111844227,
+    "cds_water/best": -3.6887036183596713,
+    "cds_water/boltzmann": -3.230981480644221,
+    "cds_water/min": -3.6887036183596713,
+    "cds_water/mean": -2.6230317814357895,
+    "buried_np_A2/best": 409.58082252187023,
+    "buried_np_A2/boltzmann": 367.5181296242484,
+    "buried_np_A2/min": 282.2306047220766,
+    "buried_np_A2/mean": 324.64097980817144,
+    "base_contacts/best": 61,
+    "base_contacts/boltzmann": 64.24467403364876,
+    "base_contacts/min": 56.0,
+    "base_contacts/mean": 60.0,
+    "backbone_contacts/best": 30,
+    "backbone_contacts/boltzmann": 23.793353510457415,
+    "backbone_contacts/min": 9.0,
+    "backbone_contacts/mean": 16.8
+   }
+  },
+  "A": {
+   "model": "residue_A",
+   "retention_time_min": 2.82,
+   "n_placements": 5,
+   "selected": "patch_residue_A_1",
+   "weights": {
+    "patch_residue_A_0": 0.029981320191887685,
+    "patch_residue_A_1": 0.9693279884265742,
+    "patch_residue_A_3": 3.262239580610182e-05,
+    "patch_residue_A_5": 0.0006580347284313354,
+    "patch_residue_A_9": 3.425730065555021e-08
+   },
+   "relative_energy_kcal_mol": {
+    "patch_residue_A_0": 2.0594944116556655,
+    "patch_residue_A_1": 0.0,
+    "patch_residue_A_3": 6.102214874705553,
+    "patch_residue_A_5": 4.322236970799147,
+    "patch_residue_A_9": 10.165982684668592
+   },
+   "placements": {
+    "patch_residue_A_0": {
+     "electrostatic": -11.364163096179677,
+     "exchange": -49.154852431959625,
+     "repulsion": 77.4786200891711,
+     "polarization": -0.904607837626076,
+     "generalized_correlation": -27.727406535150873,
+     "desolvation": 1.9569963037883658,
+     "total": -9.71541364455294,
+     "pauli": 28.323767657211476,
+     "eda_plus_cds": -11.692432603004638,
+     "cds_water": -1.9770189584516977,
+     "buried_np_A2": 376.78128622145414,
+     "base_contacts": 53,
+     "backbone_contacts": 17
+    },
+    "patch_residue_A_1": {
+     "electrostatic": -14.122019777573966,
+     "exchange": -59.82338510314846,
+     "repulsion": 94.35896143357395,
+     "polarization": -1.9422489364124462,
+     "generalized_correlation": -32.97893706608633,
+     "desolvation": 2.9272863225838273,
+     "total": -11.58034317970353,
+     "pauli": 34.53557633042549,
+     "eda_plus_cds": -16.006396376290848,
+     "cds_water": -4.426053196587318,
+     "buried_np_A2": 382.45068286393825,
+     "base_contacts": 55,
+     "backbone_contacts": 25
+    },
+    "patch_residue_A_3": {
+     "electrostatic": -9.691904835147158,
+     "exchange": -41.86641234578118,
+     "repulsion": 65.60203067154818,
+     "polarization": -1.957327258318384,
+     "generalized_correlation": -22.3324499725689,
+     "desolvation": 3.2303899257110675,
+     "total": -7.015673787960247,
+     "pauli": 23.735618325767,
+     "eda_plus_cds": -7.979675861204968,
+     "cds_water": -0.9640020732447212,
+     "buried_np_A2": 281.6602747557563,
+     "base_contacts": 41,
+     "backbone_contacts": 12
+    },
+    "patch_residue_A_5": {
+     "electrostatic": -11.729768176147049,
+     "exchange": -52.16904571702872,
+     "repulsion": 83.19652915705261,
+     "polarization": -1.0441501232297805,
+     "generalized_correlation": -28.178448236999373,
+     "desolvation": 1.0543929871684643,
+     "total": -8.87049035925041,
+     "pauli": 31.027483440023886,
+     "eda_plus_cds": -10.302494754886336,
+     "cds_water": -1.4320043956359267,
+     "buried_np_A2": 337.79687028397643,
+     "base_contacts": 58,
+     "backbone_contacts": 17
+    },
+    "patch_residue_A_9": {
+     "electrostatic": -9.872651113250262,
+     "exchange": -40.791732782433684,
+     "repulsion": 64.34557897023271,
+     "polarization": -1.6056090789672877,
+     "generalized_correlation": -20.501076918714617,
+     "desolvation": 2.1906774969735663,
+     "total": -6.234813377130696,
+     "pauli": 23.553846187799024,
+     "eda_plus_cds": -9.578608013312905,
+     "cds_water": -3.34379463618221,
+     "buried_np_A2": 298.53285260032976,
+     "base_contacts": 10,
+     "backbone_contacts": 32
+    }
+   },
+   "descriptors": {
+    "electrostatic/best": -14.122019777573966,
+    "electrostatic/boltzmann": -14.037616742197844,
+    "electrostatic/min": -14.122019777573966,
+    "electrostatic/mean": -11.356101399659622,
+    "exchange/best": -59.82338510314846,
+    "exchange/boltzmann": -59.497905136570864,
+    "exchange/min": -59.82338510314846,
+    "exchange/mean": -48.76108567607034,
+    "repulsion/best": 94.35896143357395,
+    "repulsion/boltzmann": 93.84458209853238,
+    "repulsion/min": 64.34557897023271,
+    "repulsion/mean": 76.9963440643157,
+    "polarization/best": -1.9422489364124462,
+    "polarization/boltzmann": -1.9105485865354455,
+    "polarization/min": -1.957327258318384,
+    "polarization/mean": -1.4907886469107947,
+    "generalized_correlation/best": -32.97893706608633,
+    "generalized_correlation/boltzmann": -32.81798261800417,
+    "generalized_correlation/min": -32.97893706608633,
+    "generalized_correlation/mean": -26.343663745904017,
+    "desolvation/best": 2.9272863225838273,
+    "desolvation/boltzmann": 2.896973180725459,
+    "desolvation/min": 1.0543929871684643,
+    "desolvation/mean": 2.271948607245058,
+    "total/best": -11.58034317970353,
+    "total/boltzmann": -11.522497859335031,
+    "total/min": -11.58034317970353,
+    "total/mean": -8.683346869719566,
+    "pauli/best": 34.53557633042549,
+    "pauli/boltzmann": 34.34667696196153,
+    "pauli/min": 23.553846187799024,
+    "pauli/mean": 28.235258388245377,
+    "eda_plus_cds/best": -16.006396376290848,
+    "eda_plus_cds/boltzmann": -15.873042610700962,
+    "eda_plus_cds/min": -16.006396376290848,
+    "eda_plus_cds/mean": -11.111921521739939,
+    "cds_water/best": -4.426053196587318,
+    "cds_water/boltzmann": -4.3505447513659306,
+    "cds_water/min": -4.426053196587318,
+    "cds_water/mean": -2.428574652020375,
+    "buried_np_A2/best": 382.45068286393825,
+    "buried_np_A2/boltzmann": 382.2480322090855,
+    "buried_np_A2/min": 281.6602747557563,
+    "buried_np_A2/mean": 335.444393345091,
+    "base_contacts/best": 55,
+    "base_contacts/boltzmann": 54.941553208681704,
+    "base_contacts/min": 10.0,
+    "base_contacts/mean": 43.4,
+    "backbone_contacts/best": 25,
+    "backbone_contacts/boltzmann": 24.75446130929307,
+    "backbone_contacts/min": 12.0,
+    "backbone_contacts/mean": 20.6
+   }
+  }
+ },
+ "correlations": {
+  "electrostatic/best": {
+   "spearman_rho": 0.19999999999999998,
+   "pearson_r": 0.2644733913584319,
+   "p_one_sided_negative": 0.625,
+   "order_weak_to_strong": "ACUG"
+  },
+  "electrostatic/boltzmann": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.07550803753186913,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CAUG"
+  },
+  "electrostatic/min": {
+   "spearman_rho": 0.19999999999999998,
+   "pearson_r": 0.2644733913584319,
+   "p_one_sided_negative": 0.625,
+   "order_weak_to_strong": "ACUG"
+  },
+  "electrostatic/mean": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.42496128315333215,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "ACGU"
+  },
+  "exchange/best": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.3735830155912446,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "AUCG"
+  },
+  "exchange/boltzmann": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.016720212359927683,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CAUG"
+  },
+  "exchange/min": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.3735830155912446,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "AUCG"
+  },
+  "exchange/mean": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.49760004567608573,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "ACGU"
+  },
+  "repulsion/best": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.3856238944050775,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "GCUA"
+  },
+  "repulsion/boltzmann": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.012300551715837466,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "GUAC"
+  },
+  "repulsion/min": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.4912568830480981,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "UGCA"
+  },
+  "repulsion/mean": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.5011497445829496,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "UGCA"
+  },
+  "polarization/best": {
+   "spearman_rho": 0.0,
+   "pearson_r": 0.24852350306956023,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "UACG"
+  },
+  "polarization/boltzmann": {
+   "spearman_rho": 0.0,
+   "pearson_r": 0.08761448085148671,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "UACG"
+  },
+  "polarization/min": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.7666242707243602,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "AUCG"
+  },
+  "polarization/mean": {
+   "spearman_rho": 0.19999999999999998,
+   "pearson_r": 0.2772991801067115,
+   "p_one_sided_negative": 0.625,
+   "order_weak_to_strong": "ACUG"
+  },
+  "generalized_correlation/best": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.07861257112386333,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CAUG"
+  },
+  "generalized_correlation/boltzmann": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.48837925318164,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CUAG"
+  },
+  "generalized_correlation/min": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.07861257112386333,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CAUG"
+  },
+  "generalized_correlation/mean": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.3543154246678254,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "ACGU"
+  },
+  "desolvation/best": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.4894962902288605,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "GCUA"
+  },
+  "desolvation/boltzmann": {
+   "spearman_rho": -0.19999999999999998,
+   "pearson_r": -0.29470588566174033,
+   "p_one_sided_negative": 0.4583333333333333,
+   "order_weak_to_strong": "GUCA"
+  },
+  "desolvation/min": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.6880128372416618,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "UCGA"
+  },
+  "desolvation/mean": {
+   "spearman_rho": -0.19999999999999998,
+   "pearson_r": -0.43232477457062,
+   "p_one_sided_negative": 0.4583333333333333,
+   "order_weak_to_strong": "GUCA"
+  },
+  "total/best": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.8001105634984005,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CGUA"
+  },
+  "total/boltzmann": {
+   "spearman_rho": -1.0,
+   "pearson_r": -0.924020641328747,
+   "p_one_sided_negative": 0.041666666666666664,
+   "order_weak_to_strong": "CUGA"
+  },
+  "total/min": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.9014194426971187,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CGUA"
+  },
+  "total/mean": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.28587499693352164,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CAUG"
+  },
+  "pauli/best": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.405938661109821,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "GCUA"
+  },
+  "pauli/boltzmann": {
+   "spearman_rho": 0.39999999999999997,
+   "pearson_r": 0.004865415140188234,
+   "p_one_sided_negative": 0.7916666666666666,
+   "order_weak_to_strong": "GUAC"
+  },
+  "pauli/min": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.475478375163831,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "UGCA"
+  },
+  "pauli/mean": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.5069406883857456,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "UGCA"
+  },
+  "eda_plus_cds/best": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.7568479512154356,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CGUA"
+  },
+  "eda_plus_cds/boltzmann": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.9364510058959523,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CGUA"
+  },
+  "eda_plus_cds/min": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.7683257955844494,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "CGUA"
+  },
+  "eda_plus_cds/mean": {
+   "spearman_rho": -0.19999999999999998,
+   "pearson_r": 0.22418272584756777,
+   "p_one_sided_negative": 0.4583333333333333,
+   "order_weak_to_strong": "CAGU"
+  },
+  "cds_water/best": {
+   "spearman_rho": 0.0,
+   "pearson_r": -0.13938511356578728,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "GCAU"
+  },
+  "cds_water/boltzmann": {
+   "spearman_rho": 0.0,
+   "pearson_r": -0.2526120805119846,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "GCAU"
+  },
+  "cds_water/min": {
+   "spearman_rho": 0.0,
+   "pearson_r": -0.13938511356578728,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "GCAU"
+  },
+  "cds_water/mean": {
+   "spearman_rho": 0.7999999999999999,
+   "pearson_r": 0.49125870221622425,
+   "p_one_sided_negative": 0.9583333333333334,
+   "order_weak_to_strong": "AGCU"
+  },
+  "buried_np_A2/best": {
+   "spearman_rho": -0.39999999999999997,
+   "pearson_r": -0.5855477902824431,
+   "p_one_sided_negative": 0.375,
+   "order_weak_to_strong": "CGAU"
+  },
+  "buried_np_A2/boltzmann": {
+   "spearman_rho": -0.19999999999999998,
+   "pearson_r": -0.03748133655363875,
+   "p_one_sided_negative": 0.4583333333333333,
+   "order_weak_to_strong": "CAGU"
+  },
+  "buried_np_A2/min": {
+   "spearman_rho": 0.19999999999999998,
+   "pearson_r": -0.1951784608767828,
+   "p_one_sided_negative": 0.625,
+   "order_weak_to_strong": "UGAC"
+  },
+  "buried_np_A2/mean": {
+   "spearman_rho": 0.0,
+   "pearson_r": -0.059847588843465485,
+   "p_one_sided_negative": 0.5416666666666666,
+   "order_weak_to_strong": "UACG"
+  },
+  "base_contacts/best": {
+   "spearman_rho": 0.7999999999999999,
+   "pearson_r": 0.6465187187403432,
+   "p_one_sided_negative": 0.9583333333333334,
+   "order_weak_to_strong": "GAUC"
+  },
+  "base_contacts/boltzmann": {
+   "spearman_rho": 0.6000000000000001,
+   "pearson_r": 0.5171354910557138,
+   "p_one_sided_negative": 0.8333333333333334,
+   "order_weak_to_strong": "GACU"
+  },
+  "base_contacts/min": {
+   "spearman_rho": -0.19999999999999998,
+   "pearson_r": -0.6482113434730883,
+   "p_one_sided_negative": 0.4583333333333333,
+   "order_weak_to_strong": "GUCA"
+  },
+  "base_contacts/mean": {
+   "spearman_rho": 0.7999999999999999,
+   "pearson_r": -0.008232639964881383,
+   "p_one_sided_negative": 0.9583333333333334,
+   "order_weak_to_strong": "GAUC"
+  },
+  "backbone_contacts/best": {
+   "spearman_rho": -0.7999999999999999,
+   "pearson_r": -0.7778324506956386,
+   "p_one_sided_negative": 0.16666666666666666,
+   "order_weak_to_strong": "UCGA"
+  },
+  "backbone_contacts/boltzmann": {
+   "spearman_rho": -0.6000000000000001,
+   "pearson_r": -0.5581305950484461,
+   "p_one_sided_negative": 0.20833333333333334,
+   "order_weak_to_strong": "UCAG"
+  },
+  "backbone_contacts/min": {
+   "spearman_rho": -0.6000000000000001,
+   "pearson_r": -0.22899131088787542,
+   "p_one_sided_negative": 0.20833333333333334,
+   "order_weak_to_strong": "UCAG"
+  },
+  "backbone_contacts/mean": {
+   "spearman_rho": -0.6000000000000001,
+   "pearson_r": -0.2568060674042514,
+   "p_one_sided_negative": 0.20833333333333334,
+   "order_weak_to_strong": "UCAG"
+  }
+ }
+}
