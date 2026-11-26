@@ -785,7 +785,15 @@ reported with each result because these choices affect comparison with published
 
 ### Project terms
 
-This repository is public for development visibility. No project license has been
-assigned yet. Published literature and manuals are linked; full-text papers are
-not redistributed in this repository. Software projects retain their own licenses
-and citation guidance.
+Source code is licensed under the [Apache License 2.0](LICENSE). Reports,
+documentation and figures (`reports/`, `docs/`, and this README's text) are licensed
+under [CC BY 4.0](reports/LICENSE). See [NOTICE](NOTICE) for details.
+
+These licenses cover only this project's own work. GKS-EDA and GKS-EDA(sol) are
+methods developed by Peifeng Su and co-workers; EDA_GPU is an independent
+implementation written from the published papers and contains no XEDA or GAMESS
+code, so please cite the original GKS-EDA publications. Values transcribed from
+papers and manuals (for example `examples/hplc/sturm2007_tableS1.csv` and
+`references/`) stay under their sources' terms. Published literature and manuals
+are linked; full-text papers are not redistributed here. Dependencies such as
+PySCF, GPU4PySCF, geomeTRIC and Psi4 keep their own licenses and citation guidance.

@@ -1,0 +1,45 @@
+EDA_GPU
+Copyright 2026 Zongyuan Liu
+
+Licensing of this repository
+----------------------------
+- Source code (src/, scripts/, tests/, .github/, pyproject.toml) is licensed
+  under the Apache License, Version 2.0 (see LICENSE).
+- Reports, documentation and figures written for this project (reports/,
+  docs/, and the prose of README.md) are licensed under the Creative Commons
+  Attribution 4.0 International License (see reports/LICENSE).
+
+These licenses cover only the original work of the copyright holder above.
+They do not grant any rights in the third-party methods, software, data or
+publications listed below.
+
+Methods
+-------
+The GKS-EDA and GKS-EDA(sol) methods were developed by Peifeng Su and
+co-workers. EDA_GPU is an independent implementation written from the
+published papers; it does not contain code from XEDA, GAMESS or any other
+program. Use of the method should cite the original publications, listed in
+src/eda_gpu/citations.py and in README.md.
+
+Third-party data included for validation and comparison
+-------------------------------------------------------
+The following files contain values transcribed from published sources. They
+remain subject to the terms of their original sources and are NOT covered by
+this repository's licenses:
+- examples/hplc/sturm2007_tableS1.csv
+    Sturm, Quinten, Huber, Kohlbacher, Nucleic Acids Res. 35 (2007) 4195,
+    doi:10.1093/nar/gkm338, Supplementary Table S1.
+- references/xeda_ii_co2_b3lyp.json and examples/co2_dimer_xeda_ii.*
+    XEDA II manual (Xiamen University), geometry and reference components.
+- references/tryptamine_water_2017.json
+    Phys. Chem. Chem. Phys. (2017), doi:10.1039/C7CP03491A, Table 3.
+- Reference values quoted from the XEDA manuals and the literature in
+  scripts/validate_gks_sol.py, docs/ and reports/.
+
+Third-party software
+--------------------
+EDA_GPU depends on, but does not redistribute, third-party software that keeps
+its own license, including PySCF (Apache-2.0), GPU4PySCF (GPL-3.0),
+geomeTRIC (BSD-3-Clause), Psi4 (LGPL-3.0, comparison only) and NumPy
+(BSD-3-Clause). An environment or package that bundles these programs is
+subject to their licenses.
